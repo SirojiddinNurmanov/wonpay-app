@@ -8,13 +8,14 @@ const UzbCourse = () => {
     const [sellRate, setSellRate] = useState()
 
     const getExchangeRate = async () => {
-        const res = await fetch('https://cbu.uz/uz/arkhiv-kursov-valyut/json')
+        const res = await fetch('https://wonpay.thesmart.uz/api/exchangerate/USD')
 
         const data = await res.json()
-        if (data) {
-            setBuyRate(data[0]['Rate'])
-            setSellRate(data[0]['Rate'])
+        if (data.success) {
+            setBuyRate(data.data[0]['Rate'])
+            setSellRate(data.data[0]['Rate'])
         }
+        console.log(data)
     }
 
     useEffect(() => {
@@ -33,7 +34,7 @@ const UzbCourse = () => {
                     <h3>O'zbekiston Valyuta kurslari:</h3>
                     <div className="chc-body-item">
                         <div className="chc-body-item-title">
-                            <h4>Sotib olish sdfasdf:</h4>
+                            <h4>Sotib olish:</h4>
                             <span>$1 = {buyRate} sum</span>
                         </div>
                         <div className="chc-body-item-body">
