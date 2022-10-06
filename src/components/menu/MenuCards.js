@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { MenuButtons } from "../../data/menuButtons";
 import MenuItem from "./MenuItem";
 import PropTypes from "prop-types";
@@ -6,8 +6,8 @@ import PropTypes from "prop-types";
 const MenuCards = ({ app }) => {
         return (
             <div className={`${app}-menu`}>
-                {MenuButtons[app].map(button => (
-                    <MenuItem key={button.link.toString()} {...button}/>
+                {MenuButtons[app].map((button, index) => (
+                    <MenuItem key={index} {...button}/>
                 ))}
             </div>
         )

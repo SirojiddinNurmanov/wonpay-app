@@ -1,11 +1,10 @@
 import React from "react";
 import Layout from "../layouts/Layout";
-import { useNavigate, Link } from "react-router-dom";
+import { common } from '../../data/bottomButtons'
 
 const Reports = () => {
-    const navigate = useNavigate();
     return (
-        <Layout>
+        <Layout buttons={common}>
             <div className="offers-page">
                 <div className="home-header">
                     <div className="logo">
@@ -130,16 +129,6 @@ const Reports = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="curer-footer">
-                    <Link to="/">
-                        <img src="assets/img/icons/home2.png" alt="user" />
-                    </Link>
-                    <img
-                        onClick={() => navigate(-1)}
-                        src="assets/img/icons/back.png"
-                        alt="back"
-                    />
                 </div>
             </div>
         </Layout>

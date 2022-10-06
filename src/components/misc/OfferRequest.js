@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Layout from "../layouts/Layout";
 import { Link } from "react-router-dom";
 import RequestModal from "../modals/RequestModal";
+import { common } from '../../data/bottomButtons'
 
 const OfferRequst = () => {
     const [modalShow, setModalShow] = useState(false);
     return (
-        <Layout>
+        <Layout buttons={common}>
             <div className="offer-request-page">
                 <RequestModal
                     show={modalShow}

@@ -3,12 +3,14 @@ import { useState } from "react";
 import DeptModal from "../modals/DeptModal";
 import Layout from "../layouts/Layout";
 import DeptModal2 from "../modals/DeptModal2";
+import { common } from '../../data/bottomButtons'
+
 
 const Depts = () => {
     const [modalShow, setModalShow] = useState(false);
     const [modalShow2, setModalShow2] = useState(false);
     return (
-        <Layout>
+        <Layout buttons={common}>
             <DeptModal show={modalShow} onHide={() => setModalShow(false)} />
             <DeptModal2 show={modalShow2} onHide={() => setModalShow2(false)} />
             <div className="offers-page">

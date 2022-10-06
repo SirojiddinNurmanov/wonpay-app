@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react"
-import { useNavigate, Link } from "react-router-dom"
-import AddCurerModal from "../modals/AddCurerModal"
-import CarrierCard from "./CarrierCard"
 import { APIContext } from "../../context"
-import Layout from '../layouts/Layout'
 import { common } from '../../data/bottomButtons'
 
+import CarrierCard from "./CarrierCard"
+import Layout from '../layouts/Layout'
+
+import AddCarrierModal from "../modals/AddCarrierModal"
+
 const Carriers = () => {
-    const navigate = useNavigate()
     const { BACKEND_URL } = useContext(APIContext)
     const [modalShow, setModalShow] = useState(false)
     const [carriers, setCarriers] = useState([])
@@ -41,7 +41,7 @@ const Carriers = () => {
     return (
         <Layout buttons={common}>
             <div className="curer-page">
-                <AddCurerModal
+                <AddCarrierModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />
@@ -52,8 +52,8 @@ const Carriers = () => {
                 </div>
                 <div className="curer-body">
                     <h3>Kuryerlar</h3>
-                    {carriers.map(carrier => (
-                        <CarrierCard {...carrier} />
+                    {carriers.map((carrier, index) => (
+                        <CarrierCard key={index} {...carrier} />
                     ))}
                 </div>
             </div>

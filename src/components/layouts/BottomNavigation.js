@@ -8,8 +8,8 @@ const BottomNavigation = ({ leftButton = false, rightButton = false, middleButto
             <div className="bottom-navigation">
                 {leftButton && <CircleButton {...leftButton} />}
                 <div className="middle-buttons">
-                    {middleButtons && middleButtons.map(button => (
-                        <MiddleButton {...button} />
+                    {middleButtons && middleButtons.map((button, index) => (
+                        <MiddleButton key={index} {...button} />
                     ))}
                 </div>
                 {rightButton && <CircleButton {...rightButton} />}

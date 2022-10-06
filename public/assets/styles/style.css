@@ -1214,14 +1214,37 @@ a {
     width: 70%;
 }
 
-.add-curer-item {
-    display: flex;
-    background-color: #D9D9D9;
-    box-shadow: 2px 2px 2px .7;
-    border-radius: 10px;
+.add-carrier-item {
     width: 100%;
+    height: fit-content;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px .7;
+    border-radius: 25px;
+    display: grid;
+    grid-template-columns: 22% 56% 22%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.add-carrier-item .image {
     padding: 10px;
-    margin: 10px 0;
+}
+
+.add-carrier-item img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.add-carrier-item .name {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 15px;
+}
+
+.add-carrier-item .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-btn {
@@ -1513,4 +1536,37 @@ a {
 
 .bottom-navigation .circle-button.right {
     grid-column: 3/3;
+}
+
+
+/* Modal Styles */
+
+.modal-dialog-centered {
+    justify-content: center !important;
+}
+
+.modal-content {
+    height: 70% !important;
+    width: 80% !important;
+}
+
+.modal-header {
+    justify-content: center !important;
+}
+
+.modal-footer {
+    justify-content: center !important;
+}
+
+.modal-button {
+    height: 40px;
+    color: var(--white-color);
+    background-color: var(--main-color);
+    border-radius: calc(40px/2);
+    border: 0;
+    padding: 0 50px;
+}
+
+.modal-60w {
+    width: 60vw;
 }
