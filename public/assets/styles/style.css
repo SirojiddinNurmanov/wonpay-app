@@ -792,7 +792,6 @@ a {
 .carrier-menu,
 .client-menu,
 .admin-menu {
-    width: inherit;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 10px;
