@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Layout from "../layouts/Layout";
 import { APIContext } from "../../context";
-
+import { common } from "../../data/bottomButtons";
 
 const NaverCourse = () => {
     const { BACKEND_URL } = useContext(APIContext)
@@ -21,9 +21,9 @@ const NaverCourse = () => {
     useEffect(() => {
         getExchangeRate()
     }, []);
-    
+
     return (
-        <Layout>
+        <Layout buttons={common}>
             <div className="change-course">
                 <div className="home-header">
                     <div className="logo">

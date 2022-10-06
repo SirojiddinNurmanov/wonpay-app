@@ -4,7 +4,7 @@ import AdminPage from "../pages/AdminPage";
 import CashFlow from "../misc/CashFlow";
 import Carriers from "../carrier/Carriers";
 import Debts from "../debt/Debts";
-import NoverCourse from "../misc/NaverCourse";
+import NaverCourse from "../misc/NaverCourse";
 import Offers from "../misc/Offers";
 import OfferRequst from "../misc/OfferRequest";
 import Profit from "../misc/Profit";
@@ -31,7 +31,7 @@ function AdminApp() {
                 <Route path="/profit" element={<Profit />} />
                 <Route path="/notifications" element={<Profit />} />
                 <Route path="/uzbcourse" element={<UzbCourse />} />
-                <Route path="/navercourse" element={<NoverCourse />} />
+                <Route path="/navercourse" element={<NaverCourse />} />
             </Routes>
         </Router>
     );
