@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
 import PropTypes from "prop-types";
 
-const APIContext = createContext();
+export const APIContext = createContext();
 
 export function APIContextProvider({ children }) {
     const [user, setUser] = useState(false);
@@ -30,6 +30,7 @@ export function APIContextProvider({ children }) {
         <APIContext.Provider
             value={{
                 user,
+                BACKEND_URL: 'https://wonpay.thesmart.uz/api'
             }}
         >
             {children}

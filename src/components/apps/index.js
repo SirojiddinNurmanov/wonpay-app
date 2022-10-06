@@ -6,18 +6,20 @@ import CarrierApp from './CarrierApp'
 function App() {
     const { user } = useAPI();
     let currentUser = user ? user.user : JSON.parse(localStorage.getItem('user'));
-    
-    if(currentUser) {
-        localStorage.setItem('user', JSON.stringify(currentUser))
+    let token = user ? user.token : localStorage.getItem('token');
 
-        if(['admin', 'superadmin'].includes(currentUser.role)) {
-            return  <AdminApp />
+    if (currentUser) {
+        localStorage.setItem('user', JSON.stringify(currentUser))
+        localStorage.setItem('token', token)
+
+        if (['admin', 'superadmin'].includes(currentUser.role)) {
+            return <AdminApp />
         }
-        if(currentUser.role === 'carrier') {
+        if (currentUser.role === 'carrier') {
             return <CarrierApp />
         }
 
-        if(currentUser.role === 'client') {
+        if (currentUser.role === 'client') {
             return <ClientApp />
         }
     }

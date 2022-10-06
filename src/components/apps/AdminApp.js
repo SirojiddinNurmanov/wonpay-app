@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import AdminPage from "../pages/AdminPage";
 import CashFlow from "../misc/CashFlow";
-import Curers from "../carrier/Curers";
+import Carriers from "../carrier/Carriers";
 import Debts from "../debt/Debts";
 import NoverCourse from "../misc/NaverCourse";
 import Offers from "../misc/Offers";
@@ -19,7 +19,7 @@ function AdminApp() {
         <Router>
             <Routes>
                 <Route path="/" element={<AdminPage />} />
-                <Route path="/curers" element={<Curers />} />
+                <Route path="/carriers" element={<Carriers />} />
                 <Route path="/debts" element={<Debts />} />
                 <Route path="/cashflow" element={<CashFlow />} />
                 <Route path="/reports" element={<Reports />} />
@@ -35,7 +35,6 @@ function AdminApp() {
             </Routes>
         </Router>
     );
-
 }
 
 export default AdminApp;

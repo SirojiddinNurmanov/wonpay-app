@@ -13,7 +13,7 @@ export const MenuButtons = {
             text: ["O’zbekiston ", <br />, "banklari kurslari"]
         },
         {
-            link: "/curers",
+            link: "/carriers",
             image: "assets/img/admin/curers.png",
             alt: "Kuryerlar",
             text: "Kuryerlar"

@@ -1,21 +1,20 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Layout from "../layouts/Layout";
+import { APIContext } from "../../context";
 
 const UzbCourse = () => {
+    const { BACKEND_URL } = useContext(APIContext)
     const [buyRate, setBuyRate] = useState()
     const [sellRate, setSellRate] = useState()
 
     const getExchangeRate = async () => {
-        const res = await fetch('https://wonpay.thesmart.uz/api/exchangerate/USD')
+        const res = await fetch(`${BACKEND_URL}/exchangerate-nbu/USD`)
 
         const data = await res.json()
         if (data.success) {
-            setBuyRate(data.data[0]['Rate'])
-            setSellRate(data.data[0]['Rate'])
+            setBuyRate(data.data['buy'])
+            setSellRate(data.data['sell'])
         }
-        console.log(data)
     }
 
     useEffect(() => {
