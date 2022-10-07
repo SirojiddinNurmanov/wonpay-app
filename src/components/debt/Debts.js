@@ -4,7 +4,7 @@ import DeptModal from "../modals/DeptModal";
 import Layout from "../layouts/Layout";
 import DeptModal2 from "../modals/DeptModal2";
 import { common } from '../../data/bottomButtons'
-
+import Title from "../common/Title";
 
 const Depts = () => {
     const [modalShow, setModalShow] = useState(false);
@@ -17,15 +17,7 @@ const Depts = () => {
             <DeptModal show={modalShow} onHide={() => setModalShow(false)} />
             <DeptModal2 show={modalShow2} onHide={() => setModalShow2(false)} />
             <div className="offers-page">
-                <div className="home-header">
-                    <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
-                    </div>
-                </div>
-                <div className="request-header">
-                    <span>Qarzlar:</span>
-                    <span>+$20.000.000</span>
-                </div>
+                <Title text="Qarzlar:" amount="+$20.000.000" />
                 <div className="request-body">
                     <div className="request-body-title">
                         <div className="container">
@@ -90,10 +82,7 @@ const Depts = () => {
                         </div>
                     </div>
                 </div>
-                <div className="request-header">
-                    <span>Bizning qarzlar:</span>
-                    <span>+$20.000.000</span>
-                </div>
+                <Title text="Bizning qarzlar:" amount="+$20.000.000" />
                 <div className="request-body">
                     <div className="request-body-title">
                         <div className="container">

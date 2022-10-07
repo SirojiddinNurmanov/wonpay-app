@@ -16,10 +16,11 @@ a {
     --yellow-color: #FAB115;
     --white-color: #ffffff;
     --black-color: #000000;
+    --background-color: #E9E9F7;
 }
 
 #root {
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
 }
 
 .home-page {
@@ -42,19 +43,6 @@ a {
     background-image: url("/assets/img/icons/home.png");
     background-position: bottom right;
     background-repeat: no-repeat;
-}
-
-.home-header {
-    width: 100vw;
-    transform: translateX(-10px);
-    display: flex;
-    padding: 10px 10px;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2vh;
-    box-shadow: 0px 3px 8px rgb(101 101 102 / 14%);
-    border-bottom: 2px solid #9f9c9c8c;
-    z-index: 10;
 }
 
 .home-profile {
@@ -256,7 +244,7 @@ a {
     height: 100vh;
     width: 100hw;
     flex-direction: column;
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
 }
 
 .black-line {
@@ -309,7 +297,7 @@ a {
     font-size: 20px;
     width: 60%;
     margin: 0 auto;
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     padding: 5px 20px 2px 40px;
     box-shadow: 5px 5px 15px 0px #BD90F559 inset;
 
@@ -339,8 +327,8 @@ a {
 .radio-group input {
     width: 30px;
     height: 30px;
-    accent-color: #E9E9F7;
-    background-color: #E9E9F7;
+    accent-color: var(--background-color);
+    background-color: var(--background-color);
 }
 
 .put-money-details {
@@ -371,7 +359,7 @@ a {
 .detail-group input {
     border: none;
     border-bottom: 1px solid var(--black-color);
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     outline: none;
 }
 
@@ -472,8 +460,8 @@ a {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #E9E9F7;
-
+    background-color: var(--background-color);
+    padding: 10px;
 }
 
 .profile-navbar {
@@ -594,7 +582,7 @@ a {
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
 }
 
 .content-1,
@@ -675,7 +663,7 @@ a {
 
 /****My modal ****/
 .modal-content {
-    background-color: #E9E9F7 !important;
+    background-color: var(--background-color) !important;
 }
 
 .my-modal {
@@ -692,7 +680,7 @@ a {
 }
 
 .my-modal button {
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     text-align: center;
     padding: 10px 20px;
     border: 1px solid var(--main-color);
@@ -845,7 +833,7 @@ a {
 /**** Change Course ****/
 
 .change-course {
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     width: 100vw;
     height: 100vh;
     padding: 0 10px;
@@ -900,7 +888,7 @@ a {
 /**** Requests ***/
 
 .request-page {
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     width: 100vw;
     height: 100vh;
 }
@@ -947,7 +935,7 @@ a {
 .single-offer-input {
     margin: 0 auto;
     border: none;
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
 }
 
 .offers-page .component71-item {
@@ -963,7 +951,7 @@ a {
 .offer-request-page {
     min-height: 100vh;
     padding: 0 10px;
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
 }
 
 .offer-request-body .request-body-item {
@@ -1011,7 +999,7 @@ a {
 }
 
 .offers-page {
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     width: 100vw;
     min-height: 100vh;
     padding: 0 10px;
@@ -1039,7 +1027,7 @@ a {
 
 /*** Component71 page ***/
 .component71-page {
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     width: 100vw;
     height: 100vh;
 }
@@ -1107,7 +1095,7 @@ a {
     border: none;
     border-bottom: 1px solid #9F9C9C;
     outline: none;
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
 }
 
 .component71-item-check .col-6 {
@@ -1119,15 +1107,14 @@ a {
 
 /**** Curers ****/
 .curer-page {
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     width: 100vw;
     height: 100vh;
     padding: 0 10px;
 }
 
 .curer-body {
-    margin-top: 20px;
-    padding: 20px;
+    padding: 15px 10px;
 }
 
 .curer-item .row {
@@ -1184,7 +1171,7 @@ a {
 
 .curer-select select {
     border: none;
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     outline: none;
 }
 
@@ -1318,7 +1305,7 @@ a {
 .modal-input input {
     border: none;
     border-bottom: 2px solid #9F9C9C;
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     padding-left: 70px;
     outline: none;
     font-size: 22px;
@@ -1353,7 +1340,7 @@ a {
 
 /**** Transactions****/
 .transaction-page {
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
     min-height: 100vh;
 }
 
@@ -1446,7 +1433,7 @@ a {
     padding: 10px;
     min-height: 100vh;
     font-weight: 900;
-    background-color: #E9E9F7;
+    background-color: var(--background-color);
 }
 
 .sale-body {
@@ -1568,4 +1555,83 @@ a {
 
 .modal-60w {
     width: 60vw;
+}
+
+/* Title Styles */
+.main-title {
+    width: 100vw;
+    padding: 5px 10px;
+    transform: translateX(-10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333333;
+    /* background-color: blue; */
+    border-bottom: 1px solid #999;
+}
+
+.main-title .left,
+.main-title .right {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main-title .right.small {
+    font-size: 14px;
+}
+
+/* Header Styles */
+
+.header {
+    width: 100vw;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 3px 8px rgb(101 101 102 / 14%);
+    border-bottom: 2px solid #9f9c9c8c;
+}
+
+.header .avatar {
+    height: 40px;
+}
+
+/* Notification Styles */
+
+.notification-card {
+    width: 100%;
+    background-color: #fff;
+    margin: 15px 0;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.notification-card.offer {
+    border-left: 15px solid var(--yellow-color);
+}
+
+.notification-card.query {
+    border-right: 15px solid var(--main-color);
+}
+
+.notification-card .notification-body,
+.notification-card .notification-title {
+    width: 100%;
+    text-align: left;
+}
+
+.notification-card .notification-title {
+    font-weight: 600;
+    border-bottom: 1px solid #333;
+}
+
+.notification-card .notification-time {
+    width: 100%;
+    text-align: right;
+}
+
+.wrapper {
+    border-bottom: 100px solid var(--background-color);
+    min-height: 100vh;
 }

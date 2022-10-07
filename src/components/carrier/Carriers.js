@@ -2,10 +2,11 @@ import React, { useState, useEffect, useContext } from "react"
 import { APIContext } from "../../context"
 import { common } from '../../data/bottomButtons'
 
-import CarrierCard from "./CarrierCard"
 import Layout from '../layouts/Layout'
 
+import CarrierCard from "./CarrierCard"
 import AddCarrierModal from "../modals/AddCarrierModal"
+import Title from '../common/Title'
 
 const Carriers = () => {
     const { BACKEND_URL } = useContext(APIContext)
@@ -50,8 +51,8 @@ const Carriers = () => {
                         <img src="assets/img/icons/logo.png" alt="logo" />
                     </div>
                 </div>
+                <Title text="Kuryerlar" />
                 <div className="curer-body">
-                    <h3>Kuryerlar</h3>
                     {carriers.map((carrier, index) => (
                         <CarrierCard key={index} {...carrier} />
                     ))}

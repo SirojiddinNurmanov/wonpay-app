@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import Layout from "../layouts/Layout";
 import { Link } from "react-router-dom";
-import RequestModal from "../modals/RequestModal";
+
 import { common } from '../../data/bottomButtons'
+
+import Layout from "../layouts/Layout";
+
+import RequestModal from "../modals/RequestModal";
+import Title from '../common/Title'
 
 const OfferRequst = () => {
     const [modalShow, setModalShow] = useState(false);
@@ -16,17 +20,9 @@ const OfferRequst = () => {
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                 />
-                <div className="home-header">
-                    <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
-                    </div>
-                </div>
                 <div className="offers-page-x">
                     <Link to="/offers">
-                        <div className="request-header">
-                            <span>Takliflar:</span>
-                            <span>W32.000.000</span>
-                        </div>
+                        <Title text="Takliflar:" amount="₩32.000.000" />
                     </Link>
                     <div className="offer-request-body">
                         <div className="request-body-title">
@@ -143,10 +139,7 @@ const OfferRequst = () => {
                 </div>
                 <div className="offer-page-x">
                     <Link to="/requests">
-                        <div className="request-header">
-                            <span>So'rovlar:</span>
-                            <span>W15.000.000</span>
-                        </div>
+                        <Title text="So'rovlar:" amount="₩15.000.000" />
                     </Link>
                     <div className="offer-request-body">
                         <div className="request-body-title">

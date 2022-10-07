@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../layouts/Layout";
 import { common } from '../../data/bottomButtons'
+import Title from "../common/Title";
 
 const Reports = () => {
 
@@ -9,14 +10,7 @@ const Reports = () => {
     return (
         <Layout buttons={common}>
             <div className="offers-page">
-                <div className="home-header">
-                    <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
-                    </div>
-                </div>
-                <div className="request-header">
-                    <span>O'tkazmalar Tarixi:</span>
-                </div>
+                <Title text="O'tkazmalar Tarixi:" />
                 <div className="request-body">
                     <div className="request-body-title">
                         <div className="container">

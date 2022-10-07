@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Layout from "../layouts/Layout";
 import { APIContext } from "../../context";
 import { common } from "../../data/bottomButtons";
+import Title from "../common/Title";
 
 const UzbCourse = () => {
     const { BACKEND_URL } = useContext(APIContext)
@@ -17,7 +18,7 @@ const UzbCourse = () => {
             setSellRate(data.data['sell'])
         }
     }
-    
+
     common.middleButtons = false;
 
     useEffect(() => {
@@ -27,13 +28,8 @@ const UzbCourse = () => {
     return (
         <Layout buttons={common}>
             <div className="change-course">
-                <div className="home-header">
-                    <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
-                    </div>
-                </div>
                 <div className="chc-body">
-                    <h3>O'zbekiston Valyuta kurslari:</h3>
+                    <Title text="O'zbekiston Valyuta kurslari:" />
                     <div className="chc-body-item">
                         <div className="chc-body-item-title">
                             <h4>Sotib olish:</h4>

@@ -1,24 +1,27 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import AdminPage from "../pages/AdminPage";
-import CashFlow from "../misc/CashFlow";
+import NaverCourse from "../misc/NaverCourse";
+import UzbCourse from "../misc/UzbCourse";
 import Carriers from "../carrier/Carriers";
 import Debts from "../debt/Debts";
-import NaverCourse from "../misc/NaverCourse";
-import Offers from "../misc/Offers";
-import OfferRequst from "../misc/OfferRequest";
-import Profit from "../misc/Profit";
+import CashFlow from "../misc/CashFlow";
 import Reports from "../misc/Reports";
-import Requests from "../request/Requests";
+import OfferRequst from "../misc/OfferRequest";
+import Offers from "../misc/Offers";
 import SingleOffers from "../misc/SingleOffer";
+import Requests from "../request/Requests";
 import SingleRequests from "../request/SingleRequest";
-import UzbCourse from "../misc/UzbCourse";
+import Profit from "../misc/Profit";
+import Notifications from "../misc/Notifications"
 
 function AdminApp() {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<AdminPage />} />
+                <Route path="/navercourse" element={<NaverCourse />} />
+                <Route path="/uzbcourse" element={<UzbCourse />} />
                 <Route path="/carriers" element={<Carriers />} />
                 <Route path="/debts" element={<Debts />} />
                 <Route path="/cashflow" element={<CashFlow />} />
@@ -29,9 +32,7 @@ function AdminApp() {
                 <Route path="/requests" element={<Requests />} />
                 <Route path="/singlerequests" element={<SingleRequests />} />
                 <Route path="/profit" element={<Profit />} />
-                <Route path="/notifications" element={<Profit />} />
-                <Route path="/uzbcourse" element={<UzbCourse />} />
-                <Route path="/navercourse" element={<NaverCourse />} />
+                <Route path="/notifications" element={<Notifications />} />
             </Routes>
         </Router>
     );

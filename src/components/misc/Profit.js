@@ -1,6 +1,10 @@
 import React from "react";
-import Layout from "../layouts/Layout";
+
 import { common } from '../../data/bottomButtons'
+
+import Layout from "../layouts/Layout";
+
+import Title from "../common/Title";
 
 const Profit = () => {
     common.middleButtons = [
@@ -12,15 +16,7 @@ const Profit = () => {
     return (
         <Layout buttons={common}>
             <div className="offers-page">
-                <div className="home-header">
-                    <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
-                    </div>
-                </div>
-                <div className="request-header">
-                    <span>Umumiy Foyda:</span>
-                    <span>$32.000</span>
-                </div>
+                <Title text="Umumiy Foyda:" amount="$32.000" />
                 <div className="request-body">
                     <div className="request-body-title">
                         <div className="container">

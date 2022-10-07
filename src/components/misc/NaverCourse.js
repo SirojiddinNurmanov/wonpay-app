@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import Layout from "../layouts/Layout";
-import { APIContext } from "../../context";
+
 import { common } from "../../data/bottomButtons";
+import { APIContext } from "../../context";
+
+import Layout from "../layouts/Layout";
+import Title from "../common/Title";
+
 
 const NaverCourse = () => {
     const { BACKEND_URL } = useContext(APIContext)
@@ -25,15 +29,10 @@ const NaverCourse = () => {
     });
 
     return (
-        <Layout buttons={common}>
+        <Layout buttons={common} >
             <div className="change-course">
-                <div className="home-header">
-                    <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
-                    </div>
-                </div>
+                <Title text="Naver Valyuta kurslari:" />
                 <div className="chc-body">
-                    <h3>Naver Valyuta kurslari:</h3>
                     <div className="chc-body-item">
                         <div className="chc-body-item-title">
                             <h4>Sotib olish:</h4>

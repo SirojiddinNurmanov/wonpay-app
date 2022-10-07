@@ -8,7 +8,7 @@ import Profilenext from "../profile/ProfileNext";
 import Profile2 from "../profile/Profile-2";
 // import Transactions from "../Transactions";
 import Sale from "../misc/Sale";
-import Messages from "../misc/Messages";
+import Notifications from "../misc/Notifications";
 // import TransactionDetail from "../TransactionDetail";
 
 function ClientApp() {
@@ -22,7 +22,7 @@ function ClientApp() {
                 <Route path="/uzb-kor" element={<UzbKor />} />
                 <Route path="/kor-uzb" element={<KorUzb />} />
                 <Route path="/sale" element={<Sale />} />
-                <Route path="/message" element={<Messages />} />
+                <Route path="/message" element={<Notifications />} />
             </Routes>
         </Router>
     );
