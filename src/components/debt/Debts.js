@@ -9,6 +9,9 @@ import { common } from '../../data/bottomButtons'
 const Depts = () => {
     const [modalShow, setModalShow] = useState(false);
     const [modalShow2, setModalShow2] = useState(false);
+
+    common.middleButtons = false
+
     return (
         <Layout buttons={common}>
             <DeptModal show={modalShow} onHide={() => setModalShow(false)} />

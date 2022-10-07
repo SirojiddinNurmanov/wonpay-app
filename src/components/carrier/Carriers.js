@@ -36,7 +36,7 @@ const Carriers = () => {
 
     useEffect(() => {
         getAllCarriers()
-    }, [])
+    })
 
     return (
         <Layout buttons={common}>

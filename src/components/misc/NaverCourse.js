@@ -18,9 +18,11 @@ const NaverCourse = () => {
         }
     }
 
+    common.middleButtons = false;
+
     useEffect(() => {
         getExchangeRate()
-    }, []);
+    });
 
     return (
         <Layout buttons={common}>

@@ -6,6 +6,9 @@ import { common } from '../../data/bottomButtons'
 
 const OfferRequst = () => {
     const [modalShow, setModalShow] = useState(false);
+
+    common.middleButtons = false
+
     return (
         <Layout buttons={common}>
             <div className="offer-request-page">

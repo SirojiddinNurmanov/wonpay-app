@@ -25,7 +25,7 @@ function AddCarrierModal(props) {
 
     useEffect(() => {
         getAllUsers()
-    }, [])
+    })
 
 
     return (

@@ -3,6 +3,9 @@ import Layout from "../layouts/Layout";
 import { common } from '../../data/bottomButtons'
 
 const Reports = () => {
+
+    common.middleButtons = false
+
     return (
         <Layout buttons={common}>
             <div className="offers-page">

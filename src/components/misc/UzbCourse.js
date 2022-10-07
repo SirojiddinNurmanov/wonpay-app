@@ -17,10 +17,12 @@ const UzbCourse = () => {
             setSellRate(data.data['sell'])
         }
     }
+    
+    common.middleButtons = false;
 
     useEffect(() => {
         getExchangeRate()
-    }, []);
+    });
 
     return (
         <Layout buttons={common}>

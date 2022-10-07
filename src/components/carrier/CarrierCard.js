@@ -5,7 +5,7 @@ const CarrierCard = ({ first_name, last_name, address, avatar, fromClients, toCl
         <div className="curer-item">
             <div className="row carrier-card">
                 <div className="col-3">
-                    <img src={avatar} alt="Profile image" />
+                    <img src={avatar} alt="Profile" />
                 </div>
                 <div className="col-9">
                     <div className="row">

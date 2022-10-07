@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 
 const UserCard = ({ avatar, first_name, last_name, role }) => {
-    const [checked, setChecked] = useState(role == 'carrier')
+    const [checked, setChecked] = useState(role === 'carrier')
 
     const changeRole = () => {
         setChecked(!checked)
