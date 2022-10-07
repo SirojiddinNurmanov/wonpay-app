@@ -4,9 +4,9 @@ import PutMoneyModal from "../modals/PutMoneyModal";
 
 const UzbKor = () => {
   const [inputValue, setInputValue] = useState("");
-  const [slectedType, setSelectedType] = useState("");
+  const [selectedType, setSelectedType] = useState("");
   const [modalShow, setModalShow] = useState(false);
-  console.log(slectedType);
+
   return (
     <Layout>
       <PutMoneyModal show={modalShow} onHide={() => setModalShow(false)} />
@@ -21,7 +21,7 @@ const UzbKor = () => {
             value={inputValue}
           />
           <span className="korean-won">
-            <img src="assets/img/icons/won.png" alt="won" />
+            <img src="/assets/img/icons/won.png" alt="won" />
           </span>
         </div>
         <div
@@ -50,7 +50,7 @@ const UzbKor = () => {
         </div>
         <div
           className={
-            slectedType === "cash"
+            selectedType === "cash"
               ? "put-money-details active"
               : "put-money-details"
           }
@@ -88,7 +88,7 @@ const UzbKor = () => {
         </div>
         <div
           className={
-            slectedType === "card" ? "card-group-u active" : "card-group-u"
+            selectedType === "card" ? "card-group-u active" : "card-group-u"
           }
         >
           <h6>SMS:</h6>
@@ -98,7 +98,7 @@ const UzbKor = () => {
               onClick={() => document.getElementById("upload-1").click()}
               className="file-upload"
             >
-              <img src="assets/img/icons/upload.png" alt="upload" />
+              <img src="/assets/img/icons/upload.png" alt="upload" />
               <span>Joylashtirish</span>
             </div>
             <p>Yoki</p>
@@ -114,7 +114,7 @@ const UzbKor = () => {
       </div>
       <div
         onClick={() => setModalShow(true)}
-        className={slectedType !== "" ? "confirm-btn active" : "confirm-btn"}
+        className={selectedType !== "" ? "confirm-btn active" : "confirm-btn"}
       >
         Tasdiqlash
       </div>

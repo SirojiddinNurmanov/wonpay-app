@@ -12,7 +12,7 @@ function DeptModal2(props) {
                 <div className="sale-modal">
                     <div className="home-header">
                         <div className="logo">
-                            <img src="assets/img/icons/logo.png" alt="logo" />
+                            <img src="/assets/img/icons/logo.png" alt="logo" />
                         </div>
                     </div>
                     <div className="white-line"></div>
@@ -39,7 +39,7 @@ function DeptModal2(props) {
                                         {" "}
                                         <span>W 2 000 000</span>
                                         <img
-                                            src="assets/img/icons/check.png"
+                                            src="/assets/img/icons/check.png"
                                             alt="ddd"
                                         />
                                     </div>
@@ -56,7 +56,7 @@ function DeptModal2(props) {
                                         {" "}
                                         <span>W 2 000 000</span>
                                         <img
-                                            src="assets/img/icons/check.png"
+                                            src="/assets/img/icons/check.png"
                                             alt="ddd"
                                         />
                                     </div>
@@ -73,7 +73,7 @@ function DeptModal2(props) {
                                         {" "}
                                         <span>W 2 000 000</span>
                                         <img
-                                            src="assets/img/icons/check.png"
+                                            src="/assets/img/icons/check.png"
                                             alt="ddd"
                                         />
                                     </div>

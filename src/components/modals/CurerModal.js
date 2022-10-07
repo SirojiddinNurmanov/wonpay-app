@@ -12,7 +12,7 @@ function CurerModal(props) {
                 <div className="sale-modal">
                     <div className="home-header">
                         <div className="logo">
-                            <img src="assets/img/icons/logo.png" alt="logo" />
+                            <img src="/assets/img/icons/logo.png" alt="logo" />
                         </div>
                     </div>
                     <div className="white-line"></div>

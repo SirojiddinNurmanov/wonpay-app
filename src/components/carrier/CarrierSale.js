@@ -10,7 +10,7 @@ const CurerSale = () => {
             <CurerModal show={modalShow} onHide={() => setModalShow(false)} />
             <div className="home-header">
                 <div className="logo">
-                    <img src="assets/img/icons/logo.png" alt="logo" />
+                    <img src="/assets/img/icons/logo.png" alt="logo" />
                 </div>
 
                 <div className="home-profile">
@@ -21,7 +21,7 @@ const CurerSale = () => {
                     <span>
                         $3.200 <b>(2)</b>
                     </span>
-                    <img src="assets/img/icons/profile-mini.png" alt="pro" />
+                    <img src="/assets/img/icons/profile-mini.png" alt="pro" />
                 </div>
             </div>
             <div className="admin-header">
@@ -125,12 +125,12 @@ const CurerSale = () => {
             </div>
             <div className="curer-footer">
                 <Link to="/">
-                    <img src="assets/img/icons/home2.png" alt="user" />
+                    <img src="/assets/img/icons/home2.png" alt="user" />
                 </Link>
                 <button onClick={() => setModalShow(true)}>Tasdiqlash</button>
                 <img
                     onClick={() => navigate(-1)}
-                    src="assets/img/icons/back.png"
+                    src="/assets/img/icons/back.png"
                     alt="back"
                 />
             </div>

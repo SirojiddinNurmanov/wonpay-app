@@ -4,7 +4,7 @@ const Header = ({ avatar, toAmount = false, balance = false, fromAmount = false 
     return (
         <div className="header">
             <div className="logo">
-                <img src="assets/img/icons/logo.png" alt="logo" />
+                <img src="/assets/img/icons/logo.png" alt="logo" />
             </div>
             <div className="home-profile">
                 {toAmount && (

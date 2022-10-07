@@ -7,7 +7,7 @@ const ChangeCourse = () => {
             <div className="change-course">
                 <div className="home-header">
                     <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
+                        <img src="/assets/img/icons/logo.png" alt="logo" />
                     </div>
                 </div>
                 <div className="chc-header">
@@ -42,7 +42,7 @@ const ChangeCourse = () => {
                             <span>$1 = W1.250</span>
                         </div>
                         <div className="chc-body-item-body">
-                            <img src="assets/img/table/table.png" alt="table" />
+                            <img src="/assets/img/table/table.png" alt="table" />
                         </div>
                     </div>
                     <div className="chc-body-item">
@@ -51,7 +51,7 @@ const ChangeCourse = () => {
                             <span>$1 = W1.350</span>
                         </div>
                         <div className="chc-body-item-body">
-                            <img src="assets/img/table/table.png" alt="table" />
+                            <img src="/assets/img/table/table.png" alt="table" />
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ function RequestModal(props) {
                 <div className="sale-modal">
                     <div className="home-header">
                         <div className="logo">
-                            <img src="assets/img/icons/logo.png" alt="logo" />
+                            <img src="/assets/img/icons/logo.png" alt="logo" />
                         </div>
                     </div>
                     <div className="white-line"></div>
@@ -35,7 +35,7 @@ function RequestModal(props) {
                                 </div>
                                 <div className="col-3">
                                     <img
-                                        src="assets/img/icons/copy.png"
+                                        src="/assets/img/icons/copy.png"
                                         alt="copy"
                                     />
                                 </div>

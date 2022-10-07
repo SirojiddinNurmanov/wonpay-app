@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import AdminPage from "../pages/AdminPage";
+import MainPage from "../pages/admin/MainPage";
 import NaverCourse from "../misc/NaverCourse";
 import UzbCourse from "../misc/UzbCourse";
 import Carriers from "../carrier/Carriers";
@@ -19,7 +19,7 @@ function AdminApp() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<AdminPage />} />
+                <Route path="/" element={<MainPage />} />
                 <Route path="/navercourse" element={<NaverCourse />} />
                 <Route path="/uzbcourse" element={<UzbCourse />} />
                 <Route path="/carriers" element={<Carriers />} />

@@ -8,7 +8,7 @@ const Requests = () => {
             <div className="request-page">
                 <div className="home-header">
                     <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
+                        <img src="/assets/img/icons/logo.png" alt="logo" />
                     </div>
                 </div>
                 <div className="request-header">

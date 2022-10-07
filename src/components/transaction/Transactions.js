@@ -10,12 +10,12 @@ const Transactions = () => {
             <div className="transaction-page">
                 <div className="home-header">
                     <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
+                        <img src="/assets/img/icons/logo.png" alt="logo" />
                     </div>
                     <div className="home-profile">
                         <span>+$3200</span>
                         <img
-                            src="assets/img/icons/profile-mini.png"
+                            src="/assets/img/icons/profile-mini.png"
                             alt="pro"
                         />
                     </div>
@@ -47,7 +47,7 @@ const Transactions = () => {
                                     imgShow ? "trans-img active" : "trans-img"
                                 }
                             >
-                                <img src="assets/img/table/copy.png" alt="" />
+                                <img src="/assets/img/table/copy.png" alt="" />
                                 <button>Rasm yuklash</button>
                             </div>
                         </div>
@@ -74,7 +74,7 @@ const Transactions = () => {
                                     imgShow1 ? "trans-img active" : "trans-img"
                                 }
                             >
-                                <img src="assets/img/table/copy.png" alt="" />
+                                <img src="/assets/img/table/copy.png" alt="" />
                                 <button>Rasm yuklash</button>
                             </div>
                         </div>
@@ -101,7 +101,7 @@ const Transactions = () => {
                                     imgShow2 ? "trans-img active" : "trans-img"
                                 }
                             >
-                                <img src="assets/img/table/copy.png" alt="" />
+                                <img src="/assets/img/table/copy.png" alt="" />
                                 <button>Rasm yuklash</button>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ const Transactions = () => {
                                     imgShow3 ? "trans-img active" : "trans-img"
                                 }
                             >
-                                <img src="assets/img/table/copy.png" alt="" />
+                                <img src="/assets/img/table/copy.png" alt="" />
                                 <button>Rasm yuklash</button>
                             </div>
                         </div>
@@ -140,10 +140,10 @@ const Transactions = () => {
                 </div>
             </div>
             <div className="profile-next-footer">
-                <img src="assets/img/icons/user.png" alt="user" />
+                <img src="/assets/img/icons/user.png" alt="user" />
                 <button>Bekor Qilish</button>
                 <button>Tasdiqlash</button>
-                <img src="assets/img/icons/back.png" alt="back" />
+                <img src="/assets/img/icons/back.png" alt="back" />
             </div>
         </>
     );

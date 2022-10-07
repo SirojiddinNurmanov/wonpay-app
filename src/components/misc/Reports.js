@@ -1,7 +1,8 @@
 import React from "react";
-import Layout from "../layouts/Layout";
+
 import { common } from '../../data/bottomButtons'
-import Title from "../common/Title";
+
+import Layout from "../layouts/Layout";
 
 const Reports = () => {
 

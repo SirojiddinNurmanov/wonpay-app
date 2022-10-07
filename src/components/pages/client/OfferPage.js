@@ -1,35 +1,37 @@
 import React, { useState } from "react";
-import Layout from "./layouts/Layout";
-import Modal from "react-bootstrap/Modal";
-import { Link } from "react-router-dom";
+import Layout from "../../layouts/Layout";
+import PutMoneyModal from "../../modals/PutMoneyModal";
 
-const PutMoney = () => {
+const OfferPage = () => {
     const [inputValue, setInputValue] = useState("");
     const [slectedType, setSelectedType] = useState("");
     const [modalShow, setModalShow] = useState(false);
 
     return (
         <Layout>
-            <PutMoneyModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-            />
+            <PutMoneyModal show={modalShow} onHide={() => setModalShow(false)} />
             <div className="put-money">
                 <div className="black-line"></div>
                 <div className="put-money-input">
                     <label htmlFor="put_money">Mavjud Summani Kiriting:</label>
-                    <input
-                        type="number"
-                        id="put_money"
-                        onChange={(e) => setInputValue(e.target.value)}
-                        value={inputValue}
-                    />
+                    <div className="input-group text-center">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">@</span>
+                        </div>
+                        <input
+                            type="number"
+                            id="put_money"
+                            onChange={(e) => setInputValue(e.target.value)}
+                            value={inputValue}
+                        />
+                    </div>
+                    <span className="korean-won">
+                        <img src="/assets/img/icons/won.png" alt="won" />
+                    </span>
                 </div>
                 <div
                     className={
-                        inputValue.length > 0
-                            ? "put-money-radio active"
-                            : "put-money-radio"
+                        inputValue.length > 0 ? "put-money-radio active" : "put-money-radio"
                     }
                 >
                     <div className="radio-group">
@@ -91,44 +93,29 @@ const PutMoney = () => {
                 </div>
                 <div
                     className={
-                        slectedType === "card"
-                            ? "card-group active"
-                            : "card-group"
+                        slectedType === "card" ? "card-group active" : "card-group"
                     }
                 >
-                    <h6>SMS:</h6>
-                    <div className="card-group-body">
-                        <input type="file" id="upload-1" />
-                        <div
-                            onClick={() =>
-                                document.getElementById("upload-1").click()
-                            }
-                            className="file-upload"
-                        >
-                            <img
-                                src="/assets/img/icons/upload.png"
-                                alt="upload"
-                            />
-                            <span>Joylashtirish</span>
+                    <div className="state-details">
+                        <h6>O'zbekistonda pulni oluvchi:</h6>
+                        <div className="detail-group">
+                            <label className="col-3" htmlFor="address-1">
+                                Ism:
+                            </label>
+                            <input className="col-6" type="text" />
                         </div>
-                        <p>Yoki</p>
-                        <input type="file" id="upload-2" />
-                        <button
-                            onClick={() =>
-                                document.getElementById("upload-2").click()
-                            }
-                            className="money-btn"
-                        >
-                            Rasm Yuklash
-                        </button>
+                        <div className="detail-group">
+                            <label className="col-3" htmlFor="address-1">
+                                Telefon:
+                            </label>
+                            <input className="col-6" type="number" />
+                        </div>
                     </div>
                 </div>
             </div>
             <div
                 onClick={() => setModalShow(true)}
-                className={
-                    slectedType !== "" ? "confirm-btn active" : "confirm-btn"
-                }
+                className={slectedType !== "" ? "confirm-btn active" : "confirm-btn"}
             >
                 Tasdiqlash
             </div>
@@ -136,29 +123,4 @@ const PutMoney = () => {
     );
 };
 
-export default PutMoney;
-
-function PutMoneyModal(props) {
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-            <Modal.Header closeButton>
-                {" "}
-                <h3>Sizning so'rovingiz qabul qilindi</h3>{" "}
-            </Modal.Header>
-            <Modal.Body>
-                <div className="my-modal">
-                    <p>Iltimos kuryerimiz aloqaga chiqishini kuting</p>
-
-                    <Link to="/profile">
-                        <button>Mening Sahifam</button>
-                    </Link>
-                </div>
-            </Modal.Body>
-        </Modal>
-    );
-}
+export default OfferPage;

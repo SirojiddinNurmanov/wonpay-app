@@ -4,8 +4,6 @@ import { common } from '../../data/bottomButtons'
 
 import Layout from "../layouts/Layout";
 
-import Title from "../common/Title";
-
 const Profit = () => {
     common.middleButtons = [
         {

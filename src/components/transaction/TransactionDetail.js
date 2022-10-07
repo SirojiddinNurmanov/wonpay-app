@@ -6,12 +6,12 @@ const TransactionDetail = () => {
             <div className="transaction-page">
                 <div className="home-header">
                     <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
+                        <img src="/assets/img/icons/logo.png" alt="logo" />
                     </div>
                     <div className="home-profile">
                         <span>+$3200</span>
                         <img
-                            src="assets/img/icons/profile-mini.png"
+                            src="/assets/img/icons/profile-mini.png"
                             alt="pro"
                         />
                     </div>
@@ -38,10 +38,10 @@ const TransactionDetail = () => {
                 </div>
             </div>
             <div className="profile-next-footer">
-                <img src="assets/img/icons/user.png" alt="user" />
+                <img src="/assets/img/icons/user.png" alt="user" />
                 <button>Bekor Qilish</button>
                 <button>Tasdiqlash</button>
-                <img src="assets/img/icons/back.png" alt="back" />
+                <img src="/assets/img/icons/back.png" alt="back" />
             </div>
         </>
     );

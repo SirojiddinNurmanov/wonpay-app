@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import CarrierPage from "../pages/CarrierPage";
+import MainPage from "../pages/carrier/MainPage";
 import CarrierSale from "../carrier/CarrierSale";
 import GetMoney from "../misc/GetMoney";
 import GiveMoney from "../misc/GiveMoney";
@@ -9,7 +9,7 @@ function CarrierApp() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<CarrierPage />} />
+                <Route path="/" element={<MainPage />} />
                 <Route path="/givemoney" element={<GiveMoney />} />
                 <Route path="/getmoney" element={<GetMoney />} />
                 <Route path="/submitmoney" element={<CarrierSale />} />

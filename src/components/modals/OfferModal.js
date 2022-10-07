@@ -12,7 +12,7 @@ function OfferModal(props) {
                 <div className="sale-modal">
                     <div className="home-header">
                         <div className="logo">
-                            <img src="assets/img/icons/logo.png" alt="logo" />
+                            <img src="/assets/img/icons/logo.png" alt="logo" />
                         </div>
                     </div>
                     <div className="white-line"></div>
@@ -25,7 +25,7 @@ function OfferModal(props) {
                             <label htmlFor="put_money">Olish:</label>
                             <input type="number" id="put_money2" />
                             <span className="korean-won2">
-                                <img src="assets/img/icons/won.png" alt="won" />
+                                <img src="/assets/img/icons/won.png" alt="won" />
                             </span>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ function OfferModal(props) {
                             <label htmlFor="put_money">Sotish:</label>
                             <input type="number" id="put_money2" />
                             <span className="korean-won2">
-                                <img src="assets/img/icons/won.png" alt="won" />
+                                <img src="/assets/img/icons/won.png" alt="won" />
                             </span>
                         </div>
                     </div>

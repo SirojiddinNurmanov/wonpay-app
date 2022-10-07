@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import Layout from "../layouts/Layout";
+
 import { APIContext } from "../../context";
 import { common } from "../../data/bottomButtons";
-import Title from "../common/Title";
+
+import Layout from "../layouts/Layout";
 
 const UzbCourse = () => {
     const { BACKEND_URL } = useContext(APIContext)
@@ -33,7 +34,7 @@ const UzbCourse = () => {
                     <span>$1 = {buyRate} sum</span>
                 </div>
                 <div className="chc-body-item-body">
-                    <img src="assets/img/table/table.png" alt="table" />
+                    <img src="/assets/img/table/table.png" alt="table" />
                 </div>
             </div>
             <div className="chc-body-item">
@@ -42,7 +43,7 @@ const UzbCourse = () => {
                     <span>$1 = {sellRate} sum</span>
                 </div>
                 <div className="chc-body-item-body">
-                    <img src="assets/img/table/table.png" alt="table" />
+                    <img src="/assets/img/table/table.png" alt="table" />
                 </div>
             </div>
         </Layout>

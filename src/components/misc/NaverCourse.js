@@ -4,8 +4,6 @@ import { common } from "../../data/bottomButtons";
 import { APIContext } from "../../context";
 
 import Layout from "../layouts/Layout";
-import Title from "../common/Title";
-
 
 const NaverCourse = () => {
     const { BACKEND_URL } = useContext(APIContext)
@@ -36,7 +34,7 @@ const NaverCourse = () => {
                     <span>$1 = ₩ {buyRate}</span>
                 </div>
                 <div className="chc-body-item-body">
-                    <img src="assets/img/table/table.png" alt="table" />
+                    <img src="/assets/img/table/table.png" alt="table" />
                 </div>
             </div>
             <div className="chc-body-item">
@@ -45,7 +43,7 @@ const NaverCourse = () => {
                     <span>$1 = ₩ {sellRate}</span>
                 </div>
                 <div className="chc-body-item-body">
-                    <img src="assets/img/table/table.png" alt="table" />
+                    <img src="/assets/img/table/table.png" alt="table" />
                 </div>
             </div>
         </Layout>

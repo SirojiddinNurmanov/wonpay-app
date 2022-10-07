@@ -39,7 +39,7 @@ function AddCarrierModal(props) {
             <Modal.Header closeButton>
                 <Modal.Title className="text-center">
                     <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
+                        <img src="/assets/img/icons/logo.png" alt="logo" />
                     </div>
                 </Modal.Title>
             </Modal.Header>

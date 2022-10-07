@@ -30,10 +30,10 @@ const Profilenext = () => {
                 </div>
             </div>
             <div className="profile-next-footer">
-                <img src="assets/img/icons/user.png" alt="user" />
+                <img src="/assets/img/icons/user.png" alt="user" />
                 <button>Bekor Qilish</button>
                 <button onClick={() => setModalShow(true)}>Tasdiqlash</button>
-                <img src="assets/img/icons/back.png" alt="back" />
+                <img src="/assets/img/icons/back.png" alt="back" />
             </div>
         </>
     );

@@ -12,7 +12,7 @@ const Profile2 = () => {
                 <div className="profile-avatar">
                     <div className="profile-author">
                         <div className="col-4">
-                            <img src="assets/img/icons/profile.png" alt="" />
+                            <img src="/assets/img/icons/profile.png" alt="" />
                         </div>
                         <div className="col-8">
                             <h3>Anvar Sobirov</h3>
