@@ -12,9 +12,7 @@ const AdminPage = () => {
 
     return (
         <Layout headerData={{ avatar, toAmount, balance, fromAmount }}>
-            <div className="admin-page">
-                <MenuCards app="admin" />
-            </div>
+            <MenuCards app="admin" />
         </Layout>
     );
 };

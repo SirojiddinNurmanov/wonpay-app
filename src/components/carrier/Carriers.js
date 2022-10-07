@@ -40,24 +40,14 @@ const Carriers = () => {
     })
 
     return (
-        <Layout buttons={common}>
-            <div className="curer-page">
-                <AddCarrierModal
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                />
-                <div className="home-header">
-                    <div className="logo">
-                        <img src="assets/img/icons/logo.png" alt="logo" />
-                    </div>
-                </div>
-                <Title text="Kuryerlar" />
-                <div className="curer-body">
-                    {carriers.map((carrier, index) => (
-                        <CarrierCard key={index} {...carrier} />
-                    ))}
-                </div>
-            </div>
+        <Layout buttons={common} title={{ text: "Kuryerlar" }}>
+            <AddCarrierModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
+            {carriers.map((carrier, index) => (
+                <CarrierCard key={index} {...carrier} />
+            ))}
         </Layout>
     )
 }

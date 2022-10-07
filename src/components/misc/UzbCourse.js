@@ -26,28 +26,23 @@ const UzbCourse = () => {
     });
 
     return (
-        <Layout buttons={common}>
-            <div className="change-course">
-                <div className="chc-body">
-                    <Title text="O'zbekiston Valyuta kurslari:" />
-                    <div className="chc-body-item">
-                        <div className="chc-body-item-title">
-                            <h4>Sotib olish:</h4>
-                            <span>$1 = {buyRate} sum</span>
-                        </div>
-                        <div className="chc-body-item-body">
-                            <img src="assets/img/table/table.png" alt="table" />
-                        </div>
-                    </div>
-                    <div className="chc-body-item">
-                        <div className="chc-body-item-title">
-                            <h4>Sotish:</h4>
-                            <span>$1 = {sellRate} sum</span>
-                        </div>
-                        <div className="chc-body-item-body">
-                            <img src="assets/img/table/table.png" alt="table" />
-                        </div>
-                    </div>
+        <Layout buttons={common} title={{ text: "O'zbekiston Valyuta kurslari:" }}>
+            <div className="chc-body-item">
+                <div className="chc-body-item-title">
+                    <h4>Sotib olish:</h4>
+                    <span>$1 = {buyRate} sum</span>
+                </div>
+                <div className="chc-body-item-body">
+                    <img src="assets/img/table/table.png" alt="table" />
+                </div>
+            </div>
+            <div className="chc-body-item">
+                <div className="chc-body-item-title">
+                    <h4>Sotish:</h4>
+                    <span>$1 = {sellRate} sum</span>
+                </div>
+                <div className="chc-body-item-body">
+                    <img src="assets/img/table/table.png" alt="table" />
                 </div>
             </div>
         </Layout>

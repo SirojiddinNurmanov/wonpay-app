@@ -29,28 +29,23 @@ const NaverCourse = () => {
     });
 
     return (
-        <Layout buttons={common} >
-            <div className="change-course">
-                <Title text="Naver Valyuta kurslari:" />
-                <div className="chc-body">
-                    <div className="chc-body-item">
-                        <div className="chc-body-item-title">
-                            <h4>Sotib olish:</h4>
-                            <span>$1 = ₩ {buyRate}</span>
-                        </div>
-                        <div className="chc-body-item-body">
-                            <img src="assets/img/table/table.png" alt="table" />
-                        </div>
-                    </div>
-                    <div className="chc-body-item">
-                        <div className="chc-body-item-title">
-                            <h4>Sotish:</h4>
-                            <span>$1 = ₩ {sellRate}</span>
-                        </div>
-                        <div className="chc-body-item-body">
-                            <img src="assets/img/table/table.png" alt="table" />
-                        </div>
-                    </div>
+        <Layout buttons={common} title={{ text: "Naver Valyuta kurslari:" }}>
+            <div className="chc-body-item">
+                <div className="chc-body-item-title">
+                    <h4>Sotib olish:</h4>
+                    <span>$1 = ₩ {buyRate}</span>
+                </div>
+                <div className="chc-body-item-body">
+                    <img src="assets/img/table/table.png" alt="table" />
+                </div>
+            </div>
+            <div className="chc-body-item">
+                <div className="chc-body-item-title">
+                    <h4>Sotish:</h4>
+                    <span>$1 = ₩ {sellRate}</span>
+                </div>
+                <div className="chc-body-item-body">
+                    <img src="assets/img/table/table.png" alt="table" />
                 </div>
             </div>
         </Layout>
