@@ -63,7 +63,7 @@ const QueryPage = () => {
                     <div onClick={changeInput} className="number">1</div>
                     <div onClick={changeInput} className="number">2</div>
                     <div onClick={changeInput} className="number">3</div>
-                    <div onClick={backspace} className="number sm">Qaytarish</div>
+                    <div onClick={backspace} className="number sm"><div>Qaytarish</div><span>{"←"}</span></div>
                     <div onClick={changeInput} className="number">5</div>
                     <div onClick={changeInput} className="number">6</div>
                     <div onClick={changeInput} className="number">7</div>
