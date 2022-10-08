@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 const Header = ({ avatar, toAmount = false, balance = false, fromAmount = false }) => {
     return (
@@ -22,7 +23,9 @@ const Header = ({ avatar, toAmount = false, balance = false, fromAmount = false 
                 {fromAmount && (
                     <span className="balance-item">{fromAmount}</span>
                 )}
-                <img className="avatar" src={avatar} alt="Avatar" />
+                <Link to="/profile">
+                    <img className="avatar" src={avatar} alt="Avatar" />
+                </Link>
             </div>
         </div>
     )

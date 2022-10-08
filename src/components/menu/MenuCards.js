@@ -1,7 +1,9 @@
-import React from "react";
-import { MenuButtons } from "../../data/menuButtons";
-import MenuItem from "./MenuItem";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
+
+import { MenuButtons } from "../../constants/menuButtons"
+
+import MenuItem from "./MenuItem"
 
 const MenuCards = ({ app }) => {
         return (
@@ -11,10 +13,10 @@ const MenuCards = ({ app }) => {
                 ))}
             </div>
         )
-};
-
-export default MenuCards;
+}
 
 MenuCards.protoTypes = {
     app: PropTypes.string
 }
+
+export default MenuCards

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import { APIContext } from '../../context'
-import UserCard from "../user/UserCard";
+import UserCard from "../cards/UserCard";
 
 function AddCarrierModal(props) {
     const [allUsers, setAllUsers] = useState([])

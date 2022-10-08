@@ -14,7 +14,7 @@ function PutMoneyModal(props) {
         <div className="my-modal">
           <h3>Sizning so'rovingiz qabul qilindi</h3>{" "}
           <p>Iltimos kuryerimiz aloqaga chiqishini kuting</p>
-          <Link to="/profile">
+          <Link to="/">
             <button>Mening Sahifam</button>
           </Link>
         </div>
