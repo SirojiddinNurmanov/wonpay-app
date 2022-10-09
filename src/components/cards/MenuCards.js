@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import { MenuButtons } from "../../constants/menuButtons"
 
-import MenuItem from "./MenuItem"
+import MenuItem from "../common/MenuItem"
 
 const MenuCards = ({ app }) => {
         return (

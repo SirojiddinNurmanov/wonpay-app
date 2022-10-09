@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
-import CircleButton from "./CircleButton"
-import MiddleButton from "./MiddleButton"
+import CircleButton from "../buttons/CircleButton"
+import MiddleButton from "../buttons/MiddleButton"
 
 const BottomNavigation = ({ leftButton = false, rightButton = false, middleButtons = false }) => {
     return (

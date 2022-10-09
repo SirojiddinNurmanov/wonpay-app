@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import Layout from "../../layout"
 
-import MenuCards from "../../components/menu/MenuCards"
+import MenuCards from "../../components/cards/MenuCards"
 
 const MainPage = () => {
     return (
