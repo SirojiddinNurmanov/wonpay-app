@@ -13,7 +13,7 @@ import { NoData } from "../../components/common/NoData"
 const CarriersPage = () => {
     const { BACKEND_URL } = useContext(APIContext)
     const [modalShow, setModalShow] = useState(false)
-    const [carriers, setCarriers] = useState([])
+    const [carriers, setCarriers] = useState(false)
     const [loader, showLoader] = useState(true)
 
     const getAllCarriers = async () => {
@@ -44,7 +44,9 @@ const CarriersPage = () => {
     ]
 
     useEffect(() => {
-        getAllCarriers()
+        if (!carriers) {
+            getAllCarriers()
+        }
     })
 
     return (

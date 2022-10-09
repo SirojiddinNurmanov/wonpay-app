@@ -14,6 +14,7 @@ import QueriesPage from "../pages/admin/QueriesPage"
 import SingleQueryPage from "../pages/admin/SingleQueryPage"
 import ProfitPage from "../pages/admin/ProfitPage"
 import NotificationsPage from "../pages/common/NotificationsPage"
+import ProfilePage from "../pages/common/ProfilePage"
 
 const AdminApp = () => {
     return (
@@ -33,6 +34,7 @@ const AdminApp = () => {
                 <Route path="/singlequery" element={<SingleQueryPage />} />
                 <Route path="/profit" element={<ProfitPage />} />
                 <Route path="/notifications" element={<NotificationsPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
             </Routes>
         </Router>
     )

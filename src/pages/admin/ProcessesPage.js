@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 
 import { common } from '../../constants/bottomButtons'
 
@@ -13,11 +14,14 @@ const ProcessesPage = () => {
     common.middleButtons = false
 
     return (
-        <Layout buttons={common} title={{text:"Takliflar:", amount:"₩32.000.000"}}>
+        <Layout buttons={common} >
             <QueryInfoModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />
+            <Link to="/queries">
+                <Title text="Takliflar:" amount="₩32.000.000" inContent={true} />
+            </Link>
             <div className="offers-page-x">
                 <div className="offer-request-body">
                     <div className="request-body-title">
@@ -132,7 +136,9 @@ const ProcessesPage = () => {
                     </div>
                 </div>
             </div>
-            <Title text="So'rovlar:" amount="₩15.000.000" inContent={true}/>
+            <Link to="/queries">
+                <Title text="So'rovlar:" amount="₩15.000.000" inContent={true} />
+            </Link>
             <div className="offer-page-x">
                 <div className="offer-request-body">
                     <div className="request-body-title">

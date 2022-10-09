@@ -61,7 +61,7 @@ export const MenuButtons = {
             text: "Oldi-Berdilar"
         },
         {
-            link: "/message",
+            link: "/notifications",
             image: "/assets/img/icons/bullhorn.png",
             text: "Xabarlar"
         },

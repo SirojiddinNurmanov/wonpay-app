@@ -6,7 +6,7 @@ import { APIContext } from '../../../context'
 import UserCard from "../../cards/UserCard"
 
 const UsersModal = (props) => {
-    const [allUsers, setAllUsers] = useState([])
+    const [allUsers, setAllUsers] = useState(false)
     const { BACKEND_URL } = useContext(APIContext)
 
 
@@ -26,7 +26,9 @@ const UsersModal = (props) => {
     }
 
     useEffect(() => {
-        getAllUsers()
+        if (!allUsers) {
+            getAllUsers()
+        }
     })
 
 
