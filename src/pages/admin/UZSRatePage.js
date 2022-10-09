@@ -5,7 +5,7 @@ import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
-const UzbCoursePage = () => {
+const UZSRatePage = () => {
     const { BACKEND_URL } = useContext(APIContext)
     const [buyRate, setBuyRate] = useState()
     const [sellRate, setSellRate] = useState()
@@ -50,4 +50,4 @@ const UzbCoursePage = () => {
     )
 }
 
-export default UzbCoursePage
+export default UZSRatePage

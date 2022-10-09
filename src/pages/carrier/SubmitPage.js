@@ -4,7 +4,7 @@ import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
-import CurerModal from "../../components/modals/CurerModal"
+import ConfirmReceiveModal from "../../components/modals/carrier/ConfirmReceiveModal"
 
 const SubmitPage = () => {
     const [modalShow, setModalShow] = useState(false)
@@ -17,7 +17,7 @@ const SubmitPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "Oldi Berdilar:", amount: "$20 000 + 34 200 000 s", small: true }}>
-            <CurerModal show={modalShow} onHide={() => setModalShow(false)} />
+            <ConfirmReceiveModal show={modalShow} onHide={() => setModalShow(false)} />
             <div className="request-body">
                 <div className="curer-select-page">
                     <div className="curer-select">

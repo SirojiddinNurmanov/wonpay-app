@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import CircleButton from "./CircleButton";
-import MiddleButton from "./MiddleButton";
+import React, { Fragment } from "react"
+import CircleButton from "./CircleButton"
+import MiddleButton from "./MiddleButton"
 
 const BottomNavigation = ({ leftButton = false, rightButton = false, middleButtons = false }) => {
     return (
@@ -15,7 +15,7 @@ const BottomNavigation = ({ leftButton = false, rightButton = false, middleButto
                 {rightButton && <CircleButton {...rightButton} />}
             </div>
         </Fragment>
-    );
-};
+    )
+}
 
-export default BottomNavigation;
+export default BottomNavigation

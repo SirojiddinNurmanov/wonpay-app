@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 
 import Layout from "../../layout"
 
-const SingleRequestPage = () => {
+const SingleQueryPage = () => {
     // eslint-disable-next-line
     const [modalShow, setModalShow] = useState(false)
     const navigate = useNavigate()
@@ -115,4 +115,4 @@ const SingleRequestPage = () => {
         </Layout>
     )
 }
-export default SingleRequestPage
+export default SingleQueryPage

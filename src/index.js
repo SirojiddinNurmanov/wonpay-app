@@ -1,12 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./apps";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { APIContextProvider } from "./context";
+import React from "react"
+import ReactDOM from "react-dom/client"
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+import { APIContextProvider } from "./context"
+
+import App from "./apps"
+
+const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
     <APIContextProvider>
         <App />
     </APIContextProvider>
-);
+)

@@ -32,7 +32,7 @@ const OffersPage = () => {
                     <div className="request-body-item">
                         <div className="request-time">22.08.2022</div>
                         <div className="request-table">
-                            <Link to="/singleoffers">
+                            <Link to="/singleoffer">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-2">
@@ -48,7 +48,7 @@ const OffersPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singleoffers">
+                            <Link to="/singleoffer">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-2">
@@ -64,7 +64,7 @@ const OffersPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singleoffers">
+                            <Link to="/singleoffer">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-2">
@@ -80,7 +80,7 @@ const OffersPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singleoffers">
+                            <Link to="/singleoffer">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-2">
@@ -96,7 +96,7 @@ const OffersPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singleoffers">
+                            <Link to="/singleoffer">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-2">
@@ -112,7 +112,7 @@ const OffersPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singleoffers">
+                            <Link to="/singleoffer">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-2">
@@ -128,7 +128,7 @@ const OffersPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singleoffers">
+                            <Link to="/singleoffer">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-2">

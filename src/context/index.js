@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect, createContext } from "react";
-import PropTypes from "prop-types";
+import React, { useContext, useState, useEffect, createContext } from "react"
+import PropTypes from "prop-types"
 
-export const APIContext = createContext();
+export const APIContext = createContext()
 
-export function APIContextProvider({ children }) {
-    const [user, setUser] = useState(false);
-    const [type, chat_id] = window.location.search.split("=");
+export const APIContextProvider = ({ children }) => {
+    const [user, setUser] = useState(false)
+    const [type, chat_id] = window.location.search.split("=")
     useEffect(() => {
         if (type === '?chat_id') {
             fetch(`https://wonpay.thesmart.uz/api/bot-login`, {
@@ -21,10 +21,9 @@ export function APIContextProvider({ children }) {
                 .then((data) => {
                     setUser(data.data)
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.log(err))
         }
-        // eslint-disable-next-line
-    }, []);
+    })
 
     return (
         <APIContext.Provider
@@ -35,17 +34,17 @@ export function APIContextProvider({ children }) {
         >
             {children}
         </APIContext.Provider>
-    );
+    )
 }
 
-export function useAPI() {
-    const context = useContext(APIContext);
+export const useAPI = () => {
+    const context = useContext(APIContext)
     if (context === undefined) {
-        throw new Error("Context must be used within a Provider");
+        throw new Error("Context must be used within a Provider")
     }
-    return context;
+    return context
 }
 
 APIContextProvider.propTypes = {
     children: PropTypes.any,
-};
+}

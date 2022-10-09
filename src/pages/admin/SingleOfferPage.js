@@ -3,14 +3,14 @@ import { useNavigate, Link } from "react-router-dom"
 
 import Layout from "../../layout"
 
-import OfferModal from "../../components/modals/OfferModal"
+import OfferRateModal from "../../components/modals/admin/OfferRateModal"
 
 const SingleOfferPage = () => {
     const [modalShow, setModalShow] = useState(false)
     const navigate = useNavigate()
     return (
         <Layout>
-            <OfferModal show={modalShow} onHide={() => setModalShow(false)} />
+            <OfferRateModal show={modalShow} onHide={() => setModalShow(false)} />
             <div className="offers-page">
                 <div className="home-header">
                     <div className="logo">
@@ -56,7 +56,7 @@ const SingleOfferPage = () => {
                     </div>
                 </div>
                 <div className="component71-item">
-                    <span>O’zbekistonda pulni oluvchi:</span>
+                    <span>O'zbekistonda pulni oluvchi:</span>
                     <h3>Shamsiddin Abdullaev</h3>
                     <p>Tashkent. +998 98 998 99 99</p>
                     <h3>2022.10.13, 10:30</h3>

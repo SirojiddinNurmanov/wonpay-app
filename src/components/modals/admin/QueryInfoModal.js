@@ -1,6 +1,7 @@
-import Modal from "react-bootstrap/Modal";
+import React from "react"
+import Modal from "react-bootstrap/Modal"
 
-function RequestModal(props) {
+const QueryInfoModal = (props) => {
     return (
         <Modal
             {...props}
@@ -50,6 +51,6 @@ function RequestModal(props) {
                 </div>
             </Modal.Body>
         </Modal>
-    );
+    )
 }
-export default RequestModal;
+export default QueryInfoModal

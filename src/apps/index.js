@@ -1,12 +1,13 @@
 import { useAPI } from '../context'
+
 import AdminApp from './AdminApp'
 import ClientApp from './ClientApp'
 import CarrierApp from './CarrierApp'
 
-function App() {
-    const { user } = useAPI();
-    let currentUser = user ? user.user : JSON.parse(localStorage.getItem('user'));
-    let token = user ? user.token : localStorage.getItem('token');
+const App = () => {
+    const { user } = useAPI()
+    let currentUser = user ? user.user : JSON.parse(localStorage.getItem('user'))
+    let token = user ? user.token : localStorage.getItem('token')
 
     if (currentUser) {
         localStorage.setItem('user', JSON.stringify(currentUser))
@@ -25,4 +26,4 @@ function App() {
     }
 }
 
-export default App;
+export default App

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import Layout from "../../layout"
 
-const RequestsPage = () => {
+const QueriesPage = () => {
     return (
         <Layout>
             <div className="request-page">
@@ -31,7 +31,7 @@ const RequestsPage = () => {
                     <div className="request-body-item">
                         <div className="request-time">22.08.2022</div>
                         <div className="request-table">
-                            <Link to="/singlerequests">
+                            <Link to="/singlequery">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4">
@@ -46,7 +46,7 @@ const RequestsPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singlerequests">
+                            <Link to="/singlequery">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4">
@@ -61,7 +61,7 @@ const RequestsPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singlerequests">
+                            <Link to="/singlequery">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4">
@@ -79,7 +79,7 @@ const RequestsPage = () => {
                     <div className="request-body-item">
                         <div className="request-time">22.08.2022</div>
                         <div className="request-table">
-                            <Link to="/singlerequests">
+                            <Link to="/singlequery">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4">
@@ -94,7 +94,7 @@ const RequestsPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singlerequests">
+                            <Link to="/singlequery">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4">
@@ -109,7 +109,7 @@ const RequestsPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singlerequests">
+                            <Link to="/singlequery">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4">
@@ -124,7 +124,7 @@ const RequestsPage = () => {
                             </Link>
                         </div>
                         <div className="request-table">
-                            <Link to="/singlerequests">
+                            <Link to="/singlequery">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-4">
@@ -144,4 +144,4 @@ const RequestsPage = () => {
         </Layout>
     )
 }
-export default RequestsPage
+export default QueriesPage

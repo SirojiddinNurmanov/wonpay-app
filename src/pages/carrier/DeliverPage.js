@@ -4,7 +4,7 @@ import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
-import CurerModal from "../../components/modals/CurerModal"
+import ConfirmReceiveModal from "../../components/modals/carrier/ConfirmReceiveModal"
 
 const DeliverPage = () => {
     const [modalShow, setModalShow] = useState(false)
@@ -17,7 +17,7 @@ const DeliverPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "Pul Berish:", amount: "$3 200 (2)" }}>
-            <CurerModal show={modalShow} onHide={() => setModalShow(false)} />
+            <ConfirmReceiveModal show={modalShow} onHide={() => setModalShow(false)} />
             <div className="curer-body">
                 <h5>Bugun</h5>
                 <div className="curer-item">

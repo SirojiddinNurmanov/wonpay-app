@@ -4,8 +4,9 @@ import MainPage from "../pages/carrier/MainPage"
 import ReceivePage from "../pages/carrier/ReceivePage"
 import DeliverPage from "../pages/carrier/DeliverPage"
 import SubmitPage from "../pages/carrier/SubmitPage"
+import BalanceSheetPage from "../pages/carrier/BalanceSheetPage"
 
-function CarrierApp() {
+const CarrierApp = () => {
     return (
         <Router>
             <Routes>
@@ -13,7 +14,7 @@ function CarrierApp() {
                 <Route path="/receive" element={<ReceivePage />} />
                 <Route path="/deliver" element={<DeliverPage />} />
                 <Route path="/submit" element={<SubmitPage />} />
-                <Route path="/history" element={<SubmitPage />} />
+                <Route path="/balancesheet" element={<BalanceSheetPage />} />
                 <Route path="/notifications" element={<SubmitPage />} />
             </Routes>
         </Router>

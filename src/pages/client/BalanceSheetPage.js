@@ -4,7 +4,7 @@ import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
-const HistoryPage = () => {
+const BalanceSheetPage = () => {
 
     common.middleButtons = false
 
@@ -66,4 +66,4 @@ const HistoryPage = () => {
     )
 }
 
-export default HistoryPage
+export default BalanceSheetPage

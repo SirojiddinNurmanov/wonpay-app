@@ -7,7 +7,7 @@ import { common } from '../../constants/bottomButtons'
 import Layout from '../../layout'
 
 import CarrierCard from "../../components/cards/CarrierCard"
-import AddCarrierModal from "../../components/modals/AddCarrierModal"
+import UsersModal from "../../components/modals/admin/UsersModal"
 import { NoData } from "../../components/common/NoData"
 
 const CarriersPage = () => {
@@ -49,7 +49,7 @@ const CarriersPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "Kuryerlar" }}>
-            <AddCarrierModal
+            <UsersModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />

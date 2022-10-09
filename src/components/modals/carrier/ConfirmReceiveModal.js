@@ -1,6 +1,7 @@
-import Modal from "react-bootstrap/Modal";
+import React from "react"
+import Modal from "react-bootstrap/Modal"
 
-function CurerModal(props) {
+const ConfirmReceiveModal = (props) => {
     return (
         <Modal
             {...props}
@@ -44,6 +45,6 @@ function CurerModal(props) {
                 </div>
             </Modal.Body>
         </Modal>
-    );
+    )
 }
-export default CurerModal;
+export default ConfirmReceiveModal

@@ -1,6 +1,7 @@
-import Modal from "react-bootstrap/Modal";
+import React from "react"
+import Modal from "react-bootstrap/Modal"
 
-function SaleModal(props) {
+const NotificationDetailsModal = (props) => {
     return (
         <Modal
             {...props}
@@ -24,7 +25,7 @@ function SaleModal(props) {
                     <h3>$1= ￦1.250</h3>
                     <h1>￦12.500.000 = $10.000 </h1>
                     <span>
-                        Bir nechta bank kartalariga pul ko’chirish so’ralishi
+                        Bir nechta bank kartalariga pul ko'chirish so'ralishi
                         mumkin.
                     </span>
                     <div className="modal-input">
@@ -48,6 +49,6 @@ function SaleModal(props) {
                 </div>
             </Modal.Body>
         </Modal>
-    );
+    )
 }
-export default SaleModal;
+export default NotificationDetailsModal

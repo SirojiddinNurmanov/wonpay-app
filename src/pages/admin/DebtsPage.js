@@ -4,20 +4,20 @@ import { common } from '../../constants/bottomButtons'
 
 import Layout from "../../layout"
 
-import DebtModal from "../../components/modals/DebtModal"
-import DebtModal2 from "../../components/modals/DebtModal2"
+import QueryDebtModal from "../../components/modals/admin/QueryDebtModal"
+import OfferDebtModal from "../../components/modals/admin/OfferDebtModal"
 import Title from "../../components/common/Title"
 
 const DebtsPage = () => {
-    const [modalShow, setModalShow] = useState(false)
-    const [modalShow2, setModalShow2] = useState(false)
+    const [queryDebtModal, showQueryDebtModal] = useState(false)
+    const [offerDebtModal, showOfferDebtModal] = useState(false)
 
     common.middleButtons = false
 
     return (
         <Layout buttons={common} title={{ text: "Qarzlar:", amount: "+$20.000.000" }}>
-            <DebtModal show={modalShow} onHide={() => setModalShow(false)} />
-            <DebtModal2 show={modalShow2} onHide={() => setModalShow2(false)} />
+            <QueryDebtModal show={queryDebtModal} onHide={() => showQueryDebtModal(false)} />
+            <OfferDebtModal show={offerDebtModal} onHide={() => showOfferDebtModal(false)} />
             <div className="request-body-title">
                 <div className="container">
                     <div className="row">
@@ -38,7 +38,7 @@ const DebtsPage = () => {
                             <div className="col-2">$5.000</div>
                             <div
                                 className="col-2"
-                                onClick={() => setModalShow(true)}
+                                onClick={() => showQueryDebtModal(true)}
                             >
                                 Ko'rish
                             </div>
@@ -54,7 +54,7 @@ const DebtsPage = () => {
                             <div className="col-2">$5.000</div>
                             <div
                                 className="col-2"
-                                onClick={() => setModalShow(true)}
+                                onClick={() => showQueryDebtModal(true)}
                             >
                                 Ko'rish
                             </div>
@@ -70,7 +70,7 @@ const DebtsPage = () => {
                             <div className="col-2">$5.000</div>
                             <div
                                 className="col-2"
-                                onClick={() => setModalShow(true)}
+                                onClick={() => showQueryDebtModal(true)}
                             >
                                 Ko'rish
                             </div>
@@ -101,7 +101,7 @@ const DebtsPage = () => {
                             <div className="col-2">$5.000</div>
                             <div
                                 className="col-2"
-                                onClick={() => setModalShow2(true)}
+                                onClick={() => showOfferDebtModal(true)}
                             >
                                 Ko'rish
                             </div>
@@ -117,7 +117,7 @@ const DebtsPage = () => {
                             <div className="col-2">$5.000</div>
                             <div
                                 className="col-2"
-                                onClick={() => setModalShow2(true)}
+                                onClick={() => showOfferDebtModal(true)}
                             >
                                 Ko'rish
                             </div>
@@ -133,7 +133,7 @@ const DebtsPage = () => {
                             <div className="col-2">$5.000</div>
                             <div
                                 className="col-2"
-                                onClick={() => setModalShow2(true)}
+                                onClick={() => showOfferDebtModal(true)}
                             >
                                 Ko'rish
                             </div>

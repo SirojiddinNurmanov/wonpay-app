@@ -1,6 +1,7 @@
-import Modal from "react-bootstrap/Modal";
+import React from "react"
+import Modal from "react-bootstrap/Modal"
 
-function OfferModal(props) {
+const QueryRateModal = (props) => {
     return (
         <Modal
             {...props}
@@ -47,6 +48,6 @@ function OfferModal(props) {
                 </div>
             </Modal.Body>
         </Modal>
-    );
+    )
 }
-export default OfferModal;
+export default QueryRateModal

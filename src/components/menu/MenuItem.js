@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 const MenuItem = ({ link, image, alt, text }) => {
     return (
@@ -19,6 +19,6 @@ const MenuItem = ({ link, image, alt, text }) => {
             </Link>
         </div>
     )
-};
+}
 
-export default MenuItem;
+export default MenuItem

@@ -10,7 +10,7 @@ export const MenuButtons = {
             link: "/uzbcourse",
             image: "/assets/img/admin/bank.png",
             alt: "O'zbekiston banklari kurslari",
-            text: ["O’zbekiston ", <br />, "banklari kurslari"]
+            text: ["O'zbekiston ", <br />, "banklari kurslari"]
         },
         {
             link: "/carriers",
@@ -34,7 +34,7 @@ export const MenuButtons = {
             text: "Umumiy Hisobot"
         },
         {
-            link: "/offerrequest",
+            link: "/processes",
             image: "/assets/img/admin/offer.png",
             text: "Takliflar / So'rovlar"
         },
@@ -56,7 +56,7 @@ export const MenuButtons = {
             text: ["O'tkazmalar ", <br />, "tarixi"]
         },
         {
-            link: "/history",
+            link: "/balancesheet",
             image: "/assets/img/icons/refresh.png",
             text: "Oldi-Berdilar"
         },
@@ -83,7 +83,7 @@ export const MenuButtons = {
             text: "Pul Topshirish"
         },
         {
-            link: "/history",
+            link: "/balancesheet",
             image: "/assets/img/carrier/report.png",
             text: "Tarix"
         },

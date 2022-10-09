@@ -6,7 +6,7 @@ import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
-const ProfilePage = () => {
+const SingleClientPage = () => {
     const [modalShow, setModalShow] = useState(false)
 
     common.middleButtons = false
@@ -87,7 +87,7 @@ const ProfilePage = () => {
     )
 }
 
-export default ProfilePage
+export default SingleClientPage
 
 const GiveMoney = (props) => {
     return (

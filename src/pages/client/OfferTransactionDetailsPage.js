@@ -8,7 +8,7 @@ import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
-const TransactionPage = () => {
+const QueryTransactionDetailsPage = () => {
     let { transactionId } = useParams()
     const transaction = fetchTransaction(transactions, transactionId)
     console.log(transaction)
@@ -30,4 +30,4 @@ const TransactionPage = () => {
     )
 }
 
-export default TransactionPage
+export default QueryTransactionDetailsPage

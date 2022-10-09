@@ -1,6 +1,7 @@
-import Modal from "react-bootstrap/Modal";
+import React from "react"
+import Modal from "react-bootstrap/Modal"
 
-function DebtModal2(props) {
+const OfferDebtModal = (props) => {
     return (
         <Modal
             {...props}
@@ -83,13 +84,13 @@ function DebtModal2(props) {
                     </div>
                     <div className="white-line"></div>
                     <div className="component71-item">
-                        <span>O’zbekistonda pulni yetkazuvchi:</span>
+                        <span>O'zbekistonda pulni yetkazuvchi:</span>
                         <h3>Javohir Turaev</h3>
                         <p>Tashkent. +998 98 998 99 99</p>
                     </div>
                     <div className="white-line"></div>
                     <div className="component71-item">
-                        <span>O’zbekistonda pulni oluvchi:</span>
+                        <span>O'zbekistonda pulni oluvchi:</span>
                         <h3>Shamsiddin Abdullaev</h3>
                         <p>Tashkent. +998 98 998 99 99</p>
                         <h3>Olmagan</h3>
@@ -102,6 +103,6 @@ function DebtModal2(props) {
                 </div>
             </Modal.Body>
         </Modal>
-    );
+    )
 }
-export default DebtModal2;
+export default OfferDebtModal

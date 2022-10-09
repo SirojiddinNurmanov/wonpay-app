@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 import { common } from '../../constants/bottomButtons'
 
-import Layout from "../../layout";
+import Layout from "../../layout"
 
-import RequestModal from "../../components/modals/RequestModal";
+import QueryInfoModal from "../../components/modals/admin/QueryInfoModal"
 import Title from '../../components/common/Title'
 
-const OfferRequstPage = () => {
-    const [modalShow, setModalShow] = useState(false);
+const ProcessesPage = () => {
+    const [modalShow, setModalShow] = useState(false)
 
     common.middleButtons = false
 
     return (
         <Layout buttons={common} title={{text:"Takliflar:", amount:"₩32.000.000"}}>
-            <RequestModal
+            <QueryInfoModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />
@@ -257,7 +257,7 @@ const OfferRequstPage = () => {
                 </div>
             </div>
         </Layout>
-    );
-};
+    )
+}
 
-export default OfferRequstPage;
+export default ProcessesPage

@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react"
 
-import { common } from "../../constants/bottomButtons";
-import { APIContext } from "../../context";
+import { common } from "../../constants/bottomButtons"
+import { APIContext } from "../../context"
 
-import Layout from "../../layout";
+import Layout from "../../layout"
 
-const NaverCoursePage = () => {
+const NaverRatePage = () => {
     const { BACKEND_URL } = useContext(APIContext)
     const [buyRate, setBuyRate] = useState()
     const [sellRate, setSellRate] = useState()
@@ -20,11 +20,11 @@ const NaverCoursePage = () => {
         }
     }
 
-    common.middleButtons = false;
+    common.middleButtons = false
 
     useEffect(() => {
         getExchangeRate()
-    });
+    })
 
     return (
         <Layout buttons={common} title={{ text: "Naver Valyuta kurslari:" }}>
@@ -47,7 +47,7 @@ const NaverCoursePage = () => {
                 </div>
             </div>
         </Layout>
-    );
-};
+    )
+}
 
-export default NaverCoursePage;
+export default NaverRatePage

@@ -1,9 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
-import Modal from "react-bootstrap/Modal";
-import { APIContext } from '../../context'
-import UserCard from "../cards/UserCard";
+import React, { useEffect, useState, useContext } from "react"
+import Modal from "react-bootstrap/Modal"
 
-function AddCarrierModal(props) {
+import { APIContext } from '../../../context'
+
+import UserCard from "../../cards/UserCard"
+
+const UsersModal = (props) => {
     const [allUsers, setAllUsers] = useState([])
     const { BACKEND_URL } = useContext(APIContext)
 
@@ -55,6 +57,6 @@ function AddCarrierModal(props) {
                 <button className="modal-button" onClick={() => props.onHide()}>Tasdiqlash</button>
             </Modal.Footer>
         </Modal>
-    );
+    )
 }
-export default AddCarrierModal;
+export default UsersModal

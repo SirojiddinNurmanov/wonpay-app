@@ -1,21 +1,21 @@
 import React, { useState } from "react"
 
 import { common } from "../../constants/bottomButtons"
-import { formatAmount } from "../../helpers";
+import { formatAmount } from "../../helpers"
 
 import Layout from "../../layout"
 
-import PutMoneyModal from "../../components/modals/PutMoneyModal"
+import ConfirmationModal from "../../components/modals/client/ConfirmationModal"
 
 const OfferPage = () => {
-    const [modalShow, setModalShow] = useState(false);
+    const [confirmationModal, showConfirmationModal] = useState(false)
     const [amount, setAmount] = useState(0)
     const [keyboard, setKeyboardStatus] = useState(false)
 
     common.middleButtons = [
         {
             text: "Tasdiqlash",
-            callback: () => setModalShow(true)
+            callback: () => showConfirmationModal(true)
         }
     ]
 
@@ -51,7 +51,7 @@ const OfferPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "Korea >> O'zbekiston" }}>
-            <PutMoneyModal show={modalShow} onHide={() => setModalShow(false)} />
+            <ConfirmationModal show={confirmationModal} onHide={() => showConfirmationModal(false)} />
             <h5><strong>Mavjud Summani Kiriting:</strong></h5>
 
             <div className="amount-input" onClick={showKeyboard}>
