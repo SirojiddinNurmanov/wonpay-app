@@ -23,7 +23,7 @@ export const APIContextProvider = ({ children }) => {
                 })
                 .catch((err) => console.log(err))
         }
-    })
+    }, [])
 
     return (
         <APIContext.Provider

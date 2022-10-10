@@ -29,7 +29,7 @@ const UsersModal = (props) => {
         if (!allUsers) {
             getAllUsers()
         }
-    })
+    }, [])
 
 
     return (

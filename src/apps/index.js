@@ -10,7 +10,7 @@ const App = () => {
 
     useEffect(() => {
         window?.Telegram?.WebApp.expand()
-    }, []);
+    }, [])
     let currentUser = user ? user.user : JSON.parse(localStorage.getItem('user'))
     let token = user ? user.token : localStorage.getItem('token')
 

@@ -24,7 +24,7 @@ const NaverRatePage = () => {
 
     useEffect(() => {
         getExchangeRate()
-    })
+    }, [])
 
     return (
         <Layout buttons={common} title={{ text: "Naver Valyuta kurslari:" }}>

@@ -47,7 +47,7 @@ const CarriersPage = () => {
         if (!carriers) {
             getAllCarriers()
         }
-    })
+    }, [])
 
     return (
         <Layout buttons={common} title={{ text: "Kuryerlar" }}>
