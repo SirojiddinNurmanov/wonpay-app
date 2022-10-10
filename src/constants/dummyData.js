@@ -43,6 +43,21 @@ export const notifications = [
     }
 ]
 
+export const notificationTemplates = [
+    {
+        "datetime": "25.08.2022",
+        "data": [
+            {
+                title: "<strong>Pul Berish:</strong> Somebody",
+                body: "<strong>-3.215,45</strong> +998 99 999 9999",
+                time: "10:25",
+                type: "offer",
+                isRead: false
+            }
+        ]
+    }
+]
+
 export const transactions = [
     {
         id: 1,

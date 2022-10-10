@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Form from "react-bootstrap/Form"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount } from "../../helpers"
@@ -11,10 +12,12 @@ const QueryPage = () => {
     const [confirmationModal, showConfirmationModal] = useState(false)
     const [amount, setAmount] = useState(0)
     const [keyboard, setKeyboardStatus] = useState(false)
+    const [enabled, setEnabled] = useState(false)
 
     common.middleButtons = [
         {
             text: "Tasdiqlash",
+            disabled: !enabled,
             callback: () => showConfirmationModal(true)
         }
     ]
@@ -75,7 +78,16 @@ const QueryPage = () => {
                 </div>
             )}
             <div className="money-types-block">
-
+                <Form.Check 
+                    type="radio"
+                    label="Karta"
+                    name="money-type"
+                />
+                <Form.Check 
+                    type="radio"
+                    label="Naqd"
+                    name="money-type"
+                />
             </div>
 
             {/* <div className="put-money">

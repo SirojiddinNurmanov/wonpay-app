@@ -20,7 +20,7 @@ const NotificationsPage = () => {
                 <Fragment key={index}>
                     <div className="notification-datetime">{notification.datetime}</div>
                     {notification.data && notification.data.map((message, index) => (
-                        <NotificationCard key={index} {...message} />
+                        <NotificationCard callback={() => setModalShow(true)} key={index} {...message} />
                     ))}
                 </Fragment>
             ))}

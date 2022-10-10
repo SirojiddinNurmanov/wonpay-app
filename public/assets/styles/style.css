@@ -142,17 +142,17 @@ a {
     padding-top: 10px;
 }
 
-.home-category-img {
+.category-img {
     width: 100%;
     text-align: center;
 }
 
-.home-category-img img {
+.category-img img {
     height: 80%;
     width: 80%;
 }
 
-.home-category-text {
+.category-text {
     text-align: center;
     font-size: 2.8vw;
 }
@@ -1531,6 +1531,10 @@ a {
     color: var(--main-color);
 }
 
+.bottom-navigation .middle-buttons .middle-button.disabled {
+    background-color: #999;
+}
+
 .bottom-navigation .circle-button.left {
     grid-column: 1/1;
 }
@@ -1645,8 +1649,7 @@ a {
 }
 
 .notification-card .notification-title {
-    font-weight: 600;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #999;
 }
 
 .notification-card .notification-time {

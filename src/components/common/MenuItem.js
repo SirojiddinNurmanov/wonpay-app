@@ -1,23 +1,18 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const MenuItem = ({ link, image, alt, text }) => {
+const MenuItem = ({ url, image, alt, text }) => {
     return (
-        <div className="category-card">
-            <div key={"1" + link.toString()} className="home-category-img">
-                <Link to={link} key={"2" + link.toString()}>
-                    <img
-                        src={image}
-                        alt={alt}
-                    />
-                </Link>
-            </div>
-            <Link key={"3" + link.toString()} to={link}>
-                <div className="home-category-text">
+        <Link to={url}>
+            <div className="category-card">
+                <div className="category-img">
+                    <img src={image} alt={alt} />
+                </div>
+                <div className="category-text">
                     <span>{text}</span>
                 </div>
-            </Link>
-        </div>
+            </div>
+        </Link>
     )
 }
 

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react"
 
 import { common } from "../../constants/bottomButtons"
-import { notifications } from "../../constants/dummyData"
+import { notifications, notificationTemplates } from "../../constants/dummyData"
 
 import Layout from "../../layout"
 
@@ -20,10 +20,19 @@ const NotificationsPage = () => {
                 <Fragment key={index}>
                     <div className="notification-datetime">{notification.datetime}</div>
                     {notification.data && notification.data.map((message, index) => (
-                        <NotificationCard key={index} {...message} />
+                        <NotificationCard callback={() => setModalShow(true)} key={index} {...message} />
                     ))}
                 </Fragment>
             ))}
+            {notificationTemplates && notificationTemplates.map((notification, index) => (
+                <Fragment key={index}>
+                    <div className="notification-datetime">{notification.datetime}</div>
+                    {notification.data && notification.data.map((message, index) => (
+                        <NotificationCard callback={() => setModalShow(true)} key={index} {...message} />
+                    ))}
+                </Fragment>
+            ))}
+            <div  />
         </Layout>
     )
 }

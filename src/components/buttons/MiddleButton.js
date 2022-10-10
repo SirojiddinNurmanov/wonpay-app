@@ -1,8 +1,8 @@
 import React from "react"
 
-const MiddleButton = ({ text, secondary, callback }) => {
+const MiddleButton = ({ text, disabled, secondary, callback }) => {
     return (
-        <div onClick={() => callback()} className={"middle-button " + (secondary && "secondary" )}>
+        <div onClick={() => { disabled ? console.log("Disabled") : callback() }} className={"middle-button " + (secondary ? "secondary" : "" ) + (disabled ? "disabled" : "")}>
             {text}
         </div>
     )
