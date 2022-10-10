@@ -9,7 +9,22 @@ const App = () => {
     const { user } = useAPI()
 
     useEffect(() => {
-        window?.Telegram?.WebApp.expand()
+        let webApp = window?.Telegram?.WebApp
+        webApp.expand()
+        let mainButton = webApp.MainButton
+        mainButton.show()
+        mainButton.setParams({
+            'text': `Notifications`,
+            'color': "#2ECC71",
+            'text_color': "#F7F9F9"
+        })
+        mainButton.onClick(() => {
+            mainButton.setParams({
+                'text': `Notifications changed`,
+                'color': "#2ECC71",
+                'text_color': "#F7F9F9"
+            })  
+        })
     });
     let currentUser = user ? user.user : JSON.parse(localStorage.getItem('user'))
     let token = user ? user.token : localStorage.getItem('token')
