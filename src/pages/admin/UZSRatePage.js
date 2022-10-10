@@ -11,7 +11,6 @@ const UZSRatePage = () => {
     const [sellRate, setSellRate] = useState()
 
     const getExchangeRate = async () => {
-        console.log('Called')
         const res = await fetch(`${BACKEND_URL}/exchangerate-nbu/USD`)
 
         const data = await res.json()

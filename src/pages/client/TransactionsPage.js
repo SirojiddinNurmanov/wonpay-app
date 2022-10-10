@@ -18,7 +18,7 @@ const TransactionsPage = () => {
                 <div className="transaction-block">
                     <div className="title">Yakunlanmaganlar</div>
                     {(pending.length > 0) ? pending.map((transaction, index) => (
-                        <Link key={index} to={"/transactions/" + transaction.id}>
+                        <Link key={index} to={"/transactions/" + transaction.type + "/" + transaction.id}>
                             <TransactionCard {...transaction} />
                         </Link>
                     )) : (<NoData />)}
@@ -28,7 +28,7 @@ const TransactionsPage = () => {
                 <div className="transaction-block">
                     <div className="title">Tarix</div>
                     {(finished.length > 0) ? finished.map((transaction, index) => (
-                        <Link key={index} to={"/transactions/" + transaction.id}>
+                        <Link key={index} to={"/transactions/" + transaction.type + "/" + transaction.id}>
                             <TransactionCard {...transaction} />
                         </Link>
                     )) : (<NoData />)}

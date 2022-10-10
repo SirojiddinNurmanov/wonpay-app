@@ -1,34 +1,38 @@
-import { useAPI } from '../context'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getUser } from "../store/actions"
 
 import AdminApp from './AdminApp'
 import ClientApp from './ClientApp'
 import CarrierApp from './CarrierApp'
-import { useEffect } from 'react'
 
-const App = () => {
-    const { user } = useAPI()
+import Preloader from "../components/common/Preloader"
+
+const AppDoor = () => {
+    const loading = useSelector(state => state.app.loading)
+    const user = useSelector(state => state.app.user)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        window?.Telegram?.WebApp.expand()
+        dispatch(getUser())
+        // eslint-disable-next-line
     }, [])
-    let currentUser = user ? user.user : JSON.parse(localStorage.getItem('user'))
-    let token = user ? user.token : localStorage.getItem('token')
 
-    if (currentUser) {
-        localStorage.setItem('user', JSON.stringify(currentUser))
-        localStorage.setItem('token', token)
+    if (loading || user === null) {
+        return <Preloader />
+    }
 
-        if (['admin', 'superadmin'].includes(currentUser.role)) {
-            return <AdminApp />
-        }
-        if (currentUser.role === 'carrier') {
-            return <CarrierApp />
-        }
+    if (['admin', 'superadmin'].includes(user?.user.role)) {
+        return <AdminApp />
+    }
+    if (user?.user.role === 'carrier') {
+        return <CarrierApp />
+    }
 
-        if (currentUser.role === 'client') {
-            return <ClientApp />
-        }
+    if (user?.user.role === 'client') {
+        return <ClientApp />
     }
 }
 
-export default App
+
+export default AppDoor

@@ -1824,3 +1824,16 @@ a {
     border: 0;
     box-shadow: none;
 }
+
+.loader {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner-grow {
+    width: 100vw !important;
+    height: 100vw !important;
+}

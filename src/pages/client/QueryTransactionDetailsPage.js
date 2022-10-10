@@ -11,7 +11,6 @@ import Layout from "../../layout"
 const QueryTransactionDetailsPage = () => {
     let { transactionId } = useParams()
     const transaction = fetchTransaction(transactions, transactionId)
-    console.log(transaction)
 
     common.middleButtons = [
         {
