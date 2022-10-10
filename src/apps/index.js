@@ -8,9 +8,8 @@ import CarrierApp from './CarrierApp'
 
 import Preloader from "../components/common/Preloader"
 
-const AppDoor = () => {
-    const loading = useSelector(state => state.app.loading)
-    const user = useSelector(state => state.app.user)
+const App = () => {
+    const { loading, user } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -35,4 +34,4 @@ const AppDoor = () => {
 }
 
 
-export default AppDoor
+export default App
