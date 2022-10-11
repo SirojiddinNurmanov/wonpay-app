@@ -28,7 +28,6 @@ const App = () => {
         return <AdminApp />
     }
     if (user?.user.role === 'carrier') {
-        console.log(user)
         return <CarrierApp />
     }
 
