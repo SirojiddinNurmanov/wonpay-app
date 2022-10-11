@@ -7,13 +7,13 @@ import Layout from "../../layout"
 import MenuCards from "../../components/cards/MenuCards"
 
 const MainPage = () => {
-    const notifications = useSelector(state => state.app.notifications)
-    const loading = useSelector(state => state.app.loading)
-    const user = useSelector(state => state.app.user)
+    const { notifications, user, loading } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getUserNotifications())
+        setInterval(() => {
+            dispatch(getUserNotifications())
+        }, 2000);
         // eslint-disable-next-line
     }, [])
 

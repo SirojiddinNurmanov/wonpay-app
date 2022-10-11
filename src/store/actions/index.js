@@ -4,8 +4,6 @@ const BACKEND_URL = "https://wonpay.thesmart.uz/api"
 
 export const getUserNotifications = () => async (dispatch, getState) => {
     try {
-        showLoading()
-
         const user = getState().app.user
 
         const res = await fetch(`${BACKEND_URL}/notifications`, {
@@ -15,19 +13,24 @@ export const getUserNotifications = () => async (dispatch, getState) => {
             }
         })
 
-        const { data } = await res.json()
+        const { success, message, data } = await res.json()
 
-        dispatch({
-            type: GET_USER_NOTIFICATIONS,
-            payload: data
-        })
+        if (success) {
+            dispatch({
+                type: GET_USER_NOTIFICATIONS,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: USER_ERROR,
+                payload: message
+            })
+        }
     } catch (error) {
         dispatch({
             type: USER_ERROR,
             payload: error.response.statusText
         })
-    } finally {
-        hideLoading()
     }
 }
 
@@ -35,7 +38,13 @@ export const getUser = () => async (dispatch) => {
     try {
         showLoading()
 
-        const [_, chat_id] = window.location.search.split("=")
+        let chat_id = localStorage.getItem('chat_id')
+
+        if (!chat_id) {
+            chat_id = window.location.search.split("=")[1]
+            localStorage.setItem('chat_id', chat_id)
+        }
+
         const res = await fetch(`${BACKEND_URL}/bot-login`, {
             method: "POST",
             headers: {
@@ -46,13 +55,19 @@ export const getUser = () => async (dispatch) => {
             })
         })
 
-        const { data } = await res.json();
+        const { success, message, data } = await res.json();
 
-        dispatch({
-            type: GET_USER,
-            payload: data
-        })
-
+        if (success) {
+            dispatch({
+                type: GET_USER,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: USER_ERROR,
+                payload: message
+            })
+        }
     } catch (error) {
         dispatch({
             type: USER_ERROR,

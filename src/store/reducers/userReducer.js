@@ -1,7 +1,9 @@
 import { GET_USER_NOTIFICATIONS, GET_USER, USER_ERROR, SHOW_LOADING, HIDE_LOADING } from "../actionTypes"
 
 const initialState = {
-    notifications: null,
+    notifications: {
+        unread: 0
+    },
     user: null,
     loading: false,
     error: '',

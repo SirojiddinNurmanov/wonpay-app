@@ -1492,6 +1492,7 @@ a {
 }
 
 .bottom-navigation .circle-button {
+    position: relative;
     border-radius: 50%;
     background-color: var(--yellow-color);
     display: flex;
@@ -1503,6 +1504,22 @@ a {
 
 .bottom-navigation .circle-button img {
     width: 25px;
+}
+
+.bottom-navigation .circle-button .unread-number {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-color);
 }
 
 .bottom-navigation .middle-buttons {
@@ -1823,6 +1840,13 @@ a {
     background-color: var(--background-color);
     border: 0;
     box-shadow: none;
+}
+
+.money-types-block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .loader {

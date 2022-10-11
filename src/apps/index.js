@@ -13,7 +13,9 @@ const App = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getUser())
+        if (user === null) {
+            dispatch(getUser())
+        }
         // eslint-disable-next-line
     }, [])
 
@@ -25,6 +27,7 @@ const App = () => {
         return <AdminApp />
     }
     if (user?.user.role === 'carrier') {
+        console.log(user)
         return <CarrierApp />
     }
 
