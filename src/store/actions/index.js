@@ -41,13 +41,14 @@ export const getUser = () => async (dispatch) => {
         let chat_id = localStorage.getItem('chat_id')
 
         let params = window.location.search.split("=")
+        console.log(params);
         if (params.length === 2) {
-            if (params[0] === "chat_id") {
+            if (params[0] === "?chat_id") {
                 chat_id = params[1]                
             }
         }
 
-        if (!chat_id) {
+        if (chat_id) {
             localStorage.setItem('chat_id', chat_id)
         }
 
