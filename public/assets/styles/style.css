@@ -1689,7 +1689,7 @@ a {
 }
 
 .transaction-item .transaction-card {
-    background-color: #EDF4FF;
+    background-color: var(--white-color);
     padding: 10px;
     margin-top: 5px;
     border-radius: 25px;

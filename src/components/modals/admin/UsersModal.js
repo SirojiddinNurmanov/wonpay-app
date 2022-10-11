@@ -9,7 +9,6 @@ const UsersModal = (props) => {
     const [allUsers, setAllUsers] = useState(false)
     const { BACKEND_URL } = useContext(APIContext)
 
-
     const getAllUsers = async () => {
         const token = localStorage.getItem('token')
         const res = await fetch(`${BACKEND_URL}/users`, {
@@ -30,7 +29,6 @@ const UsersModal = (props) => {
             getAllUsers()
         }
     }, [])
-
 
     return (
         <Modal
