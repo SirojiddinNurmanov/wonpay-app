@@ -54,9 +54,8 @@ a {
     font-weight: 700;
 }
 
-.home-profile span {
-    font-weight: 700;
-    font-size: 14px;
+.home-profile .balance-item {
+    font-size: 3vw;
     white-space: nowrap;
 }
 
