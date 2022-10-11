@@ -13,6 +13,7 @@ const App = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        window?.Telegram?.WebApp?.expand()
         if (user === null) {
             dispatch(getUser())
         }
