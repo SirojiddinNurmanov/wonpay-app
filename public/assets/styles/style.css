@@ -1542,6 +1542,7 @@ a {
     border-radius: 25px;
     height: 40px;
     text-align: center;
+    font-size: .8em;
 }
 
 .bottom-navigation .middle-buttons .middle-button.secondary {
