@@ -250,7 +250,7 @@ const QueryPage = () => {
                             <div className="address-label">Ism:</div>
                             <input onChange={changeUzbekAddressNameState} type="text" className="address-value" value={uzbekAddressName} />
                             <div className="address-label">Telefon:</div>
-                            <input onChange={changeUzbekAddressNumberState} type="number" className="address-value" value={uzbekAddressNumber} />
+                            <input onChange={changeUzbekAddressNumberState} type="number" pattern="\d*" className="address-value" value={uzbekAddressNumber} />
                         </div>
                     </div>
                 </div>
