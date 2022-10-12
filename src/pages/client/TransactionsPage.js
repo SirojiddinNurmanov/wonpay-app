@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 import { common } from "../../constants/bottomButtons"
-import { groupedTransactions } from "../../constants/dummyData"
 
 import Layout from "../../layout"
 
@@ -47,12 +46,13 @@ const TransactionsPage = () => {
             )} */}
             <div className="transaction-block">
                 <div className="title">Tarix</div>
-                {transactions && transactions.map(transaction => (
-                    <Link key={transaction.id} to={"/transactions/" + (transaction.type === 1 ? "offer" : "query" ) + "/" + transaction.id}>
+                {transactions ? transactions.map(transaction => (
+                    <Link key={transaction.id} to={"/transactions/" + (transaction.type === 1 ? "offer" : "query") + "/" + transaction.id}>
                         <TransactionCard {...transaction} />
                     </Link>
-                ))
-                }
+                )) : (
+                    <NoData />
+                )}
             </div>
         </Layout>
     )
