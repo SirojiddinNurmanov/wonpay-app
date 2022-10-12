@@ -8,10 +8,21 @@ import Layout from "../../layout"
 
 import { NoData } from "../../components/common/NoData"
 import TransactionCard from "../../components/cards/TransactionCard"
+import { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { getTransactions } from "../../store/actions"
 
 const TransactionsPage = () => {
-    const { pending, finished } = groupedTransactions
+    const { transactions } = useSelector(state => state.app)
+    const dispatch = useDispatch()
+    const { pending, finished } = transactions
     common.middleButtons = false
+
+    useEffect(() => {
+        dispatch(getTransactions())
+        //eslint-disable-next-line
+    }, [])
+
     return (
         <Layout buttons={common} title={{ text: "O'tkazmalar Tarixi" }}>
             {pending && (

@@ -7,9 +7,12 @@ import Layout from "../../layout"
 
 import NotificationDetailsModal from "../../components/modals/client/NotificationDetailsModal"
 import NotificationCard from "../../components/cards/NotificationCard"
+import { useDispatch, useSelector } from "react-redux"
 
 const NotificationsPage = () => {
     const [modalShow, setModalShow] = useState(false)
+    // const { notifications } = useSelector(state => state.app)
+    const dispatch = useDispatch()
 
     common.middleButtons = false
 

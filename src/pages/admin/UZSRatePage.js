@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 
-import { APIContext } from "../../context"
+import { BACKEND_URL } from "../../constants"
+
 import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
 const UZSRatePage = () => {
-    const { BACKEND_URL } = useContext(APIContext)
     const [buyRate, setBuyRate] = useState()
     const [sellRate, setSellRate] = useState()
 

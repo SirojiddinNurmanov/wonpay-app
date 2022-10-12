@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useEffect, useState } from "react"
 import Modal from "react-bootstrap/Modal"
 
-import { APIContext } from '../../../context'
+import { BACKEND_URL } from "../../../constants"
 
 import UserCard from "../../cards/UserCard"
 
 const UsersModal = (props) => {
     const [allUsers, setAllUsers] = useState(false)
-    const { BACKEND_URL } = useContext(APIContext)
 
     const getAllUsers = async () => {
         const token = localStorage.getItem('token')

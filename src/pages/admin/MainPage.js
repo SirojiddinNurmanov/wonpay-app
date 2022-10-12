@@ -10,12 +10,12 @@ const MainPage = () => {
     const { notifications, user, loading } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        setInterval(() => {
-            dispatch(getUserNotifications())
-        }, 2000);
-        // eslint-disable-next-line
-    }, [])
+    // useEffect(() => {
+    //     // setInterval(() => {
+    //     //     dispatch(getUserNotifications())
+    //     // }, 2000)
+    //     // eslint-disable-next-line
+    // }, [])
 
     const [avatar] = useState("/assets/img/icons/profile.png")
     const [toAmount] = useState("-$5 800")

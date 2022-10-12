@@ -1,4 +1,11 @@
-import { GET_USER_NOTIFICATIONS, GET_USER, USER_ERROR, SHOW_LOADING, HIDE_LOADING } from "../actionTypes"
+import {
+    GET_USER_NOTIFICATIONS,
+    GET_USER,
+    USER_ERROR,
+    SHOW_LOADING,
+    HIDE_LOADING,
+    GET_TRANSACTIONS
+} from "../actionTypes"
 
 const initialState = {
     notifications: {
@@ -7,7 +14,7 @@ const initialState = {
     user: null,
     loading: false,
     error: '',
-    backend_url: "https://wonpay.thesmart.uz/api"
+    transactions: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -38,6 +45,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false
+            }
+        case GET_TRANSACTIONS:
+            return {
+                ...state,
+                transactions: action.payload
             }
         default:
             return state

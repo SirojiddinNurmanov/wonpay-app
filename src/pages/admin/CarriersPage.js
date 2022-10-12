@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import Spinner from "react-bootstrap/Spinner"
 
-import { APIContext } from "../../context"
+import { BACKEND_URL } from "../../constants"
 import { common } from '../../constants/bottomButtons'
 
 import Layout from '../../layout'
@@ -11,7 +11,6 @@ import UsersModal from "../../components/modals/admin/UsersModal"
 import { NoData } from "../../components/common/NoData"
 
 const CarriersPage = () => {
-    const { BACKEND_URL } = useContext(APIContext)
     const [modalShow, setModalShow] = useState(false)
     const [carriers, setCarriers] = useState(false)
     const [loader, showLoader] = useState(true)

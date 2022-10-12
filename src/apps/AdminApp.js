@@ -13,7 +13,7 @@ import SingleOfferPage from "../pages/admin/SingleOfferPage"
 import QueriesPage from "../pages/admin/QueriesPage"
 import SingleQueryPage from "../pages/admin/SingleQueryPage"
 import ProfitPage from "../pages/admin/ProfitPage"
-import NotificationsPage from "../pages/common/NotificationsPage"
+import NotificationsPage from "../pages/admin/NotificationsPage"
 import ProfilePage from "../pages/common/ProfilePage"
 
 const AdminApp = () => {
