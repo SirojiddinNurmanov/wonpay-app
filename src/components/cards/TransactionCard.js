@@ -1,14 +1,15 @@
 import React from "react"
+import { formatAmount } from "../../helpers"
 
-const TransactionCard = ({ type, amount_krw, amount_usd, rate, carrier, status }) => (
+const TransactionCard = ({ type, amount, amount_krw, amount_usd, rate, receiver, status }) => (
     <div className="transaction-item">
         <div className="transaction-status">{status === "pending" ? "Ko'rib chiqilmoqda" : "Yakunlangan"}</div>
         <div className="transaction-card">
             <div className="transaction-type">{type === "query" ? "Uzb>>Kor" : "Kor>>Uzb"}</div>
             <div className="bar"></div>
             <div className="transaction-amounts">
-                {amount_krw && (
-                    <div className="transaction-amount">{amount_krw}</div>
+                {amount && (
+                    <div className="transaction-amount">￦ {formatAmount(amount)}</div>
                 )}
                 {amount_usd && (
                     <div className="transaction-amount">{amount_usd}</div>
@@ -19,8 +20,8 @@ const TransactionCard = ({ type, amount_krw, amount_usd, rate, carrier, status }
                 {rate && (
                     <div className="transaction-details-item">{rate}</div>
                 )}
-                {carrier && (
-                    <div className="transaction-details-item">{carrier}</div>
+                {receiver && (
+                    <div className="transaction-details-item">{receiver.name}</div>
                 )}
             </div>
         </div>

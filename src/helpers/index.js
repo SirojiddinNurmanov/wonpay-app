@@ -41,3 +41,7 @@ export const formatAmount = (amount) => {
     }
     return amount.substring(0, amount.length - 1)
 }
+
+export const trimAmount = (amount) => {
+    return amount.toString().replaceAll(" ", "").replaceAll(".", "").replaceAll(",", "")
+}

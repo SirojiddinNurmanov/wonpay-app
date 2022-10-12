@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { useSelector, useDispatch } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
-import { formatAmount } from "../../helpers"
+import { formatAmount, trimAmount } from "../../helpers"
+import { BACKEND_URL } from "../../constants"
 
 import Layout from "../../layout"
 
@@ -12,6 +11,7 @@ import ConfirmationModal from "../../components/modals/client/ConfirmationModal"
 import LoadingButton from "../../components/common/LoadingButton"
 
 const QueryPage = () => {
+    const { token } = useSelector(state => state.app.user)
     const [confirmationModal, showConfirmationModal] = useState(false)
     const [amount, setAmount] = useState(0)
     const [keyboard, setKeyboardStatus] = useState(false)
@@ -22,12 +22,9 @@ const QueryPage = () => {
     const [koreanAddressNumber, setKoreanAddressNumber] = useState("")
     const [uzbekAddressName, setUzbekAddressName] = useState("")
     const [uzbekAddressNumber, setUzbekAddressNumber] = useState("")
-    const [accountInfoSMS, setAccountInfoSMS] = useState(false)
+    const [accountInfoSMS, setAccountInfoSMS] = useState("")
     const [accountInfoImage, setAccountInfoImage] = useState(false)
     const [loading, showLoading] = useState(false)
-    const [clipboard, showClipboard] = useState(true)
-    const [pastedClipboard, setPastedClipboard] = useState(false)
-
 
     useEffect(() => {
         toggleConfirmButton()
@@ -37,13 +34,45 @@ const QueryPage = () => {
         {
             text: "Tasdiqlash",
             disabled: !enabled,
-            callback: () => showConfirmationModal(true)
+            callback: () => sendProcessToServer()
         }
     ]
 
-    const removePastedInfo = () => {
-        setPastedClipboard(false)
-        showClipboard(true)
+    const sendProcessToServer = () => {
+        const data = {
+            process_type: "0",
+            amount: trimAmount(amount),
+            payment_type: (moneyType === "Naqd" ? "0" : "1"),
+            card_info_type: (accountInfoImage ? "1" : "0"),
+            receiver_name: uzbekAddressName,
+            receiver_number: uzbekAddressNumber
+        }
+
+        if (moneyType === "Karta") {
+            if (accountInfoImage) {
+                data.card_info_image = accountInfoImage
+            } else {
+                data.card_info_sms = accountInfoSMS
+            }
+        }
+
+        fetch(`${BACKEND_URL}/processes`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": 'Bearer ' + token
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    showConfirmationModal(true)
+                }
+            }).catch(err => console.log(err))
+    }
+
+    const handleAccountInfoSMS = ({ target: { value } }) => {
+        setAccountInfoSMS(value.trim())
     }
 
     const toggleConfirmButton = () => {
@@ -72,7 +101,7 @@ const QueryPage = () => {
         showLoading(true)
         const body = new FormData()
         body.append("image", target.files[0])
-        fetch("https://wonpay.thesmart.uz/api/save-photo", {
+        fetch(`${BACKEND_URL}/save-photo`, {
             method: "POST",
             body: body
         }).then(res => res.json())
@@ -87,17 +116,6 @@ const QueryPage = () => {
 
     const openFileUploader = ({ target }) => {
         target.nextSibling.click()
-    }
-
-    const pasteFromClipboard = async () => {
-        let text = await navigator.clipboard.readText()
-        if (text.length > 200) {
-            text = text.substring(0, 200)
-        }
-        setPastedClipboard(text)
-        setAccountInfoSMS(text)
-        toggleConfirmButton()
-        showClipboard(false)
     }
 
     const changeKoreanAddressNameState = ({ target: { value } }) => {
@@ -210,20 +228,7 @@ const QueryPage = () => {
                         <div className="account-sms">
                             <div className="account-title">SMS:</div>
                             <div className="account-sms-field">
-                                {clipboard && (
-                                    <div className="account-paste-clipboard" onClick={pasteFromClipboard}>
-                                        <img src="/assets/img/icons/clipboard.png" alt="Paste clipboard" />
-                                        Joylashtirish
-                                    </div>
-                                )}
-                                {pastedClipboard && (
-                                    <div>
-                                        <div className="clear-clipboard" onClick={removePastedInfo}>
-                                            <FontAwesomeIcon icon={faTimes} />
-                                        </div>
-                                        <pre className="pasted-clipboard">{pastedClipboard}</pre>
-                                    </div>
-                                )}
+                                <textarea className="account-paste-clipboard" onChange={handleAccountInfoSMS} value={accountInfoSMS} cols="30" rows="10" />
                             </div>
                         </div>
                         <div className="or-text">yoki</div>

@@ -95,7 +95,7 @@ export const getTransactions = () => async (dispatch, getState) => {
     try {
         const user = getState().app.user
 
-        const res = await fetch(`${BACKEND_URL}/notifications`, {
+        const res = await fetch(`${BACKEND_URL}/processes`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${user.token}`

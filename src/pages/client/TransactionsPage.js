@@ -15,7 +15,7 @@ import { getTransactions } from "../../store/actions"
 const TransactionsPage = () => {
     const { transactions } = useSelector(state => state.app)
     const dispatch = useDispatch()
-    const { pending, finished } = transactions
+    // const { pending, finished } = transactions
     common.middleButtons = false
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const TransactionsPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "O'tkazmalar Tarixi" }}>
-            {pending && (
+            {/* {pending && (
                 <div className="transaction-block">
                     <div className="title">Yakunlanmaganlar</div>
                     {(pending.length > 0) ? pending.map((transaction, index) => (
@@ -44,7 +44,16 @@ const TransactionsPage = () => {
                         </Link>
                     )) : (<NoData />)}
                 </div>
-            )}
+            )} */}
+            <div className="transaction-block">
+                <div className="title">Tarix</div>
+                {transactions && transactions.map(transaction => (
+                    <Link key={transaction.id} to={"/transactions/" + (transaction.type === 1 ? "offer" : "query" ) + "/" + transaction.id}>
+                        <TransactionCard {...transaction} />
+                    </Link>
+                ))
+                }
+            </div>
         </Layout>
     )
 }
