@@ -4,7 +4,9 @@ import {
     GET_USER,
     USER_ERROR,
     SHOW_LOADING,
-    HIDE_LOADING
+    HIDE_LOADING,
+    GET_QUERIES,
+    GET_OFFERS
 } from "../actionTypes"
 
 import { BACKEND_URL } from "../../constants" 
@@ -121,7 +123,72 @@ export const getTransactions = () => async (dispatch, getState) => {
             payload: error.response.statusText
         })
     }
+}
 
+export const getQueries = () => async (dispatch, getState) => {
+    try {
+        const user = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/queries`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
+        })
+
+        const { success, message, data } = await res.json()
+        console.log(data)
+
+        if (success) {
+            dispatch({
+                type: GET_QUERIES,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: USER_ERROR,
+                payload: message
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const getOffers = () => async (dispatch, getState) => {
+    try {
+        const user = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/offers`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
+        })
+
+        const { success, message, data } = await res.json()
+        console.log(data)
+
+        if (success) {
+            dispatch({
+                type: GET_OFFERS,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: USER_ERROR,
+                payload: message
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
 }
 
 export const showLoading = () => ({

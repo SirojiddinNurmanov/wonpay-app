@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCheckCircle, faDeleteLeft } from "@fortawesome/free-solid-svg-icons"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount, trimAmount } from "../../helpers"
@@ -28,7 +30,7 @@ const QueryPage = () => {
 
     useEffect(() => {
         toggleConfirmButton()
-    }, [moneyType, accountInfoSMS, accountInfoImage, uzbekAddressName, uzbekAddressNumber])
+    }, [moneyType, accountInfoSMS, accountInfoImage, uzbekAddressName, uzbekAddressNumber, amount])
 
     common.middleButtons = [
         {
@@ -77,20 +79,24 @@ const QueryPage = () => {
 
     const toggleConfirmButton = () => {
         if (amount !== 0) {
-            if (moneyType === "Karta") {
-                if ((accountInfoSMS || accountInfoImage) && (uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
-                    setEnabled(true)
-                } else {
-                    setEnabled(false)
+            if (trimAmount(amount) >= 300000) {
+                if (moneyType === "Karta") {
+                    if ((accountInfoSMS || accountInfoImage) && (uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
+                        setEnabled(true)
+                    } else {
+                        setEnabled(false)
+                    }
                 }
-            }
-
-            if (moneyType === "Naqd") {
-                if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
-                    setEnabled(true)
-                } else {
-                    setEnabled(false)
+    
+                if (moneyType === "Naqd") {
+                    if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
+                        setEnabled(true)
+                    } else {
+                        setEnabled(false)
+                    }
                 }
+            } else {
+                setEnabled(false)
             }
         } else {
             setEnabled(false)
@@ -164,13 +170,6 @@ const QueryPage = () => {
         }
     }
 
-    const clearInput = () => {
-        setAmount(0)
-        showMoneyTypeOptions(false)
-        setEnabled(false)
-        setMoneyType(false)
-    }
-
     const backspace = (e) => {
         if (amount.length > 1) {
             setAmount(formatAmount(amount.substring(0, amount.length - 1)))
@@ -196,15 +195,15 @@ const QueryPage = () => {
                     <div onClick={changeInput} className="number">1</div>
                     <div onClick={changeInput} className="number">2</div>
                     <div onClick={changeInput} className="number">3</div>
-                    <div onClick={backspace} className="number sm"><div>Qaytarish</div><span>←</span></div>
+                    <div onClick={changeInput} className="number">4</div>
                     <div onClick={changeInput} className="number">5</div>
                     <div onClick={changeInput} className="number">6</div>
                     <div onClick={changeInput} className="number">7</div>
-                    <div onClick={clearInput} className="number sm danger">Tozalash</div>
                     <div onClick={changeInput} className="number">8</div>
                     <div onClick={changeInput} className="number">9</div>
+                    <div onClick={backspace} className="number lg"><FontAwesomeIcon icon={faDeleteLeft} /></div>
                     <div onClick={changeInput} className="number">0</div>
-                    <div className="number confirm" onClick={hideKeyboard}>→</div>
+                    <div className="number confirm lg" onClick={hideKeyboard}><FontAwesomeIcon icon={faCheckCircle} /></div>
                 </div>
             )}
 

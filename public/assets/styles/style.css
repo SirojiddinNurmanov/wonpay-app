@@ -1770,28 +1770,16 @@ a {
     color: #444;
 }
 
-/* 
-.amount-input .confirm-button {
-    width: 35px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 3%;
-    border-radius: 50%;
-    background-color: blue;
-    color: var(--white-color);
-} */
-
 .numbers {
-    width: 100%;
-    height: 80vw;
+    margin: 0 auto;
+    width: 80%;
+    height: 90vw;
     border-radius: 5vw;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
     padding: 15px;
-    border: 1px solid var(--main-color);
 }
 
 .numbers .number {
@@ -1801,7 +1789,7 @@ a {
     align-items: center;
     justify-content: center;
     border: 1px solid var(--main-color);
-    border-radius: 5vw;
+    border-radius: 3vw;
     font-size: 2em;
     font-weight: bold;
     color: #444;
@@ -1810,8 +1798,15 @@ a {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.numbers .number.sm {
-    font-size: 1em;
+.numbers .number.lg {
+    font-size: 8vw;
+}
+
+.numbers .number.disabled {
+    background-color: var(--background-color);
+    border: 0;
+    color: var(--main-color);
+    box-shadow: none;
 }
 
 .numbers .number.confirm {
@@ -1820,8 +1815,7 @@ a {
 }
 
 .numbers .number.danger {
-    background-color: red;
-    border: 1px solid var(--white-color);
+    color: red;
 }
 
 .numbers .number:active {
@@ -2058,4 +2052,19 @@ a {
 
 .address-block .address-block-item .account-image-block .upload-account-button:hover {
     background-color: var(--main-color);
+}
+
+/* Processes Page Styles */
+
+.process-table {
+    font-size: .7rem;
+}
+/* 
+.table-responsive {
+    height: 35vh;
+} */
+
+.processes-block {
+    height: 35vh;
+    overflow: scroll;
 }

@@ -14,13 +14,15 @@ import { getTransactions } from "../../store/actions"
 const TransactionsPage = () => {
     const { transactions } = useSelector(state => state.app)
     const dispatch = useDispatch()
-    // const { pending, finished } = transactions
+
     common.middleButtons = false
 
     useEffect(() => {
         dispatch(getTransactions())
+
         //eslint-disable-next-line
     }, [])
+
 
     return (
         <Layout buttons={common} title={{ text: "O'tkazmalar Tarixi" }}>
@@ -47,7 +49,7 @@ const TransactionsPage = () => {
             <div className="transaction-block">
                 <div className="title">Tarix</div>
                 {transactions ? transactions.map(transaction => (
-                    <Link key={transaction.id} to={"/transactions/" + (transaction.type === 1 ? "offer" : "query") + "/" + transaction.id}>
+                    <Link key={transaction.id} to={"/transactions/" + (transaction.process_type === 1 ? "offer" : "query") + "/" + transaction.id}>
                         <TransactionCard {...transaction} />
                     </Link>
                 )) : (
