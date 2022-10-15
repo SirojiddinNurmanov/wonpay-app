@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
 import Spinner from "react-bootstrap/Spinner"
+import { useDispatch, useSelector } from "react-redux"
 
-import { BACKEND_URL } from "../../constants"
+import { getCarriers } from "../../store/actions"
 import { common } from '../../constants/bottomButtons'
 
 import Layout from '../../layout'
@@ -11,48 +12,28 @@ import UsersModal from "../../components/modals/admin/UsersModal"
 import { NoData } from "../../components/common/NoData"
 
 const CarriersPage = () => {
-    const [modalShow, setModalShow] = useState(false)
-    const [carriers, setCarriers] = useState(false)
+    const [usersModal, showUsersModal] = useState(false)
     const [loader, showLoader] = useState(true)
-
-    const getAllCarriers = async () => {
-        try {
-            const token = localStorage.getItem('token')
-            const res = await fetch(`${BACKEND_URL}/carriers`, {
-                headers: {
-                    "Authorization": 'Bearer ' + token
-                }
-            })
-
-            const data = await res.json()
-
-            if (data.success) {
-                setCarriers(data.data)
-            }
-        } catch (error) {
-            setCarriers(false)
-        }
-        showLoader(false)
-    }
+    const { carriers } = useSelector(state => state.app)
+    const dispatch = useDispatch()
 
     common.middleButtons = [
         {
             text: "Kuryer Qo'shish",
-            callback: () => setModalShow(true)
+            callback: () => showUsersModal(true)
         }
     ]
 
     useEffect(() => {
-        if (!carriers) {
-            getAllCarriers()
-        }
+        dispatch(getCarriers())
+        showLoader(false)
     }, [])
 
     return (
         <Layout buttons={common} title={{ text: "Kuryerlar" }}>
             <UsersModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
+                show={usersModal}
+                onHide={() => showUsersModal(false)}
             />
             {loader && (
                 <div className="center">

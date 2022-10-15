@@ -6,10 +6,16 @@ import {
     SHOW_LOADING,
     HIDE_LOADING,
     GET_QUERIES,
-    GET_OFFERS
+    GET_OFFERS,
+    GET_ALL_USERS,
+    GET_CARRIERS,
+    ADD_TO_CARRIERS,
+    REMOVE_FROM_CARRIERS,
+    ADD_TO_CLIENTS,
+    REMOVE_FROM_CLIENTS
 } from "../actionTypes"
 
-import { BACKEND_URL } from "../../constants" 
+import { BACKEND_URL } from "../../constants"
 
 export const getUserNotifications = () => async (dispatch, getState) => {
     try {
@@ -187,6 +193,125 @@ export const getOffers = () => async (dispatch, getState) => {
             payload: error.response.statusText
         })
     }
+}
+
+export const getCarriers = () => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/carriers`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        const { success, message, data } = await res.json()
+
+        if (success) {
+            dispatch({
+                type: GET_CARRIERS,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: USER_ERROR,
+                payload: message
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const getAllUsers = () => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/users`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        const { success, message, data } = await res.json()
+
+        if (success) {
+            dispatch({
+                type: GET_ALL_USERS,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: USER_ERROR,
+                payload: message
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const toggleUserRoles = (carriers, clients) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/carriers/toggle`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                carriers,
+                clients
+            })
+        })
+
+        const { success, message } = await res.json()
+
+        console.log(message)
+    } catch (error) {
+        dispatch({
+            type: USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const addToCarriers = (id) => async (dispatch, getState) => {
+    dispatch({
+        type: ADD_TO_CARRIERS,
+        payload: id
+    })
+}
+
+export const removeFromCarriers = (id) => async (dispatch, getState) => {
+    dispatch({
+        type: REMOVE_FROM_CARRIERS,
+        payload: id
+    })
+}
+
+export const addToClients = (id) => async (dispatch, getState) => {
+    dispatch({
+        type: ADD_TO_CLIENTS,
+        payload: id
+    })
+}
+
+export const removeFromClients = (id) => async (dispatch, getState) => {
+    dispatch({
+        type: REMOVE_FROM_CLIENTS,
+        payload: id
+    })
 }
 
 export const showLoading = () => ({

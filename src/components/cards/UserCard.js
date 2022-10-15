@@ -1,10 +1,22 @@
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCarriers, addToClients, removeFromCarriers, removeFromClients } from '../../store/actions'
 
-const UserCard = ({ avatar, first_name, last_name, role }) => {
-    const [checked, setChecked] = useState(role === 'carrier')
+const UserCard = ({ id, avatar, first_name, last_name, role }) => {
+    const { newCarriers } = useSelector(state => state.app)
+    const dispatch = useDispatch()
+
+    const [checked, setChecked] = useState(newCarriers.includes(id))
 
     const changeRole = () => {
+        if (checked) {
+            dispatch(removeFromCarriers(id))
+            dispatch(addToClients(id))
+        } else {
+            dispatch(addToCarriers(id))
+            dispatch(removeFromClients(id))
+        }
         setChecked(!checked)
     }
 
@@ -15,7 +27,7 @@ const UserCard = ({ avatar, first_name, last_name, role }) => {
             </div>
             <div className="name">{first_name} {last_name}</div>
             <div className="checkbox">
-                <Form.Check onChange={() => changeRole() } checked={checked} />
+                <Form.Check onChange={changeRole} checked={checked} />
             </div>
         </div>
     )

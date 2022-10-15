@@ -1,41 +1,32 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
+import { useState } from "react"
 import Modal from "react-bootstrap/Modal"
+import { useDispatch, useSelector } from "react-redux"
 
-import { BACKEND_URL } from "../../../constants"
+import { getAllUsers, getCarriers, toggleUserRoles } from "../../../store/actions"
 
 import UserCard from "../../cards/UserCard"
 
 const UsersModal = (props) => {
-    const [allUsers, setAllUsers] = useState(false)
+    const { allusers, newCarriers, newClients } = useSelector(state => state.app)
+    const dispatch = useDispatch()
 
-    const getAllUsers = async () => {
-        const token = localStorage.getItem('token')
-        const res = await fetch(`${BACKEND_URL}/users`, {
-            headers: {
-                "Authorization": 'Bearer ' + token
-            }
-        })
-
-        const data = await res.json()
-
-        if (data.success) {
-            setAllUsers(data.data)
-        }
-    }
 
     useEffect(() => {
-        if (!allUsers) {
-            getAllUsers()
-        }
+        dispatch(getAllUsers())
+        dispatch(getCarriers())
     }, [])
+
+    const toggleClientCarrierRoles = () => {
+        dispatch(toggleUserRoles(newCarriers, newClients))
+        props.onHide()
+    }
 
     return (
         <Modal
             {...props}
-            aria-labelledby="contained-modal-title-vcenter"
             centered
             scrollable
-            dialogClassName="modal-60w"
         >
             <Modal.Header closeButton>
                 <Modal.Title className="text-center">
@@ -46,14 +37,17 @@ const UsersModal = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <div className="my-modal">
-                    {allUsers && allUsers.map(user => (
-                        <UserCard key={user.id} {...user} />
-                    ))}
+                    {allusers && allusers.map(user => {
+                        if (!['admin', 'superadmin'].includes(user.role)) {
+                            return (
+                                <UserCard key={user.id} {...user} />
+                            )
+                        }
+                    })}
                 </div>
-                <div className="white-line"></div>
             </Modal.Body>
             <Modal.Footer>
-                <button className="modal-button" onClick={() => props.onHide()}>Tasdiqlash</button>
+                <button className="modal-button" onClick={toggleClientCarrierRoles}>Tasdiqlash</button>
             </Modal.Footer>
         </Modal>
     )

@@ -7,7 +7,13 @@ import {
     GET_TRANSACTIONS,
     GET_PROCESSES,
     GET_QUERIES,
-    GET_OFFERS
+    GET_OFFERS,
+    GET_CARRIERS,
+    GET_ALL_USERS,
+    ADD_TO_CARRIERS,
+    REMOVE_FROM_CARRIERS,
+    ADD_TO_CLIENTS,
+    REMOVE_FROM_CLIENTS
 } from "../actionTypes"
 
 const initialState = {
@@ -19,7 +25,11 @@ const initialState = {
     error: '',
     transactions: null,
     queries: null,
-    offers: null
+    offers: null,
+    carriers: null,
+    newCarriers: [],
+    newClients: [],
+    allusers: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -70,6 +80,38 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 offers: action.payload
+            }
+        case GET_CARRIERS:
+            return {
+                ...state,
+                carriers: action.payload,
+                newCarriers: action.payload.map(carrier => carrier.id)
+            }
+        case GET_ALL_USERS:
+            return {
+                ...state,
+                allusers: action.payload,
+                newClients: action.payload.filter(el => el.role === "client").map(el => el.id)
+            }
+        case ADD_TO_CARRIERS:
+            return {
+                ...state,
+                newCarriers: [...state.newCarriers, action.payload]
+            }
+        case REMOVE_FROM_CARRIERS:
+            return {
+                ...state,
+                newCarriers: state.newCarriers.filter(newCarriers => newCarriers !== action.payload)
+            }
+        case ADD_TO_CLIENTS:
+            return {
+                ...state,
+                newClients: [...state.newClients, action.payload]
+            }
+        case REMOVE_FROM_CLIENTS:
+            return {
+                ...state,
+                newClients: state.newClients.filter(newClients => newClients !== action.payload)
             }
         default:
             return state
