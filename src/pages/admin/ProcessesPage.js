@@ -26,27 +26,19 @@ const ProcessesPage = () => {
     common.middleButtons = false
 
     return (
-        <Layout buttons={common} >
-             <Link to="/queries">
-                <Title text="So'rovlar:" amount={"₩" + (queries ? formatAmount(sumProcessAmount(queries)) : "0" )} inContent={true} />
-            </Link>
-            <div className="processes-block">
-                {queries ? (
-                    <QueryTable processes={queries}/>
-                ) : (
-                    <NoData />
-                )}
-            </div>
-           
+        <Layout buttons={common}>
             <Link to="/queries">
-                <Title text="Takliflar:" amount={"₩" + (offers ? formatAmount(sumProcessAmount(offers)) : "0" )} inContent={true} />
+                <Title text="So'rovlar:" amount={"₩" + (queries ? formatAmount(sumProcessAmount(queries)) : "0")} inContent={true} />
             </Link>
             <div className="processes-block">
-                {offers ? (
-                    <OfferTable processes={offers}/>
-                ) : (
-                    <NoData />
-                )}
+                <QueryTable processes={queries} />
+            </div>
+
+            <Link to="/offers">
+                <Title text="Takliflar:" amount={"₩" + (offers ? formatAmount(sumProcessAmount(offers)) : "0")} inContent={true} />
+            </Link>
+            <div className="processes-block">
+                <OfferTable />
             </div>
         </Layout>
     )

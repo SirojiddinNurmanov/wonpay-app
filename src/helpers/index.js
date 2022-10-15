@@ -50,5 +50,5 @@ export const sumProcessAmount = (processes) => {
     if (processes.length === 1) {
         return processes[0].amount
     }
-    return processes.reduce((prev, curr) => prev.amount + curr.amount)
+    return processes.map(el => el.amount).reduce((prev, curr) => prev + curr)
 }

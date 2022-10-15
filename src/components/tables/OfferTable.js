@@ -1,8 +1,11 @@
 import React from "react"
 import Table from "react-bootstrap/Table"
+import { useSelector } from "react-redux"
 import { formatAmount } from "../../helpers"
 
-const OfferTable = ({ processes }) => {
+const OfferTable = () => {
+
+    const { offers } = useSelector(state => state.app)
     return (
         <Table striped bordered hover size="sm" responsive className="process-table">
             <thead>
@@ -15,9 +18,9 @@ const OfferTable = ({ processes }) => {
                     <th>Taqsim</th>
                 </tr>
             </thead>
-            {processes && (
+            {offers && (
                 <tbody>
-                    {processes.map(({ id, user, amount, payment_type, exchange_rate }) => (
+                    {offers.map(({ id, user, amount, payment_type, exchange_rate }) => (
                         <tr key={id}>
                             <td>{(user.first_name ? user.first_name : "") + " " + (user.last_name ? user.last_name : "")}</td>
                             <td>{formatAmount(amount)}</td>

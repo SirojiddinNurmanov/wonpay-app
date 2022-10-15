@@ -12,7 +12,8 @@ import {
     ADD_TO_CARRIERS,
     REMOVE_FROM_CARRIERS,
     ADD_TO_CLIENTS,
-    REMOVE_FROM_CLIENTS
+    REMOVE_FROM_CLIENTS,
+    CHANGE_QUERY_RATE
 } from "../actionTypes"
 
 import { BACKEND_URL } from "../../constants"
@@ -276,8 +277,6 @@ export const toggleUserRoles = (carriers, clients) => async (dispatch, getState)
         })
 
         const { success, message } = await res.json()
-
-        console.log(message)
     } catch (error) {
         dispatch({
             type: USER_ERROR,
@@ -312,6 +311,36 @@ export const removeFromClients = (id) => async (dispatch, getState) => {
         type: REMOVE_FROM_CLIENTS,
         payload: id
     })
+}
+
+export const changeQueryRate = (id, value) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/queries/changerate/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                value: value
+            })
+        })
+
+        const { success, message, data } = await res.json()
+
+        dispatch({
+            type: CHANGE_QUERY_RATE,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
 }
 
 export const showLoading = () => ({

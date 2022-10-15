@@ -63,7 +63,7 @@ const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_inf
                 </div>
             </Modal.Body >
             <Modal.Footer>
-                <button className="confirmation-button lg" onClick={closeAndZoomOut} >Yopish</button>
+                <button className="modal-button" onClick={closeAndZoomOut} >Yopish</button>
             </Modal.Footer>
         </Modal >
     )
