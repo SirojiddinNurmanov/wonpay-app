@@ -7,7 +7,6 @@ import { getOffers, getQueries } from "../../store/actions"
 
 import Layout from "../../layout"
 
-import QueryInfoModal from "../../components/modals/admin/QueryInfoModal"
 import Title from '../../components/common/Title'
 import OfferTable from "../../components/tables/OfferTable"
 import QueryTable from "../../components/tables/QueryTable"
@@ -18,8 +17,6 @@ const ProcessesPage = () => {
     const { queries, offers } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
-    console.log(offers);
-    
     useEffect(() => {
         dispatch(getQueries())
         dispatch(getOffers())
