@@ -1,23 +1,24 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
 import { common } from '../../constants/bottomButtons'
+import { getOffers, getQueries } from "../../store/actions"
 
 import Layout from "../../layout"
 
 import QueryInfoModal from "../../components/modals/admin/QueryInfoModal"
 import Title from '../../components/common/Title'
-import ProcessTable from "../../components/tables/ProcessTable"
+import OfferTable from "../../components/tables/OfferTable"
+import QueryTable from "../../components/tables/QueryTable"
 import { NoData } from "../../components/common/NoData"
-import { useEffect } from "react"
-import { getOffers, getQueries } from "../../store/actions"
+import { formatAmount, sumProcessAmount } from "../../helpers"
 
 const ProcessesPage = () => {
-    const [modalShow, setModalShow] = useState(false)
     const { queries, offers } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
+    console.log(offers);
     
     useEffect(() => {
         dispatch(getQueries())
@@ -29,27 +30,23 @@ const ProcessesPage = () => {
 
     return (
         <Layout buttons={common} >
-            <QueryInfoModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-            />
-            <Link to="/queries">
-                <Title text="Takliflar:" amount="₩32.000.000" inContent={true} />
+             <Link to="/queries">
+                <Title text="So'rovlar:" amount={"₩" + (queries ? formatAmount(sumProcessAmount(queries)) : "0" )} inContent={true} />
             </Link>
             <div className="processes-block">
                 {queries ? (
-                    <ProcessTable processes={queries}/>
+                    <QueryTable processes={queries}/>
                 ) : (
                     <NoData />
                 )}
             </div>
            
             <Link to="/queries">
-                <Title text="So'rovlar:" amount="₩15.000.000" inContent={true} />
+                <Title text="Takliflar:" amount={"₩" + (offers ? formatAmount(sumProcessAmount(offers)) : "0" )} inContent={true} />
             </Link>
             <div className="processes-block">
                 {offers ? (
-                    <ProcessTable processes={offers}/>
+                    <OfferTable processes={offers}/>
                 ) : (
                     <NoData />
                 )}

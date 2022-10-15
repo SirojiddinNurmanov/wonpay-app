@@ -137,7 +137,6 @@ export const getQueries = () => async (dispatch, getState) => {
         })
 
         const { success, message, data } = await res.json()
-        console.log(data)
 
         if (success) {
             dispatch({
@@ -170,7 +169,6 @@ export const getOffers = () => async (dispatch, getState) => {
         })
 
         const { success, message, data } = await res.json()
-        console.log(data)
 
         if (success) {
             dispatch({

@@ -45,3 +45,10 @@ export const formatAmount = (amount) => {
 export const trimAmount = (amount) => {
     return amount.toString().replaceAll(" ", "").replaceAll(".", "").replaceAll(",", "")
 }
+
+export const sumProcessAmount = (processes) => {
+    if (processes.length === 1) {
+        return processes[0].amount
+    }
+    return processes.reduce((prev, curr) => prev.amount + curr.amount)
+}
