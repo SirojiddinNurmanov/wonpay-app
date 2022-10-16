@@ -20,7 +20,7 @@ const QueryDebtModal = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <div className="component71-header">
-                    <h1>Farruh Soipov</h1>
+                    <h1>Palonchi Palonchiyev</h1>
                     <span>Kelishilgan valyuta kursi</span>
                     <h3>$1 = W 1.250</h3>
                     <h1>W5.000.000 = $4.000</h1>
@@ -48,7 +48,7 @@ const QueryDebtModal = (props) => {
                 <WhiteLine modal={true} />
             </Modal.Body>
             <Modal.Footer>
-                <button className="modal-button" onClick={props.onHide} >Yopish</button>
+                <button className="modal-button" onClick={props.onHide}>Yopish</button>
             </Modal.Footer>
         </Modal>
     )

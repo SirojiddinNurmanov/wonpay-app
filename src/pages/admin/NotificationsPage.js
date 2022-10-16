@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
 import { notifications } from "../../constants/dummyData"
 
 import Layout from "../../layout"
 
-import NotificationDetailsModal from "../../components/modals/client/NotificationDetailsModal"
 import NotificationCard from "../../components/cards/NotificationCard"
-import { useDispatch, useSelector } from "react-redux"
+import NotificationModal from "../../components/modals/admin/NotificationModal"
 
 const NotificationsPage = () => {
     const [modalShow, setModalShow] = useState(false)
@@ -18,7 +18,7 @@ const NotificationsPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "Xabarlar:" }}>
-            <NotificationDetailsModal show={modalShow} onHide={() => setModalShow(false)} />
+            <NotificationModal show={modalShow} onHide={() => setModalShow(false)} />
             {notifications && notifications.map((notification, index) => (
                 <Fragment key={index}>
                     <div className="notification-datetime">{notification.datetime}</div>
