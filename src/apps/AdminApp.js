@@ -29,9 +29,9 @@ const AdminApp = () => {
                 <Route path="/reports" element={<ReportsPage />} />
                 <Route path="/processes" element={<ProcessesPage />} />
                 <Route path="/offers" element={<OffersPage />} />
-                <Route path="/singleoffer" element={<SingleOfferPage />} />
+                <Route path="/offers/:offerId" element={<SingleOfferPage />} />
                 <Route path="/queries" element={<QueriesPage />} />
-                <Route path="/singlequery" element={<SingleQueryPage />} />
+                <Route path="/queries/:queryId" element={<SingleQueryPage />} />
                 <Route path="/profit" element={<ProfitPage />} />
                 <Route path="/notifications" element={<NotificationsPage />} />
                 <Route path="/profile" element={<ProfilePage />} />

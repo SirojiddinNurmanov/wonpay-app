@@ -59,7 +59,7 @@ const QueryTransactionDetailsPage = () => {
                     <p>{receiver.phone_number}</p>
                 </div>
                 <div className="query-title">
-                    O'zbekistonda pulni pulni qachon yetkazib berasiz?
+                    O'zbekistonda pulni qachon yetkazib berasiz?
                 </div>
                 <DatePicker 
                     minDate={new Date()}
@@ -67,7 +67,7 @@ const QueryTransactionDetailsPage = () => {
                     timeCaption="Vaqt"
                     timeFormat="HH:mm"
                     showTimeSelect
-                    dateFormat="yyyy-mm-dd  HH:mm"
+                    dateFormat="yyyy-MM-dd  HH:mm"
                     onChange={(date) => setStartDate(date)}
                 />
             </div>

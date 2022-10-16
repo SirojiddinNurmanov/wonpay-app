@@ -1,7 +1,8 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
 
-const Header = ({ avatar, toAmount = false, balance = false, fromAmount = false }) => {
+const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
+    const { avatar } = useSelector(state => state.app.user.user)
     return (
         <div className="header">
             <div className="logo">
@@ -23,9 +24,7 @@ const Header = ({ avatar, toAmount = false, balance = false, fromAmount = false 
                 {fromAmount && (
                     <span className="balance-item">{fromAmount}</span>
                 )}
-                <Link to="/profile">
-                    <img className="avatar" src={avatar} alt="Avatar" />
-                </Link>
+                <img className="avatar" src={avatar ? avatar : "/assets/img/icons/profile.png"} alt="Avatar" />
             </div>
         </div>
     )

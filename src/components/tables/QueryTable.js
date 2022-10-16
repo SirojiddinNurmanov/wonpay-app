@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import Table from "react-bootstrap/Table"
 import { useSelector } from "react-redux"
 
@@ -12,6 +13,17 @@ const QueryTable = () => {
     const [queryRateModal, showQueryRateModal] = useState(false)
     const [modalInfo, setModalInfo] = useState()
     const { queries } = useSelector(state => state.app)
+
+    const clickHandler = ({ target }) => {
+        if (target.innerText === "Ko'rish") {
+            console.log("Click handler is activated", target.innerText)
+        }
+    }
+
+    const openModal = (process) => (e) => {
+        showQueryInfoModal(true)
+        setModalInfo(process)
+    }
 
     return (
         <Table striped bordered hover size="sm" responsive className="process-table">
@@ -30,10 +42,14 @@ const QueryTable = () => {
                 <tbody>
                     {queries.map((process) => (
                         <tr key={process.id}>
-                            <td>{(process.user.first_name ? process.user.first_name : "") + " " + (process.user.last_name ? process.user.last_name : "")}</td>
+                            <td>
+                                <Link to={"/queries/" + process.id}>
+                                    {(process.user.first_name ? process.user.first_name : "") + " " + (process.user.last_name ? process.user.last_name : "")}
+                                </Link>
+                            </td>
                             <td>{formatAmount(process.amount)}</td>
-                            <td onClick={() => { showQueryInfoModal(true); setModalInfo(process) }}>Ko'rish</td>
-                            <td onClick={() => { showQueryRateModal(true); setModalInfo(process) }}>{process.exchange_rate ? process.exchange_rate : "Kiritish"}</td>
+                            <td onClick={openModal(process)}>Ko'rish</td>
+                            <td onClick={openModal(process)}>{process.exchange_rate ? process.exchange_rate : "Kiritish"}</td>
                             <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
                         </tr>
                     ))}

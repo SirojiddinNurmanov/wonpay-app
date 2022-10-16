@@ -1519,6 +1519,7 @@ a {
     justify-content: center;
     width: 45px;
     height: 45px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .bottom-navigation .circle-button img {
@@ -1560,6 +1561,7 @@ a {
     height: 40px;
     text-align: center;
     font-size: .8em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .bottom-navigation .middle-buttons .middle-button.secondary {
@@ -1653,6 +1655,7 @@ a {
 
 .header .avatar {
     height: 40px;
+    border-radius: 50%;
 }
 
 /* Notification Styles */

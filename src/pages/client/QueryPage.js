@@ -227,7 +227,7 @@ const QueryPage = () => {
                         <div className="account-sms">
                             <div className="account-title">SMS:</div>
                             <div className="account-sms-field">
-                                <textarea className="account-paste-clipboard" onChange={handleAccountInfoSMS} value={accountInfoSMS} cols="30" rows="10" />
+                                <textarea className="account-paste-clipboard" onChange={handleAccountInfoSMS} value={accountInfoSMS} cols="30" rows="3" />
                             </div>
                         </div>
                         <div className="or-text">yoki</div>
