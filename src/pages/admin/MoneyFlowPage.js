@@ -4,7 +4,7 @@ import { common } from '../../constants/bottomButtons'
 
 import Layout from "../../layout"
 
-const CashFlowPage = () => {
+const MoneyFlowPage = () => {
     common.middleButtons = [
         {
             text: "Pul Yechish"
@@ -129,4 +129,4 @@ const CashFlowPage = () => {
         </Layout>
     )
 }
-export default CashFlowPage
+export default MoneyFlowPage

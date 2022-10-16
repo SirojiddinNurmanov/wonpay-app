@@ -7,6 +7,7 @@ import Layout from "../../layout"
 import QueryDebtModal from "../../components/modals/admin/QueryDebtModal"
 import OfferDebtModal from "../../components/modals/admin/OfferDebtModal"
 import Title from "../../components/common/Title"
+import DebtsTable from "../../components/tables/DebtsTable"
 
 const DebtsPage = () => {
     const [queryDebtModal, showQueryDebtModal] = useState(false)
@@ -15,133 +16,16 @@ const DebtsPage = () => {
     common.middleButtons = false
 
     return (
-        <Layout buttons={common} title={{ text: "Qarzlar:", amount: "+$20.000.000" }}>
+        <Layout buttons={common}>
             <QueryDebtModal show={queryDebtModal} onHide={() => showQueryDebtModal(false)} />
             <OfferDebtModal show={offerDebtModal} onHide={() => showOfferDebtModal(false)} />
-            <div className="request-body-title">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-4">Ism</div>
-                        <div className="col-2">Summa</div>
-                        <div className="col-2">Info</div>
-                        <div className="col-2">Kurs</div>
-                        <div className="col-2">Qarz</div>
-                    </div>
-                </div>
+            <Title text="Qarzlar:" amount="+$20.000" inContent={true} />
+            <div className="processes-block">
+                <DebtsTable />
             </div>
-            <div className="request-body-item">
-                <div className="request-time">22.08.2022</div>
-                <div className="request-table">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-4">Farruh Soipov</div>
-                            <div className="col-2">$5.000</div>
-                            <div
-                                className="col-2"
-                                onClick={() => showQueryDebtModal(true)}
-                            >
-                                Ko'rish
-                            </div>
-                            <div className="col-2">1250</div>
-                            <div className="col-2">$1000</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="request-table">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-4">Farruh Soipov</div>
-                            <div className="col-2">$5.000</div>
-                            <div
-                                className="col-2"
-                                onClick={() => showQueryDebtModal(true)}
-                            >
-                                Ko'rish
-                            </div>
-                            <div className="col-2">1250</div>
-                            <div className="col-2">$1000</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="request-table">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-4">Farruh Soipov</div>
-                            <div className="col-2">$5.000</div>
-                            <div
-                                className="col-2"
-                                onClick={() => showQueryDebtModal(true)}
-                            >
-                                Ko'rish
-                            </div>
-                            <div className="col-2">1250</div>
-                            <div className="col-2">$1000</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <Title text="Bizning qarzlar:" amount="+$20.000.000" inContent={true} />
-            <div className="request-body-title">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-4">Ism</div>
-                        <div className="col-2">Summa</div>
-                        <div className="col-2">Info</div>
-                        <div className="col-2">Kurs</div>
-                        <div className="col-2">Qarz</div>
-                    </div>
-                </div>
-            </div>
-            <div className="request-body-item">
-                <div className="request-time">22.08.2022</div>
-                <div className="request-table">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-4">Farruh Soipov</div>
-                            <div className="col-2">$5.000</div>
-                            <div
-                                className="col-2"
-                                onClick={() => showOfferDebtModal(true)}
-                            >
-                                Ko'rish
-                            </div>
-                            <div className="col-2">1250</div>
-                            <div className="col-2">$1000</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="request-table">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-4">Farruh Soipov</div>
-                            <div className="col-2">$5.000</div>
-                            <div
-                                className="col-2"
-                                onClick={() => showOfferDebtModal(true)}
-                            >
-                                Ko'rish
-                            </div>
-                            <div className="col-2">1250</div>
-                            <div className="col-2">$1000</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="request-table">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-4">Farruh Soipov</div>
-                            <div className="col-2">$5.000</div>
-                            <div
-                                className="col-2"
-                                onClick={() => showOfferDebtModal(true)}
-                            >
-                                Ko'rish
-                            </div>
-                            <div className="col-2">1250</div>
-                            <div className="col-2">$1000</div>
-                        </div>
-                    </div>
-                </div>
+            <Title text="Bizning Qarzlar:" amount="-$18.750" inContent={true} />
+            <div className="processes-block">
+                <DebtsTable />
             </div>
         </Layout>
     )

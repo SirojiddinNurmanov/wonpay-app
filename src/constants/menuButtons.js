@@ -29,7 +29,7 @@ export const MenuButtons = {
         },
         {
             id: 5,
-            url: "/cashflow",
+            url: "/moneyflow",
             image: "/assets/img/admin/cashflow.png",
             text: "Pul oqimi"
         },

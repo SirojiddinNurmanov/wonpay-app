@@ -5,7 +5,7 @@ import NaverRatePage from "../pages/admin/NaverRatePage"
 import UZSRatePage from "../pages/admin/UZSRatePage"
 import CarriersPage from "../pages/admin/CarriersPage"
 import DebtsPage from "../pages/admin/DebtsPage"
-import CashFlowPage from "../pages/admin/CashFlowPage"
+import MoneyFlowPage from "../pages/admin/MoneyFlowPage"
 import ReportsPage from "../pages/admin/ReportsPage"
 import ProcessesPage from "../pages/admin/ProcessesPage"
 import OffersPage from "../pages/admin/OffersPage"
@@ -25,7 +25,7 @@ const AdminApp = () => {
                 <Route path="/uzbcourse" element={<UZSRatePage />} />
                 <Route path="/carriers" element={<CarriersPage />} />
                 <Route path="/debts" element={<DebtsPage />} />
-                <Route path="/cashflow" element={<CashFlowPage />} />
+                <Route path="/moneyflow" element={<MoneyFlowPage />} />
                 <Route path="/reports" element={<ReportsPage />} />
                 <Route path="/processes" element={<ProcessesPage />} />
                 <Route path="/offers" element={<OffersPage />} />
