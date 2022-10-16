@@ -1,7 +1,8 @@
-import React, { createContext } from "react"
+import React from "react"
+
 import { formatAmount } from "../../helpers"
 
-const TransactionCard = ({ process_type, amount, amount_krw, amount_usd, exchange_rate, receiver, status }) => {
+const TransactionCard = ({ process_type, amount, exchange_rate, receiver, status }) => {
     return (
         <div className="transaction-item">
             <div className="transaction-status">{status === "pending" ? "Ko'rib chiqilmoqda" : "Yakunlangan"}</div>
@@ -13,7 +14,7 @@ const TransactionCard = ({ process_type, amount, amount_krw, amount_usd, exchang
                         <div className="transaction-amount">￦ {formatAmount(amount)}</div>
                     )}
                     {exchange_rate != 0 && (
-                        <div className="transaction-amount">{amount * exchange_rate}</div>
+                        <div className="transaction-amount">$ {formatAmount((amount / exchange_rate), true)}</div>
                     )}
                 </div>
                 <div className="bar"></div>

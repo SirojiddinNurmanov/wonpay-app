@@ -1,12 +1,12 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
-import OfferTable from "../../components/tables/OfferTable"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount, sumProcessAmount } from "../../helpers"
 
 import Layout from "../../layout"
+
+import OfferTable from "../../components/tables/OfferTable"
 
 const OffersPage = () => {
     const { offers } = useSelector(state => state.app)

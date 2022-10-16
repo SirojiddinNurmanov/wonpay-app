@@ -1,7 +1,35 @@
-import React from "react"
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
 import Modal from "react-bootstrap/Modal"
 
-const QueryRateModal = (props) => {
+import { changeOfferRate } from "../../../store/actions"
+
+import WhiteLine from "../../common/WhiteLine"
+
+const OfferRateModal = (props) => {
+    const [newBuyRate, setNewBuyRate] = useState()
+    const [newSellRate, setNewSellRate] = useState()
+    const dispatch = useDispatch()
+
+    const changeSellRateValue = ({ target: { value } }) => {
+
+        if (value < 10000) {
+            setNewSellRate(value)
+        }
+    }
+
+    const changeBuyRateValue = ({ target: { value } }) => {
+
+        if (value < 10000) {
+            setNewBuyRate(value)
+        }
+    }
+
+    const confirmRate = () => {
+        dispatch(changeOfferRate(props.id, newBuyRate, newSellRate))
+        props.onHide()
+    }
+
     return (
         <Modal
             {...props}
@@ -10,44 +38,34 @@ const QueryRateModal = (props) => {
             centered
         >
             <Modal.Header closeButton>
-                <div className="sale-modal">
-                    <div className="home-header">
-                        <div className="logo">
-                            <img src="/assets/img/icons/logo.png" alt="logo" />
-                        </div>
+                <Modal.Title className="text-center">
+                    <div className="logo">
+                        <img src="/assets/img/icons/logo.png" alt="logo" />
                     </div>
-                    <div className="white-line"></div>
-                </div>{" "}
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="my-modal">
-                    <div className="offer-modal-input">
-                        <div className="put-money-input">
-                            <label htmlFor="put_money">Olish:</label>
-                            <input type="number" id="put_money2" />
-                            <span className="korean-won2">
-                                <img src="/assets/img/icons/won.png" alt="won" />
-                            </span>
-                        </div>
-                    </div>
-                    <div className="white-line"></div>
-                    <div className="offer-modal-input">
-                        <div className="put-money-input">
-                            <label htmlFor="put_money">Sotish:</label>
-                            <input type="number" id="put_money2" />
-                            <span className="korean-won2">
-                                <img src="/assets/img/icons/won.png" alt="won" />
-                            </span>
-                        </div>
+                <div className="offer-modal-input">
+                    <div className="put-money-input">
+                        <label>Olish:
+                            <input type="number" defaultValue={props.buy_rate} onChange={changeBuyRateValue} />
+                        </label>
                     </div>
                 </div>
-                <div className="white-line"></div>
-
-                <div className="modal-foooter">
-                    <button>Yopish</button>
+                <WhiteLine modal={true} />
+                <div className="offer-modal-input">
+                    <div className="put-money-input">
+                        <label>Sotish:
+                            <input type="number" defaultValue={props.sell_rate} onChange={changeSellRateValue} />
+                        </label>
+                    </div>
                 </div>
+                <WhiteLine modal={true}/>
             </Modal.Body>
+            <Modal.Footer>
+                <button className="modal-button" onClick={confirmRate}>Yopish</button>
+            </Modal.Footer>
         </Modal>
     )
 }
-export default QueryRateModal
+export default OfferRateModal

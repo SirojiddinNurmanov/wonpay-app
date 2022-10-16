@@ -19,33 +19,12 @@ const TransactionsPage = () => {
 
     useEffect(() => {
         dispatch(getTransactions())
-
         //eslint-disable-next-line
     }, [])
 
 
     return (
         <Layout buttons={common} title={{ text: "O'tkazmalar Tarixi" }}>
-            {/* {pending && (
-                <div className="transaction-block">
-                    <div className="title">Yakunlanmaganlar</div>
-                    {(pending.length > 0) ? pending.map((transaction, index) => (
-                        <Link key={index} to={"/transactions/" + transaction.type + "/" + transaction.id}>
-                            <TransactionCard {...transaction} />
-                        </Link>
-                    )) : (<NoData />)}
-                </div>
-            )}
-            {finished && (
-                <div className="transaction-block">
-                    <div className="title">Tarix</div>
-                    {(finished.length > 0) ? finished.map((transaction, index) => (
-                        <Link key={index} to={"/transactions/" + transaction.type + "/" + transaction.id}>
-                            <TransactionCard {...transaction} />
-                        </Link>
-                    )) : (<NoData />)}
-                </div>
-            )} */}
             <div className="transaction-block">
                 <div className="title">Tarix</div>
                 {transactions ? transactions.map(transaction => (

@@ -14,7 +14,8 @@ import {
     REMOVE_FROM_CARRIERS,
     ADD_TO_CLIENTS,
     REMOVE_FROM_CLIENTS,
-    CHANGE_QUERY_RATE
+    CHANGE_QUERY_RATE,
+    CHANGE_OFFER_RATE
 } from "../actionTypes"
 
 const initialState = {
@@ -118,6 +119,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 queries: state.queries.map(query => (query.id === action.payload.id) ? action.payload : query)
+            }
+        case CHANGE_OFFER_RATE:
+            return {
+                ...state,
+                offers: state.offers.map(offer => (offer.id === action.payload.id) ? action.payload : offer)
             }
         default:
             return state

@@ -27,6 +27,7 @@ const CarriersPage = () => {
     useEffect(() => {
         dispatch(getCarriers())
         showLoader(false)
+        // eslint-disable-next-line
     }, [])
 
     return (

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { useState } from "react"
 import Modal from "react-bootstrap/Modal"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -15,6 +14,7 @@ const UsersModal = (props) => {
     useEffect(() => {
         dispatch(getAllUsers())
         dispatch(getCarriers())
+        // eslint-disable-next-line
     }, [])
 
     const toggleClientCarrierRoles = () => {
@@ -43,6 +43,7 @@ const UsersModal = (props) => {
                                 <UserCard key={user.id} {...user} />
                             )
                         }
+                        return false
                     })}
                 </div>
             </Modal.Body>

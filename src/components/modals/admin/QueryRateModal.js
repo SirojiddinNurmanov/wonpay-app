@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 
 import { changeQueryRate } from '../../../store/actions'
@@ -9,8 +8,10 @@ import Modal from "react-bootstrap/Modal"
 const QueryRateModal = (props) => {
     const [newValue, setNewValue] = useState()
     const dispatch = useDispatch()
-    const changeRate = () => {
+
+    const confirmRate = () => {
         dispatch(changeQueryRate(props.id, newValue))
+        props.onHide()
     }
 
     return (
@@ -32,13 +33,13 @@ const QueryRateModal = (props) => {
                     <div className="offer-modal-input">
                         <div className="put-money-input">
                             <label htmlFor="put_money">Kurs:</label>
-                            <input type="number" defaultValue={props.exchange_rate} onChange={ ({target}) => setNewValue(target.value)} />
+                            <input type="number" defaultValue={props.exchange_rate} onChange={({ target }) => setNewValue(target.value)} />
                         </div>
                     </div>
                 </div>
             </Modal.Body>
             <Modal.Footer>
-                <button className="modal-button" onClick={() => { changeRate(); props.onHide() }}>Yopish</button>
+                <button className="modal-button" onClick={confirmRate}>Yopish</button>
             </Modal.Footer>
         </Modal >
     )

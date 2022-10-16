@@ -13,7 +13,8 @@ import {
     REMOVE_FROM_CARRIERS,
     ADD_TO_CLIENTS,
     REMOVE_FROM_CLIENTS,
-    CHANGE_QUERY_RATE
+    CHANGE_QUERY_RATE,
+    CHANGE_OFFER_RATE
 } from "../actionTypes"
 
 import { BACKEND_URL } from "../../constants"
@@ -276,7 +277,7 @@ export const toggleUserRoles = (carriers, clients) => async (dispatch, getState)
             })
         })
 
-        const { success, message } = await res.json()
+        await res.json()
     } catch (error) {
         dispatch({
             type: USER_ERROR,
@@ -324,14 +325,45 @@ export const changeQueryRate = (id, value) => async (dispatch, getState) => {
                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                value: value
+                value
             })
         })
 
-        const { success, message, data } = await res.json()
+        const { data } = await res.json()
 
         dispatch({
             type: CHANGE_QUERY_RATE,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const changeOfferRate = (id, buyRate, sellRate) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/offers/changerate/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                buyRate: buyRate,
+                sellRate: sellRate
+            })
+        })
+
+        const { data } = await res.json()
+        
+        dispatch({
+            type: CHANGE_OFFER_RATE,
             payload: data
         })
 

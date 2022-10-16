@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Modal from "react-bootstrap/Modal"
+
 import { formatAmount } from "../../../helpers"
 
 const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_info_type, card_info_sms, card_info_image }) => {
@@ -29,7 +30,7 @@ const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_inf
                 <div className="my-modal">
                     <div className="component71-header">
                         <h1>{amount ? "￦ " + formatAmount(amount) : ""}</h1>
-                        <h3>{user?.first_name ? user?.first_name : "" + " " + user?.last_name ? user?.last_name : ""}</h3>
+                        <h3>{(user?.first_name ? user?.first_name : "") + " " + (user?.last_name ? user?.last_name : "")}</h3>
                     </div>
                     {payment_type === 1 && (
                         <div className="request-modal-item">
@@ -39,7 +40,7 @@ const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_inf
                                         <div className={"col-" + (card_info_type === 1 ? "12" : "9")}>
                                             <div className="card_info_block">
                                                 {card_info_type === 1 ? (
-                                                    <img onClick={() => setZoomed(!zoomed)} className={"card-image" + (zoomed ? " zoomed" : "")} src={card_info_image} />
+                                                    <img onClick={() => setZoomed(!zoomed)} className={"card-image" + (zoomed ? " zoomed" : "")} src={card_info_image} alt="Card" />
                                                 ) : (
                                                     <pre>
                                                         {card_info_sms}

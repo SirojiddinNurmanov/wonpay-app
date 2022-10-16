@@ -11,6 +11,16 @@
     user-select: none;
 }
 
+input,
+input:before,
+input:after {
+    -webkit-user-select: initial;
+    -khtml-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
+}
+
 a {
     text-decoration: none !important;
     list-style: none;
@@ -271,6 +281,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 100px;
+    align-items: center;
     justify-content: start;
     width: 100%;
     font-size: 20px;
@@ -300,17 +311,21 @@ a {
     gap: 20px;
 }
 
+.put-money-input label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .put-money-input input {
-    border: 1px solid var(--main-color);
-    border-radius: 20px;
+    border: 0;
     outline: none;
     font-size: 20px;
     width: 60%;
-    margin: 0 auto;
     background-color: var(--background-color);
-    padding: 5px 20px 2px 40px;
-    box-shadow: 5px 5px 15px 0px #BD90F559 inset;
-
+    border-bottom: 1px solid #333;
+    text-align: center ;
 }
 
 .put-money-radio {
@@ -689,10 +704,7 @@ a {
     text-align: center;
 }
 
-.my-modal button {
-    
-
-}
+.my-modal button {}
 
 .message-body {
     padding: 10px 20px;
@@ -1467,9 +1479,15 @@ a {
 }
 
 .white-line {
+    width: 100vw;
+    margin: 10px 0;
+    transform: translateX(-15px);
+    border-bottom: 1px solid var(--white-color);
+}
+
+.white-line.modal-line {
     width: 100%;
-    height: 2px;
-    background-color: #fff;
+    transform: none;
 }
 
 /* Layout Styles */
@@ -1688,6 +1706,7 @@ a {
 }
 
 .transaction-item .transaction-card {
+    min-height: 17vw;
     background-color: var(--white-color);
     padding: 10px;
     margin-top: 5px;
@@ -1711,6 +1730,13 @@ a {
 .transaction-item .transaction-card .transaction-amounts,
 .transaction-item .transaction-card .transaction-details {
     height: 100%;
+}
+
+.transaction-item .transaction-card .transaction-amounts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .transaction-item .transaction-card .transaction-details {
@@ -2063,6 +2089,7 @@ a {
 .process-table {
     font-size: .7rem;
 }
+
 /* 
 .table-responsive {
     height: 35vh;
@@ -2085,3 +2112,17 @@ a {
     left: 0;
     right: 0;
 }
+
+/* Single query page - client */
+
+.react-datepicker__input-container {
+    text-align: center;
+}
+
+.react-datepicker__input-container input {
+    background-color: var(--background-color);
+    border: 0;
+    border-bottom: 1px solid #000;
+    text-align: center;
+}
+

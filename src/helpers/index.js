@@ -34,12 +34,16 @@ export const groupBy = (key, array) => array.reduce((objectsByKeyValue, obj) => 
 
 export const fetchTransaction = (transactions, transactionId) => transactions.filter(transaction => transaction.id === transactionId)
 
-export const formatAmount = (amount) => {
-    let number = amount.toString().replaceAll(" ", "").replaceAll(".", "").replaceAll(",", "")
-    if (number.length < 10){
-        return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+export const formatAmount = (amount, float = false) => {
+    let number = 0
+    
+    if (float) {
+        number = amount.toFixed(2).replaceAll(" ", "")
+    } else {
+        number = amount.toString().replaceAll(" ", "").replaceAll(".", "").replaceAll(",", "")
     }
-    return amount.substring(0, amount.length - 1)
+
+    return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 }
 
 export const trimAmount = (amount) => {
@@ -47,6 +51,9 @@ export const trimAmount = (amount) => {
 }
 
 export const sumProcessAmount = (processes) => {
+    if (!processes) {
+        return 0
+    }
     if (processes.length === 1) {
         return processes[0].amount
     }
