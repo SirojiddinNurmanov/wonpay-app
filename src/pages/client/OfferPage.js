@@ -18,7 +18,7 @@ const OfferPage = () => {
     const [keyboard, setKeyboardStatus] = useState(false)
     const [enabled, setEnabled] = useState(false)
     const [moneyTypeOptions, showMoneyTypeOptions] = useState(false)
-    const [moneyType, setMoneyType] = useState()
+    const [moneyType, setMoneyType] = useState("Karta")
     const [koreanAddressName, setKoreanAddressName] = useState("")
     const [koreanAddressNumber, setKoreanAddressNumber] = useState("")
     const [uzbekAddressName, setUzbekAddressName] = useState("")
@@ -41,8 +41,8 @@ const OfferPage = () => {
             process_type: "1",
             amount: trimAmount(amount),
             payment_type: (moneyType === "Naqd" ? "0" : "1"),
-            receiver_name: uzbekAddressName,
-            receiver_number: uzbekAddressNumber
+            // receiver_name: uzbekAddressName,
+            // receiver_number: uzbekAddressNumber
         }
 
         fetch(`${BACKEND_URL}/processes`, {
@@ -63,21 +63,22 @@ const OfferPage = () => {
     const toggleConfirmButton = () => {
         if (amount !== 0) {
             if (trimAmount(amount) >= 300000) {
-                if (moneyType === "Karta") {
-                    if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
-                        setEnabled(true)
-                    } else {
-                        setEnabled(false)
-                    }
-                }
+                setEnabled(true)
+                // if (moneyType === "Karta") {
+                //     if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
+                //         setEnabled(true)
+                //     } else {
+                //         setEnabled(false)
+                //     }
+                // }
     
-                if (moneyType === "Naqd") {
-                    if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
-                        setEnabled(true)
-                    } else {
-                        setEnabled(false)
-                    }
-                }
+                // if (moneyType === "Naqd") {
+                //     if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
+                //         setEnabled(true)
+                //     } else {
+                //         setEnabled(false)
+                //     }
+                // }
             } else {
                 setEnabled(false)
             }
@@ -169,7 +170,7 @@ const OfferPage = () => {
                 </div>
             )}
 
-            {moneyTypeOptions && (
+            {/* {moneyTypeOptions && (
                 <div className="money-types-block">
                     <label className="radio-label">
                         <input onChange={moneyTypeSelected} type="radio" name="radio" value="Karta" />
@@ -180,9 +181,9 @@ const OfferPage = () => {
                         <div className="text">Naqd</div>
                     </label>
                 </div>
-            )}
+            )} */}
 
-            {moneyTypeOptions && (moneyType === "Karta") && (
+            {/* {moneyTypeOptions && (moneyType === "Karta") && (
                 <div className="address-block">
                     <div className="address-block-item">
                         <div className="address-title">O'zbekistonda pulni oluvchi:</div>
@@ -194,9 +195,9 @@ const OfferPage = () => {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
 
-            {moneyTypeOptions && (moneyType === "Naqd") && (
+            {/* {moneyTypeOptions && (moneyType === "Naqd") && (
                 <div className="address-block">
                     <div className="address-block-item">
                         <div className="address-title">Koreada manzilingizni kiriting:</div>
@@ -217,7 +218,7 @@ const OfferPage = () => {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
 
             <div className="spacer"></div>
         </Layout>
