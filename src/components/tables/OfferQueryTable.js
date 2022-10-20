@@ -1,16 +1,19 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import Table from "react-bootstrap/Table"
+import { Table, Form } from "react-bootstrap"
 import { useSelector } from "react-redux"
 
-import { formatAmount } from "../../helpers"
+import { formatAmount, sumProcessAmount } from "../../helpers"
 
 import QueryInfoModal from "../modals/admin/QueryInfoModal"
 import QueryRateModal from "../modals/admin/QueryRateModal"
+import { useEffect } from "react"
 
-const QueryTable = () => {
+const OfferQueryTable = () => {
     const [queryInfoModal, showQueryInfoModal] = useState(false)
     const [queryRateModal, showQueryRateModal] = useState(false)
+    const [selectedQueries, setSelectedQueries] = useState(false)
+    const [selected, setSelected] = useState([])
     const [modalInfo, setModalInfo] = useState()
     const { queries } = useSelector(state => state.app)
 
@@ -24,6 +27,16 @@ const QueryTable = () => {
         setModalInfo(process)
     }
 
+    const addToList = (e, id) => {
+        if (e.target.checked) {
+            setSelectedQueries([...queries.filter(query => selected.includes(query.id)), queries.find(query => query.id === id)])
+            setSelected([...selected, id])
+        } else {
+            setSelectedQueries(queries.filter(query => selected.filter(selected_id => selected_id !== id).includes(query.id)))
+            setSelected(selected.filter(selected_id => selected_id !== id))
+        }
+    }
+
     return (
         <Table striped bordered hover size="sm" responsive className="process-table">
             <QueryInfoModal show={queryInfoModal} onHide={() => showQueryInfoModal(false)} {...modalInfo} />
@@ -32,9 +45,9 @@ const QueryTable = () => {
                 <tr>
                     <th>Ism</th>
                     <th>Summa</th>
-                    <th>Info</th>
-                    <th>Kurs</th>
                     <th>Turi</th>
+                    <th>Kurs</th>
+                    <th>Tanlash</th>
                 </tr>
             </thead>
             {queries && (
@@ -47,15 +60,21 @@ const QueryTable = () => {
                                 </Link>
                             </td>
                             <td>{formatAmount(process.amount)}</td>
-                            <td onClick={openInfoModal(process)} className="underlined">Ko'rish</td>
-                            <td onClick={openRateModal(process)} className="underlined">{process.exchange_rate ? process.exchange_rate : "Kiritish"}</td>
                             <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
+                            <td className={"text-center" + (process.exchange_rate > 0 ? " red" : "")}>{process.exchange_rate ? process.exchange_rate : "---"}</td>
+                            <td className="checkbox-block">
+                                <Form.Check className="checkbox" onChange={(e) => addToList(e, process.id)}/>
+                            </td>
                         </tr>
                     ))}
+                    <tr className="text-bold">
+                        <td>Jami:</td>
+                        <td>{formatAmount(sumProcessAmount(selectedQueries))}</td>
+                    </tr>
                 </tbody>
             )}
         </Table>
     )
 }
 
-export default QueryTable
+export default OfferQueryTable

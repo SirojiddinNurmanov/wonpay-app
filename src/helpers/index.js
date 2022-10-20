@@ -50,10 +50,15 @@ export const trimAmount = (amount) => {
     return amount.toString().replaceAll(" ", "").replaceAll(".", "").replaceAll(",", "")
 }
 
-export const sumProcessAmount = (processes) => {
+export const sumProcessAmount = (processes = false) => {
     if (!processes) {
         return 0
     }
+
+    if (processes.length === 0) {
+        return 0
+    }
+
     if (processes.length === 1) {
         return processes[0].amount
     }

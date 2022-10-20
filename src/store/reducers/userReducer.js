@@ -15,7 +15,7 @@ import {
     ADD_TO_CLIENTS,
     REMOVE_FROM_CLIENTS,
     CHANGE_QUERY_RATE,
-    CHANGE_OFFER_RATE
+    CHANGE_OFFER_RATE,
 } from "../actionTypes"
 
 const initialState = {

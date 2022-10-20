@@ -7,19 +7,17 @@ import { changeOfferRate } from "../../../store/actions"
 import WhiteLine from "../../common/WhiteLine"
 
 const OfferRateModal = (props) => {
-    const [newBuyRate, setNewBuyRate] = useState()
-    const [newSellRate, setNewSellRate] = useState()
+    const [newBuyRate, setNewBuyRate] = useState(props.buy_rate)
+    const [newSellRate, setNewSellRate] = useState(props.sell_rate)
     const dispatch = useDispatch()
 
     const changeSellRateValue = ({ target: { value } }) => {
-
         if (value < 10000) {
             setNewSellRate(value)
         }
     }
 
     const changeBuyRateValue = ({ target: { value } }) => {
-
         if (value < 10000) {
             setNewBuyRate(value)
         }

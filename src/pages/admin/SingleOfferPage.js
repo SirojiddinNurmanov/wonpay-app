@@ -1,153 +1,119 @@
-import React, { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+
+import { common } from "../../constants/bottomButtons"
+import { formatAmount } from "../../helpers"
+import { getCarriers, setProcessCarrier } from "../../store/actions"
 
 import Layout from "../../layout"
 
+import WhiteLine from "../../components/common/WhiteLine"
 import OfferRateModal from "../../components/modals/admin/OfferRateModal"
+import OfferDollarModal from "../../components/modals/admin/OfferDollarModal"
+import OfferQueryTable from "../../components/tables/OfferQueryTable"
 
 const SingleOfferPage = () => {
-    const [modalShow, setModalShow] = useState(false)
-    const navigate = useNavigate()
-    return (
-        <Layout>
-            <OfferRateModal show={modalShow} onHide={() => setModalShow(false)} />
-            <div className="offers-page">
-                <div className="home-header">
-                    <div className="logo">
-                        <img src="/assets/img/icons/logo.png" alt="logo" />
-                    </div>
+    const [rateModal, showRateModal] = useState(false)
+    const [dollarModal, showDollarModal] = useState(false)
+    const [carrierId, setCarrierId] = useState()
+    const { offers, carriers } = useSelector(state => state.app)
+    const dispatch = useDispatch()
+    let selected = []
 
-                    <div className="home-profile">
-                        <span>
-                            $3.200 <b>(4)</b>{" "}
-                        </span>
-                        <span>$3.200</span>
-                        <span>
-                            $3.200 <b>(2)</b>
-                        </span>
-                        <img
-                            src="/assets/img/icons/profile-mini.png"
-                            alt="pro"
-                        />
-                    </div>
+    let { offerId } = useParams()
+    let offer = offers.find(offer => offer.id === parseInt(offerId))
+
+    useEffect(() => {
+        dispatch(getCarriers())
+        if (offer.carrier_id) {
+            setCarrierId(offer.carrier_id)
+        }
+        selected = []
+        // eslint-disable-next-line
+    }, [])
+
+    const openModal = (e) => {
+        showRateModal(true)
+    }
+
+    const openDollarModal = (e) => {
+        showDollarModal(true)
+    }
+
+    common.middleButtons = [
+        {
+            text: "Jo'natish",
+            callback: () => {
+                console.log("");
+            }
+        }
+    ]
+
+    const selectCarrier = ({ target: { value } }) => {
+        setCarrierId(value)
+        dispatch(setProcessCarrier(offerId, value))
+    }
+
+    return (
+        <Layout buttons={common}>
+            <OfferRateModal show={rateModal} onHide={() => showRateModal(false)} {...offer} />
+            <OfferDollarModal show={dollarModal} onHide={() => showDollarModal(false)} {...offer} />
+            <div className="offer-owner-block">
+                <div className="process-owner">
+                    <div className="process-owner-name">{offer.client.first_name + (offer.client.last_name ? " " + offer.client.last_name : "")}</div>
+                    <div className="process-amount">{"￦ " + formatAmount(offer.amount)}</div>
                 </div>
-                <div className="request-header">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-8">
-                                <h5>Samandar Rasulov</h5>
-                                <span>W 12 500 000</span>
-                            </div>
-                            <div className="col-2">
-                                <p>Olish</p>
-                                <p onClick={() => setModalShow(true)}>
-                                    {" "}
-                                    <b>Kiritish</b>{" "}
-                                </p>
-                            </div>
-                            <div className="col-2">
-                                <p>Sotish</p>
-                                <p>
-                                    {" "}
-                                    <b>Kiritish</b>{" "}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div className="process-rate-block">
+                    <div className="process-rate-item">Olish</div>
+                    <div className="process-rate underlined" onClick={openModal}>{offer.buy_rate > 0 ? offer.buy_rate : "Kiritish"}</div>
                 </div>
-                <div className="component71-item">
-                    <span>O'zbekistonda pulni oluvchi:</span>
-                    <h3>Shamsiddin Abdullaev</h3>
-                    <p>Tashkent. +998 98 998 99 99</p>
-                    <h3>2022.10.13, 10:30</h3>
+                <div className="process-rate-block">
+                    <div className="process-rate-item">Sotish</div>
+                    <div className="process-rate underlined" onClick={openModal}>{offer.sell_rate > 0 ? offer.sell_rate : "Kiritish"}</div>
                 </div>
-                <div className="white-line"></div>
-                <div className="component71-item-2">
-                    <h6>Pulni beruvchi kuryer:</h6>
-                    <select
-                        className="single-offer-input"
-                        name="single-offer"
-                        id="so"
-                    >
-                        <option value="1">Kuryer tanlang</option>
-                        <option value="1">Samandar aka</option>
-                        <option value="1">Farruh Soipov</option>
-                        <option value="1">Olga Taniyeva</option>
+            </div>
+            <WhiteLine />
+            <div className="process-dollar-block">
+                <div className="process-title">Beriladigan Dollar:</div>
+                <div className="process-dollar-amount underlined" onClick={openDollarModal}>{offer.buy_rate > 0 ? "$ " + formatAmount(offer.amount / offer.buy_rate, true) : "Kiritish"}</div>
+            </div>
+            <WhiteLine />
+            <div className="process-receiver-block">
+                <div className="process-title">O'zbekistonda Pul Beruvchi:</div>
+                <div className="process-deliverer-block">
+                    <div className="process-deliverer-name">{offer.receiver.name}</div>
+                    <div className="process-deliverer-number">{offer.receiver.phone_number}</div>
+                    {offer.delivery_date && (
+                        <div className="process-delivery-block">{offer.delivery_date}</div>
+                    )}
+                </div>
+            </div>
+            <WhiteLine />
+            <div className="process-carrier-block">
+                <div className="process-title">Pulni Beruvchi Kuryer:</div>
+                <div className="process-carrier-list">
+                    <select onChange={selectCarrier} className="underlined" value={carrierId}>
+                        {carriers ? carriers.length > 1 ? (
+                            <>
+                                <option value="1">Tanlash</option>
+                                {carriers.map(({ id, first_name, last_name }) => (
+                                    <option key={id} value={id}>{first_name + (last_name ? " " + last_name : "")}</option>
+                                ))}
+                            </>
+                        ) : (
+                            <option value={carriers[0].id}>{carriers[0].first_name + (carriers[0].last_name ? " " + carriers[0].last_name : "")}</option>
+                        ) : ""}
                     </select>
                 </div>
-                <div className="white-line"></div>
-                <div className="request-body">
-                    <h3>Mos Keluvchi So'rovlar:</h3>
-                    <div className="request-body-title">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-4">Ism</div>
-                                <div className="col-2">Summa</div>
-                                <div className="col-2">Turi</div>
-                                <div className="col-2">Kurs</div>
-                                <div className="col-2">Tanlash</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="request-body-item">
-                        <div className="request-table">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-4">Farruh Soipov</div>
-                                    <div className="col-2">2.000</div>
-                                    <div className="col-2">Karta</div>
-                                    <div className="col-2">1 250</div>
-                                    <div className="col-2">
-                                        <input type="checkbox" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-4">Farruh Soipov</div>
-                                    <div className="col-2">2.000</div>
-                                    <div className="col-2">Karta</div>
-                                    <div className="col-2">1 250</div>
-                                    <div className="col-2">
-                                        <input type="checkbox" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-4">Farruh Soipov</div>
-                                    <div className="col-2">2.000</div>
-                                    <div className="col-2">Karta</div>
-                                    <div className="col-2">1 250</div>
-                                    <div className="col-2">
-                                        <input type="checkbox" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-4">Jami</div>
-                                    <div className="col-2">8.000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="curer-footer">
-                    <Link to="/">
-                        <img src="/assets/img/icons/home2.png" alt="user" />
-                    </Link>
-                    <button onClick={() => setModalShow(true)}>
-                        Tasdiqlash
-                    </button>
-                    <img
-                        onClick={() => navigate(-1)}
-                        src="/assets/img/icons/back.png"
-                        alt="back"
-                    />
-                </div>
+            </div>
+            <WhiteLine />
+            <div className="process-queries-block">
+                <div className="process-title">Mos Keluvchi So'rovlar:</div>
+                <OfferQueryTable selected={selected} />
             </div>
         </Layout>
     )
 }
+
 export default SingleOfferPage

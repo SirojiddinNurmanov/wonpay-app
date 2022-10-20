@@ -14,7 +14,8 @@ import {
     ADD_TO_CLIENTS,
     REMOVE_FROM_CLIENTS,
     CHANGE_QUERY_RATE,
-    CHANGE_OFFER_RATE
+    CHANGE_OFFER_RATE,
+    CHANGE_QUERY_CARRIER
 } from "../actionTypes"
 
 import { BACKEND_URL } from "../../constants"
@@ -361,12 +362,47 @@ export const changeOfferRate = (id, buyRate, sellRate) => async (dispatch, getSt
         })
 
         const { data } = await res.json()
-        
+
         dispatch({
             type: CHANGE_OFFER_RATE,
             payload: data
         })
 
+    } catch (error) {
+        dispatch({
+            type: USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const setProcessCarrier = (id, carrierId) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/setcarrier/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                carrierId: carrierId,
+            })
+        })
+
+        const { success, message } = await res.json()
+
+        if (success) {
+            dispatch({
+                type: CHANGE_QUERY_CARRIER
+            })
+        } else {
+            dispatch({
+                type: USER_ERROR,
+                payload: message
+            })
+        }
     } catch (error) {
         dispatch({
             type: USER_ERROR,

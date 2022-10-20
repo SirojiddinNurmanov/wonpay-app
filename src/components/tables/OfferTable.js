@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import Table from "react-bootstrap/Table"
 
@@ -27,7 +28,11 @@ const OfferTable = () => {
                 <tbody>
                     {offers.map((process) => (
                         <tr key={process.id}>
-                            <td>{(process.user.first_name ? process.user.first_name : "") + " " + (process.user.last_name ? process.user.last_name : "")}</td>
+                            <td>
+                                <Link to={"/offers/" + process.id}>
+                                    {(process.client.first_name ? process.client.first_name : "") + " " + (process.client.last_name ? process.client.last_name : "")}
+                                </Link>
+                            </td>
                             <td>{formatAmount(process.amount)}</td>
                             <td >{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
                             <td onClick={() => { showOfferRateModal(true); setModalInfo(process) }}>{process.buy_rate > 0 ? process.buy_rate : "Kiritish"}</td>
