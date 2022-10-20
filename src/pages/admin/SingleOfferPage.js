@@ -12,10 +12,12 @@ import WhiteLine from "../../components/common/WhiteLine"
 import OfferRateModal from "../../components/modals/admin/OfferRateModal"
 import OfferDollarModal from "../../components/modals/admin/OfferDollarModal"
 import OfferQueryTable from "../../components/tables/OfferQueryTable"
+import ConfirmationModal from "../../components/modals/admin/ConfirmationModal"
 
 const SingleOfferPage = () => {
     const [rateModal, showRateModal] = useState(false)
     const [dollarModal, showDollarModal] = useState(false)
+    const [confirmationModal, showConfirmationModal] = useState(false)
     const [selectedIds, setSelectedIds] = useState([])
     const [carrierId, setCarrierId] = useState()
     const { offers, carriers } = useSelector(state => state.app)
@@ -48,7 +50,7 @@ const SingleOfferPage = () => {
         {
             text: "Jo'natish",
             callback: () => {
-                dispatch(sendOfferQueries(offerId, selectedIds))
+                dispatch(sendOfferQueries(offerId, selectedIds, showConfirmationModal))
             }
         }
     ]
@@ -62,6 +64,7 @@ const SingleOfferPage = () => {
         <Layout buttons={common}>
             <OfferRateModal show={rateModal} onHide={() => showRateModal(false)} {...offer} />
             <OfferDollarModal show={dollarModal} onHide={() => showDollarModal(false)} {...offer} />
+            <ConfirmationModal show={confirmationModal} onHide={() => showConfirmationModal(false)} />
             <div className="offer-owner-block">
                 <div className="process-owner">
                     <div className="process-owner-name">{offer.client.first_name + (offer.client.last_name ? " " + offer.client.last_name : "")}</div>

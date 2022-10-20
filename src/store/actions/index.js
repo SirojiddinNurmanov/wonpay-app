@@ -412,7 +412,7 @@ export const setProcessCarrier = (id, carrierId) => async (dispatch, getState) =
     }
 }
 
-export const sendOfferQueries = (id, selectedQueryIds) => async (dispatch, getState) => {
+export const sendOfferQueries = (id, selectedQueryIds, showConfirmationModal) => async (dispatch, getState) => {
     try {
         const { token } = getState().app.user
 
@@ -428,6 +428,8 @@ export const sendOfferQueries = (id, selectedQueryIds) => async (dispatch, getSt
         })
 
         const { success, message } = await res.json()
+
+        showConfirmationModal(true)
 
         if (success) {
             dispatch({
