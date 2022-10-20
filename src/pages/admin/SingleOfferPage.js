@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount } from "../../helpers"
-import { getCarriers, setProcessCarrier } from "../../store/actions"
+import { getCarriers, sendOfferQueries, setProcessCarrier } from "../../store/actions"
 
 import Layout from "../../layout"
 
@@ -16,6 +16,7 @@ import OfferQueryTable from "../../components/tables/OfferQueryTable"
 const SingleOfferPage = () => {
     const [rateModal, showRateModal] = useState(false)
     const [dollarModal, showDollarModal] = useState(false)
+    const [selectedIds, setSelectedIds] = useState([])
     const [carrierId, setCarrierId] = useState()
     const { offers, carriers } = useSelector(state => state.app)
     const dispatch = useDispatch()
@@ -31,6 +32,10 @@ const SingleOfferPage = () => {
         // eslint-disable-next-line
     }, [])
 
+    const selectQueryIds = (ids) => {
+        setSelectedIds(ids)
+    }
+
     const openModal = (e) => {
         showRateModal(true)
     }
@@ -43,7 +48,7 @@ const SingleOfferPage = () => {
         {
             text: "Jo'natish",
             callback: () => {
-                console.log("");
+                dispatch(sendOfferQueries(offerId, selectedIds))
             }
         }
     ]
@@ -108,7 +113,7 @@ const SingleOfferPage = () => {
             <WhiteLine />
             <div className="process-queries-block">
                 <div className="process-title">Mos Keluvchi So'rovlar:</div>
-                <OfferQueryTable  {...offer} />
+                <OfferQueryTable  {...offer} selectQueryIds={selectQueryIds} />
             </div>
         </Layout>
     )

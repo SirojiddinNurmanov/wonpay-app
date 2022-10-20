@@ -7,10 +7,9 @@ import { formatAmount, sumProcessAmount } from "../../helpers"
 
 import QueryInfoModal from "../modals/admin/QueryInfoModal"
 import QueryRateModal from "../modals/admin/QueryRateModal"
-import { useEffect } from "react"
 import AlertModal from "../modals/admin/AlertModal"
 
-const OfferQueryTable = ({ amount }) => {
+const OfferQueryTable = ({ amount, selectQueryIds }) => {
     const [queryInfoModal, showQueryInfoModal] = useState(false)
     const [queryRateModal, showQueryRateModal] = useState(false)
     const [alertModal, showAlertModal] = useState(false)
@@ -38,9 +37,12 @@ const OfferQueryTable = ({ amount }) => {
                 return false
             }
             setSelectedQueries([...queries.filter(query => selected.includes(query.id)), queries.find(query => query.id === id)])
+            selectQueryIds([...selected, id])
             setSelected([...selected, id])
+
         } else {
             setSelectedQueries(queries.filter(query => selected.filter(selected_id => selected_id !== id).includes(query.id)))
+            selectQueryIds(selected.filter(selected_id => selected_id !== id))
             setSelected(selected.filter(selected_id => selected_id !== id))
         }
     }

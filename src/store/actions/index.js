@@ -15,7 +15,8 @@ import {
     REMOVE_FROM_CLIENTS,
     CHANGE_QUERY_RATE,
     CHANGE_OFFER_RATE,
-    CHANGE_QUERY_CARRIER
+    CHANGE_QUERY_CARRIER,
+    SET_OFFER_QUERIES
 } from "../actionTypes"
 
 import { BACKEND_URL } from "../../constants"
@@ -396,6 +397,41 @@ export const setProcessCarrier = (id, carrierId) => async (dispatch, getState) =
         if (success) {
             dispatch({
                 type: CHANGE_QUERY_CARRIER
+            })
+        } else {
+            dispatch({
+                type: USER_ERROR,
+                payload: message
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const sendOfferQueries = (id, selectedQueryIds) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/transactions/store-all/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                selectedQueryIds: selectedQueryIds,
+            })
+        })
+
+        const { success, message } = await res.json()
+
+        if (success) {
+            dispatch({
+                type: SET_OFFER_QUERIES
             })
         } else {
             dispatch({

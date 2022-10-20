@@ -16,6 +16,7 @@ import {
     REMOVE_FROM_CLIENTS,
     CHANGE_QUERY_RATE,
     CHANGE_OFFER_RATE,
+    SET_OFFER_QUERIES
 } from "../actionTypes"
 
 const initialState = {
@@ -114,6 +115,10 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 newClients: state.newClients.filter(newClients => newClients !== action.payload)
+            }
+        case SET_OFFER_QUERIES:
+            return {
+                ...state
             }
         case CHANGE_QUERY_RATE:
             return {
