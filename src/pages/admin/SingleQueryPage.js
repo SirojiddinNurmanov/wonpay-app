@@ -88,7 +88,7 @@ const SingleQueryPage = () => {
                     </>
                 )}
             </div>
-            <WhiteLine />
+            {/* <WhiteLine />
             <div className="process-receiver-block">
                 <div className="process-title">O'zbekistonda Pul Beruvchi:</div>
                 <div className="process-deliverer-block">
@@ -98,7 +98,7 @@ const SingleQueryPage = () => {
                         <div className="process-delivery-block">{query.delivery_date}</div>
                     )}
                 </div>
-            </div>
+            </div> */}
             <WhiteLine />
             <div className="process-carrier-block">
                 <div className="process-title">Pulni Oluvchi Kuryer:</div>

@@ -19,7 +19,7 @@ const QueryPage = () => {
     const [keyboard, setKeyboardStatus] = useState(false)
     const [enabled, setEnabled] = useState(false)
     const [moneyTypeOptions, showMoneyTypeOptions] = useState(false)
-    const [moneyType, setMoneyType] = useState()
+    const [moneyType, setMoneyType] = useState("Karta")
     const [koreanAddressName, setKoreanAddressName] = useState("")
     const [koreanAddressNumber, setKoreanAddressNumber] = useState("")
     const [uzbekAddressName, setUzbekAddressName] = useState("")
@@ -46,8 +46,8 @@ const QueryPage = () => {
             amount: trimAmount(amount),
             payment_type: (moneyType === "Naqd" ? "0" : "1"),
             card_info_type: (accountInfoImage ? "1" : "0"),
-            receiver_name: uzbekAddressName,
-            receiver_number: uzbekAddressNumber
+            // receiver_name: uzbekAddressName,
+            // receiver_number: uzbekAddressNumber
         }
 
         if (moneyType === "Karta") {
@@ -74,27 +74,27 @@ const QueryPage = () => {
     }
 
     const handleAccountInfoSMS = ({ target: { value } }) => {
-        setAccountInfoSMS(value.trim())
+        setAccountInfoSMS(value)
     }
 
     const toggleConfirmButton = () => {
         if (amount !== 0) {
             if (trimAmount(amount) >= 300000) {
                 if (moneyType === "Karta") {
-                    if ((accountInfoSMS || accountInfoImage) && (uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
+                    if ((accountInfoSMS || accountInfoImage)) {
                         setEnabled(true)
                     } else {
                         setEnabled(false)
                     }
                 }
     
-                if (moneyType === "Naqd") {
-                    if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
-                        setEnabled(true)
-                    } else {
-                        setEnabled(false)
-                    }
-                }
+                // if (moneyType === "Naqd") {
+                //     if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
+                //         setEnabled(true)
+                //     } else {
+                //         setEnabled(false)
+                //     }
+                // }
             } else {
                 setEnabled(false)
             }
@@ -207,7 +207,7 @@ const QueryPage = () => {
                 </div>
             )}
 
-            {moneyTypeOptions && (
+            {/* {moneyTypeOptions && (
                 <div className="money-types-block">
                     <label className="radio-label">
                         <input onChange={moneyTypeSelected} type="radio" name="radio" value="Karta" />
@@ -218,7 +218,7 @@ const QueryPage = () => {
                         <div className="text">Naqd</div>
                     </label>
                 </div>
-            )}
+            )} */}
 
             {moneyTypeOptions && (moneyType === "Karta") && (
                 <div className="address-block">
@@ -244,18 +244,18 @@ const QueryPage = () => {
                             </div>
                         </div>
 
-                        <div className="address-title">O'zbekistonda pulni yetkazuvchi:</div>
+                        {/* <div className="address-title">O'zbekistonda pulni yetkazuvchi:</div>
                         <div className="address-details">
                             <div className="address-label">Ism:</div>
                             <input onChange={changeUzbekAddressNameState} type="text" className="address-value" value={uzbekAddressName} />
                             <div className="address-label">Telefon:</div>
                             <input onChange={changeUzbekAddressNumberState} type="number" pattern="\d*" className="address-value" value={uzbekAddressNumber} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             )}
 
-            {moneyTypeOptions && (moneyType === "Naqd") && (
+            {/* {moneyTypeOptions && (moneyType === "Naqd") && (
                 <div className="address-block">
                     <div className="address-block-item">
                         <div className="address-title">Koreada pulni oluvchi:</div>
@@ -276,7 +276,7 @@ const QueryPage = () => {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
 
             <div className="spacer"></div>
         </Layout>

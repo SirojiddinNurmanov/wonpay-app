@@ -78,7 +78,7 @@ const SingleOfferPage = () => {
                 <div className="process-title">Beriladigan Dollar:</div>
                 <div className="process-dollar-amount underlined" onClick={openDollarModal}>{offer.buy_rate > 0 ? "$ " + formatAmount(offer.amount / offer.buy_rate, true) : "Kiritish"}</div>
             </div>
-            <WhiteLine />
+            {/* <WhiteLine />
             <div className="process-receiver-block">
                 <div className="process-title">O'zbekistonda Pul Beruvchi:</div>
                 <div className="process-deliverer-block">
@@ -88,7 +88,7 @@ const SingleOfferPage = () => {
                         <div className="process-delivery-block">{offer.delivery_date}</div>
                     )}
                 </div>
-            </div>
+            </div> */}
             <WhiteLine />
             <div className="process-carrier-block">
                 <div className="process-title">Pulni Beruvchi Kuryer:</div>
