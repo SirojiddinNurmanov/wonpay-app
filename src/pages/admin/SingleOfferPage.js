@@ -19,7 +19,6 @@ const SingleOfferPage = () => {
     const [carrierId, setCarrierId] = useState()
     const { offers, carriers } = useSelector(state => state.app)
     const dispatch = useDispatch()
-    let selected = []
 
     let { offerId } = useParams()
     let offer = offers.find(offer => offer.id === parseInt(offerId))
@@ -29,7 +28,6 @@ const SingleOfferPage = () => {
         if (offer.carrier_id) {
             setCarrierId(offer.carrier_id)
         }
-        selected = []
         // eslint-disable-next-line
     }, [])
 
@@ -110,7 +108,7 @@ const SingleOfferPage = () => {
             <WhiteLine />
             <div className="process-queries-block">
                 <div className="process-title">Mos Keluvchi So'rovlar:</div>
-                <OfferQueryTable selected={selected} />
+                <OfferQueryTable  {...offer} />
             </div>
         </Layout>
     )

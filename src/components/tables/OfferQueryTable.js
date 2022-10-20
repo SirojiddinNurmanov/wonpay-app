@@ -8,10 +8,12 @@ import { formatAmount, sumProcessAmount } from "../../helpers"
 import QueryInfoModal from "../modals/admin/QueryInfoModal"
 import QueryRateModal from "../modals/admin/QueryRateModal"
 import { useEffect } from "react"
+import AlertModal from "../modals/admin/AlertModal"
 
-const OfferQueryTable = () => {
+const OfferQueryTable = ({ amount }) => {
     const [queryInfoModal, showQueryInfoModal] = useState(false)
     const [queryRateModal, showQueryRateModal] = useState(false)
+    const [alertModal, showAlertModal] = useState(false)
     const [selectedQueries, setSelectedQueries] = useState(false)
     const [selected, setSelected] = useState([])
     const [modalInfo, setModalInfo] = useState()
@@ -29,6 +31,12 @@ const OfferQueryTable = () => {
 
     const addToList = (e, id) => {
         if (e.target.checked) {
+            let summ = sumProcessAmount([...queries.filter(query => selected.includes(query.id)), queries.find(query => query.id === id)])
+            if (summ > amount) {
+                showAlertModal(true)
+                e.target.checked = false
+                return false
+            }
             setSelectedQueries([...queries.filter(query => selected.includes(query.id)), queries.find(query => query.id === id)])
             setSelected([...selected, id])
         } else {
@@ -41,6 +49,7 @@ const OfferQueryTable = () => {
         <Table striped bordered hover size="sm" responsive className="process-table">
             <QueryInfoModal show={queryInfoModal} onHide={() => showQueryInfoModal(false)} {...modalInfo} />
             <QueryRateModal show={queryRateModal} onHide={() => showQueryRateModal(false)} {...modalInfo} />
+            <AlertModal show={alertModal} onHide={() => showAlertModal(false)} />
             <thead>
                 <tr>
                     <th>Ism</th>
