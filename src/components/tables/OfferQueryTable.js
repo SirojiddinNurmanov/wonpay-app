@@ -63,21 +63,27 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
             </thead>
             {queries && (
                 <tbody>
-                    {queries.map((process) => (
-                        <tr key={process.id}>
-                            <td>
-                                <Link to={"/queries/" + process.id}>
-                                    {(process.client.first_name ? process.client.first_name : "No name") + " " + (process.client.last_name ? process.client.last_name : " ")}
-                                </Link>
-                            </td>
-                            <td>{formatAmount(process.amount)}</td>
-                            <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
-                            <td className={"text-center" + (process.exchange_rate > 0 ? " red" : "")}>{process.exchange_rate ? process.exchange_rate : "---"}</td>
-                            <td className="checkbox-block">
-                                <Form.Check className="checkbox" onChange={(e) => addToList(e, process.id)}/>
-                            </td>
-                        </tr>
-                    ))}
+                    {queries.map((process) => {
+                        if (process.assigned_offer) {
+                            return ""
+                        }
+                        
+                        return (
+                            <tr key={process.id}>
+                                <td>
+                                    <Link to={"/queries/" + process.id}>
+                                        {(process.client.first_name ? process.client.first_name : "No name") + " " + (process.client.last_name ? process.client.last_name : " ")}
+                                    </Link>
+                                </td>
+                                <td>{formatAmount(process.amount)}</td>
+                                <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
+                                <td className={"text-center" + (process.exchange_rate > 0 ? " red" : "")}>{process.exchange_rate ? process.exchange_rate : "---"}</td>
+                                <td className="checkbox-block">
+                                    <Form.Check className="checkbox" onChange={(e) => addToList(e, process.id)} />
+                                </td>
+                            </tr>
+                        )
+                    })}
                     <tr className="text-bold">
                         <td>Jami:</td>
                         <td>{formatAmount(sumProcessAmount(selectedQueries))}</td>

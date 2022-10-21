@@ -350,16 +350,22 @@ export const changeOfferRate = (id, buyRate, sellRate) => async (dispatch, getSt
     try {
         const { token } = getState().app.user
 
+        let body = {}
+        if (buyRate !== undefined) {
+            body.buyRate = buyRate
+        }
+
+        if (sellRate !== undefined) {
+            body.sellRate = sellRate
+        }
+
         const res = await fetch(`${BACKEND_URL}/processes/offers/changerate/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify({
-                buyRate: buyRate,
-                sellRate: sellRate
-            })
+            body: JSON.stringify(body)
         })
 
         const { data } = await res.json()

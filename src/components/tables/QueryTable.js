@@ -39,19 +39,25 @@ const QueryTable = () => {
             </thead>
             {queries && (
                 <tbody>
-                    {queries.map((process) => (
-                        <tr key={process.id}>
-                            <td>
-                                <Link to={"/queries/" + process.id}>
-                                    {(process.client.first_name ? process.client.first_name : "No name") + " " + (process.client.last_name ? process.client.last_name : " ")}
-                                </Link>
-                            </td>
-                            <td>{formatAmount(process.amount)}</td>
-                            <td onClick={openInfoModal(process)} className="underlined">Ko'rish</td>
-                            <td onClick={openRateModal(process)} className="underlined">{process.exchange_rate ? process.exchange_rate : "Kiritish"}</td>
-                            <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
-                        </tr>
-                    ))}
+                    {queries.map((process) => {
+                        if(process.assigned_offer) {
+                            return ""
+                        } 
+
+                        return (
+                            <tr key={process.id}>
+                                <td>
+                                    <Link to={"/queries/" + process.id}>
+                                        {(process.client.first_name ? process.client.first_name : "No name") + " " + (process.client.last_name ? process.client.last_name : " ")}
+                                    </Link>
+                                </td>
+                                <td>{formatAmount(process.amount)}</td>
+                                <td onClick={openInfoModal(process)} className="underlined">Ko'rish</td>
+                                <td onClick={openRateModal(process)} className="underlined">{process.exchange_rate ? process.exchange_rate : "Kiritish"}</td>
+                                <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             )}
         </Table>

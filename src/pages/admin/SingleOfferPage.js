@@ -114,10 +114,13 @@ const SingleOfferPage = () => {
                 </div>
             </div>
             <WhiteLine />
-            <div className="process-queries-block">
-                <div className="process-title">Mos Keluvchi So'rovlar:</div>
-                <OfferQueryTable  {...offer} selectQueryIds={selectQueryIds} />
-            </div>
+            
+            {offer.assigned_queries.length === 0 && (
+                <div className="process-queries-block">
+                    <div className="process-title">Mos Keluvchi So'rovlar:</div>
+                    <OfferQueryTable  {...offer} selectQueryIds={selectQueryIds} />
+                </div>
+            )}
         </Layout>
     )
 }

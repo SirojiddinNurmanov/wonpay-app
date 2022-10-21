@@ -5,11 +5,17 @@ import Modal from "react-bootstrap/Modal"
 import { changeOfferRate } from "../../../store/actions"
 
 import WhiteLine from "../../common/WhiteLine"
+import { useEffect } from "react"
 
 const OfferRateModal = (props) => {
-    const [newBuyRate, setNewBuyRate] = useState(props.buy_rate)
-    const [newSellRate, setNewSellRate] = useState(props.sell_rate)
+    const [newBuyRate, setNewBuyRate] = useState()
+    const [newSellRate, setNewSellRate] = useState()
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setNewBuyRate(props.buy_rate)
+        setNewSellRate(props.sell_rate)
+    }, [props.show])
 
     const changeSellRateValue = ({ target: { value } }) => {
         if (value < 10000) {
