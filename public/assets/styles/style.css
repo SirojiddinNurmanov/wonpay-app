@@ -1765,7 +1765,7 @@ a {
 /* Misc Stlyes */
 
 .wrapper {
-    border-bottom: 50px solid var(--background-color);
+    /* border-bottom: 50px solid var(--background-color); */
     min-height: 100vh;
 }
 
