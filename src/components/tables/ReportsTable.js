@@ -14,72 +14,7 @@ const ReportsTable = () => {
                     <th>Holati</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦2.000.000</td>
-                    <td>{"Uzb>>Kor"}</td>
-                    <td>Ko'rish</td>
-                    <td>+$10</td>
-                    <td>Yopilgan</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦2.000.000</td>
-                    <td>{"Kor>>Uzb"}</td>
-                    <td>Ko'rish</td>
-                    <td>+$10</td>
-                    <td>Yopilgan</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦2.000.000</td>
-                    <td>{"Uzb>>Kor"}</td>
-                    <td>Ko'rish</td>
-                    <td>+$10</td>
-                    <td>Yopilgan</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦2.000.000</td>
-                    <td>{"Uzb>>Kor"}</td>
-                    <td>Ko'rish</td>
-                    <td>+$10</td>
-                    <td>Yopilgan</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦2.000.000</td>
-                    <td>{"Uzb>>Kor"}</td>
-                    <td>Ko'rish</td>
-                    <td>+$10</td>
-                    <td>Yopilgan</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦2.000.000</td>
-                    <td>{"Uzb>>Kor"}</td>
-                    <td>Ko'rish</td>
-                    <td>+$10</td>
-                    <td>Yopilgan</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦2.000.000</td>
-                    <td>{"Uzb>>Kor"}</td>
-                    <td>Ko'rish</td>
-                    <td>+$10</td>
-                    <td>Yopilgan</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦2.000.000</td>
-                    <td>{"Uzb>>Kor"}</td>
-                    <td>Ko'rish</td>
-                    <td>+$10</td>
-                    <td>Yopilgan</td>
-                </tr>
-            </tbody>
+            <tbody></tbody>
         </Table>
     )
 }

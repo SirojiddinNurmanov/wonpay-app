@@ -14,72 +14,7 @@ const MoneyFlowTable = () => {
                     <th>Mavjud Mablag'</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦20.000.000</td>
-                    <td>+$10</td>
-                    <td>$73.250</td>
-                    <td>-$5.000</td>
-                    <td>$65.240</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦20.000.000</td>
-                    <td>+$10</td>
-                    <td>$73.250</td>
-                    <td>-$5.000</td>
-                    <td>$65.240</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦20.000.000</td>
-                    <td>+$10</td>
-                    <td>$73.250</td>
-                    <td>-$5.000</td>
-                    <td>$65.240</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦20.000.000</td>
-                    <td>+$10</td>
-                    <td>$73.250</td>
-                    <td>-$5.000</td>
-                    <td>$65.240</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦20.000.000</td>
-                    <td>+$10</td>
-                    <td>$73.250</td>
-                    <td>-$5.000</td>
-                    <td>$65.240</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦20.000.000</td>
-                    <td>+$10</td>
-                    <td>$73.250</td>
-                    <td>-$5.000</td>
-                    <td>$65.240</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦20.000.000</td>
-                    <td>+$10</td>
-                    <td>$73.250</td>
-                    <td>-$5.000</td>
-                    <td>$65.240</td>
-                </tr>
-                <tr>
-                    <td>Palonchi Pistonchiyev</td>
-                    <td>￦20.000.000</td>
-                    <td>+$10</td>
-                    <td>$73.250</td>
-                    <td>-$5.000</td>
-                    <td>$65.240</td>
-                </tr>
-            </tbody>
+            <tbody></tbody>
         </Table>
     )
 }
