@@ -18,9 +18,9 @@ const MainPage = () => {
     // }, [])
 
     const [avatar] = useState("/assets/img/icons/profile.png")
-    const [toAmount] = useState("-$5 800")
-    const [balance] = useState("$23 600")
-    const [fromAmount] = useState("+$3 200")
+    const [toAmount] = useState("")
+    const [balance] = useState("")
+    const [fromAmount] = useState("")
 
     return (
         <Layout headerData={{ avatar, toAmount, balance, fromAmount }}>
