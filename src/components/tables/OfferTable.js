@@ -43,7 +43,11 @@ const OfferTable = () => {
                             <td >{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
                             <td onClick={openRateModal(process)}>{process.buy_rate > 0 ? process.buy_rate : "Kiritish"}</td>
                             <td onClick={openRateModal(process)}>{process.sell_rate > 0 ? process.sell_rate : "Kiritish"}</td>
-                            <td>Taqsimlash</td>
+                            <td>
+                                <Link to={"/offers/" + process.id}>
+                                    Taqsimlash
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

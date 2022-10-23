@@ -19,8 +19,8 @@ const SubmitPage = () => {
         <Layout buttons={common} title={{ text: "Oldi Berdilar:", amount: "$20 000 + 34 200 000 s", small: true }}>
             <ConfirmReceiveModal show={modalShow} onHide={() => setModalShow(false)} />
             <div className="request-body">
-                <div className="curer-select-page">
-                    <div className="curer-select">
+                <div className="carrier-select-page">
+                    <div className="carrier-select">
                         <select name="curer" id="curer1">
                             <option value="1">Hammasi</option>
                             <option value="1">Pul Olinganlar</option>
@@ -28,7 +28,7 @@ const SubmitPage = () => {
                             <option value="1">Topshirilganlar</option>
                         </select>
                     </div>
-                    <div className="curer-select">
+                    <div className="carrier-select">
                         <select name="curer" id="curer2">
                             <option value="1">Hammasi</option>
                             <option value="1">Bugungilar</option>

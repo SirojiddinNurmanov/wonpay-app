@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 
 const CarrierCard = ({ first_name, last_name, address, avatar, fromClients, toClients, toAdmin }) => {
     return (
-        <div className="curer-item">
+        <div className="carrier-item">
             <div className="row carrier-card">
                 <div className="col-3">
                     <img src={avatar} alt="Profile" />

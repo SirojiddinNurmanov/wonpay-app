@@ -18,13 +18,13 @@ const ReceivePage = () => {
     return (
         <Layout buttons={common} title={{ text: "Pul Olish:", amount: "$3 200 (4)" }}>
             <ConfirmReceiveModal show={modalShow} onHide={() => setModalShow(false)} />
-            <div className="curer-body">
+            <div className="carrier-body">
                 <h5>Bugun</h5>
-                <div className="curer-item">
+                <div className="carrier-item">
                     <div className="row">
                         <div className="col-6 givemoney-item1">
                             <h3>Akmal Payziyev</h3>
-                            <div className="curer-item-footer">
+                            <div className="carrier-item-footer">
                                 <span>+99 899 400 12 00</span>
                             </div>
                         </div>
@@ -34,11 +34,11 @@ const ReceivePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="curer-item">
+                <div className="carrier-item">
                     <div className="row">
                         <div className="col-6 givemoney-item1">
                             <h3>Akmal Payziyev</h3>
-                            <div className="curer-item-footer">
+                            <div className="carrier-item-footer">
                                 <span>+99 899 400 12 00</span>
                             </div>
                         </div>
@@ -48,11 +48,11 @@ const ReceivePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="curer-item">
+                <div className="carrier-item">
                     <div className="row">
                         <div className="col-6 givemoney-item1">
                             <h3>Akmal Payziyev</h3>
-                            <div className="curer-item-footer">
+                            <div className="carrier-item-footer">
                                 <span>+99 899 400 12 00</span>
                             </div>
                         </div>
@@ -62,11 +62,11 @@ const ReceivePage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="curer-item">
+                <div className="carrier-item">
                     <div className="row">
                         <div className="col-6 givemoney-item1">
                             <h3>Akmal Payziyev</h3>
-                            <div className="curer-item-footer">
+                            <div className="carrier-item-footer">
                                 <span>+99 899 400 12 00</span>
                             </div>
                         </div>

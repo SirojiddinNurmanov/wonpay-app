@@ -17,7 +17,7 @@ export const MenuButtons = {
         {
             id: 3,
             url: "/carriers",
-            image: "/assets/img/admin/curers.png",
+            image: "/assets/img/admin/carriers.png",
             alt: "Kuryerlar",
             text: "Kuryerlar"
         },
