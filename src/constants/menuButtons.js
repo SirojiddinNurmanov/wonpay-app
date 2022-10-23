@@ -3,58 +3,58 @@ export const MenuButtons = {
         {
             id: 1,
             url: "/navercourse",
-            image: "/assets/img/admin/naver.png",
+            image: "/assets/img/menu-icons/naver.png",
             alt: "Naver kurslari",
             text: ["Naver ", <br />, "Valyuta kurslari"]
         },
         {
             id: 2,
             url: "/uzbcourse",
-            image: "/assets/img/admin/bank.png",
+            image: "/assets/img/menu-icons/uzbek.png",
             alt: "O'zbekiston banklari kurslari",
             text: ["O'zbekiston ", <br />, "banklari kurslari"]
         },
         {
             id: 3,
             url: "/carriers",
-            image: "/assets/img/admin/carriers.png",
+            image: "/assets/img/menu-icons/carriers.png",
             alt: "Kuryerlar",
             text: "Kuryerlar"
         },
         {
             id: 4,
             url: "/debts",
-            image: "/assets/img/admin/debts.png",
+            image: "/assets/img/menu-icons/debts.png",
             text: "Qarzlar"
         },
         {
             id: 5,
             url: "/moneyflow",
-            image: "/assets/img/admin/cashflow.png",
+            image: "/assets/img/menu-icons/moneyflow.png",
             text: "Pul oqimi"
         },
         {
             id: 6,
             url: "/reports",
-            image: "/assets/img/admin/reports.png",
+            image: "/assets/img/menu-icons/reports.png",
             text: "Umumiy Hisobot"
         },
         {
             id: 7,
             url: "/processes",
-            image: "/assets/img/admin/offer.png",
+            image: "/assets/img/menu-icons/offer-query.png",
             text: "Takliflar / So'rovlar"
         },
         {
             id: 8,
             url: "/profit",
-            image: "/assets/img/admin/profit.png",
+            image: "/assets/img/menu-icons/profit.png",
             text: ["Umumiy ", <br />, "Foyda"]
         },
         {
             id: 9,
             url: "/notifications",
-            image: "/assets/img/carrier/message.png",
+            image: "/assets/img/menu-icons/notifications.png",
             text: "Xabarlar"
         }
     ],
@@ -62,19 +62,19 @@ export const MenuButtons = {
         {
             id: 10,
             url: "/transactions",
-            image: "/assets/img/icons/calendar.png",
+            image: "/assets/img/menu-icons/history.png",
             text: ["O'tkazmalar ", <br />, "tarixi"]
         },
         {
             id: 11,
             url: "/balancesheet",
-            image: "/assets/img/icons/refresh.png",
+            image: "/assets/img/menu-icons/transactions.png",
             text: "Oldi-Berdilar"
         },
         {
             id: 12,
             url: "/notifications",
-            image: "/assets/img/icons/bullhorn.png",
+            image: "/assets/img/menu-icons/messages.png",
             text: "Xabarlar"
         },
     ],
@@ -82,31 +82,31 @@ export const MenuButtons = {
         {
             id: 13,
             url: "/receive",
-            image: "/assets/img/carrier/getmoney.png",
+            image: "/assets/img/menu-icons/receivemoney.png",
             text: "Pul Olish"
         },
         {
             id: 14,
             url: "/deliver",
-            image: "/assets/img/carrier/givemoney.png",
+            image: "/assets/img/menu-icons/delivermoney.png",
             text: "Pul Berish"
         },
         {
             id: 15,
             url: "/submit",
-            image: "/assets/img/carrier/submitmoney.png",
+            image: "/assets/img/menu-icons/submitmoney.png",
             text: "Pul Topshirish"
         },
         {
             id: 16,
             url: "/balancesheet",
-            image: "/assets/img/carrier/report.png",
+            image: "/assets/img/menu-icons/history.png",
             text: "Tarix"
         },
         {
             id: 17,
             url: "/notifications",
-            image: "/assets/img/carrier/message.png",
+            image: "/assets/img/menu-icons/notifications.png",
             text: "Xabarlar"
         },
     ]
