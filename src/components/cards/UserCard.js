@@ -26,7 +26,7 @@ const UserCard = ({ id, avatar, first_name, last_name, role }) => {
             <div className="image">
                 <img src={avatar} alt="Avatar" />
             </div>
-            <div className="name">{first_name + " " + last_name}</div>
+            <div className="name">{first_name + (last_name ? " " + last_name : "")}</div>
             <div className="checkbox">
                 <Form.Check onChange={changeRole} checked={checked} />
             </div>
