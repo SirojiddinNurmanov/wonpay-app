@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import Table from "react-bootstrap/Table"
@@ -52,4 +52,4 @@ const OfferTable = () => {
     )
 }
 
-export default OfferTable
+export default memo(OfferTable)

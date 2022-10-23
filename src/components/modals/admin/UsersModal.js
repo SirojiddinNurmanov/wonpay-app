@@ -1,6 +1,6 @@
-import React, { useEffect } from "react"
-import Modal from "react-bootstrap/Modal"
+import React, { memo, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import Modal from "react-bootstrap/Modal"
 
 import { getAllUsers, getCarriers, toggleUserRoles } from "../../../store/actions"
 
@@ -53,4 +53,5 @@ const UsersModal = (props) => {
         </Modal>
     )
 }
-export default UsersModal
+
+export default memo(UsersModal)

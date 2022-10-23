@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import { Link } from "react-router-dom"
 import Modal from "react-bootstrap/Modal"
 
@@ -31,4 +31,5 @@ const ConfirmationModal = (props) => {
         </Modal>
     )
 }
-export default ConfirmationModal
+
+export default memo(ConfirmationModal)

@@ -1,12 +1,12 @@
-import React from "react"
+import React, { memo } from "react"
+import { useSelector } from "react-redux"
+
+import { formatAmount, sumProcessAmount } from "../../helpers"
 
 import Layout from "../../layout"
 
 import { common } from "../../constants/bottomButtons"
 import QueryTable from "../../components/tables/QueryTable"
-import { useSelector } from "react-redux"
-import { formatAmount, sumProcessAmount } from "../../helpers"
-
 
 const QueriesPage = () => {
     const { queries } = useSelector(state => state.app)
@@ -20,4 +20,5 @@ const QueriesPage = () => {
         </Layout>
     )
 }
-export default QueriesPage
+
+export default memo(QueriesPage)

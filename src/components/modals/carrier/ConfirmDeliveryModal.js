@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import Modal from "react-bootstrap/Modal"
 
 const ConfirmDeliveryModal = (props) => {
@@ -47,4 +47,5 @@ const ConfirmDeliveryModal = (props) => {
         </Modal>
     )
 }
-export default ConfirmDeliveryModal
+
+export default memo(ConfirmDeliveryModal)

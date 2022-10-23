@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 
 import BottomNavigation from "../components/common/BottomNavigation"
 import Header from "../components/common/Header"
@@ -28,4 +28,4 @@ const Layout = ({ children, buttons, headerData = false, title = false }) => {
     )
 }
 
-export default Layout
+export default memo(Layout)

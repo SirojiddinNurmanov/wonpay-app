@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { memo, Fragment, useState } from "react"
+import { useDispatch } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
 import { notifications } from "../../constants/dummyData"
@@ -31,4 +31,4 @@ const NotificationsPage = () => {
     )
 }
 
-export default NotificationsPage
+export default memo(NotificationsPage)

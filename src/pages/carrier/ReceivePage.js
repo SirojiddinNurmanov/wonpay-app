@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 
 import { common } from "../../constants/bottomButtons"
 
@@ -80,4 +80,5 @@ const ReceivePage = () => {
         </Layout>
     )
 }
-export default ReceivePage
+
+export default memo(ReceivePage)

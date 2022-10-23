@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 
 import Layout from "../../layout"
 
@@ -7,9 +7,9 @@ import MenuCards from "../../components/cards/MenuCards"
 const MainPage = () => {
     return (
         <Layout>
-            <MenuCards app="carrier" />                
+            <MenuCards app="carrier" />
         </Layout>
     )
 }
 
-export default MainPage
+export default memo(MainPage)

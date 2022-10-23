@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 import { Link } from "react-router-dom"
 import { Table, Form } from "react-bootstrap"
 import { useSelector } from "react-redux"
@@ -67,7 +67,7 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
                         if (process.assigned_offer) {
                             return ""
                         }
-                        
+
                         return (
                             <tr key={process.id}>
                                 <td>
@@ -94,4 +94,4 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
     )
 }
 
-export default OfferQueryTable
+export default memo(OfferQueryTable)

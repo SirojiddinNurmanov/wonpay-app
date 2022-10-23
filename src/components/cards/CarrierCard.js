@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 const CarrierCard = ({ first_name, last_name, address, avatar, fromClients, toClients, toAdmin }) => {
     return (
@@ -33,4 +33,4 @@ const CarrierCard = ({ first_name, last_name, address, avatar, fromClients, toCl
     )
 }
 
-export default CarrierCard
+export default memo(CarrierCard)

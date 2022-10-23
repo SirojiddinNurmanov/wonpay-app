@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 import Table from "react-bootstrap/Table"
 
 import QueryDebtModal from "../modals/admin/QueryDebtModal"
@@ -23,4 +23,4 @@ const DebtsTable = () => {
     )
 }
 
-export default DebtsTable
+export default memo(DebtsTable)

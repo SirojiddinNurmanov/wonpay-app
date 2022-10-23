@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import ProfitTable from "../../components/tables/ProfitTable"
 
 import { common } from '../../constants/bottomButtons'
@@ -14,8 +14,9 @@ const ProfitPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "Umumiy Foyda:", amount: "$73.256" }}>
-           <ProfitTable />
+            <ProfitTable />
         </Layout>
     )
 }
-export default ProfitPage
+
+export default memo(ProfitPage)

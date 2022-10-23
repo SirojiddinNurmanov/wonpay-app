@@ -1,11 +1,10 @@
-import React, { useState } from "react"
+import React, { memo, useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import Modal from "react-bootstrap/Modal"
 
 import { changeOfferRate } from "../../../store/actions"
 
 import WhiteLine from "../../common/WhiteLine"
-import { useEffect } from "react"
 
 const OfferRateModal = (props) => {
     const [newBuyRate, setNewBuyRate] = useState()
@@ -64,7 +63,7 @@ const OfferRateModal = (props) => {
                         </label>
                     </div>
                 </div>
-                <WhiteLine modal={true}/>
+                <WhiteLine modal={true} />
             </Modal.Body>
             <Modal.Footer>
                 <button className="modal-button" onClick={confirmRate}>Yopish</button>
@@ -72,4 +71,5 @@ const OfferRateModal = (props) => {
         </Modal>
     )
 }
-export default OfferRateModal
+
+export default memo(OfferRateModal)

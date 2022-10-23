@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 import { useDispatch } from "react-redux"
 import Modal from "react-bootstrap/Modal"
 
@@ -9,7 +9,7 @@ const OfferDollarModal = (props) => {
     const dispatch = useDispatch()
 
     const confirmRate = () => {
-        dispatch(changeOfferRate(props.id, parseInt(props.amount/newValue), props.sell_rate))
+        dispatch(changeOfferRate(props.id, parseInt(props.amount / newValue), props.sell_rate))
         props.onHide()
     }
 
@@ -43,4 +43,5 @@ const OfferDollarModal = (props) => {
         </Modal >
     )
 }
-export default OfferDollarModal
+
+export default memo(OfferDollarModal)

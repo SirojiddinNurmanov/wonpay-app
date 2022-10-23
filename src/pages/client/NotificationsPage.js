@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react"
+import React, { memo, Fragment, useState } from "react"
 
 import { common } from "../../constants/bottomButtons"
 import { notifications, notificationTemplates } from "../../constants/dummyData"
@@ -32,9 +32,9 @@ const NotificationsPage = () => {
                     ))}
                 </Fragment>
             ))}
-            <div  />
+            <div />
         </Layout>
     )
 }
 
-export default NotificationsPage
+export default memo(NotificationsPage)

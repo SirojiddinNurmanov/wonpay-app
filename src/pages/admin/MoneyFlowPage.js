@@ -1,9 +1,10 @@
-import React from "react"
-import MoneyFlowTable from "../../components/tables/MoneyFlowTable"
+import React, { memo } from "react"
 
 import { common } from '../../constants/bottomButtons'
 
 import Layout from "../../layout"
+
+import MoneyFlowTable from "../../components/tables/MoneyFlowTable"
 
 const MoneyFlowPage = () => {
     common.middleButtons = [
@@ -17,4 +18,5 @@ const MoneyFlowPage = () => {
         </Layout>
     )
 }
-export default MoneyFlowPage
+
+export default memo(MoneyFlowPage)

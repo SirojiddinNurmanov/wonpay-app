@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { memo, useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -114,7 +114,7 @@ const SingleOfferPage = () => {
                 </div>
             </div>
             <WhiteLine />
-            
+
             {offer.assigned_queries.length === 0 && (
                 <div className="process-queries-block">
                     <div className="process-title">Mos Keluvchi So'rovlar:</div>
@@ -125,4 +125,4 @@ const SingleOfferPage = () => {
     )
 }
 
-export default SingleOfferPage
+export default memo(SingleOfferPage)

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import { useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
@@ -15,8 +15,9 @@ const OffersPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "Takliflar:", amount: "W" + formatAmount(sumProcessAmount(offers)) }}>
-           <OfferTable />
+            <OfferTable />
         </Layout>
     )
 }
-export default OffersPage
+
+export default memo(OffersPage)

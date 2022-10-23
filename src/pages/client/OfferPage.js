@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import React, { memo, useState, useEffect } from "react"
+import { useSelector } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheckCircle, faDeleteLeft } from "@fortawesome/free-solid-svg-icons"
 
@@ -71,7 +71,7 @@ const OfferPage = () => {
                 //         setEnabled(false)
                 //     }
                 // }
-    
+
                 // if (moneyType === "Naqd") {
                 //     if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
                 //         setEnabled(true)
@@ -225,4 +225,4 @@ const OfferPage = () => {
     )
 }
 
-export default OfferPage
+export default memo(OfferPage)

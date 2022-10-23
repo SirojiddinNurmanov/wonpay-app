@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import { useSelector } from "react-redux"
 
 const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
@@ -30,4 +30,4 @@ const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
     )
 }
 
-export default Header
+export default memo(Header)

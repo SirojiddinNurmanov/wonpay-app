@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 
 import { formatAmount } from "../../helpers"
 
@@ -38,4 +38,4 @@ TransactionCard.defaultProps = {
     carrier: false
 }
 
-export default TransactionCard
+export default memo(TransactionCard)

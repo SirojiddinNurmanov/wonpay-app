@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import Modal from "react-bootstrap/Modal"
 
 const NotificationDetailsModal = (props) => {
@@ -29,4 +29,5 @@ const NotificationDetailsModal = (props) => {
         </Modal>
     )
 }
-export default NotificationDetailsModal
+
+export default memo(NotificationDetailsModal)

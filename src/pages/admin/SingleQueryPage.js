@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { memo, useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -121,4 +121,4 @@ const SingleQueryPage = () => {
     )
 }
 
-export default SingleQueryPage
+export default memo(SingleQueryPage)

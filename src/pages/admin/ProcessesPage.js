@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { memo, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -43,4 +43,4 @@ const ProcessesPage = () => {
     )
 }
 
-export default ProcessesPage
+export default memo(ProcessesPage)

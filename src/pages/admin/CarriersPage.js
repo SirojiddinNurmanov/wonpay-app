@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
-import Spinner from "react-bootstrap/Spinner"
+import React, { memo, useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import Spinner from "react-bootstrap/Spinner"
 
 import { getCarriers } from "../../store/actions"
 import { common } from '../../constants/bottomButtons'
@@ -9,7 +9,7 @@ import Layout from '../../layout'
 
 import CarrierCard from "../../components/cards/CarrierCard"
 import UsersModal from "../../components/modals/admin/UsersModal"
-import { NoData } from "../../components/common/NoData"
+import NoData from "../../components/common/NoData"
 
 const CarriersPage = () => {
     const [usersModal, showUsersModal] = useState(false)
@@ -50,4 +50,4 @@ const CarriersPage = () => {
     )
 }
 
-export default CarriersPage
+export default memo(CarriersPage)

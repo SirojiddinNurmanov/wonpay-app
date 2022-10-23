@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { memo, useState, useEffect } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { getUserNotifications } from "../../store/actions"
 
@@ -29,4 +29,4 @@ const MainPage = () => {
     )
 }
 
-export default MainPage
+export default memo(MainPage)

@@ -1,10 +1,10 @@
-import React from "react"
+import React, { memo } from "react"
 import Spinner from "react-bootstrap/Spinner"
 
 const LoadingButton = () => (
     <div className="loading-button">
-        <Spinner animation="border" /> 
+        <Spinner animation="border" />
     </div>
 )
 
-export default LoadingButton
+export default memo(LoadingButton)

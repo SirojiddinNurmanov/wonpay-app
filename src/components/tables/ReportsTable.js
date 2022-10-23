@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo } from "react"
 import Table from "react-bootstrap/Table"
 
 const ReportsTable = () => {
@@ -19,4 +19,4 @@ const ReportsTable = () => {
     )
 }
 
-export default ReportsTable
+export default memo(ReportsTable)

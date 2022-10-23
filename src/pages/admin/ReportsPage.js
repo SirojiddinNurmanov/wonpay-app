@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 
 import { common } from '../../constants/bottomButtons'
 
@@ -16,4 +16,5 @@ const ReportsPage = () => {
         </Layout>
     )
 }
-export default ReportsPage
+
+export default memo(ReportsPage)

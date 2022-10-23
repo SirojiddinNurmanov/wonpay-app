@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 
 const NotificationCard = ({ callback, title, body, time, type = "offer", isRead = false }) => {
     return (
@@ -10,4 +10,4 @@ const NotificationCard = ({ callback, title, body, time, type = "offer", isRead 
     )
 }
 
-export default NotificationCard
+export default memo(NotificationCard)

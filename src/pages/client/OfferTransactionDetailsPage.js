@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import { useParams } from "react-router-dom"
 
 import { fetchTransaction } from "../../helpers"
@@ -24,9 +24,9 @@ const QueryTransactionDetailsPage = () => {
 
     return (
         <Layout buttons={common}>
-            
+
         </Layout>
     )
 }
 
-export default QueryTransactionDetailsPage
+export default memo(QueryTransactionDetailsPage)

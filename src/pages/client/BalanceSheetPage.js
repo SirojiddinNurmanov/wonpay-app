@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 
 import { common } from "../../constants/bottomButtons"
 
@@ -66,4 +66,4 @@ const BalanceSheetPage = () => {
     )
 }
 
-export default BalanceSheetPage
+export default memo(BalanceSheetPage)

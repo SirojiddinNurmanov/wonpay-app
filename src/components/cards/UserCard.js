@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { addToCarriers, addToClients, removeFromCarriers, removeFromClients } from '../../store/actions'
 
 const UserCard = ({ id, avatar, first_name, last_name, role }) => {
@@ -25,7 +26,7 @@ const UserCard = ({ id, avatar, first_name, last_name, role }) => {
             <div className="image">
                 <img src={avatar} alt="Avatar" />
             </div>
-            <div className="name">{first_name} {last_name}</div>
+            <div className="name">{first_name + " " + last_name}</div>
             <div className="checkbox">
                 <Form.Check onChange={changeRole} checked={checked} />
             </div>
@@ -34,4 +35,4 @@ const UserCard = ({ id, avatar, first_name, last_name, role }) => {
 }
 
 
-export default UserCard
+export default memo(UserCard)

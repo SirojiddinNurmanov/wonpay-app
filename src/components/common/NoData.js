@@ -1,8 +1,10 @@
-import React from "react"
+import React, { memo } from "react"
 
-export const NoData = () => (
+const NoData = () => (
     <div className="center">
         <br />
         <strong><h6>Ma'lumot yo'q</h6></strong>
     </div>
 )
+
+export default memo(NoData)

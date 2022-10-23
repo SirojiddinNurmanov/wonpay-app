@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 
 import { common } from "../../constants/bottomButtons"
 
@@ -15,4 +15,4 @@ const ProfilePage = () => {
     )
 }
 
-export default ProfilePage
+export default memo(ProfilePage)

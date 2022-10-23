@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { memo, useState, useEffect } from "react"
 
 import { BACKEND_URL } from "../../constants"
-
 import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
@@ -50,4 +49,4 @@ const UZSRatePage = () => {
     )
 }
 
-export default UZSRatePage
+export default memo(UZSRatePage)

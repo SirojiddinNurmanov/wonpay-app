@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 import { Link } from "react-router-dom"
 import Modal from "react-bootstrap/Modal"
 
@@ -87,7 +87,7 @@ const SingleCarrierPage = () => {
     )
 }
 
-export default SingleCarrierPage
+export default memo(SingleCarrierPage)
 
 const GiveMoney = (props) => {
     return (

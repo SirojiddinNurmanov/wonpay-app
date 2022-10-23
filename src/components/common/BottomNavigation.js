@@ -1,8 +1,8 @@
-import React, { Fragment } from "react"
+import React, { memo, Fragment } from "react"
+import { useSelector } from 'react-redux'
+
 import CircleButton from "../buttons/CircleButton"
 import MiddleButton from "../buttons/MiddleButton"
-import { useSelector, useDispatch } from 'react-redux'
-
 
 const BottomNavigation = ({ leftButton = false, rightButton = false, middleButtons = false }) => {
     const { unread } = useSelector(state => state.app.notifications)
@@ -10,7 +10,7 @@ const BottomNavigation = ({ leftButton = false, rightButton = false, middleButto
     return (
         <Fragment>
             <div className="bottom-navigation">
-                {unread ? <CircleButton icon="/assets/img/icons/signal.png" url="/notifications" unread={unread}/> : leftButton && <CircleButton {...leftButton} />}
+                {unread ? <CircleButton icon="/assets/img/icons/signal.png" url="/notifications" unread={unread} /> : leftButton && <CircleButton {...leftButton} />}
                 <div className="middle-buttons">
                     {middleButtons && middleButtons.map((button, index) => (
                         <MiddleButton key={index} {...button} />
@@ -22,4 +22,4 @@ const BottomNavigation = ({ leftButton = false, rightButton = false, middleButto
     )
 }
 
-export default BottomNavigation
+export default memo(BottomNavigation)

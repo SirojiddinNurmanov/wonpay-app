@@ -1,4 +1,5 @@
 import React from "react"
+import { memo } from "react"
 import { useNavigate } from "react-router-dom"
 
 const CircleButton = ({ icon, url = false, unread = false }) => {
@@ -13,4 +14,4 @@ const CircleButton = ({ icon, url = false, unread = false }) => {
     )
 }
 
-export default CircleButton
+export default memo(CircleButton)

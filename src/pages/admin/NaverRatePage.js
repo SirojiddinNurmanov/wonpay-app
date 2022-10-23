@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { memo, useState, useEffect } from "react"
 
 import { common } from "../../constants/bottomButtons"
 import { BACKEND_URL } from "../../constants"
@@ -49,4 +49,4 @@ const NaverRatePage = () => {
     )
 }
 
-export default NaverRatePage
+export default memo(NaverRatePage)

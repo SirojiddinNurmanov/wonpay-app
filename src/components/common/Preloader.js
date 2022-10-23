@@ -1,10 +1,10 @@
-import React from "react"
+import React, { memo } from "react"
 import Spinner from "react-bootstrap/Spinner"
 
 const Preloader = () => (
     <div className="loader">
-        <Spinner animation="grow" /> 
+        <Spinner animation="grow" />
     </div>
 )
 
-export default Preloader
+export default memo(Preloader)

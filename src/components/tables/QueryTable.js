@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 import { Link } from "react-router-dom"
 import Table from "react-bootstrap/Table"
 import { useSelector } from "react-redux"
@@ -40,9 +40,9 @@ const QueryTable = () => {
             {queries && (
                 <tbody>
                     {queries.map((process) => {
-                        if(process.assigned_offer) {
+                        if (process.assigned_offer) {
                             return ""
-                        } 
+                        }
 
                         return (
                             <tr key={process.id}>
@@ -64,4 +64,4 @@ const QueryTable = () => {
     )
 }
 
-export default QueryTable
+export default memo(QueryTable)

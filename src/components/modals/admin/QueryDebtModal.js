@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import Modal from "react-bootstrap/Modal"
 
 import WhiteLine from "../../common/WhiteLine"
@@ -53,4 +53,5 @@ const QueryDebtModal = (props) => {
         </Modal>
     )
 }
-export default QueryDebtModal
+
+export default memo(QueryDebtModal)

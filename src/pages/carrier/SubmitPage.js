@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 
 import { common } from "../../constants/bottomButtons"
 
@@ -116,4 +116,5 @@ const SubmitPage = () => {
         </Layout>
     )
 }
-export default SubmitPage
+
+export default memo(SubmitPage)

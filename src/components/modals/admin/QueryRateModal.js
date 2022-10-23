@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 import { useDispatch } from "react-redux"
+import Modal from "react-bootstrap/Modal"
 
 import { changeQueryRate } from '../../../store/actions'
 
-import Modal from "react-bootstrap/Modal"
 
 const QueryRateModal = (props) => {
     const [newValue, setNewValue] = useState()
@@ -44,4 +44,5 @@ const QueryRateModal = (props) => {
         </Modal >
     )
 }
-export default QueryRateModal
+
+export default memo(QueryRateModal)

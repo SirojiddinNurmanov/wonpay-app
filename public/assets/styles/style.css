@@ -2177,6 +2177,7 @@ a {
 }
 
 .card-info-block {
+    max-width: 90vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2187,6 +2188,10 @@ a {
 
 .card-info-block pre {
     margin: 0 !important;
+}
+
+.card-info-block img {
+    max-width: inherit;
 }
 
 .process-deliverer-block {

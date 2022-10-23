@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import DatePicker from "react-datepicker"
@@ -61,7 +61,7 @@ const QueryTransactionDetailsPage = () => {
                 <div className="query-title">
                     O'zbekistonda pulni qachon yetkazib berasiz?
                 </div>
-                <DatePicker 
+                <DatePicker
                     minDate={new Date()}
                     selected={startDate}
                     timeCaption="Vaqt"
@@ -75,4 +75,4 @@ const QueryTransactionDetailsPage = () => {
     )
 }
 
-export default QueryTransactionDetailsPage
+export default memo(QueryTransactionDetailsPage)

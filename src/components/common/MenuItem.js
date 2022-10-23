@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import { Link } from "react-router-dom"
 
 const MenuItem = ({ url, image, alt, text }) => {
@@ -16,4 +16,4 @@ const MenuItem = ({ url, image, alt, text }) => {
     )
 }
 
-export default MenuItem
+export default memo(MenuItem)

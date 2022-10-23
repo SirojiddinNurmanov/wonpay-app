@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 import Modal from "react-bootstrap/Modal"
 
 import { formatAmount } from "../../../helpers"
@@ -69,4 +69,5 @@ const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_inf
         </Modal >
     )
 }
-export default QueryInfoModal
+
+export default memo(QueryInfoModal)

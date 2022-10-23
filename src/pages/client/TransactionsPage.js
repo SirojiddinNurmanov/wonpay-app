@@ -1,15 +1,14 @@
-import React from "react"
+import React, { memo, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 
 import { common } from "../../constants/bottomButtons"
+import { getTransactions } from "../../store/actions"
 
 import Layout from "../../layout"
 
-import { NoData } from "../../components/common/NoData"
+import NoData from "../../components/common/NoData"
 import TransactionCard from "../../components/cards/TransactionCard"
-import { useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { getTransactions } from "../../store/actions"
 
 const TransactionsPage = () => {
     const { transactions } = useSelector(state => state.app)
@@ -39,4 +38,4 @@ const TransactionsPage = () => {
     )
 }
 
-export default TransactionsPage
+export default memo(TransactionsPage)

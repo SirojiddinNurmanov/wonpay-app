@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import PropTypes from "prop-types"
 
 import { MenuButtons } from "../../constants/menuButtons"
@@ -19,4 +19,4 @@ MenuCards.protoTypes = {
     app: PropTypes.string
 }
 
-export default MenuCards
+export default memo(MenuCards)

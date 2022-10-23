@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { memo, useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheckCircle, faDeleteLeft } from "@fortawesome/free-solid-svg-icons"
@@ -87,7 +87,7 @@ const QueryPage = () => {
                         setEnabled(false)
                     }
                 }
-    
+
                 // if (moneyType === "Naqd") {
                 //     if ((uzbekAddressName !== "") && (uzbekAddressNumber !== "")) {
                 //         setEnabled(true)
@@ -283,4 +283,4 @@ const QueryPage = () => {
     )
 }
 
-export default QueryPage
+export default memo(QueryPage)

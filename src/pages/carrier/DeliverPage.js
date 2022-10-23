@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useState } from "react"
 
 import { common } from "../../constants/bottomButtons"
 
@@ -81,4 +81,4 @@ const DeliverPage = () => {
     )
 }
 
-export default DeliverPage
+export default memo(DeliverPage)

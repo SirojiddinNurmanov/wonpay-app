@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 
 const MiddleButton = ({ text, disabled = false, secondary = false, callback = false }) => {
 
@@ -11,7 +11,7 @@ const MiddleButton = ({ text, disabled = false, secondary = false, callback = fa
     }
 
     return (
-        <div onClick={clickHandler} className={"middle-button" + (secondary ? " secondary" : "" ) + (disabled ? " disabled" : "")}>
+        <div onClick={clickHandler} className={"middle-button" + (secondary ? " secondary" : "") + (disabled ? " disabled" : "")}>
             {text}
         </div>
     )
@@ -21,4 +21,4 @@ MiddleButton.defaultProps = {
     secondary: false
 }
 
-export default MiddleButton
+export default memo(MiddleButton)
