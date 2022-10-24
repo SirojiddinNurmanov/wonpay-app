@@ -4,7 +4,6 @@ import Modal from "react-bootstrap/Modal"
 
 import { changeQueryRate } from '../../../store/actions'
 
-
 const QueryRateModal = (props) => {
     const [newValue, setNewValue] = useState()
     const dispatch = useDispatch()

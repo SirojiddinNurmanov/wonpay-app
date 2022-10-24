@@ -20,8 +20,10 @@ const QueryTable = () => {
     }
 
     const openRateModal = (process) => (e) => {
-        showQueryRateModal(true)
-        setModalInfo(process)
+        if ((process.exchange_rate !== 0) || (process.exchange_rate === 0 && process.temp_rate === 0)) {
+            showQueryRateModal(true)
+            setModalInfo(process)
+        }
     }
 
     return (
@@ -53,7 +55,7 @@ const QueryTable = () => {
                                 </td>
                                 <td>{formatAmount(process.amount)}</td>
                                 <td onClick={openInfoModal(process)} className="underlined">Ko'rish</td>
-                                <td onClick={openRateModal(process)} className="underlined">{process.exchange_rate ? process.exchange_rate : "Kiritish"}</td>
+                                <td onClick={openRateModal(process)} className="underlined">{process.rate_status === 3 ? "Rad etilgan" :  process.exchange_rate ? process.exchange_rate : process.temp_rate ? "Kutilmoqda" : "Kiritish"}</td>
                                 <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
                             </tr>
                         )

@@ -347,6 +347,45 @@ export const changeQueryRate = (id, value) => async (dispatch, getState) => {
     }
 }
 
+export const setQueryRate = (id) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/queries/setrate/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        await res.json()
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const rejectQueryRate = (id) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/queries/rejectrate/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        await res.json()
+
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
 export const changeOfferRate = (id, buyRate, sellRate) => async (dispatch, getState) => {
     try {
         const { token } = getState().app.user
@@ -375,6 +414,46 @@ export const changeOfferRate = (id, buyRate, sellRate) => async (dispatch, getSt
             type: Types.CHANGE_OFFER_RATE,
             payload: data
         })
+
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const setOfferRate = (id) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/offers/setrate/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        await res.json()
+
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const rejectOfferRate = (id) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/offers/rejectrate/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        await res.json()
 
     } catch (error) {
         dispatch({

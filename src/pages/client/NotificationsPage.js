@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react"
+import React, { memo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
@@ -8,10 +8,11 @@ import Layout from "../../layout"
 
 import NotificationDetailsModal from "../../components/modals/client/NotificationDetailsModal"
 import NotificationCard from "../../components/cards/NotificationCard"
+import { useEffect } from "react"
 
 const NotificationsPage = () => {
     const [modalInfo, setModalInfo] = useState(false)
-    const [modalShow, setModalShow] = useState(false)
+    const [detailsModal, showDetailsModal] = useState(false)
     const { notifications } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
@@ -21,18 +22,18 @@ const NotificationsPage = () => {
     }, [])
 
     const readModal = (notification) => () => {
-        if (notification.status === 0) {
+        if (notification.status === 0 && notification.type === 0) {
             dispatch(setNotificationAsRead(notification.id))
         }
         setModalInfo(notification)
-        setModalShow(true)
+        showDetailsModal(true)
     }
 
     common.middleButtons = false
 
     return (
         <Layout buttons={common} title={{ text: "Xabarlar:" }}>
-            <NotificationDetailsModal show={modalShow} onHide={() => setModalShow(false)} {...modalInfo} />
+            <NotificationDetailsModal show={detailsModal} onHide={() => showDetailsModal(false)} {...modalInfo} />
             {notifications && notifications.map(notification => (
                 <NotificationCard key={notification.id} callback={readModal(notification)} {...notification} />
             ))}
