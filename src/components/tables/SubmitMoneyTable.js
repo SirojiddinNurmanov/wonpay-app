@@ -2,17 +2,17 @@ import React, { memo } from "react"
 import Table from "react-bootstrap/Table"
 
 
-const BalanceSheetTable = () => {
+const SubmitMoneyTable = () => {
     return (
         <Table striped bordered hover size="sm" responsive className="process-table">
             <thead>
                 <tr>
-                    <th>Sana</th>
-                    <th>Olingan Pul</th>
+                    <th>Ism</th>
+                    <th>Umumiy Summa</th>
+                    <th>Dollar</th>
+                    <th>So'm</th>
                     <th>Kurs</th>
-                    <th>Qarz $</th>
-                    <th>Berilgan Pul</th>
-                    <th>Qoldiq</th>
+                    <th>Mavjud Pul</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -20,4 +20,4 @@ const BalanceSheetTable = () => {
     )
 }
 
-export default memo(BalanceSheetTable)
+export default memo(SubmitMoneyTable)
