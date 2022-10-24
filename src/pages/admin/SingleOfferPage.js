@@ -50,10 +50,11 @@ const SingleOfferPage = () => {
         {
             text: "Jo'natish",
             callback: () => {
-                if (!offer.assigned_queries) {
+                if (offer.assigned_queries.length === 0) {
                     dispatch(sendOfferQueries(offerId, selectedIds, showConfirmationModal))
                 }
-            }
+            },
+            disabled: offer.assigned_queries.length > 0 || offer.sell_rate === 0
         }
     ]
 

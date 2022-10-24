@@ -2,10 +2,10 @@ import React, { memo } from "react"
 
 import { formatAmount } from "../../helpers"
 
-const TransactionCard = ({ process_type, amount, exchange_rate, receiver, status }) => {
+const TransactionCard = ({ process_type, amount, exchange_rate, buy_rate, receiver, status }) => {
     return (
         <div className="transaction-item">
-            <div className="transaction-status">{status === "pending" ? "Ko'rib chiqilmoqda" : "Yakunlangan"}</div>
+            <div className="transaction-status">{status === 0 ? "Ko'rib chiqilmoqda" : "Yakunlangan"}</div>
             <div className="transaction-card">
                 <div className="transaction-type">{process_type === 0 ? "Uzb>>Kor" : "Kor>>Uzb"}</div>
                 <div className="bar"></div>
@@ -13,14 +13,18 @@ const TransactionCard = ({ process_type, amount, exchange_rate, receiver, status
                     {amount && (
                         <div className="transaction-amount">￦ {formatAmount(amount)}</div>
                     )}
-                    {exchange_rate != 0 && (
+                    {process_type === 0 ? exchange_rate != 0 && (
                         <div className="transaction-amount">$ {formatAmount((amount / exchange_rate), true)}</div>
+                    ) : process_type === 1 && (
+                        <div className="transaction-amount">$ {formatAmount((amount / buy_rate), true)}</div>
                     )}
                 </div>
                 <div className="bar"></div>
                 <div className="transaction-details">
-                    {exchange_rate != 0 && (
+                    {process_type === 0 ? exchange_rate != 0 && (
                         <div className="transaction-details-item">{exchange_rate}</div>
+                    ) : process_type === 1 && (
+                        <div className="transaction-details-item">{buy_rate}</div>
                     )}
                     {receiver && (
                         <div className="transaction-details-item">{receiver.name}</div>
