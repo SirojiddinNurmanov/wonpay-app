@@ -27,7 +27,7 @@ const ProcessesPage = () => {
     return (
         <Layout buttons={common}>
             <Link to="/queries">
-                <Title text="So'rovlar:" amount={"₩" + (queries ? formatAmount(sumProcessAmount(queries)) : "0")} inContent={true} />
+                <Title text="So'rovlar:" amount={"₩" + (queries ? formatAmount(sumProcessAmount(queries.filter(query => query.assigned_offer === null))) : "0")} inContent={true} />
             </Link>
             <div className="processes-block">
                 <QueryTable processes={queries} />

@@ -1,7 +1,8 @@
-import React, { memo, Fragment, useState } from "react"
+import React, { memo, useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
-import { notifications } from "../../constants/dummyData"
+import { getUserNotifications, setNotificationAsRead } from "../../store/actions"
 
 import Layout from "../../layout"
 
@@ -9,20 +10,31 @@ import NotificationDetailsModal from "../../components/modals/client/Notificatio
 import NotificationCard from "../../components/cards/NotificationCard"
 
 const NotificationsPage = () => {
+    const [modalInfo, setModalInfo] = useState(false)
     const [modalShow, setModalShow] = useState(false)
+    const { notifications } = useSelector(state => state.app)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getUserNotifications())
+        //eslint-disable-next-line
+    }, [])
+
+    const readModal = (notification) => () => {
+        if (notification.status === 0) {
+            dispatch(setNotificationAsRead(notification.id))
+        }
+        setModalInfo(notification)
+        setModalShow(true)
+    }
 
     common.middleButtons = false
 
     return (
         <Layout buttons={common} title={{ text: "Xabarlar:" }}>
-            <NotificationDetailsModal show={modalShow} onHide={() => setModalShow(false)} />
-            {notifications && notifications.map((notification, index) => (
-                <Fragment key={index}>
-                    <div className="notification-datetime">{notification.datetime}</div>
-                    {notification.data && notification.data.map((message, index) => (
-                        <NotificationCard callback={() => setModalShow(true)} key={index} {...message} />
-                    ))}
-                </Fragment>
+            <NotificationDetailsModal show={modalShow} onHide={() => setModalShow(false)} {...modalInfo} />
+            {notifications && notifications.map(notification => (
+                <NotificationCard key={notification.id} callback={readModal(notification)} {...notification} />
             ))}
         </Layout>
     )

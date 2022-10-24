@@ -13,7 +13,7 @@ const MoneyFlowPage = () => {
         }
     ]
     return (
-        <Layout buttons={common} title={{ text: "Mavjud mablag':", amount: "$73.256 12.000.000 so'm", small: true }}>
+        <Layout buttons={common} title={{ text: "Mavjud mablag':", amount: "", small: true }}>
             <MoneyFlowTable />
         </Layout>
     )

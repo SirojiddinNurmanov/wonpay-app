@@ -5,49 +5,25 @@ const NotificationDetailsModal = (props) => {
     return (
         <Modal
             {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
             centered
+            scrollable
         >
             <Modal.Header closeButton>
-                <div className="sale-modal">
-                    <div className="home-header">
-                        <div className="logo">
-                            <img src="/assets/img/icons/logo.png" alt="logo" />
-                        </div>
+                <Modal.Title className="text-center">
+                    <div className="logo">
+                        <img src="/assets/img/icons/logo.png" alt="logo" />
                     </div>
-                    <div className="white-line"></div>
-                </div>{" "}
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="my-modal">
-                    <h5>Taklif Qilinayotgan Valyuta kursi:</h5>
-                    <h3>$1= ￦1.250</h3>
-                    <h1>￦12.500.000 = $10.000 </h1>
-                    <span>
-                        Bir nechta bank kartalariga pul ko'chirish so'ralishi
-                        mumkin.
-                    </span>
-                    <div className="modal-input">
-                        <input type="text" />
-                        <span>$</span>
-                    </div>
-                    <div className="modal-input">
-                        <input type="text" />
-                        <span>so'm</span>
-                    </div>
-                    <div className="modal-input">
-                        <input type="text" />
-                        <span>kurs</span>
-                    </div>
-                </div>
-                <div className="white-line"></div>
-
-                <div className="modal-foooter">
-                    <button>Bekor Qilish</button>
-                    <button>Rozi Bo'lish</button>
+                <div className="text-center">
+                    <h3>{props.title}</h3>
+                    <p>{props.body}</p>
                 </div>
             </Modal.Body>
+            <Modal.Footer>
+                <button className="modal-button" onClick={props.onHide}>Yopish</button>
+            </Modal.Footer>
         </Modal>
     )
 }

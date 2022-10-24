@@ -5,12 +5,12 @@ import CircleButton from "../buttons/CircleButton"
 import MiddleButton from "../buttons/MiddleButton"
 
 const BottomNavigation = ({ leftButton = false, rightButton = false, middleButtons = false }) => {
-    const { unread } = useSelector(state => state.app.notifications)
+    const { unreadNotifications } = useSelector(state => state.app)
 
     return (
         <Fragment>
             <div className="bottom-navigation">
-                {unread ? <CircleButton icon="/assets/img/icons/signal.png" url="/notifications" unread={unread} /> : leftButton && <CircleButton {...leftButton} />}
+                {unreadNotifications.length > 0 ? <CircleButton icon="/assets/img/icons/signal.png" url="/notifications" unreadNotifications={unreadNotifications} /> : leftButton && <CircleButton {...leftButton} />}
                 <div className="middle-buttons">
                     {middleButtons && middleButtons.map((button, index) => (
                         <MiddleButton key={index} {...button} />

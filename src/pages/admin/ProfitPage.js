@@ -13,7 +13,7 @@ const ProfitPage = () => {
     ]
 
     return (
-        <Layout buttons={common} title={{ text: "Umumiy Foyda:", amount: "$73.256" }}>
+        <Layout buttons={common} title={{ text: "Umumiy Foyda:", amount: "" }}>
             <ProfitTable />
         </Layout>
     )

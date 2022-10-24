@@ -19,11 +19,11 @@ const DebtsPage = () => {
         <Layout buttons={common}>
             <QueryDebtModal show={queryDebtModal} onHide={() => showQueryDebtModal(false)} />
             <OfferDebtModal show={offerDebtModal} onHide={() => showOfferDebtModal(false)} />
-            <Title text="Qarzlar:" amount="+$20.000" inContent={true} />
+            <Title text="Qarzlar:" amount="" inContent={true} />
             <div className="processes-block">
                 <DebtsTable />
             </div>
-            <Title text="Bizning Qarzlar:" amount="-$18.750" inContent={true} />
+            <Title text="Bizning Qarzlar:" amount="" inContent={true} />
             <div className="processes-block">
                 <DebtsTable />
             </div>

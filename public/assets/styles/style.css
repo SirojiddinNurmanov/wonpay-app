@@ -196,7 +196,6 @@ a {
     outline: none;
     font-size: 20px;
     width: 60%;
-    background-color: var(--background-color);
     border-bottom: 1px solid #333;
     text-align: center;
 }
@@ -1039,6 +1038,7 @@ a {
     color: var(--white-color);
     background-color: var(--main-color);
     border-radius: calc(40px/2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: 0;
     padding: 0 50px;
 }
@@ -1547,9 +1547,10 @@ a {
 
 .card_info_block .card-image.zoomed {
     position: fixed;
-    top: 40%;
+    top: 50%;
     left: 0;
     right: 0;
+    transform: translateY(-50%);
 }
 
 /* Single query page - client */

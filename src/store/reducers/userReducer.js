@@ -1,28 +1,8 @@
-import {
-    GET_USER_NOTIFICATIONS,
-    GET_USER,
-    USER_ERROR,
-    SHOW_LOADING,
-    HIDE_LOADING,
-    GET_TRANSACTIONS,
-    GET_PROCESSES,
-    GET_QUERIES,
-    GET_OFFERS,
-    GET_CARRIERS,
-    GET_ALL_USERS,
-    ADD_TO_CARRIERS,
-    REMOVE_FROM_CARRIERS,
-    ADD_TO_CLIENTS,
-    REMOVE_FROM_CLIENTS,
-    CHANGE_QUERY_RATE,
-    CHANGE_OFFER_RATE,
-    SET_OFFER_QUERIES
-} from "../actionTypes"
+import * as Types from "../actionTypes"
 
 const initialState = {
-    notifications: {
-        unread: 0
-    },
+    notifications: [],
+    unreadNotifications: [],
     user: null,
     loading: false,
     error: '',
@@ -35,100 +15,101 @@ const initialState = {
     allusers: null
 }
 
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case GET_USER:
+const reducer = (state = initialState, { type, payload }) => {
+    switch (type) {
+        case Types.GET_USER:
             return {
                 ...state,
-                user: action.payload,
+                user: payload,
                 loading: false
             }
-        case GET_USER_NOTIFICATIONS:
+        case Types.GET_USER_NOTIFICATIONS:
             return {
                 ...state,
-                notifications: action.payload
+                notifications: payload,
+                unreadNotifications: payload.filter(notification => notification.status === 0)
             }
-        case USER_ERROR:
+        case Types.USER_ERROR:
             return {
                 ...state,
-                error: action.payload,
+                error: payload,
                 loading: false
             }
-        case SHOW_LOADING:
+        case Types.SHOW_LOADING:
             return {
                 ...state,
                 loading: true
             }
-        case HIDE_LOADING:
+        case Types.HIDE_LOADING:
             return {
                 ...state,
                 loading: false
             }
-        case GET_TRANSACTIONS:
+        case Types.GET_TRANSACTIONS:
             return {
                 ...state,
-                transactions: action.payload
+                transactions: payload
             }
-        case GET_PROCESSES:
+        case Types.GET_PROCESSES:
             return {
                 ...state,
-                processes: action.payload
+                processes: payload
             }
-        case GET_QUERIES:
+        case Types.GET_QUERIES:
             return {
                 ...state,
-                queries: action.payload
+                queries: payload
             }
-        case GET_OFFERS:
+        case Types.GET_OFFERS:
             return {
                 ...state,
-                offers: action.payload
+                offers: payload
             }
-        case GET_CARRIERS:
+        case Types.GET_CARRIERS:
             return {
                 ...state,
-                carriers: action.payload,
-                newCarriers: action.payload.map(carrier => carrier.id)
+                carriers: payload,
+                newCarriers: payload.map(carrier => carrier.id)
             }
-        case GET_ALL_USERS:
+        case Types.GET_ALL_USERS:
             return {
                 ...state,
-                allusers: action.payload,
-                newClients: action.payload.filter(el => el.role === "client").map(el => el.id)
+                allusers: payload,
+                newClients: payload.filter(el => el.role === "client").map(el => el.id)
             }
-        case ADD_TO_CARRIERS:
+        case Types.ADD_TO_CARRIERS:
             return {
                 ...state,
-                newCarriers: [...state.newCarriers, action.payload]
+                newCarriers: [...state.newCarriers, payload]
             }
-        case REMOVE_FROM_CARRIERS:
+        case Types.REMOVE_FROM_CARRIERS:
             return {
                 ...state,
-                newCarriers: state.newCarriers.filter(newCarriers => newCarriers !== action.payload)
+                newCarriers: state.newCarriers.filter(newCarriers => newCarriers !== payload)
             }
-        case ADD_TO_CLIENTS:
+        case Types.ADD_TO_CLIENTS:
             return {
                 ...state,
-                newClients: [...state.newClients, action.payload]
+                newClients: [...state.newClients, payload]
             }
-        case REMOVE_FROM_CLIENTS:
+        case Types.REMOVE_FROM_CLIENTS:
             return {
                 ...state,
-                newClients: state.newClients.filter(newClients => newClients !== action.payload)
+                newClients: state.newClients.filter(newClients => newClients !== payload)
             }
-        case SET_OFFER_QUERIES:
+        case Types.SET_OFFER_QUERIES:
             return {
                 ...state
             }
-        case CHANGE_QUERY_RATE:
+        case Types.CHANGE_QUERY_RATE:
             return {
                 ...state,
-                queries: state.queries.map(query => (query.id === action.payload.id) ? action.payload : query)
+                queries: state.queries.map(query => (query.id === payload.id) ? payload : query)
             }
-        case CHANGE_OFFER_RATE:
+        case Types.CHANGE_OFFER_RATE:
             return {
                 ...state,
-                offers: state.offers.map(offer => (offer.id === action.payload.id) ? action.payload : offer)
+                offers: state.offers.map(offer => (offer.id === payload.id) ? payload : offer)
             }
         default:
             return state

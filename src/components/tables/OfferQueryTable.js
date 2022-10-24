@@ -18,16 +18,6 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
     const [modalInfo, setModalInfo] = useState()
     const { queries } = useSelector(state => state.app)
 
-    const openInfoModal = (process) => (e) => {
-        showQueryInfoModal(true)
-        setModalInfo(process)
-    }
-
-    const openRateModal = (process) => (e) => {
-        showQueryRateModal(true)
-        setModalInfo(process)
-    }
-
     const addToList = (e, id) => {
         if (e.target.checked) {
             let summ = sumProcessAmount([...queries.filter(query => selected.includes(query.id)), queries.find(query => query.id === id)])

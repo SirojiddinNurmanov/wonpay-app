@@ -1,23 +1,4 @@
-import {
-    GET_USER_NOTIFICATIONS,
-    GET_TRANSACTIONS,
-    GET_USER,
-    USER_ERROR,
-    SHOW_LOADING,
-    HIDE_LOADING,
-    GET_QUERIES,
-    GET_OFFERS,
-    GET_ALL_USERS,
-    GET_CARRIERS,
-    ADD_TO_CARRIERS,
-    REMOVE_FROM_CARRIERS,
-    ADD_TO_CLIENTS,
-    REMOVE_FROM_CLIENTS,
-    CHANGE_QUERY_RATE,
-    CHANGE_OFFER_RATE,
-    CHANGE_QUERY_CARRIER,
-    SET_OFFER_QUERIES
-} from "../actionTypes"
+import * as Types from "../actionTypes"
 
 import { BACKEND_URL } from "../../constants"
 
@@ -36,18 +17,38 @@ export const getUserNotifications = () => async (dispatch, getState) => {
 
         if (success) {
             dispatch({
-                type: GET_USER_NOTIFICATIONS,
+                type: Types.GET_USER_NOTIFICATIONS,
                 payload: data
             })
         } else {
             dispatch({
-                type: USER_ERROR,
+                type: Types.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const setNotificationAsRead = (notificationId) => async (dispatch, getState) => {
+    try {
+        const token = getState().app.user.token
+
+        const res = await fetch(`${BACKEND_URL}/notifications/as-read/${notificationId}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        await res.json()
+    } catch (error) {
+        console.log(error);
+        dispatch({
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -84,18 +85,18 @@ export const getUser = () => async (dispatch) => {
 
         if (success) {
             dispatch({
-                type: GET_USER,
+                type: Types.GET_USER,
                 payload: data
             })
         } else {
             dispatch({
-                type: USER_ERROR,
+                type: Types.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     } finally {
@@ -118,18 +119,18 @@ export const getTransactions = () => async (dispatch, getState) => {
 
         if (success) {
             dispatch({
-                type: GET_TRANSACTIONS,
+                type: Types.GET_TRANSACTIONS,
                 payload: data
             })
         } else {
             dispatch({
-                type: USER_ERROR,
+                type: Types.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -150,18 +151,18 @@ export const getQueries = () => async (dispatch, getState) => {
 
         if (success) {
             dispatch({
-                type: GET_QUERIES,
+                type: Types.GET_QUERIES,
                 payload: data
             })
         } else {
             dispatch({
-                type: USER_ERROR,
+                type: Types.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -182,18 +183,18 @@ export const getOffers = () => async (dispatch, getState) => {
 
         if (success) {
             dispatch({
-                type: GET_OFFERS,
+                type: Types.GET_OFFERS,
                 payload: data
             })
         } else {
             dispatch({
-                type: USER_ERROR,
+                type: Types.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -214,18 +215,18 @@ export const getCarriers = () => async (dispatch, getState) => {
 
         if (success) {
             dispatch({
-                type: GET_CARRIERS,
+                type: Types.GET_CARRIERS,
                 payload: data
             })
         } else {
             dispatch({
-                type: USER_ERROR,
+                type: Types.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -246,18 +247,18 @@ export const getAllUsers = () => async (dispatch, getState) => {
 
         if (success) {
             dispatch({
-                type: GET_ALL_USERS,
+                type: Types.GET_ALL_USERS,
                 payload: data
             })
         } else {
             dispatch({
-                type: USER_ERROR,
+                type: Types.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -282,7 +283,7 @@ export const toggleUserRoles = (carriers, clients) => async (dispatch, getState)
         await res.json()
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -290,28 +291,28 @@ export const toggleUserRoles = (carriers, clients) => async (dispatch, getState)
 
 export const addToCarriers = (id) => async (dispatch, getState) => {
     dispatch({
-        type: ADD_TO_CARRIERS,
+        type: Types.ADD_TO_CARRIERS,
         payload: id
     })
 }
 
 export const removeFromCarriers = (id) => async (dispatch, getState) => {
     dispatch({
-        type: REMOVE_FROM_CARRIERS,
+        type: Types.REMOVE_FROM_CARRIERS,
         payload: id
     })
 }
 
 export const addToClients = (id) => async (dispatch, getState) => {
     dispatch({
-        type: ADD_TO_CLIENTS,
+        type: Types.ADD_TO_CLIENTS,
         payload: id
     })
 }
 
 export const removeFromClients = (id) => async (dispatch, getState) => {
     dispatch({
-        type: REMOVE_FROM_CLIENTS,
+        type: Types.REMOVE_FROM_CLIENTS,
         payload: id
     })
 }
@@ -334,13 +335,13 @@ export const changeQueryRate = (id, value) => async (dispatch, getState) => {
         const { data } = await res.json()
 
         dispatch({
-            type: CHANGE_QUERY_RATE,
+            type: Types.CHANGE_QUERY_RATE,
             payload: data
         })
 
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -371,13 +372,13 @@ export const changeOfferRate = (id, buyRate, sellRate) => async (dispatch, getSt
         const { data } = await res.json()
 
         dispatch({
-            type: CHANGE_OFFER_RATE,
+            type: Types.CHANGE_OFFER_RATE,
             payload: data
         })
 
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -402,17 +403,17 @@ export const setProcessCarrier = (id, carrierId) => async (dispatch, getState) =
 
         if (success) {
             dispatch({
-                type: CHANGE_QUERY_CARRIER
+                type: Types.CHANGE_QUERY_CARRIER
             })
         } else {
             dispatch({
-                type: USER_ERROR,
+                type: Types.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -439,26 +440,26 @@ export const sendOfferQueries = (id, selectedQueryIds, showConfirmationModal) =>
 
         if (success) {
             dispatch({
-                type: SET_OFFER_QUERIES
+                type: Types.SET_OFFER_QUERIES
             })
         } else {
             dispatch({
-                type: USER_ERROR,
+                type: Types.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: USER_ERROR,
+            type: Types.USER_ERROR,
             payload: error.response.statusText
         })
     }
 }
 
 export const showLoading = () => ({
-    type: SHOW_LOADING
+    type: Types.SHOW_LOADING
 })
 
 export const hideLoading = () => ({
-    type: HIDE_LOADING
+    type: Types.HIDE_LOADING
 })

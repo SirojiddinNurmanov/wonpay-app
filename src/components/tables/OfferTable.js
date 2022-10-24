@@ -12,9 +12,11 @@ const OfferTable = () => {
     const [modalInfo, setModalInfo] = useState()
     const { offers } = useSelector(state => state.app)
 
-    const openRateModal = (process) => (e) => {
-        showOfferRateModal(true)
-        setModalInfo(process)
+    const openRateModal = (process) => () => {
+        if (process.assigned_queries.length === 0) {
+            showOfferRateModal(true)
+            setModalInfo(process)
+        }
     }
 
     return (

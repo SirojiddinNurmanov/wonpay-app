@@ -1,11 +1,24 @@
-import React, { memo } from "react"
+import React, { memo, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
 
 import Layout from "../../layout"
 
 import MenuCards from "../../components/cards/MenuCards"
+import { getUserNotifications } from "../../store/actions"
 
 const MainPage = () => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        let interval = localStorage.getItem('interval')
+        clearInterval(interval)
+        interval = setInterval(() => dispatch(getUserNotifications()), (1000 * 2))
+        localStorage.setItem('interval', interval)
+
+        // eslint-disable-next-line
+    }, [])
+
     return (
         <Layout>
             <div className="home-body">
