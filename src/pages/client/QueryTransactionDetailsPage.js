@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import DatePicker from "react-datepicker"
+// import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 import { formatAmount } from "../../helpers"
@@ -12,25 +12,17 @@ import Layout from "../../layout"
 import WhiteLine from "../../components/common/WhiteLine"
 
 const QueryTransactionDetailsPage = () => {
-    const [startDate, setStartDate] = useState(new Date())
-    const { transactions, user } = useSelector(state => state.app)
+    // const [startDate, setStartDate] = useState(new Date())
+    const { transactions } = useSelector(state => state.app)
     let { transactionId } = useParams()
-    const { exchange_rate, amount, receiver } = transactions.find(transaction => transaction.id === parseInt(transactionId))
+    const { exchange_rate, amount, card_info_type, card_info_sms, card_info_image } = transactions.find(transaction => transaction.id === parseInt(transactionId))
 
-    common.middleButtons = [
-        {
-            text: "Bekor Qilish",
-            secondary: true
-        },
-        {
-            text: "Davom Etish"
-        }
-    ]
+    common.middleButtons = false
 
     return (
         <Layout buttons={common}>
-            <div className="query-top-block">
-                <div className="query-title text-center">
+            <div className="query-top-block text-center">
+                <div className="query-title">
                     Taklif qilingan valyuta kursi:
                 </div>
                 {exchange_rate > 0 && (
@@ -45,11 +37,16 @@ const QueryTransactionDetailsPage = () => {
                 <div className="query-title">
                     Koreada pulni qabul qiluvchi:
                 </div>
-                <div className="receiver-details-block">
-                    <h4 className="text-center">{receiver.name}</h4>
+                <div className="receiver-details-block text-center">
+                    {/* <h4 className="text-center">{}</h4> */}
+                    {card_info_type === 1 ? (
+                        <img src={card_info_image} alt="Card info" />
+                    ) : (
+                        <pre className="card-info-sms">{card_info_sms}</pre>
+                    )}
                 </div>
             </div>
-            <WhiteLine />
+            {/*<WhiteLine />
             <div className="query-receiver-block">
                 <div className="query-title">
                     O'zbekistonda pulni yetkazuvchi:
@@ -62,6 +59,7 @@ const QueryTransactionDetailsPage = () => {
                     O'zbekistonda pulni qachon yetkazib berasiz?
                 </div>
                 <DatePicker
+                    open
                     minDate={new Date()}
                     selected={startDate}
                     timeCaption="Vaqt"
@@ -70,7 +68,7 @@ const QueryTransactionDetailsPage = () => {
                     dateFormat="yyyy-MM-dd  HH:mm"
                     onChange={(date) => setStartDate(date)}
                 />
-            </div>
+            </div> */}
         </Layout>
     )
 }

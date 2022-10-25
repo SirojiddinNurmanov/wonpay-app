@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 
 import { common } from "../../constants/bottomButtons"
-import { getTransactions } from "../../store/actions"
+import { getQueries, getTransactions } from "../../store/actions"
 
 import Layout from "../../layout"
 
@@ -18,9 +18,9 @@ const TransactionsPage = () => {
 
     useEffect(() => {
         dispatch(getTransactions())
+        dispatch(getQueries())
         //eslint-disable-next-line
     }, [])
-
 
     return (
         <Layout buttons={common} title={{ text: "O'tkazmalar Tarixi" }}>

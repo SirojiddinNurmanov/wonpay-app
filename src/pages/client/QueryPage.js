@@ -16,7 +16,7 @@ const QueryPage = () => {
     const { token } = useSelector(state => state.app.user)
     const [confirmationModal, showConfirmationModal] = useState(false)
     const [amount, setAmount] = useState(0)
-    const [keyboard, setKeyboardStatus] = useState(false)
+    const [keyboard, setKeyboardStatus] = useState(true)
     const [enabled, setEnabled] = useState(false)
     const [moneyTypeOptions, showMoneyTypeOptions] = useState(false)
     const [moneyType, setMoneyType] = useState("Karta")
@@ -160,13 +160,16 @@ const QueryPage = () => {
         }
     }
 
-    const changeInput = (el) => {
+    const changeInput = ({ target: { innerText } }) => {
+        
         if (amount === 0) {
-            if (el.target.innerText !== "0") {
-                setAmount(el.target.innerText)
+            if (innerText !== "0") {
+                setAmount(innerText)
             }
         } else {
-            setAmount(formatAmount(amount + el.target.innerText))
+            if (amount.length < 11) {
+                setAmount(formatAmount(amount + innerText))
+            }
         }
     }
 
