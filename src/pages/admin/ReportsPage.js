@@ -4,7 +4,7 @@ import { common } from '../../constants/bottomButtons'
 
 import Layout from "../../layout"
 
-import ReportsTable from "../../components/tables/ReportsTable"
+import ReportsTable from "../../components/tables/admin/ReportsTable"
 
 const ReportsPage = () => {
 

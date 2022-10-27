@@ -1,11 +1,11 @@
 import React, { memo, useState } from "react"
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
-import Table from "react-bootstrap/Table"
 
-import { formatAmount } from "../../helpers"
+import { formatAmount } from "../../../helpers"
 
-import OfferRateModal from "../modals/admin/OfferRateModal"
+import OfferRateModal from "../../modals/admin/OfferRateModal"
+import TableLayout from "../TableLayout"
 
 const OfferTable = () => {
     const [offerRateModal, showOfferRateModal] = useState(false)
@@ -19,21 +19,20 @@ const OfferTable = () => {
         }
     }
 
+    const headers = [
+        "Ism",
+        "Summa",
+        "Turi",
+        "Sotish",
+        "Olish",
+        "Taqsim"
+    ]
+
     return (
-        <Table striped bordered hover size="sm" responsive className="process-table">
+        <TableLayout headers={headers}>
             <OfferRateModal show={offerRateModal} onHide={() => showOfferRateModal(false)} {...modalInfo} />
-            <thead>
-                <tr>
-                    <th>Ism</th>
-                    <th>Summa</th>
-                    <th>Turi</th>
-                    <th>Sotish</th>
-                    <th>Olish</th>
-                    <th>Taqsim</th>
-                </tr>
-            </thead>
             {offers && (
-                <tbody>
+                <>
                     {offers.map((process) => (
                         <tr key={process.id}>
                             <td>
@@ -52,9 +51,9 @@ const OfferTable = () => {
                             </td>
                         </tr>
                     ))}
-                </tbody>
+                </>
             )}
-        </Table>
+        </TableLayout>
     )
 }
 

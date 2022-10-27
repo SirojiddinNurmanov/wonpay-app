@@ -6,7 +6,7 @@ import { formatAmount, sumProcessAmount } from "../../helpers"
 import Layout from "../../layout"
 
 import { common } from "../../constants/bottomButtons"
-import QueryTable from "../../components/tables/QueryTable"
+import QueryTable from "../../components/tables/admin/QueryTable"
 
 const QueriesPage = () => {
     const { queries } = useSelector(state => state.app)

@@ -9,8 +9,8 @@ import { formatAmount, sumProcessAmount } from "../../helpers"
 import Layout from "../../layout"
 
 import Title from '../../components/common/Title'
-import OfferTable from "../../components/tables/OfferTable"
-import QueryTable from "../../components/tables/QueryTable"
+import OfferTable from "../../components/tables/admin/OfferTable"
+import QueryTable from "../../components/tables/admin/QueryTable"
 
 const ProcessesPage = () => {
     const { queries, offers } = useSelector(state => state.app)

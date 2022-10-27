@@ -535,6 +535,42 @@ export const sendOfferQueries = (id, selectedQueryIds, showConfirmationModal) =>
     }
 }
 
+export const saveProofImage = (id, url) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/transactions/proof-image/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                url: url,
+            })
+        })
+
+        const { success, message, data } = await res.json()
+
+        if (success) {
+            dispatch({
+                type: Types.SET_TRANSACTION_PROOF,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: Types.USER_ERROR,
+                payload: message
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
 export const showLoading = () => ({
     type: Types.SHOW_LOADING
 })

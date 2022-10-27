@@ -4,10 +4,9 @@ import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
-import BalanceSheetTable from "../../components/tables/BalanceSheetTable"
+import BalanceSheetTable from "../../components/tables/common/BalanceSheetTable"
 
 const BalanceSheetPage = () => {
-
     common.middleButtons = false
 
     return (

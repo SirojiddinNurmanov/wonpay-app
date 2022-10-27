@@ -41,7 +41,7 @@ const OfferTransactionDetailsPage = () => {
             <div className="assigned-queries-block">
                 <div className="block-title">Koreada pulni qabul qiluvchilar:</div>
                 {assigned_queries.length > 0 ? assigned_queries.map((query, i) =>
-                    <AssignedQueryCard key={query.id} i={i} {...(getQueryById(query.query_id))} {...query} />
+                    <AssignedQueryCard key={query.id} i={i} {...(getQueryById(query.query_id))} {...query} transactionId={transactionId}/>
                 ) : (
                     <NoData />
                 )}

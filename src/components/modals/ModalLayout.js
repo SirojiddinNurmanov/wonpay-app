@@ -1,0 +1,38 @@
+import React, { memo } from "react"
+import { Link } from "react-router-dom"
+import Modal from "react-bootstrap/Modal"
+
+const ModalLayout = ({ children, buttons, show, onHide }) => (
+    <Modal
+        show={show}
+        onHide={onHide}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        backdrop="static"
+    >
+        <Modal.Header closeButton>
+            <Modal.Title className="text-center">
+                <div className="logo">
+                    <img src="/assets/img/icons/logo.png" alt="logo" />
+                </div>
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            {children}
+        </Modal.Body>
+        <Modal.Footer>
+            {buttons && buttons.map(({ title, eventHandler, isLink, linkURL }) => (
+                isLink ? (
+                    <Link to={linkURL} key={title}>
+                        <button className="modal-button">{title}</button>
+                    </Link>
+                ) : (
+                    <button key={title} className="modal-button" onClick={eventHandler}>{title}</button>
+                )
+            ))}
+        </Modal.Footer>
+    </Modal>
+)
+
+export default memo(ModalLayout)

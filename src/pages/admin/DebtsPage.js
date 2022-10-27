@@ -7,7 +7,7 @@ import Layout from "../../layout"
 import QueryDebtModal from "../../components/modals/admin/QueryDebtModal"
 import OfferDebtModal from "../../components/modals/admin/OfferDebtModal"
 import Title from "../../components/common/Title"
-import DebtsTable from "../../components/tables/DebtsTable"
+import DebtsTable from "../../components/tables/admin/DebtsTable"
 
 const DebtsPage = () => {
     const [queryDebtModal, showQueryDebtModal] = useState(false)

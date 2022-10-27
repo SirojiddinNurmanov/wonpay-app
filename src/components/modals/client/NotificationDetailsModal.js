@@ -1,7 +1,9 @@
 import React, { memo } from "react"
 import { useDispatch } from "react-redux"
-import Modal from "react-bootstrap/Modal"
+
 import { setQueryRate, rejectQueryRate, setOfferRate, rejectOfferRate, setNotificationAsRead } from "../../../store/actions"
+
+import ModalLayout from "../ModalLayout"
 
 const NotificationDetailsModal = (props) => {
     const dispatch = useDispatch()
@@ -30,36 +32,29 @@ const NotificationDetailsModal = (props) => {
         props.onHide()
     }
 
+    const buttons = (props.type === 1 && props.status === 0) ? [
+        {
+            title: "Roziman",
+            eventHandler: () => accept()
+        },
+        {
+            title: "Noroziman",
+            eventHandler: () => reject()
+        }
+    ] : [
+        {
+            title: "Yopish",
+            eventHandler: () => props.onHide()
+        }
+    ]
+
     return (
-        <Modal
-            {...props}
-            centered
-            scrollable
-        >
-            <Modal.Header closeButton>
-                <Modal.Title className="text-center">
-                    <div className="logo">
-                        <img src="/assets/img/icons/logo.png" alt="logo" />
-                    </div>
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <div className="text-center">
-                    <h5 dangerouslySetInnerHTML={{ __html: props.title }} />
-                    <p dangerouslySetInnerHTML={{ __html: props.body }} />
-                </div>
-            </Modal.Body>
-            <Modal.Footer>
-                {props.type === 1 && props.status === 0 ? (
-                    <div className="model-buttons">
-                        <button className="modal-button" onClick={accept}>Roziman</button>
-                        <button className="modal-button reject" onClick={reject}>Noroziman</button>
-                    </div>
-                ) : (
-                    <button className="modal-button" onClick={props.onHide}>Yopish</button>
-                )}
-            </Modal.Footer>
-        </Modal >
+        <ModalLayout buttons={buttons} {...props}>
+            <div className="text-center">
+                <h5 dangerouslySetInnerHTML={{ __html: props.title }} />
+                <p dangerouslySetInnerHTML={{ __html: props.body }} />
+            </div>
+        </ModalLayout>
     )
 }
 

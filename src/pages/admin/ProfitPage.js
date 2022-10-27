@@ -1,5 +1,5 @@
 import React, { memo } from "react"
-import ProfitTable from "../../components/tables/ProfitTable"
+import ProfitTable from "../../components/tables/admin/ProfitTable"
 
 import { common } from '../../constants/bottomButtons'
 

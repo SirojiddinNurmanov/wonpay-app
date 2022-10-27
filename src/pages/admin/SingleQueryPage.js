@@ -42,7 +42,7 @@ const SingleQueryPage = () => {
         {
             text: "Tasdiqlash",
             callback: () => {
-                console.log("");
+                //
             }
         }
     ]
@@ -112,7 +112,11 @@ const SingleQueryPage = () => {
                                 ))}
                             </>
                         ) : (
-                            <option value={carriers[0].id}>{carriers[0].first_name + (carriers[0].last_name ? " " + carriers[0].last_name : "")}</option>
+                            carriers.length > 0 ? (
+                                <option value={carriers[0].id}>{carriers[0].first_name + (carriers[0].last_name ? " " + carriers[0].last_name : "")}</option>
+                            ) : (
+                                <option>Kuryer yo'q</option>
+                            )
                         ) : ""}
                     </select>
                 </div>

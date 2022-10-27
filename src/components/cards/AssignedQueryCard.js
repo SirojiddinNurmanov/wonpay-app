@@ -1,35 +1,47 @@
 import React, { memo, useState } from "react"
+import { useDispatch } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleDown, faCheckSquare } from "@fortawesome/free-solid-svg-icons"
 
+import { saveProofImage } from "../../store/actions"
 import { formatAmount } from "../../helpers"
 import { BACKEND_URL } from "../../constants"
 
 import EmptyBox from "../common/EmptyBox"
+import LoadingButton from "../common/LoadingButton"
 
-const AssignedQueryCard = ({ i, status, client: { first_name }, amount, proof_image = false, card_info_type, card_info_image, card_info_sms }) => {
+const AssignedQueryCard = ({ i, transactionId, status, client: { first_name }, amount, proof_image = false, card_info_type, card_info_image, card_info_sms }) => {
     const [done, setDone] = useState(status === 1)
     const [cardInfo, showCardInfo] = useState(false)
-    const [ proofImage, setProofImage ] = useState(proof_image)
-
+    const [loading, showLoading] = useState(false)
+    const [proofImage, setProofImage] = useState(proof_image)
+    const dispatch = useDispatch()
 
     const toggleCardBlock = () => {
         showCardInfo(!cardInfo)
     }
 
-    const uploadImageToServer = ({ target }) => {
+    const uploadImageToServer = async ({ target }) => {
+        showLoading(true)
         const body = new FormData()
         body.append("image", target.files[0])
-        fetch(`${BACKEND_URL}/save-photo`, {
-            method: "POST",
-            body: body
-        }).then(res => res.json())
-            .then(({ success, data }) => {
-                if (success) {
-                    setProofImage(data)
-                    setDone(true)
-                }
-            }).catch(err => console.log(err))
+
+        try {
+            let res = await fetch(`${BACKEND_URL}/save-photo`, {
+                method: "POST",
+                body: body
+            })
+
+            const { success, data } = await res.json()
+            if (success) {
+                setProofImage(data)
+                setDone(true)
+                dispatch(saveProofImage(transactionId, data))
+            }
+            showLoading(false)
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -62,6 +74,9 @@ const AssignedQueryCard = ({ i, status, client: { first_name }, amount, proof_im
                         )}
                     </div>
                     <input type="file" accept="image/jpeg, image/png" onChange={uploadImageToServer} className="hide" />
+                    {loading && (
+                        <LoadingButton />
+                    )}
                     {proofImage && (
                         <div className="payment-proof-image-block">
                             <img src={proofImage} alt="Payment Proof" />

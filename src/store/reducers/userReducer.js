@@ -111,6 +111,11 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 offers: state.offers.map(offer => (offer.id === payload.id) ? payload : offer)
             }
+        case Types.SET_TRANSACTION_PROOF:
+            return {
+                ...state,
+                transactions: state.transactions.map(transaction => (transaction.id === payload.id) ? payload : transaction)
+            }
         default:
             return state
     }

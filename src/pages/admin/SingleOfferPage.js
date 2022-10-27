@@ -11,8 +11,8 @@ import Layout from "../../layout"
 import WhiteLine from "../../components/common/WhiteLine"
 import OfferRateModal from "../../components/modals/admin/OfferRateModal"
 import OfferDollarModal from "../../components/modals/admin/OfferDollarModal"
-import OfferQueryTable from "../../components/tables/OfferQueryTable"
 import ConfirmationModal from "../../components/modals/admin/ConfirmationModal"
+import OfferQueryTable from "../../components/tables/admin/OfferQueryTable"
 
 const SingleOfferPage = () => {
     const [rateModal, showRateModal] = useState(false)

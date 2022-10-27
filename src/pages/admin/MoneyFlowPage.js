@@ -4,7 +4,7 @@ import { common } from '../../constants/bottomButtons'
 
 import Layout from "../../layout"
 
-import MoneyFlowTable from "../../components/tables/MoneyFlowTable"
+import MoneyFlowTable from "../../components/tables/admin/MoneyFlowTable"
 
 const MoneyFlowPage = () => {
     common.middleButtons = [

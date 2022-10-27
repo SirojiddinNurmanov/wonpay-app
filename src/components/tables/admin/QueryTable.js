@@ -1,12 +1,12 @@
 import React, { memo, useState } from "react"
 import { Link } from "react-router-dom"
-import Table from "react-bootstrap/Table"
 import { useSelector } from "react-redux"
 
-import { formatAmount } from "../../helpers"
+import { formatAmount } from "../../../helpers"
 
-import QueryInfoModal from "../modals/admin/QueryInfoModal"
-import QueryRateModal from "../modals/admin/QueryRateModal"
+import QueryInfoModal from "../../modals/admin/QueryInfoModal"
+import QueryRateModal from "../../modals/admin/QueryRateModal"
+import TableLayout from "../TableLayout"
 
 const QueryTable = () => {
     const [queryInfoModal, showQueryInfoModal] = useState(false)
@@ -26,21 +26,20 @@ const QueryTable = () => {
         }
     }
 
+    const headers = [
+        "Ism",
+        "Summa",
+        "Info",
+        "Kurs",
+        "Turi"
+    ]
+
     return (
-        <Table striped bordered hover size="sm" responsive className="process-table">
+        <TableLayout headers={headers}>
             <QueryInfoModal show={queryInfoModal} onHide={() => showQueryInfoModal(false)} {...modalInfo} />
             <QueryRateModal show={queryRateModal} onHide={() => showQueryRateModal(false)} {...modalInfo} />
-            <thead>
-                <tr>
-                    <th>Ism</th>
-                    <th>Summa</th>
-                    <th>Info</th>
-                    <th>Kurs</th>
-                    <th>Turi</th>
-                </tr>
-            </thead>
             {queries && (
-                <tbody>
+                <>
                     {queries.map((process) => {
                         if (process.assigned_offer) {
                             return ""
@@ -55,14 +54,14 @@ const QueryTable = () => {
                                 </td>
                                 <td>{formatAmount(process.amount)}</td>
                                 <td onClick={openInfoModal(process)} className="underlined">Ko'rish</td>
-                                <td onClick={openRateModal(process)} className="underlined">{process.rate_status === 3 ? "Rad etilgan" :  process.exchange_rate ? process.exchange_rate : process.temp_rate ? "Kutilmoqda" : "Kiritish"}</td>
+                                <td onClick={openRateModal(process)} className="underlined">{process.rate_status === 3 ? "Rad etilgan" : process.exchange_rate ? process.exchange_rate : process.temp_rate ? "Kutilmoqda" : "Kiritish"}</td>
                                 <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
                             </tr>
                         )
                     })}
-                </tbody>
+                </>
             )}
-        </Table>
+        </TableLayout>
     )
 }
 

@@ -1,13 +1,14 @@
 import React, { memo, useState } from "react"
 import { Link } from "react-router-dom"
-import { Table, Form } from "react-bootstrap"
+import { Form } from "react-bootstrap"
 import { useSelector } from "react-redux"
 
-import { formatAmount, sumProcessAmount } from "../../helpers"
+import { formatAmount, sumProcessAmount } from "../../../helpers"
 
-import QueryInfoModal from "../modals/admin/QueryInfoModal"
-import QueryRateModal from "../modals/admin/QueryRateModal"
-import AlertModal from "../modals/admin/AlertModal"
+import QueryInfoModal from "../../modals/admin/QueryInfoModal"
+import QueryRateModal from "../../modals/admin/QueryRateModal"
+import AlertModal from "../../modals/admin/AlertModal"
+import TableLayout from "../TableLayout"
 
 const OfferQueryTable = ({ amount, selectQueryIds }) => {
     const [queryInfoModal, showQueryInfoModal] = useState(false)
@@ -37,22 +38,21 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
         }
     }
 
+    const headers = [
+        "Ism",
+        "Summa",
+        "Turi",
+        "Kurs",
+        "Tanlash"
+    ]
+
     return (
-        <Table striped bordered hover size="sm" responsive className="process-table">
+        <TableLayout headers={headers}>
             <QueryInfoModal show={queryInfoModal} onHide={() => showQueryInfoModal(false)} {...modalInfo} />
             <QueryRateModal show={queryRateModal} onHide={() => showQueryRateModal(false)} {...modalInfo} />
             <AlertModal show={alertModal} onHide={() => showAlertModal(false)} />
-            <thead>
-                <tr>
-                    <th>Ism</th>
-                    <th>Summa</th>
-                    <th>Turi</th>
-                    <th>Kurs</th>
-                    <th>Tanlash</th>
-                </tr>
-            </thead>
             {queries && (
-                <tbody>
+                <>
                     {queries.map((process) => {
                         if (process.assigned_offer) {
                             return ""
@@ -78,9 +78,9 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
                         <td>Jami:</td>
                         <td>{formatAmount(sumProcessAmount(selectedQueries))}</td>
                     </tr>
-                </tbody>
+                </>
             )}
-        </Table>
+        </TableLayout>
     )
 }
 

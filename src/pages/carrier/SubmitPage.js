@@ -5,7 +5,7 @@ import { common } from "../../constants/bottomButtons"
 import Layout from "../../layout"
 
 import ConfirmReceiveModal from "../../components/modals/carrier/ConfirmReceiveModal"
-import SubmitMoneyTable from "../../components/tables/SubmitMoneyTable"
+import SubmitMoneyTable from "../../components/tables/carrier/SubmitMoneyTable"
 
 const SubmitPage = () => {
     const [modalShow, setModalShow] = useState(false)
