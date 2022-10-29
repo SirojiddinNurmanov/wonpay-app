@@ -14,8 +14,10 @@ const OfferTable = () => {
 
     const openRateModal = (process) => () => {
         if (process.assigned_queries.length === 0) {
-            showOfferRateModal(true)
-            setModalInfo(process)
+            if (process.rate_status !== 1) {
+                showOfferRateModal(true)
+                setModalInfo(process)
+            }
         }
     }
 
@@ -42,7 +44,7 @@ const OfferTable = () => {
                             </td>
                             <td>{formatAmount(process.amount)}</td>
                             <td >{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
-                            <td onClick={openRateModal(process)}>{process.buy_rate > 0 ? process.buy_rate : "Kiritish"}</td>
+                            <td onClick={openRateModal(process)}>{process.buy_rate > 0 ? process.buy_rate : process.rate_status === 1 ? "Kutilmoqda" : "Kiritish"}</td>
                             <td onClick={openRateModal(process)}>{process.sell_rate > 0 ? process.sell_rate : "Kiritish"}</td>
                             <td>
                                 <Link to={"/offers/" + process.id}>
