@@ -15,8 +15,18 @@ import SingleQueryPage from "../pages/admin/SingleQueryPage"
 import ProfitPage from "../pages/admin/ProfitPage"
 import NotificationsPage from "../pages/admin/NotificationsPage"
 import ProfilePage from "../pages/common/ProfilePage"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { getOffers, getQueries } from "../store/actions"
 
 const AdminApp = () => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getOffers())
+        dispatch(getQueries())
+    }, [])
+
     return (
         <Router>
             <Routes>

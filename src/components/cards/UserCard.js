@@ -24,7 +24,7 @@ const UserCard = ({ id, avatar, first_name, last_name, role }) => {
     return (
         <div className="add-carrier-item">
             <div className="image">
-                <img src={avatar} alt="Avatar" />
+                <img src={avatar ?? "/assets/img/icons/profile.png"} alt="Avatar" />
             </div>
             <div className="name">{first_name + (last_name ? " " + last_name : "")}</div>
             <div className="checkbox">

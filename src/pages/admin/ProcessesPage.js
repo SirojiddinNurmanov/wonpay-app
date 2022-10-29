@@ -34,7 +34,7 @@ const ProcessesPage = () => {
             </div>
 
             <Link to="/offers">
-                <Title text="Takliflar:" amount={"₩" + (offers ? formatAmount(sumProcessAmount(offers)) : "0")} inContent={true} />
+                <Title text="Takliflar:" amount={"₩" + (offers ? formatAmount(sumProcessAmount(offers.filter(offer => offer.assigned_queries === null))) : "0")} inContent={true} />
             </Link>
             <div className="processes-block">
                 <OfferTable />

@@ -1,17 +1,16 @@
 import React, { memo, useState } from "react"
 import { useDispatch } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAngleDown, faCheckSquare } from "@fortawesome/free-solid-svg-icons"
+import { faAngleDown, faCheckSquare, faTimesCircle, faTimesSquare } from "@fortawesome/free-solid-svg-icons"
 
-import { saveProofImage } from "../../store/actions"
+import { saveProofImage, unsetProofImage } from "../../store/actions"
 import { formatAmount } from "../../helpers"
 import { BACKEND_URL } from "../../constants"
 
 import EmptyBox from "../common/EmptyBox"
 import LoadingButton from "../common/LoadingButton"
 
-const AssignedQueryCard = ({ i, transactionId, status, client: { first_name }, amount, proof_image = false, card_info_type, card_info_image, card_info_sms }) => {
-    const [done, setDone] = useState(status === 1)
+const AssignedQueryCard = ({ i, id, status, client: { first_name }, amount, proof_image = false, card_info_type, card_info_image, card_info_sms }) => {
     const [cardInfo, showCardInfo] = useState(false)
     const [loading, showLoading] = useState(false)
     const [proofImage, setProofImage] = useState(proof_image)
@@ -35,13 +34,17 @@ const AssignedQueryCard = ({ i, transactionId, status, client: { first_name }, a
             const { success, data } = await res.json()
             if (success) {
                 setProofImage(data)
-                setDone(true)
-                dispatch(saveProofImage(transactionId, data))
+                dispatch(saveProofImage(id, data))
             }
             showLoading(false)
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
+    }
+
+    const deleteProofImage = () => {
+        setProofImage(false)
+        dispatch(unsetProofImage(id))
     }
 
     return (
@@ -55,8 +58,12 @@ const AssignedQueryCard = ({ i, transactionId, status, client: { first_name }, a
                 <div className="query-amount">
                     {"￦" + formatAmount(amount)}
                 </div>
-                {done ? (
-                    <FontAwesomeIcon icon={faCheckSquare} />
+                {proofImage ? (
+                    status === 2 ? (
+                        <FontAwesomeIcon icon={faTimesSquare} color="red" />
+                    ) : (
+                        <FontAwesomeIcon icon={faCheckSquare} />
+                    )
                 ) : (
                     <EmptyBox />
                 )}
@@ -80,9 +87,16 @@ const AssignedQueryCard = ({ i, transactionId, status, client: { first_name }, a
                     {proofImage && (
                         <div className="payment-proof-image-block">
                             <img src={proofImage} alt="Payment Proof" />
+                            {status !== 1 && (
+                                <div className="delete-image-button">
+                                    <FontAwesomeIcon icon={faTimesCircle} className="red" onClick={deleteProofImage} />
+                                </div>
+                            )}
                         </div>
                     )}
-                    <button className="upload-button" onClick={(e) => e.target.previousSibling.click()}>Chekni yuklash</button>
+                    {!proofImage && (
+                        <button className="upload-button" onClick={(e) => e.target.previousSibling.click()}>Chekni yuklash</button>
+                    )}
                 </div>
             )}
         </div>

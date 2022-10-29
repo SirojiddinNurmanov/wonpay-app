@@ -1,12 +1,6 @@
-import * as Types from "../actionTypes"
+import * as Types from "../../actionTypes/admin"
 
 const initialState = {
-    notifications: [],
-    unreadNotifications: [],
-    user: null,
-    loading: false,
-    error: '',
-    transactions: null,
     queries: null,
     offers: null,
     carriers: null,
@@ -17,44 +11,6 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case Types.GET_USER:
-            return {
-                ...state,
-                user: payload,
-                loading: false
-            }
-        case Types.GET_USER_NOTIFICATIONS:
-            return {
-                ...state,
-                notifications: payload,
-                unreadNotifications: payload.filter(notification => notification.status === 0)
-            }
-        case Types.USER_ERROR:
-            return {
-                ...state,
-                error: payload,
-                loading: false
-            }
-        case Types.SHOW_LOADING:
-            return {
-                ...state,
-                loading: true
-            }
-        case Types.HIDE_LOADING:
-            return {
-                ...state,
-                loading: false
-            }
-        case Types.GET_TRANSACTIONS:
-            return {
-                ...state,
-                transactions: payload
-            }
-        case Types.GET_PROCESSES:
-            return {
-                ...state,
-                processes: payload
-            }
         case Types.GET_QUERIES:
             return {
                 ...state,
@@ -101,22 +57,15 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state
             }
-        case Types.CHANGE_QUERY_STATUS:
         case Types.CHANGE_QUERY_RATE:
             return {
                 ...state,
                 queries: state.queries.map(query => (query.id === payload.id) ? payload : query)
             }
-        case Types.CLOSE_OFFER:
         case Types.CHANGE_OFFER_RATE:
             return {
                 ...state,
                 offers: state.offers.map(offer => (offer.id === payload.id) ? payload : offer)
-            }
-        case Types.SET_TRANSACTION_PROOF:
-            return {
-                ...state,
-                transactions: state.transactions.map(transaction => (transaction.id === payload.id) ? payload : transaction)
             }
         default:
             return state

@@ -13,9 +13,9 @@ import WhiteLine from "../../components/common/WhiteLine"
 
 const QueryTransactionDetailsPage = () => {
     // const [startDate, setStartDate] = useState(new Date())
-    const { transactions } = useSelector(state => state.app)
-    let { transactionId } = useParams()
-    const { exchange_rate, amount, card_info_type, card_info_sms, card_info_image } = transactions.find(transaction => transaction.id === parseInt(transactionId))
+    const { queries } = useSelector(state => state.app)
+    let { queryId } = useParams()
+    const { exchange_rate, amount, card_info_type, card_info_sms, card_info_image, proof_image, status } = queries.find(query => query.id === parseInt(queryId))
 
     common.middleButtons = false
 
@@ -69,6 +69,20 @@ const QueryTransactionDetailsPage = () => {
                     onChange={(date) => setStartDate(date)}
                 />
             </div> */}
+            <WhiteLine />
+            <div className="query-status-block">
+                {status === 1 ? (
+                    <>
+                        <div className="process-title text-center green">To'langan</div>
+                        <img src={proof_image} alt="Proof" />
+                    </>
+                ) : (
+                    <div className="process-title text-center waiting">Kutilmoqda</div>
+                )}
+            </div>
+            {status === 1 && (
+                <div className="spacer"></div>
+            )}
         </Layout>
     )
 }

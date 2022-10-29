@@ -1,5 +1,4 @@
-import React from "react"
-import { memo } from "react"
+import React, { memo } from "react"
 import { useNavigate } from "react-router-dom"
 
 const CircleButton = ({ icon, url = false, unreadNotifications = false }) => {

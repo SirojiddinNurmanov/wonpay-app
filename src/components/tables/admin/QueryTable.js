@@ -20,9 +20,11 @@ const QueryTable = () => {
     }
 
     const openRateModal = (process) => (e) => {
-        if ((process.exchange_rate !== 0) || (process.exchange_rate === 0 && process.temp_rate === 0)) {
-            showQueryRateModal(true)
-            setModalInfo(process)
+        if (!process.offer_id) {
+            if ((process.exchange_rate !== 0) || (process.exchange_rate === 0 && process.temp_rate === 0)) {
+                showQueryRateModal(true)
+                setModalInfo(process)
+            }
         }
     }
 
@@ -41,10 +43,6 @@ const QueryTable = () => {
             {queries && (
                 <>
                     {queries.map((process) => {
-                        if (process.assigned_offer) {
-                            return ""
-                        }
-
                         return (
                             <tr key={process.id}>
                                 <td>
@@ -54,7 +52,7 @@ const QueryTable = () => {
                                 </td>
                                 <td>{formatAmount(process.amount)}</td>
                                 <td onClick={openInfoModal(process)} className="underlined">Ko'rish</td>
-                                <td onClick={openRateModal(process)} className="underlined">{process.rate_status === 3 ? "Rad etilgan" : process.exchange_rate ? process.exchange_rate : process.temp_rate ? "Kutilmoqda" : "Kiritish"}</td>
+                                <td onClick={openRateModal(process)} className={"underlined" + (process.offer_id ? " rate-disabled" : "")}>{process.rate_status === 3 ? "Rad etilgan" : process.exchange_rate ? process.exchange_rate : process.temp_rate ? "Kutilmoqda" : "Kiritish"}</td>
                                 <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
                             </tr>
                         )

@@ -16,7 +16,7 @@ const QueryRateModal = (props) => {
 
     const buttons = [
         {
-            title: "",
+            title: "Tasdiqlash",
             eventHandler: () => confirmRate()
         }
     ]

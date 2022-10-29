@@ -1,0 +1,5 @@
+export const GET_USER = "GET_USER"
+export const GET_USER_NOTIFICATIONS = "GET_USER_NOTIFICATIONS"
+export const USER_ERROR = "USER_ERROR"
+export const SHOW_LOADING = "SHOW_LOADING"
+export const HIDE_LOADING = "HIDE_LOADING"

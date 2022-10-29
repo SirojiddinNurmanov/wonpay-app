@@ -20,7 +20,7 @@ const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_inf
     ]
 
     return (
-        <ModalLayout buttons={buttons} show={show}>
+        <ModalLayout buttons={buttons} show={show} onHide={onHide}>
             <div className="my-modal">
                 <div className="component71-header">
                     <h1>{amount ? "￦ " + formatAmount(amount) : ""}</h1>
@@ -31,8 +31,8 @@ const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_inf
                         <div className="container">
                             {payment_type === 1 && (
                                 <div className="row">
-                                    <div className={"col-" + (card_info_type === 1 ? "12" : "9")}>
-                                        <div className="card_info_block">
+                                    <div className="col">
+                                        <div className="card_info_block text-center">
                                             {card_info_type === 1 ? (
                                                 <img onClick={() => setZoomed(!zoomed)} className={"card-image" + (zoomed ? " zoomed" : "")} src={card_info_image} alt="Card" />
                                             ) : (
@@ -42,14 +42,6 @@ const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_inf
                                             )}
                                         </div>
                                     </div>
-                                    {card_info_type === 0 && (
-                                        <div className="col-3">
-                                            <img
-                                                src="/assets/img/icons/copy.png"
-                                                alt="copy"
-                                            />
-                                        </div>
-                                    )}
                                 </div>
                             )}
                         </div>

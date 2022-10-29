@@ -46,7 +46,11 @@ const OfferTable = () => {
                             <td onClick={openRateModal(process)}>{process.sell_rate > 0 ? process.sell_rate : "Kiritish"}</td>
                             <td>
                                 <Link to={"/offers/" + process.id}>
-                                    Taqsimlash
+                                    {process.status === 1 ? (
+                                        "Tugallangan"
+                                    ) : (
+                                        "Taqsimlash"
+                                    )}
                                 </Link>
                             </td>
                         </tr>

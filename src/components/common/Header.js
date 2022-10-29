@@ -24,7 +24,7 @@ const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
                 {fromAmount && (
                     <span className="balance-item">{fromAmount}</span>
                 )}
-                <img className="avatar" src={avatar ? avatar : "/assets/img/icons/profile.png"} alt="Avatar" />
+                <img className="avatar" src={avatar ?? "/assets/img/icons/profile.png"} alt="Avatar" />
             </div>
         </div>
     )

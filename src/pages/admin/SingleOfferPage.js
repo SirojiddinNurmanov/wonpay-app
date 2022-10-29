@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount } from "../../helpers"
-import { getCarriers, sendOfferQueries, setProcessCarrier } from "../../store/actions"
+import { closeOffer, getCarriers, sendOfferQueries, setProcessCarrier } from "../../store/actions"
 
 import Layout from "../../layout"
 
@@ -13,11 +13,14 @@ import OfferRateModal from "../../components/modals/admin/OfferRateModal"
 import OfferDollarModal from "../../components/modals/admin/OfferDollarModal"
 import ConfirmationModal from "../../components/modals/admin/ConfirmationModal"
 import OfferQueryTable from "../../components/tables/admin/OfferQueryTable"
+import OfferQueryProofTable from "../../components/tables/admin/OfferQueryProofTable"
+import CloseOfferModal from "../../components/modals/admin/CloseOfferModal"
 
 const SingleOfferPage = () => {
     const [rateModal, showRateModal] = useState(false)
     const [dollarModal, showDollarModal] = useState(false)
     const [confirmationModal, showConfirmationModal] = useState(false)
+    const [closeOfferModal, showCloseOfferModal] = useState(false)
     const [selectedIds, setSelectedIds] = useState([])
     const [carrierId, setCarrierId] = useState()
     const { offers, carriers } = useSelector(state => state.app)
@@ -39,11 +42,19 @@ const SingleOfferPage = () => {
     }
 
     const openModal = (e) => {
-        showRateModal(true)
+        if (offer.assigned_queries.length === 0) {
+            showRateModal(true)
+        }
     }
 
     const openDollarModal = (e) => {
-        showDollarModal(true)
+        if (offer.assigned_queries.length === 0) {
+            showDollarModal(true)
+        }
+    }
+
+    const closeOfferHandler = (e) => {
+        dispatch(closeOffer(offer.id))
     }
 
     common.middleButtons = [
@@ -58,6 +69,19 @@ const SingleOfferPage = () => {
         }
     ]
 
+    if (offer.assigned_queries.length > 0 && offer.status === 0) {
+        common.middleButtons = [
+            {
+                text: "Tugatish",
+                callback: () => showCloseOfferModal(true),
+            }
+        ]
+    }
+
+    if (offer.status !== 0) {
+        common.middleButtons = false
+    }
+
     const selectCarrier = ({ target: { value } }) => {
         setCarrierId(value)
         dispatch(setProcessCarrier(offerId, value))
@@ -68,6 +92,7 @@ const SingleOfferPage = () => {
             <OfferRateModal show={rateModal} onHide={() => showRateModal(false)} {...offer} />
             <OfferDollarModal show={dollarModal} onHide={() => showDollarModal(false)} {...offer} />
             <ConfirmationModal show={confirmationModal} onHide={() => showConfirmationModal(false)} />
+            <CloseOfferModal show={closeOfferModal} onHide={() => showCloseOfferModal(false)} closeOfferHandler={closeOfferHandler} />
             <div className="offer-owner-block">
                 <div className="process-owner">
                     <div className="process-owner-name">{offer.client.first_name + (offer.client.last_name ? " " + offer.client.last_name : "")}</div>
@@ -75,7 +100,7 @@ const SingleOfferPage = () => {
                 </div>
                 <div className="process-rate-block">
                     <div className="process-rate-item">Olish</div>
-                    <div className="process-rate underlined" onClick={openModal}>{offer.buy_rate > 0 ? offer.buy_rate : "Kiritish"}</div>
+                    <div className="process-rate underlined" onClick={openModal}>{offer.buy_rate > 0 ? offer.buy_rate : offer.rate_status === 1 ? "Kutilmoqda" : "Kiritish"}</div>
                 </div>
                 <div className="process-rate-block">
                     <div className="process-rate-item">Sotish</div>
@@ -122,6 +147,13 @@ const SingleOfferPage = () => {
                 <div className="process-queries-block">
                     <div className="process-title">Mos Keluvchi So'rovlar:</div>
                     <OfferQueryTable  {...offer} selectQueryIds={selectQueryIds} />
+                </div>
+            )}
+
+            {offer.assigned_queries.length > 0 && (
+                <div className="process-queries-block">
+                    <div className="process-title">Taqsimlangan So'rovlar:</div>
+                    <OfferQueryProofTable  {...offer} selectedQueries={offer.assigned_queries} />
                 </div>
             )}
         </Layout>

@@ -109,6 +109,14 @@ a {
     color: red !important;
 }
 
+.green {
+    color: green !important;
+}
+
+.waiting {
+    color: var(--yellow-color) !important;
+}
+
 .home-buttons button:hover {
     background-color: var(--yellow-color);
 }
@@ -1269,6 +1277,7 @@ a {
     display: grid;
     grid-template-columns: 50% 50%;
     font-weight: bold;
+    margin: 1em 0;
 }
 
 .assigned-queries-block .block-right {
@@ -1286,6 +1295,10 @@ a {
     padding: 15px 0;
 }
 
+.query-card-info-block .card-info-item img {
+    width: 100%;
+}
+
 .query-card-info-block .upload-button {
     height: 40px;
     color: var(--white-color);
@@ -1297,12 +1310,20 @@ a {
 }
 
 .payment-proof-image-block {
+    position: relative;
     width: 100%;
     padding: 10px;
 }
 
 .payment-proof-image-block img {
     width: 100%;
+}
+
+.payment-proof-image-block .delete-image-button {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 1.5em;
 }
 
 .empty-box {
@@ -1337,6 +1358,10 @@ a {
 
 .hide {
     display: none;
+}
+
+.rate-disabled {
+    color: red !important;
 }
 
 /* Client App Styles */
@@ -1500,7 +1525,7 @@ a {
 
 .spacer {
     width: calc(100vw - 30px);
-    height: 50vh;
+    height: 45px;
 }
 
 .confirmation-button {
@@ -1704,6 +1729,16 @@ a {
     text-align: center;
 }
 
+.query-status-block .process-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.query-status-block img {
+    width: 100%;
+}
+
 /* Single Query Info Page - admin */
 
 .process-owner-block {
@@ -1741,6 +1776,20 @@ a {
     margin-right: 8vw;
     font-weight: bold;
     font-size: .9em;
+}
+
+.process-offer-block .process-title {
+    margin-bottom: 10px;
+}
+
+.process-offer-block .proof-block img {
+    width: 100%;
+}
+
+.process-offer-block .proof-block .proof-wait-title {
+    color: red;
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
 .card-info-block {
@@ -1781,6 +1830,7 @@ a {
     justify-content: center;
 }
 
+.select-block select,
 .process-carrier-list select {
     background-color: transparent;
     border: 0;
@@ -1811,4 +1861,8 @@ a {
 
 .checkbox-block .checkbox input {
     margin: 0 !important;
+}
+
+.proof-modal-item img {
+    width: 100%;
 }

@@ -1,140 +1,6 @@
-import * as Types from "../actionTypes"
-
-import { BACKEND_URL } from "../../constants"
-
-export const getUserNotifications = () => async (dispatch, getState) => {
-    try {
-        const user = getState().app.user
-
-        const res = await fetch(`${BACKEND_URL}/notifications`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${user.token}`
-            }
-        })
-
-        const { success, message, data } = await res.json()
-
-        if (success) {
-            dispatch({
-                type: Types.GET_USER_NOTIFICATIONS,
-                payload: data
-            })
-        } else {
-            dispatch({
-                type: Types.USER_ERROR,
-                payload: message
-            })
-        }
-    } catch (error) {
-        dispatch({
-            type: Types.USER_ERROR,
-            payload: error.response.statusText
-        })
-    }
-}
-
-export const setNotificationAsRead = (notificationId) => async (dispatch, getState) => {
-    try {
-        const token = getState().app.user.token
-
-        const res = await fetch(`${BACKEND_URL}/notifications/as-read/${notificationId}`, {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        })
-
-        await res.json()
-    } catch (error) {
-        console.log(error)
-        dispatch({
-            type: Types.USER_ERROR,
-            payload: error.response.statusText
-        })
-    }
-}
-
-export const getUser = () => async (dispatch) => {
-    try {
-        showLoading()
-
-        let chat_id = localStorage.getItem('chat_id')
-
-        let params = window.location.search.split("=")
-        if (params.length === 2) {
-            if (params[0] === "?chat_id") {
-                chat_id = params[1]
-            }
-        }
-
-        if (chat_id) {
-            localStorage.setItem('chat_id', chat_id)
-        }
-
-        const res = await fetch(`${BACKEND_URL}/bot-login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                chat_id
-            })
-        })
-
-        const { success, message, data } = await res.json()
-
-        if (success) {
-            dispatch({
-                type: Types.GET_USER,
-                payload: data
-            })
-        } else {
-            dispatch({
-                type: Types.USER_ERROR,
-                payload: message
-            })
-        }
-    } catch (error) {
-        dispatch({
-            type: Types.USER_ERROR,
-            payload: error.response.statusText
-        })
-    } finally {
-        hideLoading()
-    }
-}
-
-export const getTransactions = () => async (dispatch, getState) => {
-    try {
-        const user = getState().app.user
-
-        const res = await fetch(`${BACKEND_URL}/processes`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${user.token}`
-            }
-        })
-
-        const { success, message, data } = await res.json()
-
-        if (success) {
-            dispatch({
-                type: Types.GET_TRANSACTIONS,
-                payload: data
-            })
-        } else {
-            dispatch({
-                type: Types.USER_ERROR,
-                payload: message
-            })
-        }
-    } catch (error) {
-        dispatch({
-            type: Types.USER_ERROR,
-            payload: error.response.statusText
-        })
-    }
-}
+import * as Types from "../../actionTypes/admin"
+import * as CommonTypes from "../../actionTypes/common"
+import { BACKEND_URL } from "../../../constants"
 
 export const getQueries = () => async (dispatch, getState) => {
     try {
@@ -156,13 +22,13 @@ export const getQueries = () => async (dispatch, getState) => {
             })
         } else {
             dispatch({
-                type: Types.USER_ERROR,
+                type: CommonTypes.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -188,13 +54,13 @@ export const getOffers = () => async (dispatch, getState) => {
             })
         } else {
             dispatch({
-                type: Types.USER_ERROR,
+                type: CommonTypes.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -220,13 +86,13 @@ export const getCarriers = () => async (dispatch, getState) => {
             })
         } else {
             dispatch({
-                type: Types.USER_ERROR,
+                type: CommonTypes.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -252,13 +118,13 @@ export const getAllUsers = () => async (dispatch, getState) => {
             })
         } else {
             dispatch({
-                type: Types.USER_ERROR,
+                type: CommonTypes.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -283,9 +149,12 @@ export const toggleUserRoles = (carriers, clients) => async (dispatch, getState)
         await res.json()
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
+    } finally {
+        dispatch(getCarriers())
+        dispatch(getAllUsers())
     }
 }
 
@@ -341,7 +210,7 @@ export const changeQueryRate = (id, value) => async (dispatch, getState) => {
 
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -360,7 +229,7 @@ export const setQueryRate = (id) => async (dispatch, getState) => {
         await res.json()
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -380,7 +249,7 @@ export const rejectQueryRate = (id) => async (dispatch, getState) => {
 
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -417,7 +286,7 @@ export const changeOfferRate = (id, buyRate, sellRate) => async (dispatch, getSt
 
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -437,7 +306,7 @@ export const setOfferRate = (id) => async (dispatch, getState) => {
 
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -457,7 +326,7 @@ export const rejectOfferRate = (id) => async (dispatch, getState) => {
 
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -486,13 +355,13 @@ export const setProcessCarrier = (id, carrierId) => async (dispatch, getState) =
             })
         } else {
             dispatch({
-                type: Types.USER_ERROR,
+                type: CommonTypes.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
@@ -523,146 +392,14 @@ export const sendOfferQueries = (id, selectedQueryIds, showConfirmationModal) =>
             })
         } else {
             dispatch({
-                type: Types.USER_ERROR,
+                type: CommonTypes.USER_ERROR,
                 payload: message
             })
         }
     } catch (error) {
         dispatch({
-            type: Types.USER_ERROR,
+            type: CommonTypes.USER_ERROR,
             payload: error.response.statusText
         })
     }
 }
-
-export const saveProofImage = (id, url) => async (dispatch, getState) => {
-    try {
-        const { token } = getState().app.user
-
-        const res = await fetch(`${BACKEND_URL}/processes/queries/proof-image/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                url: url,
-            })
-        })
-
-        const { success, message, data } = await res.json()
-
-        if (success) {
-            dispatch({
-                type: Types.SET_TRANSACTION_PROOF,
-                payload: data
-            })
-        } else {
-            dispatch({
-                type: Types.USER_ERROR,
-                payload: message
-            })
-        }
-    } catch (error) {
-        dispatch({
-            type: Types.USER_ERROR,
-            payload: error.response.statusText
-        })
-    }
-}
-
-export const unsetProofImage = (id, url) => async (dispatch, getState) => {
-    try {
-        const { token } = getState().app.user
-
-        const res = await fetch(`${BACKEND_URL}/processes/queries/unset-proof-image/${id}`, {
-            method: "PUT",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        })
-
-        const { success, message, data } = await res.json()
-
-        if (success) {
-            dispatch({
-                type: Types.SET_TRANSACTION_PROOF,
-                payload: data
-            })
-        } else {
-            dispatch({
-                type: Types.USER_ERROR,
-                payload: message
-            })
-        }
-    } catch (error) {
-        dispatch({
-            type: Types.USER_ERROR,
-            payload: error.response.statusText
-        })
-    }
-}
-
-export const changeQueryStatus = (id, value) => async (dispatch, getState) => {
-    try {
-        const { token } = getState().app.user
-
-        const res = await fetch(`${BACKEND_URL}/processes/queries/changestatus/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                value
-            })
-        })
-
-        const { data } = await res.json()
-
-        dispatch({
-            type: Types.CHANGE_QUERY_STATUS,
-            payload: data
-        })
-
-    } catch (error) {
-        dispatch({
-            type: Types.USER_ERROR,
-            payload: error.response.statusText
-        })
-    }
-}
-
-export const closeOffer = (offerId) => async (dispatch, getState) => {
-    try {
-        const { token } = getState().app.user
-
-        const res = await fetch(`${BACKEND_URL}/processes/offers/closeoffer/${offerId}`, {
-            method: "PUT",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            },
-        })
-
-        const { data } = await res.json()
-
-        dispatch({
-            type: Types.CLOSE_OFFER,
-            payload: data
-        })
-
-    } catch (error) {
-        dispatch({
-            type: Types.USER_ERROR,
-            payload: error.response.statusText
-        })
-    }
-}
-
-export const showLoading = () => ({
-    type: Types.SHOW_LOADING
-})
-
-export const hideLoading = () => ({
-    type: Types.HIDE_LOADING
-})
