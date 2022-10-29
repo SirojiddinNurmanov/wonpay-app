@@ -32,7 +32,7 @@ const OfferTransactionDetailsPage = () => {
             <WhiteLine color="black" />
             <div className="assigned-queries-block">
                 <div className="block-title">Koreada pulni qabul qiluvchilar:</div>
-                {assigned_queries.length > 0 ? assigned_queries.map((query, i) =>
+                {assigned_queries.length > 0 ? assigned_queries.filter(query => query->exchange_rate !== 0).map((query, i) =>
                     <AssignedQueryCard key={query.id} i={i} {...(getQueryById(query.id))} {...query}/>
                 ) : (
                     <NoData />
