@@ -214,6 +214,7 @@ export const getCarriers = () => async (dispatch, getState) => {
         const { success, message, data } = await res.json()
 
         if (success) {
+            console.log(data);
             dispatch({
                 type: Types.GET_CARRIERS,
                 payload: data
@@ -657,6 +658,32 @@ export const closeOffer = (offerId) => async (dispatch, getState) => {
             payload: error.response.statusText
         })
     }
+}
+
+export const clientGiveMoney = (userId, amount) => async (dispatch, getState) => {
+    // try {
+        let { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/moneyflow/givemoney`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                amount: amount
+            })
+        })
+
+        const { message } = await res.json()
+
+        console.log(message);
+    // } catch (error) {
+    //     dispatch({
+    //         type: Types.USER_ERROR,
+    //         payload: error.response.statusText
+    //     })
+    // }
 }
 
 export const showLoading = () => ({

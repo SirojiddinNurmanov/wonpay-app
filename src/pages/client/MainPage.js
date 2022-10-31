@@ -1,13 +1,16 @@
 import React, { memo, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+
+import { getUserNotifications } from "../../store/actions"
+import { formatAmount } from "../../helpers"
 
 import Layout from "../../layout"
 
 import MenuCards from "../../components/cards/MenuCards"
-import { getUserNotifications } from "../../store/actions"
 
 const MainPage = () => {
+    const { debit, balance, credit } = useSelector(state => state.app.user.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -19,12 +22,13 @@ const MainPage = () => {
         // eslint-disable-next-line
     }, [])
 
+
     return (
         <Layout>
             <div className="home-body">
                 <div className="home-money">
                     <span>Sizning Xisobingiz:</span>
-                    <span>$0.0</span>
+                    <span>{"￦" + formatAmount(debit + balance - credit)}</span>
                 </div>
                 <MenuCards app="client" />
             </div>

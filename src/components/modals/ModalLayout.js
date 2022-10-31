@@ -22,13 +22,13 @@ const ModalLayout = ({ children, buttons, show, onHide }) => (
             {children}
         </Modal.Body>
         <Modal.Footer>
-            {buttons && buttons.map(({ title, eventHandler, isLink, linkURL }) => (
+            {buttons && buttons.map(({ title, eventHandler, isLink, linkURL, secondary = false }) => (
                 isLink ? (
                     <Link to={linkURL} key={title}>
-                        <button className="modal-button">{title}</button>
+                        <button className={"modal-button" + (secondary ? " secondary" : "")}>{title}</button>
                     </Link>
                 ) : (
-                    <button key={title} className="modal-button" onClick={eventHandler}>{title}</button>
+                    <button key={title} className={"modal-button" + (secondary ? " secondary" : "")} onClick={eventHandler}>{title}</button>
                 )
             ))}
         </Modal.Footer>
