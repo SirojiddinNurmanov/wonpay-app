@@ -27,7 +27,7 @@ const QueryRateModal = (props) => {
                 <div className="offer-modal-input">
                     <div className="put-money-input">
                         <label htmlFor="put_money">Kurs:</label>
-                        <input type="number" defaultValue={props.exchange_rate} onChange={({ target }) => setNewValue(target.value)} />
+                        <input type="number" defaultValue={props.exchange_rate == 0 ? "" : props.exchange_rate} onChange={({ target }) => setNewValue(target.value)} />
                     </div>
                 </div>
             </div>

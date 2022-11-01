@@ -46,7 +46,7 @@ const OfferRateModal = (props) => {
             <div className="offer-modal-input">
                 <div className="put-money-input">
                     <label>Olish:
-                        <input type="number" defaultValue={props.buy_rate} onChange={changeBuyRateValue} />
+                        <input type="number" defaultValue={props.buy_rate == 0 ? "" : props.buy_rate} onChange={changeBuyRateValue} />
                     </label>
                 </div>
             </div>
@@ -54,7 +54,7 @@ const OfferRateModal = (props) => {
             <div className="offer-modal-input">
                 <div className="put-money-input">
                     <label>Sotish:
-                        <input type="number" defaultValue={props.sell_rate} onChange={changeSellRateValue} />
+                        <input type="number" defaultValue={props.sell_rate == 0 ? "" : props.sell_rate} onChange={changeSellRateValue} />
                     </label>
                 </div>
             </div>
