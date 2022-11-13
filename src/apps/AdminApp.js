@@ -45,7 +45,7 @@ const AdminApp = () => {
                 <Route path="/queries/:queryId" element={<SingleQueryPage />} />
                 <Route path="/profit" element={<ProfitPage />} />
                 <Route path="/notifications" element={<NotificationsPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile/:userId" element={<ProfilePage />} />
             </Routes>
         </Router>
     )

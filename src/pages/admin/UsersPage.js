@@ -4,6 +4,7 @@ import Spinner from "react-bootstrap/Spinner"
 
 import { getAllUsers } from "../../store/actions"
 import { common } from '../../constants/bottomButtons'
+import { Link } from "react-router-dom"
 
 import Layout from '../../layout'
 
@@ -39,7 +40,9 @@ const UsersPage = () => {
                 </div>
             )}
             {allUsers ? allUsers.filter(user => user.role === 'client').map((user, index) => (
-                <CarrierCard key={index} {...user} />
+                <Link key={index} to={"/profile/" + user.id}>
+                    <CarrierCard {...user} />
+                </Link>
             )) : (<NoData />)}
         </Layout>
     )
