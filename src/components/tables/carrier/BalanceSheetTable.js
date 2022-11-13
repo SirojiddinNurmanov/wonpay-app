@@ -2,7 +2,7 @@ import React, { memo } from "react"
 
 import TableLayout from "../TableLayout"
 
-const SubmitMoneyTable = () => {
+const BalanceSheetTable = () => {
     const headers = [
         "Ism",
         "Umumiy Summa",
@@ -19,4 +19,4 @@ const SubmitMoneyTable = () => {
     )
 }
 
-export default memo(SubmitMoneyTable)
+export default memo(BalanceSheetTable)

@@ -1,7 +1,7 @@
 import React, { memo } from "react"
 import { useDispatch } from "react-redux"
 
-import { setQueryRate, rejectQueryRate, setOfferRate, rejectOfferRate, setNotificationAsRead } from "../../../store/actions"
+import { setQueryRate, rejectQueryRate, setOfferRate, rejectOfferRate, setNotificationAsRead, confirmGivenMoney, rejectGivenMoney } from "../../../store/actions"
 
 import ModalLayout from "../ModalLayout"
 
@@ -32,21 +32,50 @@ const NotificationDetailsModal = (props) => {
         props.onHide()
     }
 
-    const buttons = (props.type === 1 && props.status === 0) ? [
-        {
-            title: "Roziman",
-            eventHandler: () => accept()
-        },
-        {
-            title: "Noroziman",
-            eventHandler: () => reject()
-        }
-    ] : [
-        {
-            title: "Yopish",
-            eventHandler: () => props.onHide()
-        }
-    ]
+    const confirmMoney = () => {
+        dispatch(confirmGivenMoney(props.process_id))
+        dispatch(setNotificationAsRead(props.id))
+        props.onHide()
+    }
+    
+    const rejectMoney = () => {
+        dispatch(rejectGivenMoney(props.process_id))
+        dispatch(setNotificationAsRead(props.id))
+        props.onHide()
+    }
+
+    let buttons = []
+
+    if (props.type === 1 && props.status === 0) {
+        buttons = [
+            {
+                title: "Roziman",
+                eventHandler: () => accept()
+            },
+            {
+                title: "Noroziman",
+                eventHandler: () => reject()
+            }
+        ]
+    } else if (props.type === 2 && props.status === 0) {
+        buttons = [
+            {
+                title: "Ha",
+                eventHandler: () => confirmMoney()
+            },
+            {
+                title: "Yo'q",
+                eventHandler: () => rejectMoney()
+            }
+        ]
+    } else {
+        buttons = [
+            {
+                title: "Yopish",
+                eventHandler: () => props.onHide()
+            }
+        ]
+    }
 
     return (
         <ModalLayout buttons={buttons} {...props}>

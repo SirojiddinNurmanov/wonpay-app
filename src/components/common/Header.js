@@ -18,7 +18,7 @@ const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
                 {balance && (
                     <>
                         <span className="balance-item">{balance}</span>
-                        <div className="line">|</div>
+                        {/* <div className="line">|</div> */}
                     </>
                 )}
                 {fromAmount && (

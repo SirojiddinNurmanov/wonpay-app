@@ -1,15 +1,18 @@
 import React, { memo, useState, useEffect } from "react"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getUserNotifications } from "../../store/actions"
 
 import Layout from "../../layout"
 
 import MenuCards from "../../components/cards/MenuCards"
+import { formatAmount } from "../../helpers"
 
 const MainPage = () => {
+    const { balance } = useSelector(state => state.app.user.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(getUserNotifications())
         let interval = localStorage.getItem('interval')
         clearInterval(interval)
         interval = setInterval(() => dispatch(getUserNotifications()), (1000 * 2))
@@ -18,13 +21,13 @@ const MainPage = () => {
         // eslint-disable-next-line
     }, [])
 
-    const [avatar] = useState("/assets/img/icons/profile.png")
-    const [toAmount] = useState("")
-    const [balance] = useState("")
-    const [fromAmount] = useState("")
+    const headerData = {
+        avatar: "/assets/img/icons/profile.png",
+        balance: "$" + formatAmount(balance),
+    }    
 
     return (
-        <Layout headerData={{ avatar, toAmount, balance, fromAmount }}>
+        <Layout headerData={headerData}>
             <MenuCards app="admin" />
         </Layout>
     )

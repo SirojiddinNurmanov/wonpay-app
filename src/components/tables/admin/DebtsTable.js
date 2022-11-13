@@ -1,23 +1,27 @@
-import React, { memo, useState } from "react"
+import React, { memo } from "react"
 
-import QueryDebtModal from "../../modals/admin/QueryDebtModal"
+import { formatAmount } from '../../../helpers'
+
 import TableLayout from "../TableLayout"
 
-const DebtsTable = () => {
-    const [queryDebtModal, showQueryDebtModal] = useState(false)
-    const [modalInfo, setModalInfo] = useState()
-
+const DebtsTable = ({ users }) => {
     const headers = [
         "Ism",
-        "Summa",
-        "Info",
-        "Kurs",
+        // "Summa",
+        // "Info",
+        // "Kurs",
         "Qarz"
     ]
 
     return (
         <TableLayout headers={headers}>
-            <QueryDebtModal show={queryDebtModal} onHide={() => showQueryDebtModal(false)} {...modalInfo} />
+            {users && users.map(user => (
+                <tr key={user.id}>
+                    <td>{user.first_name + (user.last_name ? " " + user.last_name : "")}</td>
+                    {/* <td></td> */}
+                    <td>{"$ " + formatAmount(user.balance).toString().replace('-', '')}</td>
+                </tr>
+            ))}
         </TableLayout >
     )
 }

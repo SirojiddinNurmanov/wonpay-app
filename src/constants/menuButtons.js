@@ -1,18 +1,18 @@
 export const MenuButtons = {
     "admin": [
-        {
-            id: 1,
-            url: "/navercourse",
-            image: "/assets/img/menu-icons/naver.png",
-            alt: "Naver kurslari",
-            text: ["Naver ", <br />, "Valyuta kurslari"]
-        },
+        // {
+        //     id: 1,
+        //     url: "/navercourse",
+        //     image: "/assets/img/menu-icons/naver.png",
+        //     alt: "Naver kurslari",
+        //     text: ["Naver ", <br />, "Valyuta kurslari"]
+        // },
         {
             id: 2,
-            url: "/uzbcourse",
-            image: "/assets/img/menu-icons/uzbek.png",
-            alt: "O'zbekiston banklari kurslari",
-            text: ["O'zbekiston ", <br />, "banklari kurslari"]
+            url: "/users",
+            image: "/assets/img/icons/profile.png",
+            alt: "Foydalanuvchilar",
+            text: "Foydalanuvchilar"
         },
         {
             id: 3,
@@ -41,15 +41,15 @@ export const MenuButtons = {
         },
         {
             id: 7,
-            url: "/processes",
-            image: "/assets/img/menu-icons/offer-query.png",
-            text: "Takliflar / So'rovlar"
-        },
-        {
-            id: 8,
             url: "/profit",
             image: "/assets/img/menu-icons/profit.png",
             text: ["Umumiy ", <br />, "Foyda"]
+        },
+        {
+            id: 8,
+            url: "/processes",
+            image: "/assets/img/menu-icons/offer-query.png",
+            text: "Takliflar / So'rovlar"
         },
         {
             id: 9,

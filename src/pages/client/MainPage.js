@@ -2,7 +2,7 @@ import React, { memo, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
-import { getUserNotifications } from "../../store/actions"
+import { getUser, getUserNotifications } from "../../store/actions"
 import { formatAmount } from "../../helpers"
 
 import Layout from "../../layout"
@@ -10,10 +10,12 @@ import Layout from "../../layout"
 import MenuCards from "../../components/cards/MenuCards"
 
 const MainPage = () => {
-    const { debit, balance, credit } = useSelector(state => state.app.user.user)
+    const { balance } = useSelector(state => state.app.user.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(getUser())
+        dispatch(getUserNotifications())
         let interval = localStorage.getItem('interval')
         clearInterval(interval)
         interval = setInterval(() => dispatch(getUserNotifications()), (1000 * 2))
@@ -22,16 +24,18 @@ const MainPage = () => {
         // eslint-disable-next-line
     }, [])
 
+    const headerData = {
+        avatar: "/assets/img/icons/profile.png",
+        balance: "$" + formatAmount(balance),
+    }
 
     return (
-        <Layout>
-            <div className="home-body">
-                <div className="home-money">
-                    <span>Sizning Xisobingiz:</span>
-                    <span>{"￦" + formatAmount(debit + balance - credit)}</span>
-                </div>
-                <MenuCards app="client" />
+        <Layout headerData={headerData}>
+            <div className="balance">
+                <span>Sizning Xisobingiz:</span>
+                <span>{"$" + formatAmount(balance)}</span>
             </div>
+            <MenuCards app="client" />
             <div className="home-buttons">
                 <Link to="/query">
                     <button className="money-btn">Uzb {">>"} Kor</button>

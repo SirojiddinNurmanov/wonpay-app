@@ -7,7 +7,7 @@ import UserCard from "../../cards/UserCard"
 import ModalLayout from "../ModalLayout"
 
 const UsersModal = (props) => {
-    const { allusers, newCarriers, newClients } = useSelector(state => state.app)
+    const { allUsers, newCarriers, newClients } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
 
@@ -32,7 +32,7 @@ const UsersModal = (props) => {
     return (
         <ModalLayout buttons={buttons} {...props}>
             <div className="my-modal">
-                {allusers && allusers.map(user => {
+                {allUsers && allUsers.map(user => {
                     if (!['admin', 'superadmin'].includes(user.role)) {
                         return (
                             <UserCard key={user.id} {...user} />

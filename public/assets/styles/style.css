@@ -57,7 +57,7 @@ a {
 }
 
 .home-profile .balance-item {
-    font-size: 3vw;
+    font-size: 1em;
     white-space: nowrap;
 }
 
@@ -71,7 +71,7 @@ a {
 
 }
 
-.home-money {
+.balance {
     padding: 20px 0;
     display: flex;
     justify-content: space-between;
@@ -79,7 +79,7 @@ a {
     font-size: 20px;
 }
 
-.home-money span:last-child {
+.balance span:last-child {
     font-weight: 700;
 }
 
@@ -1912,4 +1912,9 @@ a {
     background-color: var(--background-color);
     border: 2px solid var(--main-color);
     color: var(--main-color);
+}
+
+.modal-button.disabled {
+    background-color: #dedede;
+    color: var(--title-color);
 }

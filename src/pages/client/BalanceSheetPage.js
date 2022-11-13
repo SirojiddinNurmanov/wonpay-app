@@ -1,16 +1,17 @@
 import React, { memo, useState, useEffect } from "react"
 
+import { useDispatch, useSelector } from "react-redux"
+import { getAllUsers, getTransactions } from "../../store/actions"
 import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
 import BalanceSheetTable from "../../components/tables/common/BalanceSheetTable"
 import GiveMoneyModal from "../../components/modals/client/GiveMoneyModal"
-import { useDispatch } from "react-redux"
-import { getCarriers } from "../../store/actions"
 
 const BalanceSheetPage = () => {
     const [giveMoneyModal, showGiveMoneyModal] = useState(false)
+    const { transactions } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
     common.middleButtons = [
@@ -23,14 +24,16 @@ const BalanceSheetPage = () => {
     ]
 
     useEffect(() => {
-        dispatch(getCarriers())
+        dispatch(getAllUsers())
+        dispatch(getTransactions())
+        // eslint-disable-next-line
     }, [])
 
     return (
         <Layout buttons={common} title={{ text: "Oldi Berdilar:" }}>
-            <GiveMoneyModal show={giveMoneyModal} onHide={() => showGiveMoneyModal(false)} />    
+            <GiveMoneyModal show={giveMoneyModal} onHide={() => showGiveMoneyModal(false)} />
             <div className="processes-block">
-                <BalanceSheetTable />
+                <BalanceSheetTable transactions={transactions} />
             </div>
         </Layout>
     )

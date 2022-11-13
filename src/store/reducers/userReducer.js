@@ -12,7 +12,8 @@ const initialState = {
     carriers: null,
     newCarriers: [],
     newClients: [],
-    allusers: null
+    allUsers: null,
+    moneyflow: []
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -74,7 +75,7 @@ const reducer = (state = initialState, { type, payload }) => {
         case Types.GET_ALL_USERS:
             return {
                 ...state,
-                allusers: payload,
+                allUsers: payload,
                 newClients: payload.filter(el => el.role === "client").map(el => el.id)
             }
         case Types.ADD_TO_CARRIERS:
@@ -117,6 +118,11 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 transactions: state.transactions.map(transaction => (transaction.id === payload.id) ? payload : transaction)
+            }
+        case Types.GET_MONEY_FLOW:
+            return {
+                ...state,
+                moneyflow: payload
             }
         default:
             return state

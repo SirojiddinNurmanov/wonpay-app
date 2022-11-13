@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 import MainPage from "../pages/admin/MainPage"
 import NaverRatePage from "../pages/admin/NaverRatePage"
-import UZSRatePage from "../pages/admin/UZSRatePage"
+// import UZSRatePage from "../pages/admin/UZSRatePage"
 import CarriersPage from "../pages/admin/CarriersPage"
 import DebtsPage from "../pages/admin/DebtsPage"
 import MoneyFlowPage from "../pages/admin/MoneyFlowPage"
@@ -32,7 +32,7 @@ const AdminApp = () => {
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/navercourse" element={<NaverRatePage />} />
-                <Route path="/uzbcourse" element={<UZSRatePage />} />
+                <Route path="/users" element={<CarriersPage />} />
                 <Route path="/carriers" element={<CarriersPage />} />
                 <Route path="/debts" element={<DebtsPage />} />
                 <Route path="/moneyflow" element={<MoneyFlowPage />} />
