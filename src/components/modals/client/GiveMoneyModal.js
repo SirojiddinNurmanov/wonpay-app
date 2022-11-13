@@ -9,6 +9,7 @@ import ModalLayout from "../ModalLayout"
 const GiveMoneyModal = (props) => {
     const [amount_usd, setAmountUSD] = useState()
     const [amount_uzs, setAmountUZS] = useState()
+    const [rate, setRate] = useState()
     const { allUsers } = useSelector(state => state.app)
     const [carrierId, setCarrierId] = useState(allUsers?.length === 1 ? allUsers[0].id : "0")
     const dispatch = useDispatch()
@@ -24,14 +25,14 @@ const GiveMoneyModal = (props) => {
             title: "Tasdiqlash",
             eventHandler: () => {
                 // eslint-disable-next-line
-                if ((amount_usd || amount_uzs) && carrierId != "0") {
-                    dispatch(clientGiveMoney(carrierId, amount_usd, amount_uzs))
+                if ((amount_usd || (amount_uzs && rate )) && carrierId != "0") {
+                    dispatch(clientGiveMoney(carrierId, amount_usd, amount_uzs, rate))
                     clearFields()
                     props.onHide()
                 }
             },
             // eslint-disable-next-line
-            disabled: !((amount_usd || amount_uzs) && carrierId != "0")
+            disabled: !((amount_usd || (amount_uzs && rate)) && carrierId != "0")
         },
         {
             title: "Bekor Qilish",
@@ -55,6 +56,11 @@ const GiveMoneyModal = (props) => {
                 <div className="input-field">
                     <span>So'm</span>
                     <input className="amount-input" type="number" defaultValue={amount_uzs} onChange={({ target }) => setAmountUZS(target.value)} />
+                </div>
+                <br />
+                <div className="input-field">
+                    <span>Kurs</span>
+                    <input className="amount-input" type="number" defaultValue={rate} onChange={({ target }) => setRate(target.value)} />
                 </div>
                 <h3>Pul qabul qiluvchi:</h3>
                 <select defaultValue={carrierId} onChange={({ target }) => setCarrierId(target.value)}>

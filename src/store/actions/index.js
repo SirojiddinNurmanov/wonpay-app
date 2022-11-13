@@ -724,7 +724,7 @@ export const closeOffer = (offerId) => async (dispatch, getState) => {
     }
 }
 
-export const clientGiveMoney = (userId, amount_usd, amount_uzs) => async (dispatch, getState) => {
+export const clientGiveMoney = (userId, amount_usd, amount_uzs, rate) => async (dispatch, getState) => {
     try {
         let { token } = getState().app.user
 
@@ -737,7 +737,8 @@ export const clientGiveMoney = (userId, amount_usd, amount_uzs) => async (dispat
             body: JSON.stringify({
                 user_id: userId,
                 amount_usd: amount_usd,
-                amount_uzs: amount_uzs
+                amount_uzs: amount_uzs,
+                rate: rate
             })
         })
 
