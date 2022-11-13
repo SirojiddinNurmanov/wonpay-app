@@ -1918,3 +1918,32 @@ a {
     background-color: #dedede;
     color: var(--title-color);
 }
+
+img.profile-image {
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid #000;
+}
+
+.profile-block {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    gap: 15px;
+}
+
+.profile-block .profile-details {
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.profile-balance {
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: normal;
+    text-align: center;
+}

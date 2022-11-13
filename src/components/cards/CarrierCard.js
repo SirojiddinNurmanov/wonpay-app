@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
+import { formatAmount } from '../../helpers'
 
-const CarrierCard = ({ first_name, last_name, address, avatar, fromClients, toClients, toAdmin }) => {
+const CarrierCard = ({ first_name, last_name, avatar, balance }) => {
     return (
         <div className="carrier-item">
             <div className="row carrier-card">
@@ -9,22 +10,14 @@ const CarrierCard = ({ first_name, last_name, address, avatar, fromClients, toCl
                 </div>
                 <div className="col-9">
                     <div className="row">
-                        <div className="col-7">
+                        <div className="col">
                             <h3>{first_name} {last_name}</h3>
                         </div>
-                        <div className="col-5 text-center">
-                            <p>{address}</p>
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-4 text-center">
-                            <span>{fromClients}</span>
-                        </div>
-                        <div className="col-4 text-center">
-                            <span>{toClients}</span>
-                        </div>
-                        <div className="col-4 text-center">
-                            <span>{toAdmin}</span>
+                    <div className="row p-0">
+                        <div className="col-7"></div>
+                        <div className="col-5 text-left">
+                            <span>{ "$" + formatAmount(balance)}</span>
                         </div>
                     </div>
                 </div>

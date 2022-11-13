@@ -13,7 +13,9 @@ const initialState = {
     newCarriers: [],
     newClients: [],
     allUsers: null,
-    moneyflow: []
+    moneyflow: [],
+    processes: [],
+    clientProcesses: []
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -123,6 +125,11 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 moneyflow: payload
+            }
+        case Types.GET_CLIENT_PROCESSES:
+            return {
+                ...state,
+                clientProcesses: payload
             }
         default:
             return state
