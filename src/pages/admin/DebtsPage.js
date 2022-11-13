@@ -32,11 +32,11 @@ const DebtsPage = () => {
             <OfferDebtModal show={offerDebtModal} onHide={() => showOfferDebtModal(false)} />
             <Title text="Qarzlar:" amount="" inContent={true} />
             <div className="processes-block">
-                <DebtsTable users={allUsers?.filter(user => user.balance > 0 && user.role === 'client')} />
+                <DebtsTable users={allUsers?.filter(user => user.balance < 0 && user.role === 'client')} />
             </div>
             <Title text="Bizning Qarzlar:" amount="" inContent={true} />
             <div className="processes-block">
-                <DebtsTable users={allUsers?.filter(user => user.balance < 0 && user.role === 'client')}/>
+                <DebtsTable users={allUsers?.filter(user => user.balance > 0 && user.role === 'client')}/>
             </div>
         </Layout>
     )
