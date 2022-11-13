@@ -275,6 +275,10 @@ a {
     text-align: center;
 }
 
+.my-modal img {
+    width: 100%;
+}
+
 .message-body {
     padding: 10px 20px;
     border-radius: 20px;

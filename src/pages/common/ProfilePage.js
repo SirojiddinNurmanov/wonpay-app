@@ -35,7 +35,7 @@ const ProfilePage = () => {
                         <div className="profile-name">{user.first_name + (user.last_name ? " " + user.last_name : "")}</div>
                         <div className="profile-number">{user.phone_number}</div>
                         <div className="profile-balance">
-                            {(user.balance < 0 ? "-$" : "+$") + (user.balance ? formatAmount(user.balance < 0 ? user.balance * -1 : user.balance) : 0)}
+                            {(user.balance === 0 ? "$" : user.balance < 0 ? "-$" : "+$") + (user.balance ? formatAmount(user.balance < 0 ? user.balance * -1 : user.balance) : 0)}
                         </div>
                     </div>
                 </div>

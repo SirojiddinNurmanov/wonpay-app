@@ -36,6 +36,7 @@ const NotificationsPage = () => {
             {notifications && notifications.map(notification => (
                 <NotificationCard key={notification.id} callback={readModal(notification)} {...notification} />
             ))}
+            <div className="spacer"></div>
         </Layout>
     )
 }

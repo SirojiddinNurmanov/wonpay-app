@@ -19,7 +19,7 @@ const DebtsTable = ({ users }) => {
                 <tr key={user.id}>
                     <td>{user.first_name + (user.last_name ? " " + user.last_name : "")}</td>
                     {/* <td></td> */}
-                    <td>{"$ " + formatAmount(user.balance).toString().replace('-', '')}</td>
+                    <td>{"$" + formatAmount(user.balance).toString().replace('-', '')}</td>
                 </tr>
             ))}
         </TableLayout >

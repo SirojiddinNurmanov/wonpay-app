@@ -26,14 +26,14 @@ const MainPage = () => {
 
     const headerData = {
         avatar: "/assets/img/icons/profile.png",
-        balance: "$" + formatAmount(balance),
+        balance: (balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance) : 0),
     }
 
     return (
         <Layout headerData={headerData}>
             <div className="balance">
                 <span>Sizning Xisobingiz:</span>
-                <span>{"$" + formatAmount(balance)}</span>
+                <span>{(balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance) : 0)}</span>
             </div>
             <MenuCards app="client" />
             <div className="home-buttons">

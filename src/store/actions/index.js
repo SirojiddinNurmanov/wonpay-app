@@ -136,6 +136,38 @@ export const getUserProcesses = () => async (dispatch, getState) => {
     }
 }
 
+export const getAllProcesses = () => async (dispatch, getState) => {
+    try {
+        const user = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/all`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
+        })
+
+        const { success, message, data } = await res.json()
+
+        if (success) {
+            dispatch({
+                type: Types.GET_ALL_PROCESSES,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: Types.USER_ERROR,
+                payload: message
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
 export const getClientProcesses = (clientId) => async (dispatch, getState) => {
     try {
         const user = getState().app.user
