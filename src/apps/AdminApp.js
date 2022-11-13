@@ -4,6 +4,7 @@ import MainPage from "../pages/admin/MainPage"
 import NaverRatePage from "../pages/admin/NaverRatePage"
 // import UZSRatePage from "../pages/admin/UZSRatePage"
 import CarriersPage from "../pages/admin/CarriersPage"
+import UsersPage from "../pages/admin/UsersPage"
 import DebtsPage from "../pages/admin/DebtsPage"
 import MoneyFlowPage from "../pages/admin/MoneyFlowPage"
 import ReportsPage from "../pages/admin/ReportsPage"
@@ -32,7 +33,7 @@ const AdminApp = () => {
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/navercourse" element={<NaverRatePage />} />
-                <Route path="/users" element={<CarriersPage />} />
+                <Route path="/users" element={<UsersPage />} />
                 <Route path="/carriers" element={<CarriersPage />} />
                 <Route path="/debts" element={<DebtsPage />} />
                 <Route path="/moneyflow" element={<MoneyFlowPage />} />

@@ -9,14 +9,14 @@ const SubmitPage = () => {
         {
             text: "Bekor Qilish",
             callback: () => {
-                console.log("");
+                // console.log("");
             },
             secondary: true
         },
         {
             text: "Berdim",
             callback: () => {
-                console.log("");
+                // console.log("");
             }
         }
     ]
