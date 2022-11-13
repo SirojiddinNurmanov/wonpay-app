@@ -126,8 +126,8 @@ const SingleQueryPage = () => {
                             <WhiteLine />
                             <div className="process-offer-block">
                                 <div className="process-title">Bog'langan Taklif:</div>
-                                <Link to={"/offers/" + offer.id}>
-                                    <div className="process-title text-center underlined">{offer.client.first_name + (offer.client.last_name && " " + offer.client.last_name) + " / ￦" + formatAmount(offer.amount)}</div>
+                                <Link to={"/offers/" + offer?.id}>
+                                    <div className="process-title text-center underlined">{offer?.client.first_name + (offer?.client.last_name ? " " + offer?.client.last_name : "") + " / ￦" + formatAmount(offer?.amount)}</div>
                                 </Link>
                                 <div className="proof-block">
                                     {query.proof_image ? (
