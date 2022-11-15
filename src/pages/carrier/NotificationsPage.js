@@ -8,14 +8,14 @@ import Layout from "../../layout"
 
 import NotificationDetailsModal from "../../components/modals/client/NotificationDetailsModal"
 import NotificationCard from "../../components/cards/NotificationCard"
-import { groupNotificationsByDate } from "../../helpers"
+import { groupByDate } from "../../helpers"
 
 const NotificationsPage = () => {
     const [modalInfo, setModalInfo] = useState(false)
     const [modalShow, setModalShow] = useState(false)
     const { notifications } = useSelector(state => state.app)
     const dispatch = useDispatch()
-    let groupedNotifications = groupNotificationsByDate(notifications)
+    let groupedNotifications = groupByDate(notifications)
 
     useEffect(() => {
         dispatch(getUserNotifications())
