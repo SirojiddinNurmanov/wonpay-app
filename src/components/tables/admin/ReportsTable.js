@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react"
+import React, { Fragment, memo, useState } from "react"
 import { useSelector } from "react-redux"
 
 import { formatAmount, groupByDate } from '../../../helpers'
@@ -32,7 +32,7 @@ const ReportsTable = () => {
         <TableLayout headers={headers}>
             <QueryProofModal show={queryInfoModal} onHide={() => showQueryProofModal(false)} {...modalInfo} />
             {groupedQueries && Object.entries(groupedQueries).map(queryGroup => (
-                <>
+                <Fragment key={queryGroup[0]}>
                     <tr>
                         <td colSpan="6" className="notification-date text-center">{queryGroup[0]}</td>
                     </tr>
@@ -54,7 +54,7 @@ const ReportsTable = () => {
                             </td>
                         </tr>
                     ))}
-                </>
+                </Fragment>
             ))}
         </TableLayout>
     )

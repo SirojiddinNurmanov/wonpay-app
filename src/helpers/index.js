@@ -40,5 +40,5 @@ export const sumProcessAmount = (processes = false) => {
 }
 
 export const groupByDate = (notifications) => {
-    return _.groupBy(notifications.map(notification => ({ ...notification, date: notification.created_at.substr(0, 10) })), 'date')
+    return _.groupBy(notifications?.map(notification => ({ ...notification, date: notification.created_at.substr(0, 10) })), 'date')
 }
