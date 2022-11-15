@@ -9,7 +9,7 @@ const MenuItem = ({ url, image, alt, text }) => {
                     <img src={image} alt={alt} />
                 </div>
                 <div className="category-text">
-                    <span>{text}</span>
+                    <span dangerouslySetInnerHTML={{ __html: text }} />
                 </div>
             </div>
         </Link>

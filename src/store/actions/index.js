@@ -81,27 +81,18 @@ export const getUser = () => async (dispatch) => {
             })
         })
 
-        const { success, message, data } = await res.json()
-
-        if (success) {
-            dispatch({
-                type: Types.GET_USER,
-                payload: data
-            })
-        } else {
-            dispatch({
-                type: Types.USER_ERROR,
-                payload: message
-            })
-        }
+        const { data } = await res.json()
+        dispatch({
+            type: Types.GET_USER,
+            payload: data
+        })
     } catch (error) {
         dispatch({
             type: Types.USER_ERROR,
             payload: error.response.statusText
         })
-    } finally {
-        hideLoading()
     }
+    hideLoading()
 }
 
 export const getUserProcesses = () => async (dispatch, getState) => {
@@ -408,7 +399,11 @@ export const toggleUserRoles = (carriers, clients) => async (dispatch, getState)
             })
         })
 
-        await res.json()
+        const { data } = await res.json()
+        dispatch({
+            type: Types.GET_CARRIERS,
+            payload: data
+        })
     } catch (error) {
         dispatch({
             type: Types.USER_ERROR,

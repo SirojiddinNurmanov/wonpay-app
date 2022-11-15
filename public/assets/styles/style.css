@@ -1052,6 +1052,11 @@ a {
     background-color: var(--background-color) !important;
 }
 
+.modal-body {
+    max-height: 60vh;
+    overflow: scroll;
+}
+
 .modal .model-buttons {
     width: 100%;
     display: flex;
@@ -1926,7 +1931,7 @@ a {
 img.profile-image {
     width: 100%;
     border-radius: 50%;
-    border: 3px solid #000;
+    border: 3px solid #FF9D27;
 }
 
 .profile-block {
@@ -1950,4 +1955,15 @@ img.profile-image {
     font-size: 1.5em;
     font-weight: normal;
     text-align: center;
+}
+
+.empty-block {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-block img {
+    width: 90vw;
 }

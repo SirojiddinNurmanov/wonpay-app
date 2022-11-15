@@ -11,6 +11,7 @@ import Layout from '../../layout'
 import CarrierCard from "../../components/cards/CarrierCard"
 import UsersModal from "../../components/modals/admin/UsersModal"
 import NoData from "../../components/common/NoData"
+import { formatAmount } from "../../helpers"
 
 const UsersPage = () => {
     const [usersModal, showUsersModal] = useState(false)
@@ -27,7 +28,7 @@ const UsersPage = () => {
     }, [])
 
     return (
-        <Layout buttons={common} title={{ text: "Kuryerlar" }}>
+        <Layout buttons={common} title={{ text: "Foydalanuvchilar", amount: formatAmount(allUsers?.filter(user => user.role === 'client')?.length || 0) }}>
             <UsersModal
                 show={usersModal}
                 onHide={() => showUsersModal(false)}
@@ -44,6 +45,7 @@ const UsersPage = () => {
                     <CarrierCard {...user} />
                 </Link>
             )) : (<NoData />)}
+            <div className="spacer"></div>
         </Layout>
     )
 }

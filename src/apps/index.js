@@ -7,6 +7,7 @@ import ClientApp from './ClientApp'
 import CarrierApp from './CarrierApp'
 
 import Preloader from "../components/common/Preloader"
+import EmptyPage from '../pages/common/EmptyPage'
 
 const App = () => {
     const { loading, user } = useSelector(state => state.app)
@@ -33,6 +34,10 @@ const App = () => {
 
     if (user?.user.role === 'client') {
         return <ClientApp />
+    }
+
+    if (user !== null) {
+        return <EmptyPage />
     }
 }
 

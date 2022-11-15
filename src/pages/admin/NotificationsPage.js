@@ -1,5 +1,6 @@
-import React, { memo, useState } from "react"
+import React, { memo, useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 
 import { common } from "../../constants/bottomButtons"
 import { getUserNotifications, setNotificationAsRead } from "../../store/actions"
@@ -8,7 +9,6 @@ import Layout from "../../layout"
 
 import NotificationDetailsModal from "../../components/modals/client/NotificationDetailsModal"
 import NotificationCard from "../../components/cards/NotificationCard"
-import { useEffect } from "react"
 
 const NotificationsPage = () => {
     const [modalInfo, setModalInfo] = useState(false)
@@ -35,7 +35,9 @@ const NotificationsPage = () => {
         <Layout buttons={common} title={{ text: "Xabarlar:" }}>
             <NotificationDetailsModal show={detailsModal} onHide={() => showDetailsModal(false)} {...modalInfo} />
             {notifications && notifications.map(notification => (
-                <NotificationCard key={notification.id} callback={readModal(notification)} {...notification} />
+                <Link to={""} key={notification.id}>
+                    <NotificationCard callback={readModal(notification)} {...notification} />
+                </Link>
             ))}
             <div className="spacer"></div>
         </Layout>

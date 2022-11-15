@@ -5,7 +5,7 @@ export const MenuButtons = {
         //     url: "/navercourse",
         //     image: "/assets/img/menu-icons/naver.png",
         //     alt: "Naver kurslari",
-        //     text: ["Naver ", <br />, "Valyuta kurslari"]
+        //     text: "Naver <br /> Valyuta kurslari"
         // },
         {
             id: 2,
@@ -43,7 +43,7 @@ export const MenuButtons = {
             id: 7,
             url: "/profit",
             image: "/assets/img/menu-icons/profit.png",
-            text: ["Umumiy ", <br />, "Foyda"]
+            text: "Umumiy <br /> Foyda"
         },
         {
             id: 8,
@@ -63,7 +63,7 @@ export const MenuButtons = {
             id: 10,
             url: "/transactions",
             image: "/assets/img/menu-icons/history.png",
-            text: ["O'tkazmalar ", <br />, "tarixi"]
+            text: "O'tkazmalar <br /> tarixi"
         },
         {
             id: 11,

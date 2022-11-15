@@ -1,15 +1,17 @@
 import React, { memo, useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import Spinner from "react-bootstrap/Spinner"
+import { useDispatch, useSelector } from "react-redux"
 
+import { formatAmount } from "../../helpers"
 import { getCarriers } from "../../store/actions"
 import { common } from '../../constants/bottomButtons'
 
 import Layout from '../../layout'
 
+import NoData from "../../components/common/NoData"
 import CarrierCard from "../../components/cards/CarrierCard"
 import UsersModal from "../../components/modals/admin/UsersModal"
-import NoData from "../../components/common/NoData"
 
 const CarriersPage = () => {
     const [usersModal, showUsersModal] = useState(false)
@@ -31,7 +33,7 @@ const CarriersPage = () => {
     }, [])
 
     return (
-        <Layout buttons={common} title={{ text: "Kuryerlar" }}>
+        <Layout buttons={common} title={{ text: "Kuryerlar", amount : formatAmount(carriers?.length || 0) }}>
             <UsersModal
                 show={usersModal}
                 onHide={() => showUsersModal(false)}
@@ -44,7 +46,9 @@ const CarriersPage = () => {
                 </div>
             )}
             {carriers ? carriers.map((carrier, index) => (
-                <CarrierCard key={index} {...carrier} />
+                <Link to={"/profile/" + carrier.id} key={index}>
+                    <CarrierCard {...carrier} />
+                </Link>
             )) : (<NoData />)}
         </Layout>
     )

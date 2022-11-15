@@ -4,7 +4,7 @@ import BottomNavigation from "../components/common/BottomNavigation"
 import Header from "../components/common/Header"
 import Title from "../components/common/Title"
 
-const Layout = ({ children, buttons, headerData = false, title = false }) => {
+const Layout = ({ children, buttons, headerData = false, title = false, empty = false }) => {
     if (!headerData) {
         headerData = {
             avatar: "/assets/img/icons/profile.png",
@@ -16,14 +16,18 @@ const Layout = ({ children, buttons, headerData = false, title = false }) => {
 
     return (
         <div className="wrapper">
-            <Header {...headerData} />
+            {!empty && (
+                <Header {...headerData} />
+            )}
             {title && (
                 <Title {...title} />
             )}
             <div className="content">
                 {children}
             </div>
-            <BottomNavigation {...buttons} />
+            {!empty && (
+                <BottomNavigation {...buttons} />
+            )}
         </div >
     )
 }

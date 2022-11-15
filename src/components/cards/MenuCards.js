@@ -1,4 +1,4 @@
-import React, { memo } from "react"
+import React, { Fragment, memo } from "react"
 import PropTypes from "prop-types"
 
 import { MenuButtons } from "../../constants/menuButtons"
