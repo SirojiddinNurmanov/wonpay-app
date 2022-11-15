@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export const groupBy = (key, array) => array.reduce((objectsByKeyValue, obj) => {
     const value = obj[key]
     objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj)
@@ -35,4 +37,8 @@ export const sumProcessAmount = (processes = false) => {
         return processes[0].amount
     }
     return processes.map(el => el.amount).reduce((prev, curr) => prev + curr)
+}
+
+export const groupNotificationsByDate = (notifications) => {
+    return _.groupBy(notifications.map(notification => ({ ...notification, date: notification.created_at.substr(0, 10) })), 'date')
 }

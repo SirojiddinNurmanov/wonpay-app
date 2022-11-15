@@ -1150,6 +1150,10 @@ a {
     font-weight: bold;
 }
 
+.notification-date {
+    font-weight: bold;
+}
+
 .notification-card {
     width: 100%;
     background-color: #fff;
