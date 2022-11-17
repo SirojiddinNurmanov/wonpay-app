@@ -7,8 +7,7 @@ import { common } from "../../constants/bottomButtons"
 import { getUserNotifications, setNotificationAsRead } from "../../store/actions"
 
 import Layout from "../../layout"
-
-import NotificationDetailsModal from "../../components/modals/client/NotificationDetailsModal"
+import NotificationDetailsModal from "../../components/modals/common/NotificationDetailsModal"
 import NotificationCard from "../../components/cards/NotificationCard"
 import { groupByDate } from "../../helpers"
 
