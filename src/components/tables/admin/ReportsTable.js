@@ -1,7 +1,7 @@
 import React, { Fragment, memo, useState } from "react"
 import { useSelector } from "react-redux"
 
-import { formatAmount, groupByDate } from '../../../helpers'
+import { changeNumberSign, formatAmount, getColor, groupByDate } from '../../../helpers'
 import QueryProofModal from "../../modals/admin/QueryProofModal"
 
 import TableLayout from "../TableLayout"
@@ -42,9 +42,9 @@ const ReportsTable = () => {
                             <td>{"￦" + formatAmount(query.amount)}</td>
                             <td>{query.process_type === 1 ? "Kor>>Uzb" : "Uzb>>Kor"}</td>
                             <td onClick={openInfoModal(query)} className={"underlined" + (query.status !== 1 ? " red" : "")}>{query.status === 1 ? "Ko'rish" : "Kutilmoqda"}</td>
-                            <td>
+                            <td className={"text-bold " + getColor(query)}>
                                 {
-                                    query.assigned_offer ? "+$" + (query.amount / query.assigned_offer.buy_rate - query.amount / query.exchange_rate).toLocaleString() : ""
+                                    query.assigned_offer ?  changeNumberSign(query) : ""
                                 }
                             </td>
                             <td>

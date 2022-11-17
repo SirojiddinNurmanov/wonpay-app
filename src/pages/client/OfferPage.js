@@ -147,9 +147,9 @@ const OfferPage = () => {
     }
 
     return (
-        <Layout buttons={common} title={{ text: "O'zbekiston >> Korea" }}>
+        <Layout buttons={common} title={{ text: "Korea >> O'zbekiston" }}>
             <ConfirmationModal show={confirmationModal} onHide={() => showConfirmationModal(false)} />
-            <div className="address-title">Kerakli Summani Kiriting:</div>
+            <div className="address-title">Mavjud Summani Kiriting:</div>
 
             <div className="amount-input" onClick={showKeyboard}>
                 <span>￦ </span>

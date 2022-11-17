@@ -10,7 +10,7 @@ export const fetchTransaction = (transactions, transactionId) => transactions.fi
 
 export const formatAmount = (amount, float = false) => {
     let number = 0
-    
+
     if (float) {
         number = amount.toFixed(2).replaceAll(" ", "")
     } else {
@@ -41,4 +41,27 @@ export const sumProcessAmount = (processes = false) => {
 
 export const groupByDate = (notifications) => {
     return _.groupBy(notifications?.map(notification => ({ ...notification, date: notification.created_at.substr(0, 10) })), 'date')
+}
+
+export const changeNumberSign = (query) => {
+    let sign = "$"
+    let result = query?.amount / query?.assigned_offer?.buy_rate - query?.amount / query?.exchange_rate
+    if (result > 0) {
+        sign = "+" + sign
+    } else {
+        sign = "-" + sign
+    }
+
+    return sign + (result).toLocaleString().replaceAll('-', '')
+}
+
+export const getColor = (query) => {
+    let result = query?.amount / query?.assigned_offer?.buy_rate - query?.amount / query?.exchange_rate
+    if (result == 0) {
+        return ""
+    } else if (result > 0) {
+        return "green"
+    } else {
+        return "red"
+    }
 }

@@ -84,18 +84,17 @@ a {
 }
 
 .home-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 50px;
     width: 100%;
     z-index: 10;
 }
 
 .home-buttons button {
-    width: 80vw;
-    padding: 10px 60px;
+    width: 100%;
     text-align: center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 20px;
@@ -150,7 +149,7 @@ a {
 .money-btn {
     font-size: 25px;
     font-weight: 600;
-    padding: 10px 40px;
+    padding: 10px;
     border: none;
     border-radius: 30px;
     background-color: var(--main-color);
@@ -163,6 +162,10 @@ a {
 
 .money-btn.yellow:hover {
     background-color: var(--main-color);
+}
+
+.money-btn.open-modal-btn {
+    grid-column: 1 / 3;
 }
 
 .profile-btn {
@@ -1054,7 +1057,7 @@ a {
 
 .modal-body {
     max-height: 60vh;
-    overflow: scroll;
+    overflow: hidden scroll;
 }
 
 .modal .model-buttons {
