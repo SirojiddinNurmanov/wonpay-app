@@ -45,7 +45,7 @@ export const groupByDate = (notifications) => {
 
 export const changeNumberSign = (query) => {
     let sign = "$"
-    let result = query?.amount / query?.assigned_offer?.buy_rate - query?.amount / query?.exchange_rate
+    let result = query?.amount / query?.exchange_rate - query?.amount / query?.assigned_offer?.buy_rate
     if (result > 0) {
         sign = "+" + sign
     } else {
@@ -56,7 +56,7 @@ export const changeNumberSign = (query) => {
 }
 
 export const getColor = (query) => {
-    let result = query?.amount / query?.assigned_offer?.buy_rate - query?.amount / query?.exchange_rate
+    let result = query?.amount / query?.exchange_rate - query?.amount / query?.assigned_offer?.buy_rate
     if (result == 0) {
         return ""
     } else if (result > 0) {
