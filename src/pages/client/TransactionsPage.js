@@ -27,7 +27,7 @@ const TransactionsPage = () => {
             <div className="transaction-block">
                 <div className="title">Tarix</div>
                 {processes ? processes.map(transaction => (
-                    <Link key={transaction.id} to={"/transactions/" + (transaction.process_type === 1 ? "offer" : "query") + "/" + transaction.id}>
+                    <Link key={transaction.id} to={(transaction.process_type === 1 ? "/offers" : "/queries") + "/" + transaction.id}>
                         <TransactionCard {...transaction} />
                     </Link>
                 )) : (

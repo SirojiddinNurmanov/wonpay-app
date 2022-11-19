@@ -1,7 +1,9 @@
 import React, { Fragment, memo, useState } from "react"
-import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 import { changeNumberSign, formatAmount, getColor, groupByDate } from '../../../helpers'
+import { getQueries } from "../../../store/actions"
 import QueryProofModal from "../../modals/admin/QueryProofModal"
 
 import TableLayout from "../TableLayout"
@@ -10,6 +12,7 @@ const ReportsTable = () => {
     const [queryInfoModal, showQueryProofModal] = useState(false)
     const [modalInfo, setModalInfo] = useState()
     const { queries } = useSelector(state => state.app)
+    const dispatch = useDispatch()    
     const groupedQueries = groupByDate(queries)
 
     const openInfoModal = (process) => (e) => {
@@ -18,6 +21,12 @@ const ReportsTable = () => {
             setModalInfo(process)
         }
     }
+
+    useEffect(() => {
+        dispatch(getQueries())
+
+        // eslint-disable-next-line
+    }, [])
 
     const headers = [
         "Ism",

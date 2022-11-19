@@ -1,12 +1,15 @@
 import React, { memo } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 import { setQueryRate, rejectQueryRate, setOfferRate, rejectOfferRate, setNotificationAsRead, confirmGivenMoney, rejectGivenMoney } from "../../../store/actions"
 
 import ModalLayout from "../ModalLayout"
 
 const NotificationDetailsModal = (props) => {
+    const { role } = useSelector(state => state.app.user.user)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const accept = () => {
         if (props.status === 0) {
@@ -37,7 +40,7 @@ const NotificationDetailsModal = (props) => {
         dispatch(setNotificationAsRead(props.id))
         props.onHide()
     }
-    
+
     const rejectMoney = () => {
         dispatch(rejectGivenMoney(props.process_id))
         dispatch(setNotificationAsRead(props.id))
@@ -71,8 +74,22 @@ const NotificationDetailsModal = (props) => {
     } else {
         buttons = [
             {
-                title: "Yopish",
-                eventHandler: () => props.onHide()
+                title: props.action_type === 0 ? "Yopish" : "Ko'rish",
+                eventHandler: () => {
+                    switch (props.action_type) {
+                        case 1:
+                            navigate(`/queries/${props.process_id}`)                            
+                            break;
+                        case 2:
+                            navigate(`/offers/${props.process_id}`)
+                            break;
+                        case 3:
+                            navigate(`/reports`)
+                            break;
+                    }
+
+                    props.onHide()
+                }
             }
         ]
     }

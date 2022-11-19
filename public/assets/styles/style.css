@@ -1908,6 +1908,7 @@ a {
 .give-money-modal .input-field {
     width: 100%;
     position: relative;
+    margin-bottom: 15px;
 }
 
 .give-money-modal .input-field span {
@@ -1921,6 +1922,7 @@ a {
 }
 
 .give-money-modal .input-field input {
+    width: 100%;
     margin: 0;
 }
 

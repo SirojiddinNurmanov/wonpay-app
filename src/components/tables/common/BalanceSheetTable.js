@@ -19,7 +19,7 @@ const BalanceSheetTable = ({ transactions }) => {
     return (
         <TableLayout headers={headers}>
             {transactions && transactions.map(
-                ({ from_id, to_id, amount_krw, amount_usd, amount_uzs, rate, status, created_at }) => (
+                ({ from_id, to_id, amount_krw, amount_usd, amount_uzs, buy_rate, sell_rate, rate, status, created_at }) => (
                     status === 1 ? (
                         <tr key={created_at.toString()}>
                             <td>{(new Date(created_at)).getDate() + "-" + (new Date(created_at)).getMonth()}</td>
@@ -33,7 +33,7 @@ const BalanceSheetTable = ({ transactions }) => {
                                         : ""
                                 }}
                             />
-                            <td>{rate > 0 ? rate : ""}</td>
+                            <td>{rate > 0 ? rate : from_id === id ? buy_rate : sell_rate}</td>
                             <td
                                 dangerouslySetInnerHTML={{
                                     __html: (from_id === id) ? (amount_krw ? "￦" + formatAmount(amount_krw) : "")

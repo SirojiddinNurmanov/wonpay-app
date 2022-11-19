@@ -27,8 +27,8 @@ const ClientApp = () => {
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/transactions" element={<TransactionsPage />} />
-                <Route path="/transactions/query/:queryId" element={<QueryTransactionDetailsPage />} />
-                <Route path="/transactions/offer/:offerId" element={<OfferTransactionDetailsPage />} />
+                <Route path="/queries/:queryId" element={<QueryTransactionDetailsPage />} />
+                <Route path="/offers/:offerId" element={<OfferTransactionDetailsPage />} />
                 <Route path="/balancesheet" element={<BalanceSheetPage />} />
                 <Route path="/notifications" element={<NotificationsPage />} />
 

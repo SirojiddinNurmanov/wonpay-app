@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount } from "../../helpers"
-import { closeOffer, getCarriers, sendOfferQueries, setProcessCarrier } from "../../store/actions"
+import { closeOffer, getCarriers, getUserProcesses, sendOfferQueries, setProcessCarrier } from "../../store/actions"
 
 import Layout from "../../layout"
 
@@ -27,10 +27,11 @@ const SingleOfferPage = () => {
     const dispatch = useDispatch()
 
     let { offerId } = useParams()
-    let offer = offers?.find(offer => offer.id === parseInt(offerId))
+    let offer = offers?.find(offer => offer?.id === parseInt(offerId))
 
     useEffect(() => {
         dispatch(getCarriers())
+        dispatch(getUserProcesses())
         if (offer?.carrier_id) {
             setCarrierId(offer.carrier_id)
         }

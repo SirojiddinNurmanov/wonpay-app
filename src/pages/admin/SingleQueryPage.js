@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount } from "../../helpers"
-import { getCarriers, setProcessCarrier } from "../../store/actions"
+import { getCarriers, getUserProcesses, setProcessCarrier } from "../../store/actions"
 
 import Layout from "../../layout"
 
@@ -20,11 +20,12 @@ const SingleQueryPage = () => {
     const dispatch = useDispatch()
 
     let { queryId } = useParams()
-    let query = queries?.find(query => query.id === parseInt(queryId))
-    let offer = offers?.find(offer => offer.id === parseInt(query.offer_id))
+    let query = queries?.find(query => query?.id === parseInt(queryId))
+    let offer = offers?.find(offer => offer?.id === parseInt(query?.offer_id))
 
     useEffect(() => {
         dispatch(getCarriers())
+        dispatch(getUserProcesses())
         if (query?.carrier_id) {
             setCarrierId(query.carrier_id)
         }
@@ -52,7 +53,7 @@ const SingleQueryPage = () => {
 
     return (
         <Layout buttons={common}>
-            {query && (
+            {query && offer && (
                 <>
                     <QueryRateModal show={rateModal} onHide={() => showRateModal(false)} {...query} />
                     <QueryDollarModal show={dollarModal} onHide={() => showDollarModal(false)} {...query} />

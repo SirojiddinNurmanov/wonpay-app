@@ -40,7 +40,7 @@ const OfferQueryProofTable = ({ amount, buy_rate, status, selectedQueries }) => 
             {selectedQueries && (
                 <>
                     {selectedQueries.map((selectedQuery) => {
-                        const process = queries.find(query => query.id === selectedQuery.id)
+                        const process = queries?.find(query => query.id === selectedQuery.id)
 
                         return (
                             <tr key={process.id}>
