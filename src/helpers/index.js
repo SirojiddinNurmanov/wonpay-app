@@ -44,7 +44,7 @@ export const groupByDate = (notifications) => {
 }
 
 export const changeNumberSign = (query) => {
-    let sign = "$"
+    let sign = ""
     let result = query?.amount / query?.exchange_rate - query?.amount / query?.assigned_offer?.buy_rate
     if (result > 0) {
         sign = "+" + sign
@@ -52,7 +52,7 @@ export const changeNumberSign = (query) => {
         sign = "-" + sign
     }
 
-    return sign + (result).toLocaleString().replaceAll('-', '')
+    return sign + (result).toLocaleString('en-US', {style:'currency', currency:'USD'}).replaceAll('-', '')
 }
 
 export const getColor = (query) => {
