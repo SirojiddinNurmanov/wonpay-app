@@ -52,12 +52,10 @@ const GiveMoneyModal = (props) => {
                     <span>$</span>
                     <input className="amount-input" type="number" defaultValue={amount_usd} onChange={({ target }) => setAmountUSD(target.value)} />
                 </div>
-                <br />
                 <div className="input-field">
                     <span>So'm</span>
                     <input className="amount-input" type="number" defaultValue={amount_uzs} onChange={({ target }) => setAmountUZS(target.value)} />
                 </div>
-                <br />
                 <div className="input-field">
                     <span>Kurs</span>
                     <input className="amount-input" type="number" defaultValue={rate} onChange={({ target }) => setRate(target.value)} />
