@@ -1966,6 +1966,14 @@ img.profile-image {
     text-align: center;
 }
 
+.profile-balance .amount-usd {
+    font-size: 0.8em;
+}
+
+.profile-balance .amount-uzs {
+    font-size: 0.7em;
+}
+
 .empty-block {
     height: 90vh;
     display: flex;

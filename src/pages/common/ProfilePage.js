@@ -18,17 +18,17 @@ const ProfilePage = () => {
     const user = allUsers?.find(user => user.id === parseInt(userId))
     const dispatch = useDispatch()
 
-    common.middleButtons = user.role === 'carrier' ? [
+    common.middleButtons = user?.role === 'carrier' ? [
         {
             text: "Pul Olish",
             callback: () => {
-                
-            }   
+
+            }
         },
         {
             text: "Pul Berish",
             callback: () => {
-                
+
             },
             secondary: true
         }
@@ -49,7 +49,15 @@ const ProfilePage = () => {
                         <div className="profile-name">{user.first_name + (user.last_name ? " " + user.last_name : "")}</div>
                         <div className="profile-number">{user.phone_number}</div>
                         <div className="profile-balance">
-                            {(user.balance === 0 ? "$" : user.balance < 0 ? "-$" : "+$") + (user.balance ? formatAmount(user.balance < 0 ? user.balance * -1 : user.balance) : 0)}
+                            <div className="amount-usd">
+                                {user.role === 'carrier' ? "$" + formatAmount(user.detailed_balance.amount_usd):
+                                    (user.balance === 0 ? "$" : user.balance < 0 ? "-$" : "+$") + (user.balance ? formatAmount(user.balance < 0 ? user.balance * -1 : user.balance) : 0)
+                                }
+                            </div>
+                            <div className="amount-uzs">
+                                {user.role === 'carrier' ? formatAmount(user.detailed_balance.amount_uzs) + " so'm" : ""
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
