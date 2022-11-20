@@ -42,7 +42,7 @@ const QueryTable = () => {
             <QueryRateModal show={queryRateModal} onHide={() => showQueryRateModal(false)} {...modalInfo} />
             {queries && (
                 <>
-                    {queries.map((process) => {
+                    {queries.filter(query => query.status !== 1).map((process) => {
                         return (
                             <tr key={process.id}>
                                 <td>

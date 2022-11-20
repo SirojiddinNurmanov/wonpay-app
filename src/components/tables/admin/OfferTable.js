@@ -35,7 +35,7 @@ const OfferTable = () => {
             <OfferRateModal show={offerRateModal} onHide={() => showOfferRateModal(false)} {...modalInfo} />
             {offers && (
                 <>
-                    {offers.map((process) => (
+                    {offers.filter(offer => offer.status !== 1).map((process) => (
                         <tr key={process.id}>
                             <td>
                                 <Link to={"/offers/" + process.id}>
