@@ -53,9 +53,11 @@ const ProofInfoModal = ({ show, onHide, user, amount, payment_type, card_info_ty
                         </div>
                     )}
                 </div>
-                <div className="proof-modal-item text-center">
-                    <img src={proof_image} alt="Proof" />
-                </div>
+                {proof_image && (
+                    <div className="proof-modal-item text-center">
+                        <img src={proof_image} alt="Proof" />
+                    </div>
+                )}
             </Slide>
         </ModalLayout>
     )
