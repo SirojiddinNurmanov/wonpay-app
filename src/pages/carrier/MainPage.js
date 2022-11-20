@@ -24,7 +24,7 @@ const MainPage = () => {
 
     const headerData = {
         avatar: "/assets/img/icons/profile.png",
-        balance: (balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance) : 0),
+        balance: "$" + formatAmount(balance),
     }
 
     return (

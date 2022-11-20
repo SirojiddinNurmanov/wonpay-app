@@ -18,7 +18,21 @@ const ProfilePage = () => {
     const user = allUsers?.find(user => user.id === parseInt(userId))
     const dispatch = useDispatch()
 
-    common.middleButtons = false
+    common.middleButtons = user.role === 'carrier' ? [
+        {
+            text: "Pul Olish",
+            callback: () => {
+                
+            }   
+        },
+        {
+            text: "Pul Berish",
+            callback: () => {
+                
+            },
+            secondary: true
+        }
+    ] : false
 
     useEffect(() => {
         dispatch(getAllUsers())
