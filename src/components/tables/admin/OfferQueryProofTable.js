@@ -45,7 +45,7 @@ const OfferQueryProofTable = ({ amount, buy_rate, status, selectedQueries }) => 
                         return (
                             <tr key={process.id}>
                                 <td>
-                                    <Link to={"/queries/" + process.id}>
+                                    <Link to={"/queries/" + process?.id}>
                                         {(process.client.first_name ? process.client.first_name : "Ism yo'q")}
                                         <br />
                                         {(process.client.last_name ? process.client.last_name : " ")}
