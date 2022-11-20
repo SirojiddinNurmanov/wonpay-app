@@ -91,12 +91,12 @@ export const MenuButtons = {
             image: "/assets/img/menu-icons/delivermoney.png",
             text: "Pul Berish"
         },
-        {
-            id: 15,
-            url: "/submit",
-            image: "/assets/img/menu-icons/submitmoney.png",
-            text: "Pul Topshirish"
-        },
+        // {
+        //     id: 15,
+        //     url: "/submit",
+        //     image: "/assets/img/menu-icons/submitmoney.png",
+        //     text: "Pul Topshirish"
+        // },
         {
             id: 16,
             url: "/balancesheet",

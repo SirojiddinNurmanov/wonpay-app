@@ -9,14 +9,7 @@ import BalanceSheetTable from "../../components/tables/carrier/BalanceSheetTable
 const BalanceSheetPage = () => {
     const [modalShow, setModalShow] = useState(false)
 
-    common.middleButtons = [
-        {
-            text: "Pul Topshirish",
-            callback: () => {
-                setModalShow(true)
-            }
-        }
-    ]
+    common.middleButtons = false
 
     return (
         <Layout buttons={common} title={{ text: "Oldi Berdilar:", amount: "$0" }}>
