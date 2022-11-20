@@ -130,7 +130,7 @@ const SingleOfferPage = () => {
                     <div className="process-carrier-block">
                         <div className="process-title">Pulni Beruvchi Kuryer:</div>
                         <div className="process-carrier-list">
-                            <select onChange={selectCarrier} className="underlined" value={carrierId}>
+                            <select onChange={selectCarrier} className="underlined text-center" value={carrierId}>
                                 {carriers ? carriers.length > 1 ? (
                                     <>
                                         <option value="1">Tanlash</option>
@@ -143,6 +143,9 @@ const SingleOfferPage = () => {
                                 ) : ""}
                             </select>
                         </div>
+                        {carrierId ? "" : (
+                            <div className="error-message small text-center red">Iltimos kuryerni tanlang</div>
+                        )}
                     </div>
                     <WhiteLine />
 

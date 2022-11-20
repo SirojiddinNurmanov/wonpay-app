@@ -1845,6 +1845,7 @@ a {
 
 .process-carrier-list {
     padding: 1.5em;
+    padding-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;

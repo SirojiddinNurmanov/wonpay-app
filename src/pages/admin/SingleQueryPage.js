@@ -53,7 +53,7 @@ const SingleQueryPage = () => {
 
     return (
         <Layout buttons={common}>
-            {query && offer && (
+            {query && (
                 <>
                     <QueryRateModal show={rateModal} onHide={() => showRateModal(false)} {...query} />
                     <QueryDollarModal show={dollarModal} onHide={() => showDollarModal(false)} {...query} />
@@ -119,8 +119,12 @@ const SingleQueryPage = () => {
                                         <option>Kuryer yo'q</option>
                                     )
                                 ) : ""}
+
                             </select>
                         </div>
+                        {carrierId ? "" : (
+                            <div className="error-message small text-center red">Iltimos kuryerni tanlang</div>
+                        )}
                     </div>
                     {query.offer_id && (
                         <>
