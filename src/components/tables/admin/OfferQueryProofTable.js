@@ -42,25 +42,25 @@ const OfferQueryProofTable = ({ amount, buy_rate, status, selectedQueries }) => 
                     {selectedQueries.map((selectedQuery) => {
                         const process = queries?.find(query => query.id === selectedQuery.id)
 
-                        return (
+                        return (process &&  
                             <tr key={process.id}>
                                 <td>
                                     <Link to={"/queries/" + process?.id}>
-                                        {(process.client.first_name ? process.client.first_name : "Ism yo'q")}
+                                        {(process?.client.first_name ? process.client.first_name : "Ism yo'q")}
                                         <br />
-                                        {(process.client.last_name ? process.client.last_name : " ")}
+                                        {(process?.client.last_name ? process.client.last_name : " ")}
                                     </Link>
                                 </td>
                                 <td>{formatAmount(process.amount)}</td>
                                 <td onClick={handleInfoModalClick(process)}>Ko'rish</td>
-                                {process.proof_image ? (
+                                {process?.proof_image ? (
                                     <td onClick={handleInfoModalClick(process)}>Ko'rish</td>
                                 ) : (
                                     <td>Kutilmoqda</td>
                                 )}
-                                <td className="text-center">{process.exchange_rate ? process.exchange_rate : "---"}</td>
+                                <td className="text-center">{process?.exchange_rate ? process.exchange_rate : "---"}</td>
                                 <td className="select-block">
-                                    {process.proof_image ? (
+                                    {process?.proof_image ? (
                                         <select className="underlined text-center" onChange={selectQueryStatus(process)} value={process.status} disabled={(status === 1)}>
                                             <option value="0">Tanlang</option>
                                             <option value="1">Tasdiqlash</option>
