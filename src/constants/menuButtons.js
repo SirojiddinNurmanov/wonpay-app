@@ -54,7 +54,7 @@ export const MenuButtons = {
         {
             id: 9,
             url: "/notifications",
-            image: "/assets/img/menu-icons/notifications.png",
+            image: "/assets/img/menu-icons/messages.png",
             text: "Xabarlar"
         }
     ],
@@ -106,7 +106,7 @@ export const MenuButtons = {
         {
             id: 17,
             url: "/notifications",
-            image: "/assets/img/menu-icons/notifications.png",
+            image: "/assets/img/menu-icons/messages.png",
             text: "Xabarlar"
         },
     ]
