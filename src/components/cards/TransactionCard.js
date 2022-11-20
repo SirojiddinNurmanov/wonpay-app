@@ -14,9 +14,9 @@ const TransactionCard = ({ process_type, amount, exchange_rate, buy_rate, receiv
                         <div className="transaction-amount">￦ {formatAmount(amount)}</div>
                     )}
                     {process_type === 0 ? exchange_rate !== 0 && (
-                        <div className="transaction-amount">$ {formatAmount((amount / exchange_rate), true)}</div>
+                        <div className="transaction-amount">$ {formatAmount((amount / exchange_rate), true, true)}</div>
                     ) : process_type === 1 && buy_rate !== 0 && (
-                        <div className="transaction-amount">$ {formatAmount((amount / buy_rate), true)}</div>
+                        <div className="transaction-amount">$ {formatAmount((amount / buy_rate), true, true)}</div>
                     )}
                 </div>
                 <div className="bar"></div>

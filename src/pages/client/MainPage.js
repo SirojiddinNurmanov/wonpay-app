@@ -28,13 +28,8 @@ const MainPage = () => {
         // eslint-disable-next-line
     }, [])
 
-    const headerData = {
-        avatar: "/assets/img/icons/profile.png",
-        balance: (balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance) : 0),
-    }
-
     return (
-        <Layout headerData={headerData}>
+        <Layout>
             <GiveMoneyModal show={giveMoneyModal} onHide={() => showGiveMoneyModal(false)} />
             <div className="balance">
                 <span>Sizning Xisobingiz:</span>

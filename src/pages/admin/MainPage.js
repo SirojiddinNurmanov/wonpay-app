@@ -1,14 +1,12 @@
 import React, { memo, useEffect } from "react"
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getCarriers, getUserNotifications } from "../../store/actions"
 
 import Layout from "../../layout"
 
 import MenuCards from "../../components/cards/MenuCards"
-import { formatAmount } from "../../helpers"
 
 const MainPage = () => {
-    const { user : { user : { balance }}, carriers} = useSelector(state => state.app)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -22,13 +20,8 @@ const MainPage = () => {
         // eslint-disable-next-line
     }, [])
 
-    const headerData = {
-        avatar: "/assets/img/icons/profile.png",
-        balance: "$" + formatAmount(balance + (carriers?.map(carrier => carrier.balance).reduce((sum, carrierBalance) => sum + carrierBalance)) || 0) + ` ( $${formatAmount(balance)} )`,
-    }    
-
     return (
-        <Layout headerData={headerData}>
+        <Layout>
             <MenuCards app="admin" />
         </Layout>
     )
