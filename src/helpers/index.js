@@ -8,13 +8,17 @@ export const groupBy = (key, array) => array.reduce((objectsByKeyValue, obj) => 
 
 export const fetchTransaction = (transactions, transactionId) => transactions.filter(transaction => transaction.id === transactionId)
 
-export const formatAmount = (amount, float = false) => {
+export const formatAmount = (amount, float = false, intval = false) => {
     let number = 0
 
     if (float) {
         number = amount.toFixed(2).replaceAll(" ", "")
     } else {
         number = amount.toString().replaceAll(" ", "").replaceAll(".", "").replaceAll(",", "")
+    }
+
+    if (intval) {
+        number = Math.floor(number)
     }
 
     return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, " ")

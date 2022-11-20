@@ -629,6 +629,10 @@ a {
     margin-bottom: 20px;
 }
 
+.carrier-item.money-card {
+    padding: 15px 10px;
+}
+
 .carrier-item .row {
     display: flex;
     padding: 5px 0;
