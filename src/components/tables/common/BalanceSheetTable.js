@@ -19,7 +19,7 @@ const BalanceSheetTable = ({ transactions }) => {
 
     return (
         <TableLayout headers={headers}>
-            {transactions.length > 0 ? transactions.map(
+            {transactions?.length > 0 ? transactions.map(
                 ({ from_id, to_id, amount_krw, amount_usd, amount_uzs, buy_rate, sell_rate, rate, status, created_at }) => (
                     status === 1 ? (
                         <tr key={created_at.toString()}>

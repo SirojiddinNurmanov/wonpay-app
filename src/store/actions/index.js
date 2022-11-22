@@ -191,6 +191,38 @@ export const getClientProcesses = (clientId) => async (dispatch, getState) => {
     }
 }
 
+export const getUserTransactions = (userId) => async (dispatch, getState) => {
+    try {
+        const user = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/moneyflow/user/${userId}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
+        })
+
+        const { success, message, data } = await res.json()
+
+        if (success) {
+            dispatch({
+                type: Types.GET_USER_TRANSACTIONS,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: Types.USER_ERROR,
+                payload: message
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
 export const getTransactions = () => async (dispatch, getState) => {
     try {
         const user = getState().app.user

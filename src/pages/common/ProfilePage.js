@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 
 import { common } from "../../constants/bottomButtons"
-import { getAllUsers, getClientProcesses } from "../../store/actions"
+import { getAllUsers, getClientProcesses, getUserTransactions } from "../../store/actions"
 import { formatAmount } from '../../helpers'
 
 import Layout from "../../layout"
@@ -14,9 +14,10 @@ import NoData from "../../components/common/NoData"
 import { useState } from "react"
 import TakeMoneyModal from "../../components/modals/admin/TakeMoneyModal"
 import GiveMoneyModal from "../../components/modals/admin/GiveMoneyModal"
+import BalanceSheetTable from "../../components/tables/carrier/BalanceSheetTable"
 
 const ProfilePage = () => {
-    const { allUsers, clientProcesses } = useSelector(state => state.app)
+    const { allUsers, clientProcesses, userTransactions } = useSelector(state => state.app)
     const [takeMoneyModal, showTakeMoneyModal] = useState(false)
     const [giveMoneyModal, showGiveMoneyModal] = useState(false)
     const { userId } = useParams()
@@ -46,6 +47,7 @@ const ProfilePage = () => {
     useEffect(() => {
         dispatch(getAllUsers())
         dispatch(getClientProcesses(userId))
+        dispatch(getUserTransactions(userId))
         // eslint-disable-next-line
     }, [])
 
@@ -74,11 +76,15 @@ const ProfilePage = () => {
                 </div>
             )}
             <WhiteLine />
-            {clientProcesses ? clientProcesses.map(process => (
-                <TransactionCard key={process.id} {...process} />
-            )) : (
-                <NoData />
-            )}
+            {
+                user?.role === 'carrier' && userTransactions ? (
+                    <BalanceSheetTable transactions={userTransactions} />
+                ) : ""
+            }
+            {
+                user?.role === 'client' && clientProcesses.length > 0 ? clientProcesses.map(process => (
+                    <TransactionCard key={process.id} {...process} />
+                )) : ""}
             <div className="spacer"></div>
         </Layout>
     )

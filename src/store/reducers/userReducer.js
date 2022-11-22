@@ -7,6 +7,7 @@ const initialState = {
     loading: false,
     error: '',
     transactions: null,
+    userTransactions: [],
     queries: null,
     offers: null,
     carriers: null,
@@ -142,6 +143,11 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 allProcesses: payload
+            }
+        case Types.GET_USER_TRANSACTIONS:
+            return {
+                ...state,
+                userTransactions: payload
             }
         default:
             return state

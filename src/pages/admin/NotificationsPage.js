@@ -37,7 +37,7 @@ const NotificationsPage = () => {
     return (
         <Layout buttons={common} title={{ text: "Xabarlar:" }}>
             <NotificationDetailsModal show={detailsModal} onHide={() => showDetailsModal(false)} {...modalInfo} />
-            {groupedNotifications.length > 0 ? Object.entries(groupedNotifications).map(notificationGroup => (
+            {groupedNotifications ? Object.entries(groupedNotifications).map(notificationGroup => (
                 <div key={notificationGroup[0]}>
                     <div className="notification-date text-center">{notificationGroup[0]}</div>
                     {notificationGroup[1].map(notification => <NotificationCard key={notification.id} callback={readModal(notification)} {...notification} />)}
