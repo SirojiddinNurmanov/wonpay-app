@@ -30,7 +30,9 @@ const OfferRateModal = (props) => {
     }
 
     const confirmRate = () => {
-        dispatch(changeOfferRate(props.id, newBuyRate, newSellRate))
+        if (newBuyRate.length > 0 && newSellRate.length > 0) {
+            dispatch(changeOfferRate(props.id, newBuyRate, newSellRate))
+        }
         props.onHide()
     }
 

@@ -79,6 +79,7 @@ const ProfilePage = () => {
             )) : (
                 <NoData />
             )}
+            <div className="spacer"></div>
         </Layout>
     )
 }
