@@ -6,13 +6,14 @@ import { common } from "../../constants/bottomButtons"
 
 import Layout from "../../layout"
 
-import ConfirmReceiveModal from "../../components/modals/carrier/ConfirmReceiveModal"
+import TakeMoneyModal from "../../components/modals/carrier/TakeMoneyModal"
 import MoneyCard from "../../components/cards/MoneyCard"
 import { formatAmount } from "../../helpers"
 
 
 const ReceivePage = () => {
-    const [modalShow, setModalShow] = useState(false)
+    const [modalInfo, setModalInfo] = useState(false)
+    const [moneyModal, showMoneyModal] = useState(false)
     const { allProcesses, user: { user } } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
@@ -21,21 +22,32 @@ const ReceivePage = () => {
         // eslint-disable-next-line
     }, [])
 
-    common.middleButtons = [
-        {
-            text: "Pul Olish",
-            callback: () => {
-                setModalShow(true)
+    const handleCardClick = (process) => {
+        showMoneyModal(true)
+        setModalInfo(process)
+    }
+
+    common.middleButtons = false
+
+    let amountText = "$0"
+
+    if (allProcesses.length > 0) {
+        let filtered = allProcesses?.filter(process => (process.process_type === 0) && (process.carrier_id === user.id) && (process.status === 1))
+        if (filtered.length > 0) {
+            let mapped = filtered.map(process => process.amount / process.exchange_rate)
+            if (mapped.length > 0) {
+                let reduced = mapped.reduce((sum, amount) => sum + amount)
+                amountText = "$" + formatAmount(reduced, true, true)
             }
         }
-    ]
+    }
 
     return (
-        <Layout buttons={common} title={{ text: "Pul Olish:", amount: ("$" + (allProcesses.length > 0 ? formatAmount(allProcesses.filter(process => (process.process_type === 0) && (process.carrier_id === user.id) && (process.status === 1)).map(process => process.amount / process.exchange_rate).reduce((sum, amount) => sum + amount), true, true) : "0")) }}>
-            <ConfirmReceiveModal show={modalShow} onHide={() => setModalShow(false)} />
+        <Layout buttons={common} title={{ text: "Pul Olish:", amount: amountText }}>
+            <TakeMoneyModal show={moneyModal} onHide={() => showMoneyModal(false)} {...modalInfo}/>
             <div className="carrier-body">
                 {allProcesses && allProcesses.filter(process => (process.process_type === 0) && (process.carrier_id === user.id) && (process.status === 1)).map(process => (
-                    <MoneyCard key={process.id}  {...process} />
+                    <MoneyCard onClick={() => handleCardClick(process)} key={process.id}  {...process}  />
                 ))}
             </div>
         </Layout>

@@ -2,9 +2,9 @@ import React, { memo } from "react"
 
 import { formatAmount } from "../../helpers"
 
-const MoneyCard = ({ client, amount, process_type, exchange_rate, buy_rate }) => {
+const MoneyCard = ({ client, amount, process_type, exchange_rate, buy_rate, onClick }) => {
     return (
-        <div className="carrier-item money-card">
+        <div className="carrier-item money-card" onClick={onClick}>
             <div className="row">
                 <div className="col-6 givemoney-item1">
                     <h3>{client.first_name + (client.last_name ? " " + client.last_name : "")}</h3>

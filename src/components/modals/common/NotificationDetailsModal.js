@@ -94,6 +94,12 @@ const NotificationDetailsModal = (props) => {
                         case 3:
                             navigate(`/reports`)
                             break;
+                        case 5:
+                            navigate(`/receive`)
+                            break;
+                        case 6:
+                            navigate(`/deliver`)
+                            break;
                     }
 
                     props.onHide()

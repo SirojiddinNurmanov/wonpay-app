@@ -882,11 +882,56 @@ export const takeMoney = (user_id, amount_usd, amount_uzs, rate) => async (dispa
     }
 }
 
+export const carrierTakeMoney = (user_id, amount_usd, amount_uzs, rate) => async (dispatch, getState) => {
+    try {
+        let { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/moneyflow/carrier-take`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                user_id, amount_usd, amount_uzs, rate
+            })
+        })
+
+        const { message } = await res.json()
+
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
 export const confirmGivenMoney = (id) => async (dispatch, getState) => {
     try {
         let { token } = getState().app.user
 
         const res = await fetch(`${BACKEND_URL}/moneyflow/confirm/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        const { message } = await res.json()
+
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
+export const carrierClientConfirmGivenMoney = (id) => async (dispatch, getState) => {
+    try {
+        let { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/moneyflow/carrier-client-confirm/${id}`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
