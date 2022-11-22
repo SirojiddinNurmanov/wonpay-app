@@ -14,7 +14,7 @@ const OffersPage = () => {
     common.middleButtons = false
 
     return (
-        <Layout buttons={common} title={{ text: "Takliflar:", amount: "W" + formatAmount(sumProcessAmount(offers)) }}>
+        <Layout buttons={common} title={{ text: "Takliflar:", amount: "W" + (offers ? formatAmount(sumProcessAmount(offers.filter(offer => offer.assigned_queries.length === 0).filter(offer => offer.status !== 1))) : "0") }}>
             <OfferTable />
         </Layout>
     )

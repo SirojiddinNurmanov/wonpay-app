@@ -15,7 +15,7 @@ const QueriesPage = () => {
     common.middleButtons = false
 
     return (
-        <Layout buttons={common} title={{ text: "So'rovlar:", amount: "W" + formatAmount(sumProcessAmount(queries)) }}>
+        <Layout buttons={common} title={{ text: "So'rovlar:", amount: "W" + (queries ? formatAmount(sumProcessAmount(queries.filter(query => query.assigned_offer === null).filter(query => query.status !== 1))) : "0") }}>
             <QueryTable />
         </Layout>
     )
