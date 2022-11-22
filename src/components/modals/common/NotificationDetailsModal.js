@@ -2,7 +2,7 @@ import React, { memo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { setQueryRate, rejectQueryRate, setOfferRate, rejectOfferRate, setNotificationAsRead, confirmGivenMoney, rejectGivenMoney } from "../../../store/actions"
+import { setQueryRate, rejectQueryRate, setOfferRate, rejectOfferRate, setNotificationAsRead, confirmGivenMoney, rejectGivenMoney, clientConfirmGivenMoney, clientRejectGivenMoney } from "../../../store/actions"
 
 import ModalLayout from "../ModalLayout"
 
@@ -36,13 +36,21 @@ const NotificationDetailsModal = (props) => {
     }
 
     const confirmMoney = () => {
-        dispatch(confirmGivenMoney(props.process_id))
+        if (role === 'client') {
+            dispatch(clientConfirmGivenMoney(props.process_id))
+        } else {
+            dispatch(confirmGivenMoney(props.process_id))
+        }
         dispatch(setNotificationAsRead(props.id))
         props.onHide()
     }
 
     const rejectMoney = () => {
-        dispatch(rejectGivenMoney(props.process_id))
+        if (role === 'client') {
+            dispatch(clientRejectGivenMoney(props.process_id))
+        } else {
+            dispatch(rejectGivenMoney(props.process_id))
+        }
         dispatch(setNotificationAsRead(props.id))
         props.onHide()
     }

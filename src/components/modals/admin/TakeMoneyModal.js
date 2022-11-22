@@ -1,38 +1,33 @@
-import React, { memo } from "react"
-import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { memo, useState } from "react"
+import { useDispatch } from "react-redux"
 
-import { clientGivesMoney } from "../../../store/actions"
+import { takeMoney } from "../../../store/actions"
 
 import ModalLayout from "../ModalLayout"
 
-const GiveMoneyModal = (props) => {
+const TakeMoneyModal = (props) => {
     const [amount_usd, setAmountUSD] = useState()
     const [amount_uzs, setAmountUZS] = useState()
     const [rate, setRate] = useState()
-    const { allUsers } = useSelector(state => state.app)
-    const [carrierId, setCarrierId] = useState(allUsers?.length === 1 ? allUsers[0].id : "0")
     const dispatch = useDispatch()
 
     const clearFields = () => {
         setAmountUSD("")
         setAmountUZS("")
-        setCarrierId(0)
+        setRate("")
     }
 
     const buttons = [
         {
             title: "Tasdiqlash",
             eventHandler: () => {
-                // eslint-disable-next-line
-                if (((amount_usd && !amount_uzs && !rate ) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) && carrierId != "0") {
-                    dispatch(clientGivesMoney(carrierId, amount_usd, amount_uzs, rate))
+                if ((amount_usd && !amount_uzs && !rate ) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) {
+                    dispatch(takeMoney(props.user.id, amount_usd, amount_uzs, rate))
                     clearFields()
                     props.onHide()
                 }
             },
-            // eslint-disable-next-line
-            disabled: !(((amount_usd && !amount_uzs && !rate ) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) && carrierId != "0")
+            disabled: !((amount_usd && !amount_uzs && !rate ) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate))
         },
         {
             title: "Bekor Qilish",
@@ -60,16 +55,9 @@ const GiveMoneyModal = (props) => {
                     <span>Kurs</span>
                     <input className="amount-input" type="number" defaultValue={rate} onChange={({ target }) => setRate(target.value)} />
                 </div>
-                <h3>Pul qabul qiluvchi:</h3>
-                <select defaultValue={carrierId} onChange={({ target }) => setCarrierId(target.value)}>
-                    <option value="0">Tanlang</option>
-                    {allUsers && allUsers.filter(user => ['admin', 'superadmin', 'carrier'].includes(user.role)).map(carrier => (
-                        <option key={carrier.id} value={carrier.id}>{carrier.first_name}</option>
-                    ))}
-                </select>
             </div>
         </ModalLayout>
     )
 }
 
-export default memo(GiveMoneyModal)
+export default memo(TakeMoneyModal)

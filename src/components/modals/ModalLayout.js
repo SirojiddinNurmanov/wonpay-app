@@ -11,7 +11,7 @@ const ModalLayout = ({ children, buttons, show, onHide }) => (
         centered
         backdrop="static"
     >
-        <Modal.Header closeButton>
+        <Modal.Header>
             <Modal.Title className="text-center">
                 <div className="logo">
                     <img src="/assets/img/icons/logo.png" alt="logo" />
