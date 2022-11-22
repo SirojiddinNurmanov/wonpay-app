@@ -26,7 +26,7 @@ const TransactionsPage = () => {
         <Layout buttons={common} title={{ text: "O'tkazmalar Tarixi" }}>
             <div className="transaction-block">
                 <div className="title">Tarix</div>
-                {processes ? processes.map(transaction => (
+                {processes.length > 0 ? processes.map(transaction => (
                     <Link key={transaction.id} to={(transaction.process_type === 1 ? "/offers" : "/queries") + "/" + transaction.id}>
                         <TransactionCard {...transaction} />
                     </Link>

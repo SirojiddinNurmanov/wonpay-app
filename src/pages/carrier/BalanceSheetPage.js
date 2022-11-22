@@ -6,6 +6,7 @@ import Layout from "../../layout"
 
 import ConfirmReceiveModal from "../../components/modals/carrier/ConfirmReceiveModal"
 import BalanceSheetTable from "../../components/tables/carrier/BalanceSheetTable"
+
 const BalanceSheetPage = () => {
     const [modalShow, setModalShow] = useState(false)
 

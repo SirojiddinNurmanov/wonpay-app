@@ -6,6 +6,7 @@ import { formatAmount } from "../../../helpers"
 
 import OfferRateModal from "../../modals/admin/OfferRateModal"
 import TableLayout from "../TableLayout"
+import NoData from "../../common/NoData"
 
 const OfferTable = () => {
     const [offerRateModal, showOfferRateModal] = useState(false)
@@ -33,7 +34,7 @@ const OfferTable = () => {
     return (
         <TableLayout headers={headers}>
             <OfferRateModal show={offerRateModal} onHide={() => showOfferRateModal(false)} {...modalInfo} />
-            {offers && (
+            {offers.length > 0 ? (
                 <>
                     {offers.filter(offer => offer.status !== 1).map((process) => (
                         <tr key={process.id}>
@@ -58,6 +59,12 @@ const OfferTable = () => {
                         </tr>
                     ))}
                 </>
+            ) : (
+                <tr>
+                    <td colSpan={6}>
+                        <NoData row={true} />
+                    </td>
+                </tr>
             )}
         </TableLayout>
     )

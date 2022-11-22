@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { formatAmount } from '../../../helpers'
 
 import TableLayout from "../TableLayout"
+import NoData from "../../common/NoData"
 
 const DebtsTable = ({ users }) => {
     const navigate = useNavigate()
@@ -17,12 +18,18 @@ const DebtsTable = ({ users }) => {
 
     return (
         <TableLayout headers={headers}>
-            {users && users.map(user => (
+            {users.length > 0 ? users.map(user => (
                 <tr key={user.id} onClick={() => navigate('/profile/' + user.id)}>
                     <td>{user.first_name + (user.last_name ? " " + user.last_name : "")}</td>
                     <td>{"$" + formatAmount(user.balance).toString().replace('-', '')}</td>
                 </tr>
-            ))}
+            )) : (
+                <tr>
+                    <td colSpan={2}>
+                        <NoData row={true} />
+                    </td>
+                </tr>
+            )}
         </TableLayout >
     )
 }

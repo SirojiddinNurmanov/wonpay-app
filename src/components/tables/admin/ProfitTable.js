@@ -1,6 +1,7 @@
 import React, { memo, useState } from "react"
 import { useSelector } from "react-redux"
 import { formatAmount } from "../../../helpers"
+import NoData from "../../common/NoData"
 
 import QueryProofModal from "../../modals/admin/QueryProofModal"
 
@@ -30,16 +31,22 @@ const ProfitTable = () => {
     return (
         <TableLayout headers={headers}>
             <QueryProofModal show={queryInfoModal} onHide={() => showQueryProofModal(false)} {...modalInfo} />
-            {profits && profits.map(({id, process, amount, total}) => (
+            {profits.length > 0 ? profits.map(({id, process, amount, total}) => (
                 <tr key={id}>
                     <td></td>
-                    <td>{"￦" + formatAmount(process.amount)}</td>
+                    <td>{"￦" + formatAmount(process ? process.amount : 0)}</td>
                     <td>{"Uzb>>Kor"}</td>
                     <td onClick={openInfoModal(process)}>Ko'rish</td>
                     <td className="green text-bold">{"+$" + formatAmount(amount)}</td>
                     <td>{"$" + formatAmount(total)}</td>
                 </tr>
-            ))}
+            )) : (
+                <tr>
+                    <td colSpan={6}>
+                        <NoData row={true} />
+                    </td>
+                </tr>
+            )}
         </TableLayout>
     )
 }

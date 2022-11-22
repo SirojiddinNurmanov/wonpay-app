@@ -7,16 +7,16 @@ import Title from "../components/common/Title"
 import { formatAmount } from "../helpers"
 
 const Layout = ({ children, buttons, title = false, empty = false }) => {
-    const { user : { user : { balance, role }}, carriers} = useSelector(state => state.app)
+    const { user, carriers} = useSelector(state => state.app)
 
 
     let balanceText = "$0"
-    if (role === 'client') {
-        balanceText = (balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance) : 0)
-    } else if (role === 'admin' || role === 'superadmin') {
-        balanceText = "$" + formatAmount(balance + (carriers?.map(carrier => carrier.balance).reduce((sum, carrierBalance) => sum + carrierBalance)) || 0) + ` ( $${formatAmount(balance)} )`
-    } else if (role === 'carrier') {
-        balanceText = "$" + formatAmount(balance)
+    if (user?.user.role === 'client') {
+        balanceText = (user?.user.balance === 0 ? "$" : user?.user.balance < 0 ? "-$" : "+$") + (user?.user.balance ? formatAmount(user?.user.balance < 0 ? user?.user.balance * -1 : user?.user.balance) : 0)
+    } else if (user?.user.role === 'admin' || user?.user.role === 'superadmin') {
+        balanceText = "$" + formatAmount(user?.user.balance + (carriers?.length > 0 ? carriers?.map(carrier => carrier.balance).reduce((sum, carrierBalance) => sum + carrierBalance) : 0) || 0) + ` ( $${formatAmount(user?.user.balance)} )`
+    } else if (user?.user.role === 'carrier') {
+        balanceText = "$" + formatAmount(user?.user.balance)
     }
 
     const headerData = {

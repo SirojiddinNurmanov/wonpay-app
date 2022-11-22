@@ -1,6 +1,7 @@
 import React, { memo } from "react"
 
 import TableLayout from "../TableLayout"
+import NoData from "../../common/NoData"
 
 const BalanceSheetTable = () => {
     const headers = [
@@ -14,7 +15,11 @@ const BalanceSheetTable = () => {
 
     return (
         <TableLayout headers={headers}>
-            <></>
+            <tr>
+                <td colSpan={6}>
+                    <NoData row={true} />
+                </td>
+            </tr>
         </TableLayout>
     )
 }

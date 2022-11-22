@@ -10,6 +10,7 @@ import Layout from "../../layout"
 import NotificationDetailsModal from "../../components/modals/common/NotificationDetailsModal"
 import NotificationCard from "../../components/cards/NotificationCard"
 import { groupByDate } from "../../helpers"
+import NoData from "../../components/common/NoData"
 
 const NotificationsPage = () => {
     const [modalInfo, setModalInfo] = useState(false)
@@ -36,12 +37,14 @@ const NotificationsPage = () => {
     return (
         <Layout buttons={common} title={{ text: "Xabarlar:" }}>
             <NotificationDetailsModal show={detailsModal} onHide={() => showDetailsModal(false)} {...modalInfo} />
-            {groupedNotifications && Object.entries(groupedNotifications).map(notificationGroup => (
+            {groupedNotifications.length > 0 ? Object.entries(groupedNotifications).map(notificationGroup => (
                 <div key={notificationGroup[0]}>
                     <div className="notification-date text-center">{notificationGroup[0]}</div>
                     {notificationGroup[1].map(notification => <NotificationCard key={notification.id} callback={readModal(notification)} {...notification} />)}
                 </div>
-            ))}
+            )) : (
+                <NoData />
+            )}
             <div className="spacer"></div>
         </Layout>
     )

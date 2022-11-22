@@ -7,6 +7,7 @@ import { getQueries } from "../../../store/actions"
 import QueryProofModal from "../../modals/admin/QueryProofModal"
 
 import TableLayout from "../TableLayout"
+import NoData from "../../common/NoData"
 
 const ReportsTable = () => {
     const [queryInfoModal, showQueryProofModal] = useState(false)
@@ -40,7 +41,7 @@ const ReportsTable = () => {
     return (
         <TableLayout headers={headers}>
             <QueryProofModal show={queryInfoModal} onHide={() => showQueryProofModal(false)} {...modalInfo} />
-            {groupedQueries && Object.entries(groupedQueries).map(queryGroup => (
+            {groupedQueries.length > 0 ? Object.entries(groupedQueries).map(queryGroup => (
                 <Fragment key={queryGroup[0]}>
                     <tr>
                         <td colSpan="6" className="notification-date text-center">{queryGroup[0]}</td>
@@ -64,7 +65,13 @@ const ReportsTable = () => {
                         </tr>
                     ))}
                 </Fragment>
-            ))}
+            )) : (
+                <tr>
+                    <td colSpan={6}>
+                        <NoData row={true} />
+                    </td>
+                </tr>
+            )}
         </TableLayout>
     )
 }

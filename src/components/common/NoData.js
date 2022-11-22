@@ -1,8 +1,10 @@
 import React, { memo } from "react"
 
-const NoData = () => (
+const NoData = ({ row = false }) => (
     <div className="center">
-        <br />
+        {!row && (
+            <br />
+        )}
         <strong><h6>Ma'lumot yo'q</h6></strong>
     </div>
 )

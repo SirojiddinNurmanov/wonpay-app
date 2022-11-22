@@ -7,6 +7,7 @@ import { formatAmount } from "../../../helpers"
 import QueryInfoModal from "../../modals/admin/QueryInfoModal"
 import QueryRateModal from "../../modals/admin/QueryRateModal"
 import TableLayout from "../TableLayout"
+import NoData from "../../common/NoData"
 
 const QueryTable = () => {
     const [queryInfoModal, showQueryInfoModal] = useState(false)
@@ -40,7 +41,7 @@ const QueryTable = () => {
         <TableLayout headers={headers}>
             <QueryInfoModal show={queryInfoModal} onHide={() => showQueryInfoModal(false)} {...modalInfo} />
             <QueryRateModal show={queryRateModal} onHide={() => showQueryRateModal(false)} {...modalInfo} />
-            {queries && (
+            {queries.length > 0 ? (
                 <>
                     {queries.filter(query => query.status !== 1).map((process) => {
                         return (
@@ -58,6 +59,12 @@ const QueryTable = () => {
                         )
                     })}
                 </>
+            ) : (
+                <tr>
+                    <td colSpan={6}>
+                        <NoData row={true} />
+                    </td>
+                </tr>
             )}
         </TableLayout>
     )

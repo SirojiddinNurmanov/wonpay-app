@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { getAllProcesses } from "../../store/actions"
 import { common } from "../../constants/bottomButtons"
+import { formatAmount } from "../../helpers"
 
 import Layout from "../../layout"
 
 import GiveMoneyModal from "../../components/modals/carrier/GiveMoneyModal"
 import MoneyCard from "../../components/cards/MoneyCard"
-import { formatAmount } from "../../helpers"
+import NoData from "../../components/common/NoData"
 
 const DeliverPage = () => {
     const [modalInfo, setModalInfo] = useState(false)
@@ -45,9 +46,11 @@ const DeliverPage = () => {
         <Layout buttons={common} title={{ text: "Pul Berish:", amount: amountText }}>
             <GiveMoneyModal show={moneyModal} onHide={() => showMoneyModal(false)} {...modalInfo}/>
             <div className="carrier-body">
-                {allProcesses && allProcesses.filter(process => (process.process_type === 1) && (process.carrier_id === user.id) && (process.status === 1)).map(process => (
+                {allProcesses.length > 0 ? allProcesses.filter(process => (process.process_type === 1) && (process.carrier_id === user.id) && (process.status === 1)).map(process => (
                     <MoneyCard key={process.id}  {...process} onClick={() => handleCardClick(process)}/>
-                ))}
+                )) : (
+                    <NoData />
+                )}
             </div>
         </Layout>
     )

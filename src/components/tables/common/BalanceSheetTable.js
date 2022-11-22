@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { formatAmount } from "../../../helpers"
 
 import TableLayout from "../TableLayout"
+import NoData from "../../common/NoData"
 
 const BalanceSheetTable = ({ transactions }) => {
     const { id } = useSelector(state => state.app.user.user)
@@ -18,7 +19,7 @@ const BalanceSheetTable = ({ transactions }) => {
 
     return (
         <TableLayout headers={headers}>
-            {transactions && transactions.map(
+            {transactions.length > 0 ? transactions.map(
                 ({ from_id, to_id, amount_krw, amount_usd, amount_uzs, buy_rate, sell_rate, rate, status, created_at }) => (
                     status === 1 ? (
                         <tr key={created_at.toString()}>
@@ -48,6 +49,12 @@ const BalanceSheetTable = ({ transactions }) => {
                         </tr>
                     ) : ""
                 )
+            ) : (
+                <tr>
+                    <td colSpan={5}>
+                        <NoData row={true}/>
+                    </td>
+                </tr>
             )}
         </TableLayout>
     )
