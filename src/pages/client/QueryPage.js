@@ -41,6 +41,7 @@ const QueryPage = () => {
     ]
 
     const sendProcessToServer = () => {
+        setEnabled(false)
         const data = {
             process_type: "0",
             amount: trimAmount(amount),

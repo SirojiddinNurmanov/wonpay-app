@@ -37,6 +37,7 @@ const OfferPage = () => {
     ]
 
     const sendProcessToServer = () => {
+        setEnabled(false)
         const data = {
             process_type: "1",
             amount: trimAmount(amount),
