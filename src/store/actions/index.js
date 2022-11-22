@@ -383,6 +383,38 @@ export const getAllUsers = () => async (dispatch, getState) => {
     }
 }
 
+export const getProfits = () => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user
+
+        const res = await fetch(`${BACKEND_URL}/processes/profits`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+
+        const { success, message, data } = await res.json()
+
+        if (success) {
+            dispatch({
+                type: Types.GET_PROFITS,
+                payload: data
+            })
+        } else {
+            dispatch({
+                type: Types.USER_ERROR,
+                payload: message
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error.response.statusText
+        })
+    }
+}
+
 export const toggleUserRoles = (carriers, clients) => async (dispatch, getState) => {
     try {
         const { token } = getState().app.user

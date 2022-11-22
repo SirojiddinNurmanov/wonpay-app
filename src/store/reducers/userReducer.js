@@ -16,7 +16,8 @@ const initialState = {
     moneyflow: [],
     processes: [],
     clientProcesses: [],
-    allProcesses: []
+    allProcesses: [],
+    profits: []
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -131,6 +132,11 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 clientProcesses: payload
+            }
+        case Types.GET_PROFITS:
+            return {
+                ...state,
+                profits: payload
             }
         case Types.GET_ALL_PROCESSES:
             return {
