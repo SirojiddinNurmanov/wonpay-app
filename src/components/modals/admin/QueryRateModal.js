@@ -10,15 +10,16 @@ const QueryRateModal = (props) => {
     const dispatch = useDispatch()
 
     const confirmRate = () => {
-        dispatch(changeQueryRate(props.id, newValue))
+        if (newValue) {
+            dispatch(changeQueryRate(props.id, newValue))
+        }
         props.onHide()
     }
 
     const buttons = [
         {
             title: "Tasdiqlash",
-            eventHandler: () => confirmRate(),
-            disabled: newValue ? true : false
+            eventHandler: () => confirmRate()
         }
     ]
 
