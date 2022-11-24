@@ -34,7 +34,7 @@ const OfferTable = () => {
     return (
         <TableLayout headers={headers}>
             <OfferRateModal show={offerRateModal} onHide={() => showOfferRateModal(false)} {...modalInfo} />
-            {offers.length > 0 ? (
+            {offers?.length > 0 ? (
                 <>
                     {offers.filter(offer => offer.status !== 1).map((process) => (
                         <tr key={process.id}>

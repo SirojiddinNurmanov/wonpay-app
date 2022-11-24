@@ -61,7 +61,7 @@ const SingleOfferPage = () => {
     common.middleButtons = [
         {
             text: "Jo'natish",
-            callback: () => {
+            eventHandler: () => {
                 if (offer?.assigned_queries.length === 0) {
                     dispatch(sendOfferQueries(offerId, selectedIds, showConfirmationModal))
                 }
@@ -74,7 +74,7 @@ const SingleOfferPage = () => {
         common.middleButtons = [
             {
                 text: "Tugatish",
-                callback: () => showCloseOfferModal(true),
+                eventHandler: () => showCloseOfferModal(true),
                 disabled: !offer?.carrier_id
             }
         ]

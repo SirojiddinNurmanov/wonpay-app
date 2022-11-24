@@ -18,7 +18,7 @@ const DebtsTable = ({ users }) => {
 
     return (
         <TableLayout headers={headers}>
-            {users.length > 0 ? users.map(user => (
+            {users?.length > 0 ? users.map(user => (
                 <tr key={user.id} onClick={() => navigate('/profile/' + user.id)}>
                     <td>{user.first_name + (user.last_name ? " " + user.last_name : "")}</td>
                     <td>{"$" + formatAmount(user.balance).toString().replace('-', '')}</td>

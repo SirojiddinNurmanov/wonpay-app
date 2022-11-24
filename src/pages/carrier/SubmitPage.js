@@ -8,14 +8,14 @@ const SubmitPage = () => {
     common.middleButtons = [
         {
             text: "Bekor Qilish",
-            callback: () => {
+            eventHandler: () => {
                 // console.log("");
             },
             secondary: true
         },
         {
             text: "Berdim",
-            callback: () => {
+            eventHandler: () => {
                 // console.log("");
             }
         }

@@ -1,11 +1,11 @@
 import React, { memo } from "react"
 
-const MiddleButton = ({ text, disabled = false, secondary = false, callback = false }) => {
+const MiddleButton = ({ text, disabled = false, secondary = false, eventHandler = false }) => {
 
     const clickHandler = () => {
         if (!disabled) {
-            if (callback) {
-                callback()
+            if (eventHandler) {
+                eventHandler()
             }
         }
     }

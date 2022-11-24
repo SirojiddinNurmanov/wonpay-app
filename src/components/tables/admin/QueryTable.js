@@ -41,7 +41,7 @@ const QueryTable = () => {
         <TableLayout headers={headers}>
             <QueryInfoModal show={queryInfoModal} onHide={() => showQueryInfoModal(false)} {...modalInfo} />
             <QueryRateModal show={queryRateModal} onHide={() => showQueryRateModal(false)} {...modalInfo} />
-            {queries.length > 0 ? (
+            {queries?.length > 0 ? (
                 <>
                     {queries.filter(query => query.status !== 1).map((process) => {
                         return (

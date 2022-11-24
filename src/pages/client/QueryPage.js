@@ -36,7 +36,7 @@ const QueryPage = () => {
         {
             text: "Tasdiqlash",
             disabled: !enabled,
-            callback: () => sendProcessToServer()
+            eventHandler: () => sendProcessToServer()
         }
     ]
 

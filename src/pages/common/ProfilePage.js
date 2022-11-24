@@ -28,18 +28,18 @@ const ProfilePage = () => {
     common.middleButtons = user?.role === 'carrier' ? [
         {
             text: "Pul Olish",
-            callback: () => showTakeMoneyModal(true),
+            eventHandler: () => showTakeMoneyModal(true),
             disabled: user.balance === 0
         },
         {
             text: "Pul Berish",
-            callback: () => showGiveMoneyModal(true),
+            eventHandler: () => showGiveMoneyModal(true),
             disabled: currentUser.balance === 0
         }
     ] : [
         {
             text: "Pul Berish",
-            callback: () => showGiveMoneyModal(true),
+            eventHandler: () => showGiveMoneyModal(true),
             disabled: currentUser.balance === 0
         }
     ]

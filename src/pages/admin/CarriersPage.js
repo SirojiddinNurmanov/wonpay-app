@@ -22,7 +22,7 @@ const CarriersPage = () => {
     common.middleButtons = [
         {
             text: "Kuryer Qo'shish",
-            callback: () => showUsersModal(true)
+            eventHandler: () => showUsersModal(true)
         }
     ]
 

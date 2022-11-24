@@ -32,7 +32,7 @@ const OfferPage = () => {
         {
             text: "Tasdiqlash",
             disabled: !enabled,
-            callback: () => sendProcessToServer()
+            eventHandler: () => sendProcessToServer()
         }
     ]
 
