@@ -22,19 +22,24 @@ const SingleOfferPage = () => {
     const [confirmationModal, showConfirmationModal] = useState(false)
     const [closeOfferModal, showCloseOfferModal] = useState(false)
     const [selectedIds, setSelectedIds] = useState([])
-    const [carrierId, setCarrierId] = useState()
+    const [carrierId, setCarrierId] = useState(0)
     const { offers, carriers } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
     let { offerId } = useParams()
     let offer = offers?.find(offer => offer?.id === parseInt(offerId))
 
-    useEffect(() => {
-        dispatch(getCarriers())
-        dispatch(getUserProcesses())
+    let setCarrierIdForProcess = () => {
+        offer = offers?.find(offer => offer?.id === parseInt(offerId))
+        console.log(offers);
         if (offer?.carrier_id) {
             setCarrierId(offer.carrier_id)
         }
+    }
+
+    useEffect(() => {
+        dispatch(getCarriers())
+        // dispatch(getOffers(setCarrierIdForProcess))
         // eslint-disable-next-line
     }, [])
 
@@ -66,7 +71,7 @@ const SingleOfferPage = () => {
                     dispatch(sendOfferQueries(offerId, selectedIds, showConfirmationModal))
                 }
             },
-            disabled: offer?.assigned_queries.length > 0 || offer?.sell_rate === 0 || selectedIds?.length === 0
+            disabled: offer?.assigned_queries.length > 0 || offer?.sell_rate === 0 || selectedIds?.length === 0 || offer?.carrier_id === null
         }
     ]
 
@@ -75,7 +80,7 @@ const SingleOfferPage = () => {
             {
                 text: "Tugatish",
                 eventHandler: () => showCloseOfferModal(true),
-                disabled: !offer?.carrier_id
+                disabled: offer?.carrier_id === null
             }
         ]
     }
@@ -131,10 +136,10 @@ const SingleOfferPage = () => {
                     <div className="process-carrier-block">
                         <div className="process-title">Pulni Beruvchi Kuryer:</div>
                         <div className="process-carrier-list">
-                            <select onChange={selectCarrier} className="underlined text-center" value={carrierId}>
+                            <select onChange={selectCarrier} className="underlined text-center" defaultValue={offer?.carrier_id}>
                                 {carriers ? carriers.length > 1 ? (
                                     <>
-                                        <option value="1">Tanlash</option>
+                                        <option value="0">Tanlash</option>
                                         {carriers.map(({ id, first_name, last_name }) => (
                                             <option key={id} value={id}>{first_name + (last_name ? " " + last_name : "")}</option>
                                         ))}
@@ -144,7 +149,7 @@ const SingleOfferPage = () => {
                                 ) : ""}
                             </select>
                         </div>
-                        {carrierId ? "" : (
+                        {offer?.carrier_id ? "" : (
                             <div className="error-message small text-center red">Iltimos kuryerni tanlang</div>
                         )}
                     </div>

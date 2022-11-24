@@ -95,7 +95,7 @@ export const getUser = () => async (dispatch) => {
     hideLoading()
 }
 
-export const getUserProcesses = () => async (dispatch, getState) => {
+export const getUserProcesses = (callback = false) => async (dispatch, getState) => {
     try {
         const user = getState().app.user
 
@@ -113,6 +113,10 @@ export const getUserProcesses = () => async (dispatch, getState) => {
                 type: Types.GET_PROCESSES,
                 payload: data
             })
+            if (callback) {
+                console.log(message);
+                callback()
+            }
         } else {
             dispatch({
                 type: Types.USER_ERROR,
@@ -255,7 +259,7 @@ export const getQueries = () => async (dispatch, getState) => {
     }
 }
 
-export const getOffers = () => async (dispatch, getState) => {
+export const getOffers = (callback = false) => async (dispatch, getState) => {
     try {
         const user = getState().app.user
 
@@ -273,6 +277,10 @@ export const getOffers = () => async (dispatch, getState) => {
                 type: Types.GET_OFFERS,
                 payload: data
             })
+
+            if (callback) {
+                callback()
+            }
         } else {
             dispatch({
                 type: Types.USER_ERROR,
