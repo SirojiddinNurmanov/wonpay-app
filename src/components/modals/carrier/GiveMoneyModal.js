@@ -2,6 +2,7 @@ import React, { memo, useState } from "react"
 import { useDispatch } from "react-redux"
 
 import { giverGiveMoney } from "../../../store/actions"
+import { formatAmount } from "../../../helpers"
 
 import ModalLayout from "../ModalLayout"
 
@@ -42,6 +43,7 @@ const GiveMoneyModal = (props) => {
     return (
         <ModalLayout buttons={buttons} {...props}>
             <div className="give-money-modal text-center">
+                <h1><strong>-${formatAmount(props.amount ? (props.amount / props.buy_rate) : 0, true, true)}</strong></h1>
                 <h3>Miqdorni kiriting:</h3>
                 <div className="input-field">
                     <span>$</span>

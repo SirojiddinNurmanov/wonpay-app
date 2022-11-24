@@ -17,8 +17,6 @@ const ReceivePage = () => {
     const { allProcesses, user: { user } } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
-    console.log(allProcesses);
-
     useEffect(() => {
         dispatch(getAllProcesses())
         // eslint-disable-next-line
