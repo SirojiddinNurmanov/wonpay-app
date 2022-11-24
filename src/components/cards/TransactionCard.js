@@ -14,15 +14,14 @@ const TransactionCard = ({ process_type, assigned_queries, amount, exchange_rate
                     {amount && (
                         <>
                             {usedAmount !== 0 && (usedAmount < amount) && (
-                                <div className="transaction-amount"><strike>￦ { formatAmount(amount)}</strike></div>
+                                <div className="transaction-amount"><strike>￦ {formatAmount(amount)}</strike></div>
                             )}
                             <div className="transaction-amount">￦ {status === 1 ? usedAmount === amount ? formatAmount(amount) : formatAmount(usedAmount) : formatAmount(amount)}</div>
-
                         </>
                     )}
-                    {process_type === 0 ? exchange_rate !== 0 && (
+                    {process_type === 0 ? (
                         <div className="transaction-amount">$ {formatAmount((amount / exchange_rate), true, true)}</div>
-                    ) : process_type === 1 && buy_rate !== 0 && (
+                    ) : (
                         <div className="transaction-amount">$ {formatAmount((amount / buy_rate), true, true)}</div>
                     )}
                 </div>
