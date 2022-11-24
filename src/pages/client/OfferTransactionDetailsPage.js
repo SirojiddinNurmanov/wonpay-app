@@ -46,12 +46,14 @@ const OfferTransactionDetailsPage = () => {
     useEffect(() => {
         dispatch(getQueries())
         dispatch(getOffers())
-        setCancelled(offer?.status === 1)
+        if (!cancelled) {
+            setCancelled(offer?.status === 1)
+        }
         // eslint-disable-next-line
     }, [])
 
     const getQueryById = (queryId) => {
-        return queries.find(query => query.id === queryId)
+        return queries?.find(query => query.id === queryId)
     }
 
     return (
