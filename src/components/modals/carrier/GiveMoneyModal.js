@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react"
 import { useDispatch } from "react-redux"
 
-import { giveMoneyToClient } from "../../../store/actions"
+import { giverGiveMoney } from "../../../store/actions"
 
 import ModalLayout from "../ModalLayout"
 
@@ -22,7 +22,7 @@ const GiveMoneyModal = (props) => {
             title: "Tasdiqlash",
             eventHandler: () => {
                 if ((amount_usd && !amount_uzs && !rate) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) {
-                        dispatch(giveMoneyToClient(props.user_id, amount_usd, amount_uzs, rate))                        
+                        dispatch(giverGiveMoney(props.user_id, amount_usd, amount_uzs, rate))                        
                     clearFields()
                     props.onHide()
                 }

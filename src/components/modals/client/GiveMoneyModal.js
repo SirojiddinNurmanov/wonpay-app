@@ -2,7 +2,7 @@ import React, { memo } from "react"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { clientGivesMoney } from "../../../store/actions"
+import { clientGiveMoney } from "../../../store/actions"
 
 import ModalLayout from "../ModalLayout"
 
@@ -26,7 +26,7 @@ const GiveMoneyModal = (props) => {
             eventHandler: () => {
                 // eslint-disable-next-line
                 if (((amount_usd && !amount_uzs && !rate ) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) && carrierId != "0") {
-                    dispatch(clientGivesMoney(carrierId, amount_usd, amount_uzs, rate))
+                    dispatch(clientGiveMoney(carrierId, amount_usd, amount_uzs, rate))
                     clearFields()
                     props.onHide()
                 }

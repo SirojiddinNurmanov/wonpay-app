@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react"
 import { useDispatch } from "react-redux"
 
-import { takeMoney } from "../../../store/actions"
+import { adminTakeMoney } from "../../../store/actions"
 
 import ModalLayout from "../ModalLayout"
 
@@ -22,7 +22,7 @@ const TakeMoneyModal = (props) => {
             title: "Tasdiqlash",
             eventHandler: () => {
                 if ((amount_usd && !amount_uzs && !rate ) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) {
-                    dispatch(takeMoney(props.user.id, amount_usd, amount_uzs, rate))
+                    dispatch(adminTakeMoney(props.user.id, amount_usd, amount_uzs, rate))
                     clearFields()
                     props.onHide()
                 }

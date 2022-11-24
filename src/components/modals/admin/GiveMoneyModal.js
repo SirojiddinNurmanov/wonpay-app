@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react"
 import { useDispatch } from "react-redux"
 
-import { giveMoney, giveMoneyToClient } from "../../../store/actions"
+import { giverGiveMoney, adminGiveMoney } from "../../../store/actions"
 
 import ModalLayout from "../ModalLayout"
 
@@ -23,9 +23,9 @@ const GiveMoneyModal = (props) => {
             eventHandler: () => {
                 if ((amount_usd && !amount_uzs && !rate) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) {
                     if (props.user.role === 'client') {
-                        dispatch(giveMoneyToClient(props.user.id, amount_usd, amount_uzs, rate))                        
+                        dispatch(giverGiveMoney(props.user.id, amount_usd, amount_uzs, rate))                        
                     } else {
-                        dispatch(giveMoney(props.user.id, amount_usd, amount_uzs, rate))
+                        dispatch(adminGiveMoney(props.user.id, amount_usd, amount_uzs, rate))
                     }
                     clearFields()
                     props.onHide()

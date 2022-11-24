@@ -2,7 +2,7 @@ import React, { memo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { setQueryRate, rejectQueryRate, setOfferRate, rejectOfferRate, setNotificationAsRead, confirmGivenMoney, rejectGivenMoney, clientConfirmGivenMoney, clientRejectGivenMoney } from "../../../store/actions"
+import { setQueryRate, rejectQueryRate, setOfferRate, rejectOfferRate, setNotificationAsRead, clientConfirmMoney, receiverConfirmMoney, clientRejectMoney, receiverRejectMoney } from "../../../store/actions"
 
 import ModalLayout from "../ModalLayout"
 
@@ -37,9 +37,9 @@ const NotificationDetailsModal = (props) => {
 
     const confirmMoney = () => {
         if (role === 'client') {
-            dispatch(clientConfirmGivenMoney(props.process_id))
+            dispatch(clientConfirmMoney(props.process_id))
         } else {
-            dispatch(confirmGivenMoney(props.process_id))
+            dispatch(receiverConfirmMoney(props.process_id))
         }
         dispatch(setNotificationAsRead(props.id))
         props.onHide()
@@ -47,9 +47,9 @@ const NotificationDetailsModal = (props) => {
 
     const rejectMoney = () => {
         if (role === 'client') {
-            dispatch(clientRejectGivenMoney(props.process_id))
+            dispatch(clientRejectMoney(props.process_id))
         } else {
-            dispatch(rejectGivenMoney(props.process_id))
+            dispatch(receiverRejectMoney(props.process_id))
         }
         dispatch(setNotificationAsRead(props.id))
         props.onHide()

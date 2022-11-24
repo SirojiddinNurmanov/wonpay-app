@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount } from "../../helpers"
-import { closeOffer, getCarriers, getUserProcesses, sendOfferQueries, setProcessCarrier } from "../../store/actions"
+import { closeOffer, getCarriers, getOffers, getUserProcesses, sendOfferQueries, setProcessCarrier } from "../../store/actions"
 
 import Layout from "../../layout"
 
@@ -66,7 +66,7 @@ const SingleOfferPage = () => {
                     dispatch(sendOfferQueries(offerId, selectedIds, showConfirmationModal))
                 }
             },
-            disabled: offer?.assigned_queries.length > 0 || offer?.sell_rate === 0
+            disabled: offer?.assigned_queries.length > 0 || offer?.sell_rate === 0 || selectedIds?.length === 0
         }
     ]
 
@@ -75,6 +75,7 @@ const SingleOfferPage = () => {
             {
                 text: "Tugatish",
                 callback: () => showCloseOfferModal(true),
+                disabled: !offer?.carrier_id
             }
         ]
     }
