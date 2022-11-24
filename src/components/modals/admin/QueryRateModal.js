@@ -6,7 +6,7 @@ import { changeQueryRate } from '../../../store/actions'
 import ModalLayout from "../ModalLayout"
 
 const QueryRateModal = (props) => {
-    const [newValue, setNewValue] = useState()
+    const [newValue, setNewValue] = useState(false)
     const dispatch = useDispatch()
 
     const confirmRate = () => {
