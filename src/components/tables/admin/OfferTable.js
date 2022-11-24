@@ -31,12 +31,14 @@ const OfferTable = () => {
         "Taqsim"
     ]
 
+    let pendingOffers = offers?.length > 0 ? offers.filter(offer => offer.status !== 1) : []
+
     return (
         <TableLayout headers={headers}>
             <OfferRateModal show={offerRateModal} onHide={() => showOfferRateModal(false)} {...modalInfo} />
-            {offers?.length > 0 ? (
+            {pendingOffers?.length > 0 ? (
                 <>
-                    {offers.filter(offer => offer.status !== 1).map((process) => (
+                    {pendingOffers?.map((process) => (
                         <tr key={process.id}>
                             <td>
                                 <Link to={"/offers/" + process.id}>

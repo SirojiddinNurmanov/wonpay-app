@@ -37,13 +37,15 @@ const QueryTable = () => {
         "Turi"
     ]
 
+    let pendingQueries = queries?.length > 0 ? queries.filter(query => query.status !== 1) : []
+
     return (
         <TableLayout headers={headers}>
             <QueryInfoModal show={queryInfoModal} onHide={() => showQueryInfoModal(false)} {...modalInfo} />
             <QueryRateModal show={queryRateModal} onHide={() => showQueryRateModal(false)} {...modalInfo} />
-            {queries?.length > 0 ? (
+            {pendingQueries?.length > 0 ? (
                 <>
-                    {queries.filter(query => query.status !== 1).map((process) => {
+                    {pendingQueries?.map((process) => {
                         return (
                             <tr key={process.id}>
                                 <td>
