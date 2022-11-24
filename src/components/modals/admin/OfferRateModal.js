@@ -38,8 +38,9 @@ const OfferRateModal = (props) => {
 
     const buttons = [
         {
-            title: "Yopish",
-            eventHandler: () => confirmRate()
+            title: "Tasdiqlash",
+            eventHandler: () => confirmRate(),
+            disabled: !(newBuyRate || newSellRate)
         }
     ]
 
