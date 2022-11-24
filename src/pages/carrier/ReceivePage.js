@@ -17,6 +17,8 @@ const ReceivePage = () => {
     const { allProcesses, user: { user } } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
+    console.log(allProcesses);
+
     useEffect(() => {
         dispatch(getAllProcesses())
         // eslint-disable-next-line
@@ -42,11 +44,13 @@ const ReceivePage = () => {
         }
     }
 
+    let carrierProcesses = allProcesses && allProcesses?.length > 0 ? allProcesses.filter(process => (process.process_type === 0) && (process.carrier_id === user.id) && (process.status === 1)) : [];
+
     return (
         <Layout buttons={common} title={{ text: "Pul Olish:", amount: amountText }}>
             <TakeMoneyModal show={moneyModal} onHide={() => showMoneyModal(false)} {...modalInfo}/>
             <div className="carrier-body">
-                {allProcesses.length > 0 ? allProcesses.filter(process => (process.process_type === 0) && (process.carrier_id === user.id) && (process.status === 1)).map(process => (
+                {carrierProcesses.length > 0 ? carrierProcesses?.map(process => (
                     <MoneyCard onClick={() => handleCardClick(process)} key={process.id}  {...process}  />
                 )) : (
                     <NoData />

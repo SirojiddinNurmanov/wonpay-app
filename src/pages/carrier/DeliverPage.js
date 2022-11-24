@@ -42,11 +42,13 @@ const DeliverPage = () => {
         }
     }
 
+    let carrierProcesses = allProcesses && allProcesses?.length > 0 ? allProcesses.filter(process => (process.process_type === 1) && (process.carrier_id === user.id) && (process.status === 1)) : [];
+
     return (
         <Layout buttons={common} title={{ text: "Pul Berish:", amount: amountText }}>
             <GiveMoneyModal show={moneyModal} onHide={() => showMoneyModal(false)} {...modalInfo}/>
             <div className="carrier-body">
-                {allProcesses.length > 0 ? allProcesses.filter(process => (process.process_type === 1) && (process.carrier_id === user.id) && (process.status === 1)).map(process => (
+                {carrierProcesses.length > 0 ? carrierProcesses?.map(process => (
                     <MoneyCard key={process.id}  {...process} onClick={() => handleCardClick(process)}/>
                 )) : (
                     <NoData />

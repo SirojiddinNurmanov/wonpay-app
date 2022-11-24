@@ -19,7 +19,7 @@ const TakeMoneyModal = (props) => {
 
     const buttons = [
         {
-            title: "Tasdiqlash",
+            title: "Oldim",
             eventHandler: () => {
                 if ((amount_usd && !amount_uzs && !rate ) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) {
                     dispatch(takeMoney(props.user_id, amount_usd, amount_uzs, rate))
