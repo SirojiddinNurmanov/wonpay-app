@@ -21,10 +21,21 @@ const BalanceSheetPage = () => {
         // eslint-disable-next-line
     }, [])
 
+    console.log(transactions);
+
     common.middleButtons = false
 
+    let amountText = ""
+    if (transactions?.length > 0) {
+        amountText = "$"
+        amountText += formatAmount(transactions.map(transaction => transaction.amount_usd).reduce((sum, amount) => sum + amount)) 
+        amountText += " <br/>"
+        amountText += formatAmount(transactions.map(transaction => transaction.amount_uzs).reduce((sum, amount) => sum + amount)) 
+        amountText += " so'm"
+    }
+
     return (
-        <Layout buttons={common} title={{ text: "Oldi-Berdilar:", amount: "$" + formatAmount(transactions ? transactions.map(transaction => transaction.amount_usd).reduce((sum, amount) => sum + amount) : 0) + " <br/>" + formatAmount(transactions ? transactions.map(transaction => transaction.amount_uzs).reduce((sum, amount) => sum + amount) : 0) + " so'm", small: true }}>
+        <Layout buttons={common} title={{ text: "Oldi-Berdilar:", amount: amountText, small: true }}>
             <ConfirmReceiveModal show={modalShow} onHide={() => setModalShow(false)} />
             <BalanceSheetTable transactions={transactions}/>
         </Layout>
