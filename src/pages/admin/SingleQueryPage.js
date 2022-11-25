@@ -104,10 +104,10 @@ const SingleQueryPage = () => {
                     <div className="process-carrier-block">
                         <div className="process-title">Pulni Oluvchi Kuryer:</div>
                         <div className="process-carrier-list">
-                            <select onChange={selectCarrier} className="underlined text-center" value={carrierId}>
+                            <select onChange={selectCarrier} className="underlined text-center" value={query?.carrier_id ?? 0}>
                                 {carriers ? carriers.length > 1 ? (
                                     <>
-                                        <option value="1">Tanlash</option>
+                                        <option value="0">Tanlash</option>
                                         {carriers.map(({ id, first_name, last_name }) => (
                                             <option key={id} value={id}>{first_name + (last_name ? " " + last_name : "")}</option>
                                         ))}
@@ -122,7 +122,7 @@ const SingleQueryPage = () => {
 
                             </select>
                         </div>
-                        {carrierId ? "" : (
+                        {query?.carrier_id ? "" : (
                             <div className="error-message small text-center red">Iltimos kuryerni tanlang</div>
                         )}
                     </div>
