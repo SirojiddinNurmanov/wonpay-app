@@ -25,7 +25,7 @@ const TransactionCard = ({ process_type, assigned_queries, amount, exchange_rate
                     {process_type === 0 ? (
                         <div className="transaction-amount">$ {formatAmount((amount / exchange_rate), true, true)}</div>
                     ) : (
-                        <div className="transaction-amount">$ {formatAmount((amount / buy_rate), true, true)}</div>
+                        <div className="transaction-amount">$ {formatAmount((usedAmount / buy_rate), true, true)}</div>
                     )}
                 </div>
                 <div className="bar"></div>

@@ -20,7 +20,7 @@ const DeliverPage = () => {
     useEffect(() => {
         dispatch(getAllProcesses())
         // eslint-disable-next-line
-    }, [])  
+    }, [])
 
     const handleCardClick = (process) => {
         showMoneyModal(true)
@@ -28,13 +28,13 @@ const DeliverPage = () => {
     }
 
     common.middleButtons = false
-    
+
     let amountText = "$0"
 
     if (allProcesses.length > 0) {
         let filtered = allProcesses?.filter(process => (process.process_type === 1) && (process.carrier_id === user.id) && (process.status === 1))
         if (filtered.length > 0) {
-            let mapped = filtered.map(process => process.amount / process.buy_rate)
+            let mapped = filtered.map(process => (process.assigned_queries.length > 0 ? process.assigned_queries.map(query => query.amount).reduce((sum, amount) => sum + amount) : process.amount) / process.buy_rate)
             if (mapped.length > 0) {
                 let reduced = mapped.reduce((sum, amount) => sum + amount)
                 amountText = "$" + formatAmount(reduced, true, true)
@@ -46,10 +46,10 @@ const DeliverPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "Pul Berish:", amount: amountText }}>
-            <GiveMoneyModal show={moneyModal} onHide={() => showMoneyModal(false)} {...modalInfo}/>
+            <GiveMoneyModal show={moneyModal} onHide={() => showMoneyModal(false)} {...modalInfo} />
             <div className="carrier-body">
                 {carrierProcesses.length > 0 ? carrierProcesses?.map(process => (
-                    <MoneyCard key={process.id}  {...process} onClick={() => handleCardClick(process)}/>
+                    <MoneyCard key={process.id}  {...process} onClick={() => handleCardClick(process)} />
                 )) : (
                     <NoData />
                 )}
