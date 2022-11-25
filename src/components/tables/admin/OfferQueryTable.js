@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react"
 import { Link } from "react-router-dom"
 import { Form } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import { formatAmount, sumProcessAmount } from "../../../helpers"
 
@@ -9,6 +9,8 @@ import QueryInfoModal from "../../modals/admin/QueryInfoModal"
 import QueryRateModal from "../../modals/admin/QueryRateModal"
 import AlertModal from "../../modals/admin/AlertModal"
 import TableLayout from "../TableLayout"
+import { useEffect } from "react"
+import { getQueries } from "../../../store/actions"
 
 const OfferQueryTable = ({ amount, selectQueryIds }) => {
     const [queryInfoModal, showQueryInfoModal] = useState(false)
@@ -18,6 +20,13 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
     const [selected, setSelected] = useState([])
     const [modalInfo, setModalInfo] = useState()
     const { queries } = useSelector(state => state.app)
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        dispatch(getQueries())
+        // eslint-disable-next-line
+    }, [])
 
     const addToList = (e, id) => {
         if (e.target.checked) {

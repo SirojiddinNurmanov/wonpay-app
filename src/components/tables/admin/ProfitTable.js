@@ -27,7 +27,7 @@ const ProfitTable = () => {
         "Foyda",
         "Jami"
     ]
-
+    
     return (
         <TableLayout headers={headers}>
             <QueryProofModal show={queryInfoModal} onHide={() => showQueryProofModal(false)} {...modalInfo} />

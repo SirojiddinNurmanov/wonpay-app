@@ -41,7 +41,7 @@ const ReportsTable = () => {
     return (
         <TableLayout headers={headers}>
             <QueryProofModal show={queryInfoModal} onHide={() => showQueryProofModal(false)} {...modalInfo} />
-            {groupedQueries.length > 0 ? Object.entries(groupedQueries).map(queryGroup => (
+            {Object.keys(groupedQueries).length > 0 ? Object.entries(groupedQueries).map(queryGroup => (
                 <Fragment key={queryGroup[0]}>
                     <tr>
                         <td colSpan="6" className="notification-date text-center">{queryGroup[0]}</td>

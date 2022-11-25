@@ -29,8 +29,6 @@ const SingleOfferPage = () => {
     let { offerId } = useParams()
     let offer = offers?.find(offer => offer?.id === parseInt(offerId))
 
-    console.log(offers);
-
     let setCarrierIdForProcess = () => {
         offer = offers?.find(offer => offer?.id === parseInt(offerId))
         if (offer?.carrier_id) {

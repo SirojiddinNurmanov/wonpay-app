@@ -46,7 +46,6 @@ export const setNotificationAsRead = (notificationId) => async (dispatch, getSta
 
         await res.json()
     } catch (error) {
-        console.log(error)
         dispatch({
             type: Types.USER_ERROR,
             payload: error.response.statusText
@@ -114,7 +113,6 @@ export const getUserProcesses = (callback = false) => async (dispatch, getState)
                 payload: data
             })
             if (callback) {
-                console.log(message);
                 callback()
             }
         } else {
