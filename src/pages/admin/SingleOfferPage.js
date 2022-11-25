@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount } from "../../helpers"
-import { closeOffer, getCarriers, getOffers, getUserProcesses, sendOfferQueries, setProcessCarrier } from "../../store/actions"
+import { closeOffer, getCarriers, getOffers, sendOfferQueries, setProcessCarrier } from "../../store/actions"
 
 import Layout from "../../layout"
 
@@ -29,9 +29,10 @@ const SingleOfferPage = () => {
     let { offerId } = useParams()
     let offer = offers?.find(offer => offer?.id === parseInt(offerId))
 
+    console.log(offers);
+
     let setCarrierIdForProcess = () => {
         offer = offers?.find(offer => offer?.id === parseInt(offerId))
-        console.log(offers);
         if (offer?.carrier_id) {
             setCarrierId(offer.carrier_id)
         }
@@ -39,7 +40,7 @@ const SingleOfferPage = () => {
 
     useEffect(() => {
         dispatch(getCarriers())
-        // dispatch(getOffers(setCarrierIdForProcess))
+        dispatch(getOffers(setCarrierIdForProcess))
         // eslint-disable-next-line
     }, [])
 
@@ -136,7 +137,7 @@ const SingleOfferPage = () => {
                     <div className="process-carrier-block">
                         <div className="process-title">Pulni Beruvchi Kuryer:</div>
                         <div className="process-carrier-list">
-                            <select onChange={selectCarrier} className="underlined text-center" value={offer?.carrier_id}>
+                            <select onChange={selectCarrier} className="underlined text-center" value={offer?.carrier_id ?? 0}>
                                 {carriers ? carriers.length > 1 ? (
                                     <>
                                         <option value="0">Tanlash</option>

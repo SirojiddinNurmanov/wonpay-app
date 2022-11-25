@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { common } from "../../constants/bottomButtons"
 import { formatAmount } from "../../helpers"
-import { getCarriers, getUserProcesses, setProcessCarrier } from "../../store/actions"
+import { getCarriers, getQueries, setProcessCarrier } from "../../store/actions"
 
 import Layout from "../../layout"
 
@@ -25,7 +25,7 @@ const SingleQueryPage = () => {
 
     useEffect(() => {
         dispatch(getCarriers())
-        dispatch(getUserProcesses())
+        dispatch(getQueries())
         if (query?.carrier_id) {
             setCarrierId(query.carrier_id)
         }
