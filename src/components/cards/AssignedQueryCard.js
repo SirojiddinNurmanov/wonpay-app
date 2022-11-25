@@ -1,9 +1,9 @@
-import React, { memo, useState } from "react"
+import React, { memo, useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleDown, faCheckSquare, faTimesCircle, faTimesSquare } from "@fortawesome/free-solid-svg-icons"
 
-import { saveProofImage, unsetProofImage } from "../../store/actions"
+import { getQueries, saveProofImage, unsetProofImage } from "../../store/actions"
 import { formatAmount } from "../../helpers"
 import { BACKEND_URL } from "../../constants"
 
@@ -19,6 +19,11 @@ const AssignedQueryCard = ({ i, id, status, client: { first_name }, amount, proo
     const toggleCardBlock = () => {
         showCardInfo(!cardInfo)
     }
+
+    useEffect(() => {
+        dispatch(getQueries())
+        // eslint-disable-next-line
+    }, [])
 
     const uploadImageToServer = async ({ target }) => {
         showLoading(true)
