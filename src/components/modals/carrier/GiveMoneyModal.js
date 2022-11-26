@@ -23,7 +23,7 @@ const GiveMoneyModal = (props) => {
             title: "Berdim",
             eventHandler: () => {
                 if ((amount_usd && !amount_uzs && !rate) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) {
-                        dispatch(giverGiveMoney(props.user_id, amount_usd, amount_uzs, rate))                        
+                        dispatch(giverGiveMoney(props.user_id, props.id, amount_usd, amount_uzs, rate))
                     clearFields()
                     props.onHide()
                 }

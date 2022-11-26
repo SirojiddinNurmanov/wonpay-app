@@ -4,7 +4,7 @@ import { BACKEND_URL } from "../../constants"
 
 export const getUserNotifications = () => async (dispatch, getState) => {
     try {
-        const user = getState().app.user
+        const { user, notifications } = getState().app
 
         const res = await fetch(`${BACKEND_URL}/notifications`, {
             method: "GET",
@@ -16,10 +16,13 @@ export const getUserNotifications = () => async (dispatch, getState) => {
         const { success, message, data } = await res.json()
 
         if (success) {
-            dispatch({
-                type: Types.GET_USER_NOTIFICATIONS,
-                payload: data
-            })
+            // let unread = data.filter(notification => notification.status === 0)
+            // if (unread.length > 0) {
+                dispatch({
+                    type: Types.GET_USER_NOTIFICATIONS,
+                    payload: data
+                })
+            // }
         } else {
             dispatch({
                 type: Types.USER_ERROR,
@@ -923,7 +926,7 @@ export const receiverRejectMoney = (transactionId) => async (dispatch, getState)
     }
 }
 
-export const giverGiveMoney = (user_id, amount_usd, amount_uzs, rate) => async (dispatch, getState) => {
+export const giverGiveMoney = (user_id, process_id, amount_usd, amount_uzs, rate) => async (dispatch, getState) => {
     try {
         let { token } = getState().app.user
 
@@ -934,11 +937,15 @@ export const giverGiveMoney = (user_id, amount_usd, amount_uzs, rate) => async (
                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                user_id, amount_usd, amount_uzs, rate
+                user_id, process_id, amount_usd, amount_uzs, rate
             })
         })
 
-        await res.json()
+        const { success } = await res.json()
+
+        if (success) {
+            dispatch(getAllProcesses())
+        }
 
     } catch (error) {
         dispatch({
@@ -952,7 +959,7 @@ export const clientConfirmMoney = (transactionId) => async (dispatch, getState) 
     try {
         let { token } = getState().app.user
 
-        const res = await fetch(`${BACKEND_URL}/moneyflow/receiver/confirm/${transactionId}`, {
+        const res = await fetch(`${BACKEND_URL}/moneyflow/client/confirm/${transactionId}`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -972,7 +979,7 @@ export const clientRejectMoney = (transactionId) => async (dispatch, getState) =
     try {
         let { token } = getState().app.user
 
-        const res = await fetch(`${BACKEND_URL}/moneyflow/receiver/reject/${transactionId}`, {
+        const res = await fetch(`${BACKEND_URL}/moneyflow/client/reject/${transactionId}`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }

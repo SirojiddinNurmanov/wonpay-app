@@ -23,8 +23,10 @@ const DeliverPage = () => {
     }, [])
 
     const handleCardClick = (process) => {
-        showMoneyModal(true)
-        setModalInfo(process)
+        if (process.carrier_status === 0) {
+            showMoneyModal(true)
+            setModalInfo(process)
+        }
     }
 
     common.middleButtons = false

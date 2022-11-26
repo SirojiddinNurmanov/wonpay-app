@@ -633,6 +633,10 @@ a {
     padding: 15px 10px;
 }
 
+.carrier-item.money-card.pending {
+    background-color: var(--yellow-color);
+}
+
 .carrier-item .row {
     display: flex;
     padding: 5px 0;
