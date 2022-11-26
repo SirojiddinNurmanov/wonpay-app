@@ -68,8 +68,7 @@ const ProfilePage = () => {
                                 }
                             </div>
                             <div className="amount-uzs">
-                                {user.role === 'carrier' ? formatAmount(user.detailed_balance ? user.detailed_balance.amount_uzs : 0) + " so'm" : ""
-                                }
+                                {user.role === 'carrier' ? formatAmount(user.detailed_balance ? user.detailed_balance.amount_uzs : 0) + " so'm" : ""}
                             </div>
                         </div>
                     </div>
@@ -78,7 +77,7 @@ const ProfilePage = () => {
             <WhiteLine />
             {
                 user?.role === 'carrier' && userTransactions ? (
-                    <BalanceSheetTable transactions={userTransactions} />
+                    <BalanceSheetTable transactions={userTransactions} carrierId={userId} />
                 ) : ""
             }
             {

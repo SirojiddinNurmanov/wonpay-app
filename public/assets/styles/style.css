@@ -633,8 +633,18 @@ a {
     padding: 15px 10px;
 }
 
+.carrier-item.money-card .givemoney-item1 {
+    border-right: 2px solid var(--black-color);
+}
+
 .carrier-item.money-card.pending {
     background-color: var(--yellow-color);
+    color: var(--white-color);
+    border-color: var(--white-color);
+}
+
+.carrier-item.money-card.pending .givemoney-item1 {
+    border-right: 2px solid var(--white-color);
 }
 
 .carrier-item .row {
@@ -745,10 +755,6 @@ a {
     justify-content: center;
     border: none;
     background-color: var(--white-color);
-}
-
-.givemoney-item1 {
-    border-right: 2px solid var(--black-color);
 }
 
 .givemoney-item2 {

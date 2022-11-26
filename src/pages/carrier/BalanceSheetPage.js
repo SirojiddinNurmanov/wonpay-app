@@ -11,7 +11,7 @@ import ConfirmReceiveModal from "../../components/modals/carrier/ConfirmReceiveM
 import BalanceSheetTable from "../../components/tables/carrier/BalanceSheetTable"
 
 const BalanceSheetPage = () => {
-    const { transactions } = useSelector(state => state.app)
+    const { transactions, user } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
     const [modalShow, setModalShow] = useState(false)
@@ -20,8 +20,6 @@ const BalanceSheetPage = () => {
         dispatch(getTransactions())
         // eslint-disable-next-line
     }, [])
-
-    console.log(transactions);
 
     common.middleButtons = false
 
@@ -37,7 +35,7 @@ const BalanceSheetPage = () => {
     return (
         <Layout buttons={common} title={{ text: "Oldi-Berdilar:", amount: amountText, small: true }}>
             <ConfirmReceiveModal show={modalShow} onHide={() => setModalShow(false)} />
-            <BalanceSheetTable transactions={transactions}/>
+            <BalanceSheetTable transactions={transactions} carrierId={user?.user?.id}/>
         </Layout>
     )
 }
