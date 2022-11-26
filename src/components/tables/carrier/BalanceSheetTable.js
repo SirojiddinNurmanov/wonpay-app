@@ -18,7 +18,6 @@ const BalanceSheetTable = ({ transactions, carrierId }) => {
     return (
         <TableLayout headers={headers}>
             {transactions?.length > 0 ? transactions.map((transaction) => {
-                console.log(transaction.from_id === parseInt(carrierId));
                 return (
                 <tr key={transaction.id}>
                     <td>{transaction.from_id === parseInt(carrierId) ? transaction.taker.first_name : transaction.giver.first_name}</td>
