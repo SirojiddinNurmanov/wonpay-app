@@ -8,7 +8,12 @@ const MoneyCard = ({ client, assigned_queries, amount, process_type, exchange_ra
         <div className="carrier-item money-card" onClick={onClick}>
             <div className="row">
                 <div className="col-6 givemoney-item1">
-                    <h3>{client.first_name + (client.last_name ? " " + client.last_name : "")}</h3>
+                    {client.first_name && (
+                        <h3>{client.first_name}</h3>
+                    )}
+                    {client.last_name && (
+                        <h3>{client.last_name}</h3>
+                    )}
                     {/* <div className="carrier-item-footer">
                         <span>{client.phone_number}</span>
                     </div> */}
