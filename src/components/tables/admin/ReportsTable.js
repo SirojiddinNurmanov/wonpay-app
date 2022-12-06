@@ -1,33 +1,33 @@
-import React, { Fragment, memo, useState } from "react"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { Fragment, memo, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { changeNumberSign, formatAmount, getColor, groupByDate } from '../../../helpers'
-import { getQueries } from "../../../store/actions"
-import QueryProofModal from "../../modals/admin/QueryProofModal"
+import { changeNumberSign, formatAmount, getColor, groupByDate } from "../../../helpers";
+import { getQueries } from "../../../store/actions";
+import QueryProofModal from "../../modals/admin/QueryProofModal";
 
-import TableLayout from "../TableLayout"
-import NoData from "../../common/NoData"
+import TableLayout from "../TableLayout";
+import NoData from "../../common/NoData";
 
 const ReportsTable = () => {
-    const [queryInfoModal, showQueryProofModal] = useState(false)
-    const [modalInfo, setModalInfo] = useState()
-    const { queries } = useSelector(state => state.app)
-    const dispatch = useDispatch()    
-    const groupedQueries = groupByDate(queries)
+    const [queryInfoModal, showQueryProofModal] = useState(false);
+    const [modalInfo, setModalInfo] = useState();
+    const { queries } = useSelector(state => state.app);
+    const dispatch = useDispatch();
+    const groupedQueries = groupByDate(queries);
 
     const openInfoModal = (process) => (e) => {
         if (process.status === 1) {
-            showQueryProofModal(true)
-            setModalInfo(process)
+            showQueryProofModal(true);
+            setModalInfo(process);
         }
-    }
+    };
 
     useEffect(() => {
-        dispatch(getQueries())
+        dispatch(getQueries());
 
         // eslint-disable-next-line
-    }, [])
+    }, []);
 
     const headers = [
         "Ism",
@@ -36,7 +36,7 @@ const ReportsTable = () => {
         "Chek",
         "Foyda",
         "Holati"
-    ]
+    ];
 
     return (
         <TableLayout headers={headers}>
@@ -51,10 +51,11 @@ const ReportsTable = () => {
                             <td>{query.client.first_name}</td>
                             <td>{"￦" + formatAmount(query.amount)}</td>
                             <td>{query.process_type === 1 ? "Kor>>Uzb" : "Uzb>>Kor"}</td>
-                            <td onClick={openInfoModal(query)} className={"underlined" + (query.status !== 1 ? " red" : "")}>{query.status === 1 ? "Ko'rish" : "Kutilmoqda"}</td>
+                            <td onClick={openInfoModal(query)}
+                                className={"underlined" + (query.status !== 1 ? " red" : "")}>{query.status === 1 ? "Ko'rish" : "Kutilmoqda"}</td>
                             <td className={"text-bold " + getColor(query)}>
                                 {
-                                    query.assigned_offer ?  changeNumberSign(query) : ""
+                                    query.assigned_offer ? changeNumberSign(query) : ""
                                 }
                             </td>
                             <td>
@@ -73,7 +74,7 @@ const ReportsTable = () => {
                 </tr>
             )}
         </TableLayout>
-    )
-}
+    );
+};
 
-export default memo(ReportsTable)
+export default memo(ReportsTable);

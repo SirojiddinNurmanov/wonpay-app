@@ -1,5 +1,5 @@
-import React, { memo } from "react"
-import ModalLayout from "../ModalLayout"
+import React, { memo } from "react";
+import ModalLayout from "../ModalLayout";
 
 const AlertModal = (props) => {
     const buttons = [
@@ -7,7 +7,7 @@ const AlertModal = (props) => {
             title: "Yopish",
             eventHandler: () => props.onHide()
         }
-    ]
+    ];
     return (
         <ModalLayout buttons={buttons} {...props}>
             <div className="text-center">
@@ -15,7 +15,7 @@ const AlertModal = (props) => {
                 <div className="text-body">Iltimos tekshiring</div>
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(AlertModal)
+export default memo(AlertModal);

@@ -1,19 +1,19 @@
-import React, { memo, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import React, { memo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { formatAmount, sumProcessAmount } from "../../../helpers"
-import { changeQueryStatus } from "../../../store/actions"
+import { formatAmount, sumProcessAmount } from "../../../helpers";
+import { changeQueryStatus } from "../../../store/actions";
 
-import ProofInfoModal from "../../modals/admin/ProofInfoModal"
-import TableLayout from "../TableLayout"
+import ProofInfoModal from "../../modals/admin/ProofInfoModal";
+import TableLayout from "../TableLayout";
 
 const OfferQueryProofTable = ({ amount, buy_rate, status, selectedQueries }) => {
-    const [queryInfoModal, showQueryInfoModal] = useState(false)
-    const [modalInfo, setModalInfo] = useState()
-    const [queryStatus, setQueryStatus] = useState()
-    const { queries } = useSelector(state => state.app)
-    const dispatch = useDispatch()
+    const [queryInfoModal, showQueryInfoModal] = useState(false);
+    const [modalInfo, setModalInfo] = useState();
+    const [, setQueryStatus] = useState();
+    const { queries } = useSelector(state => state.app);
+    const dispatch = useDispatch();
 
     const headers = [
         "Ism",
@@ -22,17 +22,17 @@ const OfferQueryProofTable = ({ amount, buy_rate, status, selectedQueries }) => 
         "Isbot",
         "Kurs",
         "Status"
-    ]
+    ];
 
     const handleInfoModalClick = (process) => (e) => {
-        setModalInfo(process)
-        showQueryInfoModal(true)
-    }
+        setModalInfo(process);
+        showQueryInfoModal(true);
+    };
 
     const selectQueryStatus = ({ id }) => ({ target: { value } }) => {
-        setQueryStatus(value)
-        dispatch(changeQueryStatus(id, value))
-    }
+        setQueryStatus(value);
+        dispatch(changeQueryStatus(id, value));
+    };
 
     return (
         <TableLayout headers={headers}>
@@ -40,9 +40,9 @@ const OfferQueryProofTable = ({ amount, buy_rate, status, selectedQueries }) => 
             {selectedQueries && (
                 <>
                     {selectedQueries.map((selectedQuery) => {
-                        const process = queries?.find(query => query.id === selectedQuery.id)
+                        const process = queries?.find(query => query.id === selectedQuery.id);
 
-                        return (process &&  
+                        return (process &&
                             <tr key={process.id}>
                                 <td>
                                     <Link to={"/queries/" + process?.id}>
@@ -61,7 +61,8 @@ const OfferQueryProofTable = ({ amount, buy_rate, status, selectedQueries }) => 
                                 <td className="text-center">{process?.exchange_rate ? process.exchange_rate : "---"}</td>
                                 <td className="select-block">
                                     {process?.proof_image ? (
-                                        <select className="underlined text-center" onChange={selectQueryStatus(process)} value={process.status} disabled={(status === 1)}>
+                                        <select className="underlined text-center" onChange={selectQueryStatus(process)}
+                                                value={process.status} disabled={(status === 1)}>
                                             <option value="0">Tanlang</option>
                                             <option value="1">Tasdiqlash</option>
                                             <option value="2">Bekor Qilish</option>
@@ -71,7 +72,7 @@ const OfferQueryProofTable = ({ amount, buy_rate, status, selectedQueries }) => 
                                     )}
                                 </td>
                             </tr>
-                        )
+                        );
                     })}
                     <tr className="text-bold">
                         <td>Jami:</td>
@@ -84,7 +85,7 @@ const OfferQueryProofTable = ({ amount, buy_rate, status, selectedQueries }) => 
                 </>
             )}
         </TableLayout>
-    )
-}
+    );
+};
 
-export default memo(OfferQueryProofTable)
+export default memo(OfferQueryProofTable);

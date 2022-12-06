@@ -1,17 +1,17 @@
-import React, { memo, Fragment, useState } from "react"
+import React, { memo, Fragment, useState } from "react";
 
-import { common } from "../../constants/bottomButtons"
-import { notifications } from "../../constants/dummyData"
+import { common } from "../../constants/bottomButtons";
+import { notifications } from "../../constants/dummyData";
 
-import Layout from "../../layout"
+import Layout from "../../layout";
 
-import NotificationDetailsModal from "../../components/modals/client/NotificationDetailsModal"
-import NotificationCard from "../../components/cards/NotificationCard"
+import NotificationDetailsModal from "../../components/modals/common/NotificationDetailsModal";
+import NotificationCard from "../../components/cards/NotificationCard";
 
 const NotificationsPage = () => {
-    const [modalShow, setModalShow] = useState(false)
+    const [modalShow, setModalShow] = useState(false);
 
-    common.middleButtons = false
+    common.middleButtons = false;
 
     return (
         <Layout buttons={common} title={{ text: "Xabarlar:" }}>
@@ -25,7 +25,7 @@ const NotificationsPage = () => {
                 </Fragment>
             ))}
         </Layout>
-    )
-}
+    );
+};
 
-export default memo(NotificationsPage)
+export default memo(NotificationsPage);

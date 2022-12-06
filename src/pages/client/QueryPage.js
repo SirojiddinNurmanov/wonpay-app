@@ -1,36 +1,36 @@
-import React, { memo, useState, useEffect } from "react"
-import { useSelector } from "react-redux"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheckCircle, faDeleteLeft } from "@fortawesome/free-solid-svg-icons"
+import React, { memo, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle, faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 
-import { common } from "../../constants/bottomButtons"
-import { formatAmount, trimAmount } from "../../helpers"
-import { BACKEND_URL } from "../../constants"
+import { common } from "../../constants/bottomButtons";
+import { formatAmount, trimAmount } from "../../helpers";
+import { BACKEND_URL } from "../../constants";
 
-import Layout from "../../layout"
+import Layout from "../../layout";
 
-import ConfirmationModal from "../../components/modals/client/ConfirmationModal"
-import LoadingButton from "../../components/common/LoadingButton"
+import ConfirmationModal from "../../components/modals/client/ConfirmationModal";
+import LoadingButton from "../../components/common/LoadingButton";
 
 const QueryPage = () => {
-    const { token } = useSelector(state => state.app.user)
-    const [confirmationModal, showConfirmationModal] = useState(false)
-    const [amount, setAmount] = useState(0)
-    const [keyboard, setKeyboardStatus] = useState(true)
-    const [enabled, setEnabled] = useState(false)
-    const [moneyTypeOptions, showMoneyTypeOptions] = useState(false)
-    const [moneyType, setMoneyType] = useState("Karta")
-    const [koreanAddressName, setKoreanAddressName] = useState("")
-    const [koreanAddressNumber, setKoreanAddressNumber] = useState("")
-    const [uzbekAddressName, setUzbekAddressName] = useState("")
-    const [uzbekAddressNumber, setUzbekAddressNumber] = useState("")
-    const [accountInfoSMS, setAccountInfoSMS] = useState("")
-    const [accountInfoImage, setAccountInfoImage] = useState(false)
-    const [loading, showLoading] = useState(false)
+    const { token } = useSelector(state => state.app.user);
+    const [confirmationModal, showConfirmationModal] = useState(false);
+    const [amount, setAmount] = useState(0);
+    const [keyboard, setKeyboardStatus] = useState(true);
+    const [enabled, setEnabled] = useState(false);
+    const [moneyTypeOptions, showMoneyTypeOptions] = useState(false);
+    const [moneyType, setMoneyType] = useState("Karta");
+    const [koreanAddressName, setKoreanAddressName] = useState("");
+    const [koreanAddressNumber, setKoreanAddressNumber] = useState("");
+    const [uzbekAddressName, setUzbekAddressName] = useState("");
+    const [uzbekAddressNumber, setUzbekAddressNumber] = useState("");
+    const [accountInfoSMS, setAccountInfoSMS] = useState("");
+    const [accountInfoImage, setAccountInfoImage] = useState(false);
+    const [loading, showLoading] = useState(false);
 
     useEffect(() => {
-        toggleConfirmButton()
-    }, [moneyType, accountInfoSMS, accountInfoImage, uzbekAddressName, uzbekAddressNumber, amount])
+        toggleConfirmButton();
+    }, [moneyType, accountInfoSMS, accountInfoImage, uzbekAddressName, uzbekAddressNumber, amount]);
 
     common.middleButtons = [
         {
@@ -38,24 +38,24 @@ const QueryPage = () => {
             disabled: !enabled,
             eventHandler: () => sendProcessToServer()
         }
-    ]
+    ];
 
     const sendProcessToServer = () => {
-        setEnabled(false)
+        setEnabled(false);
         const data = {
             process_type: "0",
             amount: trimAmount(amount),
             payment_type: (moneyType === "Naqd" ? "0" : "1"),
-            card_info_type: (accountInfoImage ? "1" : "0"),
+            card_info_type: (accountInfoImage ? "1" : "0")
             // receiver_name: uzbekAddressName,
             // receiver_number: uzbekAddressNumber
-        }
+        };
 
         if (moneyType === "Karta") {
             if (accountInfoImage) {
-                data.card_info_image = accountInfoImage
+                data.card_info_image = accountInfoImage;
             } else {
-                data.card_info_sms = accountInfoSMS
+                data.card_info_sms = accountInfoSMS;
             }
         }
 
@@ -63,29 +63,29 @@ const QueryPage = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": 'Bearer ' + token
+                "Authorization": "Bearer " + token
             },
             body: JSON.stringify(data)
         }).then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    showConfirmationModal(true)
+                    showConfirmationModal(true);
                 }
-            }).catch(err => console.log(err))
-    }
+            }).catch(err => console.log(err));
+    };
 
     const handleAccountInfoSMS = ({ target: { value } }) => {
-        setAccountInfoSMS(value)
-    }
+        setAccountInfoSMS(value);
+    };
 
     const toggleConfirmButton = () => {
         if (amount !== 0) {
             if (trimAmount(amount) >= 300000) {
                 if (moneyType === "Karta") {
                     if ((accountInfoSMS || accountInfoImage)) {
-                        setEnabled(true)
+                        setEnabled(true);
                     } else {
-                        setEnabled(false)
+                        setEnabled(false);
                     }
                 }
 
@@ -97,93 +97,93 @@ const QueryPage = () => {
                 //     }
                 // }
             } else {
-                setEnabled(false)
+                setEnabled(false);
             }
         } else {
-            setEnabled(false)
+            setEnabled(false);
         }
-    }
+    };
 
     const uploadImageToServer = ({ target }) => {
-        showLoading(true)
-        const body = new FormData()
-        body.append("image", target.files[0])
+        showLoading(true);
+        const body = new FormData();
+        body.append("image", target.files[0]);
         fetch(`${BACKEND_URL}/save-photo`, {
             method: "POST",
             body: body
         }).then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    setAccountInfoImage(data.data)
-                    toggleConfirmButton()
+                    setAccountInfoImage(data.data);
+                    toggleConfirmButton();
                 }
-                showLoading(false)
-            }).catch(err => console.log(err))
-    }
+                showLoading(false);
+            }).catch(err => console.log(err));
+    };
 
     const openFileUploader = ({ target }) => {
-        target.nextSibling.click()
-    }
+        target.nextSibling.click();
+    };
 
     const changeKoreanAddressNameState = ({ target: { value } }) => {
-        setKoreanAddressName(value)
-    }
+        setKoreanAddressName(value);
+    };
 
     const changeKoreanAddressNumberState = ({ target: { value } }) => {
-        setKoreanAddressNumber(value)
-    }
+        setKoreanAddressNumber(value);
+    };
 
     const changeUzbekAddressNameState = ({ target: { value } }) => {
-        setUzbekAddressName(value)
-        toggleConfirmButton()
-    }
+        setUzbekAddressName(value);
+        toggleConfirmButton();
+    };
 
     const changeUzbekAddressNumberState = ({ target: { value } }) => {
-        setUzbekAddressNumber(value)
-        toggleConfirmButton()
-    }
+        setUzbekAddressNumber(value);
+        toggleConfirmButton();
+    };
 
     const moneyTypeSelected = ({ target: { value } }) => {
-        setMoneyType(value)
-        toggleConfirmButton()
-    }
+        setMoneyType(value);
+        toggleConfirmButton();
+    };
 
     const showKeyboard = () => {
-        setKeyboardStatus(true)
-    }
+        setKeyboardStatus(true);
+    };
 
     const hideKeyboard = () => {
-        setKeyboardStatus(false)
+        setKeyboardStatus(false);
         if (amount !== 0) {
-            showMoneyTypeOptions(true)
+            showMoneyTypeOptions(true);
         } else {
-            showMoneyTypeOptions(false)
+            showMoneyTypeOptions(false);
         }
-    }
+    };
 
     const changeInput = ({ target: { innerText } }) => {
-        
+
         if (amount === 0) {
             if (innerText !== "0") {
-                setAmount(innerText)
+                setAmount(innerText);
             }
         } else {
             if (amount.length < 11) {
-                setAmount(formatAmount(amount + innerText))
+                setAmount(formatAmount(amount + innerText));
             }
         }
-    }
+    };
 
     const backspace = (e) => {
         if (amount.length > 1) {
-            setAmount(formatAmount(amount.substring(0, amount.length - 1)))
+            setAmount(formatAmount(amount.substring(0, amount.length - 1)));
         } else {
-            setAmount(0)
-            showMoneyTypeOptions(false)
-            setEnabled(false)
-            setMoneyType(false)
+            setAmount(0);
+            showMoneyTypeOptions(false);
+            setEnabled(false);
+            setMoneyType(false);
         }
-    }
+    };
 
     return (
         <Layout buttons={common} title={{ text: "O'zbekiston >> Korea" }}>
@@ -207,7 +207,8 @@ const QueryPage = () => {
                     <div onClick={changeInput} className="number">9</div>
                     <div onClick={backspace} className="number lg"><FontAwesomeIcon icon={faDeleteLeft} /></div>
                     <div onClick={changeInput} className="number">0</div>
-                    <div className="number confirm lg" onClick={hideKeyboard}><FontAwesomeIcon icon={faCheckCircle} /></div>
+                    <div className="number confirm lg" onClick={hideKeyboard}><FontAwesomeIcon icon={faCheckCircle} />
+                    </div>
                 </div>
             )}
 
@@ -231,15 +232,18 @@ const QueryPage = () => {
                         <div className="account-sms">
                             <div className="account-title">SMS:</div>
                             <div className="account-sms-field">
-                                <textarea className="account-paste-clipboard" onChange={handleAccountInfoSMS} value={accountInfoSMS} cols="30" rows="3" />
+                                <textarea className="account-paste-clipboard" onChange={handleAccountInfoSMS}
+                                          value={accountInfoSMS} cols="30" rows="3" />
                             </div>
                         </div>
                         <div className="or-text">yoki</div>
                         <div className="account-image">
                             <div className="account-title">Rasm:</div>
                             <div className="account-image-block">
-                                <button className="upload-account-button" onClick={openFileUploader}>{loading ? (<LoadingButton />) : "Rasm yuklash"}</button>
-                                <input className="upload-input" type="file" onChange={uploadImageToServer} accept=".png,.jpg,.jpeg" />
+                                <button className="upload-account-button" onClick={openFileUploader}>{loading ? (
+                                    <LoadingButton />) : "Rasm yuklash"}</button>
+                                <input className="upload-input" type="file" onChange={uploadImageToServer}
+                                       accept=".png,.jpg,.jpeg" />
                                 {accountInfoImage && (
                                     <div className="preview">
                                         <img src={accountInfoImage} alt="Account Info" />
@@ -284,7 +288,7 @@ const QueryPage = () => {
 
             {/* <div className="spacer"></div> */}
         </Layout>
-    )
-}
+    );
+};
 
-export default memo(QueryPage)
+export default memo(QueryPage);

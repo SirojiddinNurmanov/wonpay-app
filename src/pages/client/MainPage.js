@@ -1,32 +1,32 @@
-import React, { memo, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import React, { memo, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { getAllUsers, getUser, getUserNotifications } from "../../store/actions"
-import { formatAmount } from "../../helpers"
+import { getAllUsers, getUser, getUserNotifications } from "../../store/actions";
+import { formatAmount } from "../../helpers";
 
-import Layout from "../../layout"
+import Layout from "../../layout";
 
-import MenuCards from "../../components/cards/MenuCards"
-import GiveMoneyModal from "../../components/modals/client/GiveMoneyModal"
-import WhiteLine from '../../components/common/WhiteLine'
+import MenuCards from "../../components/cards/MenuCards";
+import GiveMoneyModal from "../../components/modals/client/GiveMoneyModal";
+import WhiteLine from "../../components/common/WhiteLine";
 
 const MainPage = () => {
-    const [giveMoneyModal, showGiveMoneyModal] = useState(false)
-    const { balance } = useSelector(state => state.app.user.user)
-    const dispatch = useDispatch()
+    const [giveMoneyModal, showGiveMoneyModal] = useState(false);
+    const { balance } = useSelector(state => state.app.user.user);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getUser())
-        dispatch(getAllUsers())
-        dispatch(getUserNotifications())
-        let interval = localStorage.getItem('interval')
-        clearInterval(interval)
-        interval = setInterval(() => dispatch(getUserNotifications()), (1000 * 2))
-        localStorage.setItem('interval', interval)
+        dispatch(getUser());
+        dispatch(getAllUsers());
+        dispatch(getUserNotifications());
+        let interval = localStorage.getItem("interval");
+        clearInterval(interval);
+        interval = setInterval(() => dispatch(getUserNotifications()), (1000 * 2));
+        localStorage.setItem("interval", interval);
 
         // eslint-disable-next-line
-    }, [])
+    }, []);
 
     return (
         <Layout>
@@ -44,10 +44,12 @@ const MainPage = () => {
                 <Link to="/offer">
                     <button className="money-btn">Kor {">>"} Uzb</button>
                 </Link>
-                <button className="money-btn yellow open-modal-btn" onClick={() => showGiveMoneyModal(true)}>Pul Berish</button>
+                <button className="money-btn yellow open-modal-btn" onClick={() => showGiveMoneyModal(true)}>Pul
+                    Berish
+                </button>
             </div>
         </Layout>
-    )
-}
+    );
+};
 
-export default memo(MainPage)
+export default memo(MainPage);

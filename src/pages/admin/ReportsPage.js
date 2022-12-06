@@ -1,20 +1,20 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
-import { common } from '../../constants/bottomButtons'
+import { common } from "../../constants/bottomButtons";
 
-import Layout from "../../layout"
+import Layout from "../../layout";
 
-import ReportsTable from "../../components/tables/admin/ReportsTable"
+import ReportsTable from "../../components/tables/admin/ReportsTable";
 
 const ReportsPage = () => {
 
-    common.middleButtons = false
+    common.middleButtons = false;
 
     return (
         <Layout buttons={common} title={{ text: "O'tkazmalar Tarixi:" }}>
             <ReportsTable />
         </Layout>
-    )
-}
+    );
+};
 
-export default memo(ReportsPage)
+export default memo(ReportsPage);

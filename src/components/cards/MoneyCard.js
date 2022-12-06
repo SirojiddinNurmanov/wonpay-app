@@ -1,9 +1,18 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
-import { formatAmount } from "../../helpers"
+import { formatAmount } from "../../helpers";
 
-const MoneyCard = ({ client, assigned_queries, amount, process_type, exchange_rate, buy_rate, carrier_status, onClick }) => {
-    let realAmount = assigned_queries?.length > 0 ? assigned_queries?.map(query => query.amount).reduce((sum, amount) => sum + amount) : amount 
+const MoneyCard = ({
+                       client,
+                       assigned_queries,
+                       amount,
+                       process_type,
+                       exchange_rate,
+                       buy_rate,
+                       carrier_status,
+                       onClick
+                   }) => {
+    let realAmount = assigned_queries?.length > 0 ? assigned_queries?.map(query => query.amount).reduce((sum, amount) => sum + amount) : amount;
     return (
         <div className={"carrier-item money-card" + (carrier_status === 1 ? " pending" : "")} onClick={onClick}>
             <div className="row">
@@ -24,7 +33,7 @@ const MoneyCard = ({ client, assigned_queries, amount, process_type, exchange_ra
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default memo(MoneyCard)
+export default memo(MoneyCard);

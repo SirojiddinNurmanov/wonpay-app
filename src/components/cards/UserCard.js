@@ -1,25 +1,25 @@
-import React, { memo, useState } from 'react'
-import Form from 'react-bootstrap/Form'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { memo, useState } from "react";
+import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
 
-import { addToCarriers, addToClients, removeFromCarriers, removeFromClients } from '../../store/actions'
+import { addToCarriers, addToClients, removeFromCarriers, removeFromClients } from "../../store/actions";
 
 const UserCard = ({ id, avatar, first_name, last_name, role }) => {
-    const { newCarriers } = useSelector(state => state.app)
-    const dispatch = useDispatch()
+    const { newCarriers } = useSelector(state => state.app);
+    const dispatch = useDispatch();
 
-    const [checked, setChecked] = useState(newCarriers.includes(id))
+    const [checked, setChecked] = useState(newCarriers.includes(id));
 
     const changeRole = () => {
         if (checked) {
-            dispatch(removeFromCarriers(id))
-            dispatch(addToClients(id))
+            dispatch(removeFromCarriers(id));
+            dispatch(addToClients(id));
         } else {
-            dispatch(addToCarriers(id))
-            dispatch(removeFromClients(id))
+            dispatch(addToCarriers(id));
+            dispatch(removeFromClients(id));
         }
-        setChecked(!checked)
-    }
+        setChecked(!checked);
+    };
 
     return (
         <div className="add-carrier-item">
@@ -31,8 +31,8 @@ const UserCard = ({ id, avatar, first_name, last_name, role }) => {
                 <Form.Check onChange={changeRole} checked={checked} />
             </div>
         </div>
-    )
-}
+    );
+};
 
 
-export default memo(UserCard)
+export default memo(UserCard);

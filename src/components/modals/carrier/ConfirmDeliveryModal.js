@@ -1,6 +1,6 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
-import ModalLayout from "../ModalLayout"
+import ModalLayout from "../ModalLayout";
 
 const ConfirmDeliveryModal = (props) => {
     const buttons = [
@@ -12,7 +12,7 @@ const ConfirmDeliveryModal = (props) => {
             title: "Oldim",
             eventHandler: () => props.onHide()
         }
-    ]
+    ];
 
     return (
         <ModalLayout buttons={buttons} {...props}>
@@ -34,7 +34,7 @@ const ConfirmDeliveryModal = (props) => {
                 </div>
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(ConfirmDeliveryModal)
+export default memo(ConfirmDeliveryModal);

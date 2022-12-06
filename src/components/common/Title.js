@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
 const Title = ({ text, amount = false, small = false, inContent = false }) => (
     <div className={"main-title " + (inContent && "in-content")}>
@@ -7,6 +7,6 @@ const Title = ({ text, amount = false, small = false, inContent = false }) => (
             <div className={"right" + (small ? "small" : "")} dangerouslySetInnerHTML={{ __html: amount }} />
         )}
     </div>
-)
+);
 
-export default memo(Title)
+export default memo(Title);

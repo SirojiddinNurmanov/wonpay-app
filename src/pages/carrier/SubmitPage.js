@@ -1,8 +1,8 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
-import { common } from "../../constants/bottomButtons"
+import { common } from "../../constants/bottomButtons";
 
-import Layout from "../../layout"
+import Layout from "../../layout";
 
 const SubmitPage = () => {
     common.middleButtons = [
@@ -19,13 +19,13 @@ const SubmitPage = () => {
                 // 
             }
         }
-    ]
+    ];
 
     return (
         <Layout buttons={common}>
 
         </Layout>
-    )
-}
+    );
+};
 
-export default memo(SubmitPage)
+export default memo(SubmitPage);

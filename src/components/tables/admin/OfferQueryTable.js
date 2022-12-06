@@ -1,51 +1,51 @@
-import React, { memo, useState } from "react"
-import { Link } from "react-router-dom"
-import { Form } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import React, { memo, useState } from "react";
+import { Link } from "react-router-dom";
+import { Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 
-import { formatAmount, sumProcessAmount } from "../../../helpers"
+import { formatAmount, sumProcessAmount } from "../../../helpers";
 
-import QueryInfoModal from "../../modals/admin/QueryInfoModal"
-import QueryRateModal from "../../modals/admin/QueryRateModal"
-import AlertModal from "../../modals/admin/AlertModal"
-import TableLayout from "../TableLayout"
-import { useEffect } from "react"
-import { getQueries } from "../../../store/actions"
+import QueryInfoModal from "../../modals/admin/QueryInfoModal";
+import QueryRateModal from "../../modals/admin/QueryRateModal";
+import AlertModal from "../../modals/admin/AlertModal";
+import TableLayout from "../TableLayout";
+import { useEffect } from "react";
+import { getQueries } from "../../../store/actions";
 
 const OfferQueryTable = ({ amount, selectQueryIds }) => {
-    const [queryInfoModal, showQueryInfoModal] = useState(false)
-    const [queryRateModal, showQueryRateModal] = useState(false)
-    const [alertModal, showAlertModal] = useState(false)
-    const [selectedQueries, setSelectedQueries] = useState(false)
-    const [selected, setSelected] = useState([])
-    const [modalInfo, setModalInfo] = useState()
-    const { queries } = useSelector(state => state.app)
-    const dispatch = useDispatch()
+    const [queryInfoModal, showQueryInfoModal] = useState(false);
+    const [queryRateModal, showQueryRateModal] = useState(false);
+    const [alertModal, showAlertModal] = useState(false);
+    const [selectedQueries, setSelectedQueries] = useState(false);
+    const [selected, setSelected] = useState([]);
+    const [modalInfo] = useState();
+    const { queries } = useSelector(state => state.app);
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
-        dispatch(getQueries())
+        dispatch(getQueries());
         // eslint-disable-next-line
-    }, [])
+    }, []);
 
     const addToList = (e, id) => {
         if (e.target.checked) {
-            let summ = sumProcessAmount([...queries.filter(query => selected.includes(query.id)), queries.find(query => query.id === id)])
+            let summ = sumProcessAmount([...queries.filter(query => selected.includes(query.id)), queries.find(query => query.id === id)]);
             if (summ > amount) {
-                showAlertModal(true)
-                e.target.checked = false
-                return false
+                showAlertModal(true);
+                e.target.checked = false;
+                return false;
             }
-            setSelectedQueries([...queries.filter(query => selected.includes(query.id)), queries.find(query => query.id === id)])
-            selectQueryIds([...selected, id])
-            setSelected([...selected, id])
+            setSelectedQueries([...queries.filter(query => selected.includes(query.id)), queries.find(query => query.id === id)]);
+            selectQueryIds([...selected, id]);
+            setSelected([...selected, id]);
 
         } else {
-            setSelectedQueries(queries.filter(query => selected.filter(selected_id => selected_id !== id).includes(query.id)))
-            selectQueryIds(selected.filter(selected_id => selected_id !== id))
-            setSelected(selected.filter(selected_id => selected_id !== id))
+            setSelectedQueries(queries.filter(query => selected.filter(selected_id => selected_id !== id).includes(query.id)));
+            selectQueryIds(selected.filter(selected_id => selected_id !== id));
+            setSelected(selected.filter(selected_id => selected_id !== id));
         }
-    }
+    };
 
     const headers = [
         "Ism",
@@ -53,7 +53,7 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
         "Turi",
         "Kurs",
         "Tanlash"
-    ]
+    ];
 
     return (
         <TableLayout headers={headers}>
@@ -64,7 +64,7 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
                 <>
                     {queries.map((process) => {
                         if (process.assigned_offer) {
-                            return ""
+                            return "";
                         }
 
                         return (
@@ -81,7 +81,7 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
                                     <Form.Check className="checkbox" onChange={(e) => addToList(e, process.id)} />
                                 </td>
                             </tr>
-                        )
+                        );
                     })}
                     <tr className="text-bold">
                         <td>Jami:</td>
@@ -90,7 +90,7 @@ const OfferQueryTable = ({ amount, selectQueryIds }) => {
                 </>
             )}
         </TableLayout>
-    )
-}
+    );
+};
 
-export default memo(OfferQueryTable)
+export default memo(OfferQueryTable);

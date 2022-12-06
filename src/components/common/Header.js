@@ -1,8 +1,8 @@
-import React, { memo } from "react"
-import { useSelector } from "react-redux"
+import React, { memo } from "react";
+import { useSelector } from "react-redux";
 
 const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
-    const { avatar } = useSelector(state => state.app.user.user)
+    const { avatar } = useSelector(state => state.app.user.user);
     return (
         <div className="header">
             <div className="logo">
@@ -27,7 +27,7 @@ const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
                 <img className="avatar" src={avatar ?? "/assets/img/icons/profile.png"} alt="Avatar" />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default memo(Header)
+export default memo(Header);

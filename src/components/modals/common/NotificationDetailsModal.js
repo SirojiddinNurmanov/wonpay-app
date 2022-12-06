@@ -1,61 +1,71 @@
-import React, { memo } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import React, { memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { setQueryRate, rejectQueryRate, setOfferRate, rejectOfferRate, setNotificationAsRead, clientConfirmMoney, receiverConfirmMoney, clientRejectMoney, receiverRejectMoney } from "../../../store/actions"
+import {
+    setQueryRate,
+    rejectQueryRate,
+    setOfferRate,
+    rejectOfferRate,
+    setNotificationAsRead,
+    clientConfirmMoney,
+    receiverConfirmMoney,
+    clientRejectMoney,
+    receiverRejectMoney
+} from "../../../store/actions";
 
-import ModalLayout from "../ModalLayout"
+import ModalLayout from "../ModalLayout";
 
 const NotificationDetailsModal = (props) => {
-    const { role } = useSelector(state => state.app.user.user)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const { role } = useSelector(state => state.app.user.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const accept = () => {
         if (props.status === 0) {
             if (props.process.process_type === 0) {
-                dispatch(setQueryRate(props.process.id))
+                dispatch(setQueryRate(props.process.id));
             } else {
-                dispatch(setOfferRate(props.process.id))
+                dispatch(setOfferRate(props.process.id));
             }
         }
-        dispatch(setNotificationAsRead(props.id))
-        props.onHide()
-    }
+        dispatch(setNotificationAsRead(props.id));
+        props.onHide();
+    };
 
     const reject = () => {
         if (props.status === 0) {
             if (props.process.process_type === 0) {
-                dispatch(rejectQueryRate(props.process.id))
+                dispatch(rejectQueryRate(props.process.id));
             } else {
-                dispatch(rejectOfferRate(props.process.id))
+                dispatch(rejectOfferRate(props.process.id));
             }
         }
-        dispatch(setNotificationAsRead(props.id))
-        props.onHide()
-    }
+        dispatch(setNotificationAsRead(props.id));
+        props.onHide();
+    };
 
     const confirmMoney = () => {
-        if (role === 'client') {
-            dispatch(clientConfirmMoney(props.process_id))
+        if (role === "client") {
+            dispatch(clientConfirmMoney(props.process_id));
         } else {
-            dispatch(receiverConfirmMoney(props.process_id))
+            dispatch(receiverConfirmMoney(props.process_id));
         }
-        dispatch(setNotificationAsRead(props.id))
-        props.onHide()
-    }
+        dispatch(setNotificationAsRead(props.id));
+        props.onHide();
+    };
 
     const rejectMoney = () => {
-        if (role === 'client') {
-            dispatch(clientRejectMoney(props.process_id))
+        if (role === "client") {
+            dispatch(clientRejectMoney(props.process_id));
         } else {
-            dispatch(receiverRejectMoney(props.process_id))
+            dispatch(receiverRejectMoney(props.process_id));
         }
-        dispatch(setNotificationAsRead(props.id))
-        props.onHide()
-    }
+        dispatch(setNotificationAsRead(props.id));
+        props.onHide();
+    };
 
-    let buttons = []
+    let buttons = [];
 
     if (props.type === 1 && props.status === 0) {
         buttons = [
@@ -67,7 +77,7 @@ const NotificationDetailsModal = (props) => {
                 title: "Noroziman",
                 eventHandler: () => reject()
             }
-        ]
+        ];
     } else if (props.type === 2 && props.status === 0) {
         buttons = [
             {
@@ -78,34 +88,35 @@ const NotificationDetailsModal = (props) => {
                 title: "Yo'q",
                 eventHandler: () => rejectMoney()
             }
-        ]
+        ];
     } else {
         buttons = [
             {
                 title: props.action_type === 0 ? "Yopish" : "Ko'rish",
                 eventHandler: () => {
+                    // eslint-disable-next-line default-case
                     switch (props.action_type) {
                         case 1:
-                            navigate(`/queries/${props.process_id}`)                            
+                            navigate(`/queries/${props.process_id}`);
                             break;
                         case 2:
-                            navigate(`/offers/${props.process_id}`)
+                            navigate(`/offers/${props.process_id}`);
                             break;
                         case 3:
-                            navigate(`/reports`)
+                            navigate(`/reports`);
                             break;
                         case 5:
-                            navigate(`/receive`)
+                            navigate(`/receive`);
                             break;
                         case 6:
-                            navigate(`/deliver`)
+                            navigate(`/deliver`);
                             break;
                     }
 
-                    props.onHide()
+                    props.onHide();
                 }
             }
-        ]
+        ];
     }
 
     return (
@@ -115,7 +126,7 @@ const NotificationDetailsModal = (props) => {
                 <p dangerouslySetInnerHTML={{ __html: props.body }} />
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(NotificationDetailsModal)
+export default memo(NotificationDetailsModal);

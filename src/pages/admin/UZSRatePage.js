@@ -1,29 +1,29 @@
-import React, { memo, useState, useEffect } from "react"
+import React, { memo, useState, useEffect } from "react";
 
-import { BACKEND_URL } from "../../constants"
-import { common } from "../../constants/bottomButtons"
+import { BACKEND_URL } from "../../constants";
+import { common } from "../../constants/bottomButtons";
 
-import Layout from "../../layout"
+import Layout from "../../layout";
 
 const UZSRatePage = () => {
-    const [buyRate, setBuyRate] = useState()
-    const [sellRate, setSellRate] = useState()
+    const [buyRate, setBuyRate] = useState();
+    const [sellRate, setSellRate] = useState();
 
     const getExchangeRate = async () => {
-        const res = await fetch(`${BACKEND_URL}/exchangerate-nbu/USD`)
+        const res = await fetch(`${BACKEND_URL}/exchangerate-nbu/USD`);
 
-        const data = await res.json()
+        const data = await res.json();
         if (data.success) {
-            setBuyRate(data.data['buy'])
-            setSellRate(data.data['sell'])
+            setBuyRate(data.data["buy"]);
+            setSellRate(data.data["sell"]);
         }
-    }
+    };
 
-    common.middleButtons = false
+    common.middleButtons = false;
 
     useEffect(() => {
-        getExchangeRate()
-    }, [])
+        getExchangeRate();
+    }, []);
 
     return (
         <Layout buttons={common} title={{ text: "O'zbekiston Valyuta kurslari:" }}>
@@ -46,7 +46,7 @@ const UZSRatePage = () => {
                 </div>
             </div>
         </Layout>
-    )
-}
+    );
+};
 
-export default memo(UZSRatePage)
+export default memo(UZSRatePage);

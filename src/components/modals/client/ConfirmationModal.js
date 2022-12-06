@@ -1,6 +1,6 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
-import ModalLayout from "../ModalLayout"
+import ModalLayout from "../ModalLayout";
 
 const ConfirmationModal = (props) => {
     const buttons = [
@@ -9,7 +9,7 @@ const ConfirmationModal = (props) => {
             isLink: true,
             linkURL: "/"
         }
-    ]
+    ];
 
     return (
         <ModalLayout buttons={buttons} {...props}>
@@ -18,7 +18,7 @@ const ConfirmationModal = (props) => {
                 <div className="text-body">Iltimos kuting</div>
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(ConfirmationModal)
+export default memo(ConfirmationModal);

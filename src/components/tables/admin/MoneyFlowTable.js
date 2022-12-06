@@ -1,7 +1,7 @@
-import React, { memo } from "react"
-import NoData from "../../common/NoData"
+import React, { memo } from "react";
+import NoData from "../../common/NoData";
 
-import TableLayout from "../TableLayout"
+import TableLayout from "../TableLayout";
 
 const MoneyFlowTable = () => {
     const headers = [
@@ -11,7 +11,7 @@ const MoneyFlowTable = () => {
         "Jami Foyda",
         "Harajat",
         "Mavjud Mablag'"
-    ]
+    ];
 
     return (
         <TableLayout headers={headers}>
@@ -21,7 +21,7 @@ const MoneyFlowTable = () => {
                 </td>
             </tr>
         </TableLayout>
-    )
-}
+    );
+};
 
-export default memo(MoneyFlowTable)
+export default memo(MoneyFlowTable);

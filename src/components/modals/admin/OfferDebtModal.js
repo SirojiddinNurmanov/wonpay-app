@@ -1,7 +1,7 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
-import ModalLayout from "../ModalLayout"
-import WhiteLine from "../../common/WhiteLine"
+import ModalLayout from "../ModalLayout";
+import WhiteLine from "../../common/WhiteLine";
 
 const OfferDebtModal = (props) => {
     const buttons = [
@@ -9,7 +9,7 @@ const OfferDebtModal = (props) => {
             title: "Tasdiqlash",
             eventHandler: () => props.onHide()
         }
-    ]
+    ];
 
     return (
         <ModalLayout buttons={buttons} {...props}>
@@ -90,7 +90,7 @@ const OfferDebtModal = (props) => {
                 </div>
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(OfferDebtModal)
+export default memo(OfferDebtModal);

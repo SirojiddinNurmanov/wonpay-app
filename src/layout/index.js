@@ -1,28 +1,28 @@
-import React, { memo } from "react"
-import { useSelector } from "react-redux"
+import React, { memo } from "react";
+import { useSelector } from "react-redux";
 
-import BottomNavigation from "../components/common/BottomNavigation"
-import Header from "../components/common/Header"
-import Title from "../components/common/Title"
-import { formatAmount } from "../helpers"
+import BottomNavigation from "../components/common/BottomNavigation";
+import Header from "../components/common/Header";
+import Title from "../components/common/Title";
+import { formatAmount } from "../helpers";
 
 const Layout = ({ children, buttons, title = false, empty = false }) => {
-    const { user, carriers} = useSelector(state => state.app)
+    const { user, carriers } = useSelector(state => state.app);
 
 
-    let balanceText = "$0"
-    if (user?.user.role === 'client') {
-        balanceText = (user?.user.balance === 0 ? "$" : user?.user.balance < 0 ? "-$" : "+$") + (user?.user.balance ? formatAmount(user?.user.balance < 0 ? user?.user.balance * -1 : user?.user.balance) : 0)
-    } else if (user?.user.role === 'admin' || user?.user.role === 'superadmin') {
-        balanceText = "$" + formatAmount(user?.user.balance + (carriers?.length > 0 ? carriers?.map(carrier => carrier.balance).reduce((sum, carrierBalance) => sum + carrierBalance) : 0) || 0) + ` ( $${formatAmount(user?.user.balance)} )`
-    } else if (user?.user.role === 'carrier') {
-        balanceText = "$" + formatAmount(user?.user.balance)
+    let balanceText = "$0";
+    if (user?.user.role === "client") {
+        balanceText = (user?.user.balance === 0 ? "$" : user?.user.balance < 0 ? "-$" : "+$") + (user?.user.balance ? formatAmount(user?.user.balance < 0 ? user?.user.balance * -1 : user?.user.balance) : 0);
+    } else if (user?.user.role === "admin" || user?.user.role === "superadmin") {
+        balanceText = "$" + formatAmount(user?.user.balance + (carriers?.length > 0 ? carriers?.map(carrier => carrier.balance).reduce((sum, carrierBalance) => sum + carrierBalance) : 0) || 0) + ` ( $${formatAmount(user?.user.balance)} )`;
+    } else if (user?.user.role === "carrier") {
+        balanceText = "$" + formatAmount(user?.user.balance);
     }
 
     const headerData = {
         avatar: "/assets/img/icons/profile.png",
-        balance: balanceText,
-    }  
+        balance: balanceText
+    };
 
     return (
         <div className="wrapper">
@@ -38,8 +38,8 @@ const Layout = ({ children, buttons, title = false, empty = false }) => {
             {!empty && (
                 <BottomNavigation {...buttons} />
             )}
-        </div >
-    )
-}
+        </div>
+    );
+};
 
-export default memo(Layout)
+export default memo(Layout);

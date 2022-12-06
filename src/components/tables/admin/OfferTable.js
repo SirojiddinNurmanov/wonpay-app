@@ -1,26 +1,26 @@
-import React, { memo, useState } from "react"
-import { Link } from "react-router-dom"
-import { useSelector } from "react-redux"
+import React, { memo, useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import { formatAmount } from "../../../helpers"
+import { formatAmount } from "../../../helpers";
 
-import OfferRateModal from "../../modals/admin/OfferRateModal"
-import TableLayout from "../TableLayout"
-import NoData from "../../common/NoData"
+import OfferRateModal from "../../modals/admin/OfferRateModal";
+import TableLayout from "../TableLayout";
+import NoData from "../../common/NoData";
 
 const OfferTable = () => {
-    const [offerRateModal, showOfferRateModal] = useState(false)
-    const [modalInfo, setModalInfo] = useState()
-    const { offers } = useSelector(state => state.app)
+    const [offerRateModal, showOfferRateModal] = useState(false);
+    const [modalInfo, setModalInfo] = useState();
+    const { offers } = useSelector(state => state.app);
 
     const openRateModal = (process) => () => {
         if (process.assigned_queries.length === 0) {
             if (process.rate_status !== 1) {
-                showOfferRateModal(true)
-                setModalInfo(process)
+                showOfferRateModal(true);
+                setModalInfo(process);
             }
         }
-    }
+    };
 
     const headers = [
         "Ism",
@@ -29,9 +29,9 @@ const OfferTable = () => {
         "Sotish",
         "Olish",
         "Taqsim"
-    ]
+    ];
 
-    let pendingOffers = offers?.length > 0 ? offers.filter(offer => offer.status !== 1) : []
+    let pendingOffers = offers?.length > 0 ? offers.filter(offer => offer.status !== 1) : [];
 
     return (
         <TableLayout headers={headers}>
@@ -46,7 +46,7 @@ const OfferTable = () => {
                                 </Link>
                             </td>
                             <td>{formatAmount(process.amount)}</td>
-                            <td >{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
+                            <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
                             <td onClick={openRateModal(process)}>{process.buy_rate > 0 ? process.buy_rate : process.rate_status === 1 ? "Kutilmoqda" : "Kiritish"}</td>
                             <td onClick={openRateModal(process)}>{process.sell_rate > 0 ? process.sell_rate : "Kiritish"}</td>
                             <td>
@@ -69,7 +69,7 @@ const OfferTable = () => {
                 </tr>
             )}
         </TableLayout>
-    )
-}
+    );
+};
 
-export default memo(OfferTable)
+export default memo(OfferTable);

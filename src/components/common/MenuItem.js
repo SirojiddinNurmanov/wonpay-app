@@ -1,5 +1,5 @@
-import React, { memo } from "react"
-import { Link } from "react-router-dom"
+import React, { memo } from "react";
+import { Link } from "react-router-dom";
 
 const MenuItem = ({ url, image, alt, text }) => {
     return (
@@ -13,7 +13,7 @@ const MenuItem = ({ url, image, alt, text }) => {
                 </div>
             </div>
         </Link>
-    )
-}
+    );
+};
 
-export default memo(MenuItem)
+export default memo(MenuItem);

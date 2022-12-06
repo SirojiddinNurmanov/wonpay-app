@@ -1,6 +1,6 @@
-import React, { memo } from "react"
-import { Link } from "react-router-dom"
-import Modal from "react-bootstrap/Modal"
+import React, { memo } from "react";
+import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
 
 const ModalLayout = ({ children, buttons, show, onHide }) => (
     <Modal
@@ -28,11 +28,13 @@ const ModalLayout = ({ children, buttons, show, onHide }) => (
                         <button className={"modal-button" + (secondary ? " secondary" : "")}>{title}</button>
                     </Link>
                 ) : (
-                    <button key={title} className={"modal-button" + (secondary ? " secondary" : "") + (disabled ? " disabled" : "")} onClick={eventHandler}>{title}</button>
+                    <button key={title}
+                            className={"modal-button" + (secondary ? " secondary" : "") + (disabled ? " disabled" : "")}
+                            onClick={eventHandler}>{title}</button>
                 )
             ))}
         </Modal.Footer>
     </Modal>
-)
+);
 
-export default memo(ModalLayout)
+export default memo(ModalLayout);

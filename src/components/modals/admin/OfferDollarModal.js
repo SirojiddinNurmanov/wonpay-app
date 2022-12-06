@@ -1,25 +1,25 @@
-import React, { memo, useState } from "react"
-import { useDispatch } from "react-redux"
+import React, { memo, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import { changeOfferRate } from '../../../store/actions'
+import { changeOfferRate } from "../../../store/actions";
 
-import ModalLayout from "../ModalLayout"
+import ModalLayout from "../ModalLayout";
 
 const OfferDollarModal = (props) => {
-    const [newValue, setNewValue] = useState(props.buy_rate > 0 ? (props.amount / props.buy_rate).toFixed(2) : 0)
-    const dispatch = useDispatch()
+    const [newValue, setNewValue] = useState(props.buy_rate > 0 ? (props.amount / props.buy_rate).toFixed(2) : 0);
+    const dispatch = useDispatch();
 
     const confirmRate = () => {
-        dispatch(changeOfferRate(props.id, parseInt(props.amount / newValue), props.sell_rate))
-        props.onHide()
-    }
+        dispatch(changeOfferRate(props.id, parseInt(props.amount / newValue), props.sell_rate));
+        props.onHide();
+    };
 
     const buttons = [
         {
             title: "Yopish",
             eventHandler: () => confirmRate()
         }
-    ]
+    ];
 
     return (
         <ModalLayout buttons={buttons} {...props}>
@@ -32,7 +32,7 @@ const OfferDollarModal = (props) => {
                 </div>
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(OfferDollarModal)
+export default memo(OfferDollarModal);

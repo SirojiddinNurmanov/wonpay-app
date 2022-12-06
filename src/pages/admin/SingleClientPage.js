@@ -1,15 +1,15 @@
-import React, { memo, useState } from "react"
-import { Link } from "react-router-dom"
-import Modal from "react-bootstrap/Modal"
+import React, { memo, useState } from "react";
+import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
 
-import { common } from "../../constants/bottomButtons"
+import { common } from "../../constants/bottomButtons";
 
-import Layout from "../../layout"
+import Layout from "../../layout";
 
 const SingleClientPage = () => {
-    const [modalShow, setModalShow] = useState(false)
+    const [modalShow, setModalShow] = useState(false);
 
-    common.middleButtons = false
+    common.middleButtons = false;
 
     return (
         <Layout buttons={common}>
@@ -84,10 +84,10 @@ const SingleClientPage = () => {
                 </div>
             </div>
         </Layout>
-    )
-}
+    );
+};
 
-export default memo(SingleClientPage)
+export default memo(SingleClientPage);
 
 const GiveMoney = (props) => {
     return (
@@ -112,5 +112,5 @@ const GiveMoney = (props) => {
                 </div>
             </Modal.Body>
         </Modal>
-    )
-}
+    );
+};

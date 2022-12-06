@@ -76,7 +76,7 @@ export const MenuButtons = {
             url: "/notifications",
             image: "/assets/img/menu-icons/messages.png",
             text: "Xabarlar"
-        },
+        }
     ],
     "carrier": [
         {
@@ -108,6 +108,6 @@ export const MenuButtons = {
             url: "/notifications",
             image: "/assets/img/menu-icons/messages.png",
             text: "Xabarlar"
-        },
+        }
     ]
-}
+};

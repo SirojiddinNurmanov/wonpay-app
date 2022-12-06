@@ -1,16 +1,16 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
-import ModalLayout from "../ModalLayout"
+import ModalLayout from "../ModalLayout";
 
 const QueryProofModal = ({ show, onHide, proof_image }) => {
     const buttons = [
         {
             title: "Yopish",
             eventHandler: () => {
-                onHide()
+                onHide();
             }
         }
-    ]
+    ];
 
     return (
         <ModalLayout buttons={buttons} show={show} onHide={onHide}>
@@ -20,7 +20,7 @@ const QueryProofModal = ({ show, onHide, proof_image }) => {
                 )}
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(QueryProofModal)
+export default memo(QueryProofModal);

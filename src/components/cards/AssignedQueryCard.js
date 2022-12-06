@@ -1,56 +1,66 @@
-import React, { memo, useState, useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAngleDown, faCheckSquare, faTimesCircle, faTimesSquare } from "@fortawesome/free-solid-svg-icons"
+import React, { memo, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faCheckSquare, faTimesCircle, faTimesSquare } from "@fortawesome/free-solid-svg-icons";
 
-import { getQueries, saveProofImage, unsetProofImage } from "../../store/actions"
-import { formatAmount } from "../../helpers"
-import { BACKEND_URL } from "../../constants"
+import { getQueries, saveProofImage, unsetProofImage } from "../../store/actions";
+import { formatAmount } from "../../helpers";
+import { BACKEND_URL } from "../../constants";
 
-import EmptyBox from "../common/EmptyBox"
-import LoadingButton from "../common/LoadingButton"
+import EmptyBox from "../common/EmptyBox";
+import LoadingButton from "../common/LoadingButton";
 
-const AssignedQueryCard = ({ i, id, status, client: { first_name }, amount, proof_image = false, card_info_type, card_info_image, card_info_sms }) => {
-    const [cardInfo, showCardInfo] = useState(false)
-    const [loading, showLoading] = useState(false)
-    const [proofImage, setProofImage] = useState(proof_image)
-    const dispatch = useDispatch()
+const AssignedQueryCard = ({
+                               i,
+                               id,
+                               status,
+                               client: { first_name },
+                               amount,
+                               proof_image = false,
+                               card_info_type,
+                               card_info_image,
+                               card_info_sms
+                           }) => {
+    const [cardInfo, showCardInfo] = useState(false);
+    const [loading, showLoading] = useState(false);
+    const [proofImage, setProofImage] = useState(proof_image);
+    const dispatch = useDispatch();
 
     const toggleCardBlock = () => {
-        showCardInfo(!cardInfo)
-    }
+        showCardInfo(!cardInfo);
+    };
 
     useEffect(() => {
-        dispatch(getQueries())
+        dispatch(getQueries());
         // eslint-disable-next-line
-    }, [])
+    }, []);
 
     const uploadImageToServer = async ({ target }) => {
-        showLoading(true)
-        const body = new FormData()
-        body.append("image", target.files[0])
+        showLoading(true);
+        const body = new FormData();
+        body.append("image", target.files[0]);
 
         try {
             let res = await fetch(`${BACKEND_URL}/save-photo`, {
                 method: "POST",
                 body: body
-            })
+            });
 
-            const { success, data } = await res.json()
+            const { success, data } = await res.json();
             if (success) {
-                setProofImage(data)
-                dispatch(saveProofImage(id, data))
+                setProofImage(data);
+                dispatch(saveProofImage(id, data));
             }
-            showLoading(false)
+            showLoading(false);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 
     const deleteProofImage = () => {
-        setProofImage(false)
-        dispatch(unsetProofImage(id))
-    }
+        setProofImage(false);
+        dispatch(unsetProofImage(id));
+    };
 
     return (
         <div className="block-item">
@@ -100,12 +110,13 @@ const AssignedQueryCard = ({ i, id, status, client: { first_name }, amount, proo
                         </div>
                     )}
                     {!proofImage && (
-                        <button className="upload-button" onClick={(e) => e.target.previousSibling.click()}>Chekni yuklash</button>
+                        <button className="upload-button" onClick={(e) => e.target.previousSibling.click()}>Chekni
+                            yuklash</button>
                     )}
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default memo(AssignedQueryCard)
+export default memo(AssignedQueryCard);

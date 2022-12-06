@@ -1,32 +1,32 @@
-import React, { memo, useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { memo, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { changeQueryRate, getCarriers, setProcessCarrier } from '../../../store/actions'
+import { changeQueryRate, getCarriers, setProcessCarrier } from "../../../store/actions";
 
-import ModalLayout from "../ModalLayout"
+import ModalLayout from "../ModalLayout";
 
 const QueryRateModal = (props) => {
-    const [newValue, setNewValue] = useState(false)
-    const { carriers } = useSelector(state => state.app)
-    const dispatch = useDispatch()
+    const [newValue, setNewValue] = useState(false);
+    const { carriers } = useSelector(state => state.app);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getCarriers())
+        dispatch(getCarriers());
         // eslint-disable-next-line
-    }, [])
+    }, []);
 
     const confirmRate = () => {
         if (props.carrier_id === null) {
             if (newValue) {
-                dispatch(changeQueryRate(props.id, newValue))
+                dispatch(changeQueryRate(props.id, newValue));
             }
-            props.onHide()
+            props.onHide();
         }
-    }
+    };
 
     const selectCarrier = ({ target: { value } }) => {
-        dispatch(setProcessCarrier(props.id, value))
-    }
+        dispatch(setProcessCarrier(props.id, value));
+    };
 
     const buttons = [
         {
@@ -38,7 +38,7 @@ const QueryRateModal = (props) => {
             title: "Yopish",
             eventHandler: () => props.onHide()
         }
-    ]
+    ];
 
     return (
         <ModalLayout buttons={buttons} {...props}>
@@ -46,17 +46,20 @@ const QueryRateModal = (props) => {
                 <div className="offer-modal-input">
                     <div className="put-money-input">
                         <label htmlFor="put_money">Kurs:</label>
-                        <input type="number" defaultValue={props.exchange_rate == 0 ? "" : props.exchange_rate} onChange={({ target }) => setNewValue(target.value)} />
+                        <input type="number" defaultValue={props.exchange_rate == 0 ? "" : props.exchange_rate}
+                               onChange={({ target }) => setNewValue(target.value)} />
                         {props.carrier_id ? "" : (
                             <>
                                 <div className="process-title">Pulni Oluvchi Kuryer:</div>
                                 <div className="process-carrier-list">
-                                    <select onChange={selectCarrier} className="underlined text-center" value={props?.carrier_id ?? 0}>
+                                    <select onChange={selectCarrier} className="underlined text-center"
+                                            value={props?.carrier_id ?? 0}>
                                         {carriers?.length > 1 ? (
                                             <>
                                                 <option value="0">Tanlash</option>
                                                 {carriers.map(({ id, first_name, last_name }) => (
-                                                    <option key={id} value={id}>{first_name + (last_name ? " " + last_name : "")}</option>
+                                                    <option key={id}
+                                                            value={id}>{first_name + (last_name ? " " + last_name : "")}</option>
                                                 ))}
                                             </>
                                         ) : (
@@ -72,8 +75,8 @@ const QueryRateModal = (props) => {
                     </div>
                 </div>
             </div>
-        </ModalLayout >
-    )
-}
+        </ModalLayout>
+    );
+};
 
-export default memo(QueryRateModal)
+export default memo(QueryRateModal);

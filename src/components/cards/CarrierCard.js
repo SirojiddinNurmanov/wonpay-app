@@ -1,5 +1,5 @@
-import React, { memo } from 'react'
-import { formatAmount } from '../../helpers'
+import React, { memo } from "react";
+import { formatAmount } from "../../helpers";
 
 const CarrierCard = ({ first_name, last_name, avatar, balance, role }) => {
     return (
@@ -17,13 +17,13 @@ const CarrierCard = ({ first_name, last_name, avatar, balance, role }) => {
                     <div className="row p-0">
                         <div className="col-7"></div>
                         <div className="col-5 text-left">
-                            <span>{role === 'carrier' ? "$" + formatAmount(balance) : (balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance) : 0)}</span>
+                            <span>{role === "carrier" ? "$" + formatAmount(balance) : (balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance, true, true) : 0)}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default memo(CarrierCard)
+export default memo(CarrierCard);

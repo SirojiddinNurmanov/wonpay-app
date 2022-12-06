@@ -1,29 +1,29 @@
-import { useParams } from "react-router-dom"
-import React, { memo, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import "react-datepicker/dist/react-datepicker.css"
+import { useParams } from "react-router-dom";
+import React, { memo, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "react-datepicker/dist/react-datepicker.css";
 
-import { formatAmount } from "../../helpers"
-import { getQueries } from "../../store/actions"
-import { common } from "../../constants/bottomButtons"
+import { formatAmount } from "../../helpers";
+import { getQueries } from "../../store/actions";
+import { common } from "../../constants/bottomButtons";
 
-import Layout from "../../layout"
+import Layout from "../../layout";
 
-import WhiteLine from "../../components/common/WhiteLine"
+import WhiteLine from "../../components/common/WhiteLine";
 
 const QueryTransactionDetailsPage = () => {
     // const [startDate, setStartDate] = useState(new Date())
-    const { queries } = useSelector(state => state.app)
-    let { queryId } = useParams()
-    const query = queries?.find(query => query.id === parseInt(queryId))
-    const dispatch = useDispatch()
+    const { queries } = useSelector(state => state.app);
+    let { queryId } = useParams();
+    const query = queries?.find(query => query.id === parseInt(queryId));
+    const dispatch = useDispatch();
 
-    common.middleButtons = false
+    common.middleButtons = false;
 
     useEffect(() => {
-        dispatch(getQueries())
+        dispatch(getQueries());
         // eslint-disable-next-line
-    }, [])
+    }, []);
 
     return (
         <Layout buttons={common}>
@@ -36,7 +36,8 @@ const QueryTransactionDetailsPage = () => {
                         {query.exchange_rate > 0 && (
                             <>
                                 <div className="exchange-rate">{"$ 1 = ￦ " + query.exchange_rate}</div>
-                                <div className="exchange-rate-total">{"￦ " + formatAmount(query.amount) + " = $ " + formatAmount(query.amount / query.exchange_rate, true)}</div>
+                                <div
+                                    className="exchange-rate-total">{"￦ " + formatAmount(query.amount) + " = $ " + formatAmount(query.amount / query.exchange_rate, true)}</div>
                             </>
                         )}
                     </div>
@@ -94,7 +95,7 @@ const QueryTransactionDetailsPage = () => {
                 </>
             )}
         </Layout>
-    )
-}
+    );
+};
 
-export default memo(QueryTransactionDetailsPage)
+export default memo(QueryTransactionDetailsPage);

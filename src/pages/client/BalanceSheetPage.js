@@ -1,23 +1,23 @@
-import React, { memo, useEffect } from "react"
+import React, { memo, useEffect } from "react";
 
-import { useDispatch, useSelector } from "react-redux"
-import { getTransactions } from "../../store/actions"
-import { common } from "../../constants/bottomButtons"
+import { useDispatch, useSelector } from "react-redux";
+import { getTransactions } from "../../store/actions";
+import { common } from "../../constants/bottomButtons";
 
-import Layout from "../../layout"
+import Layout from "../../layout";
 
-import BalanceSheetTable from "../../components/tables/common/BalanceSheetTable"
+import BalanceSheetTable from "../../components/tables/common/BalanceSheetTable";
 
 const BalanceSheetPage = () => {
-    const { transactions } = useSelector(state => state.app)
-    const dispatch = useDispatch()
+    const { transactions } = useSelector(state => state.app);
+    const dispatch = useDispatch();
 
-    common.middleButtons = false
+    common.middleButtons = false;
 
     useEffect(() => {
-        dispatch(getTransactions())
+        dispatch(getTransactions());
         // eslint-disable-next-line
-    }, [])
+    }, []);
 
     return (
         <Layout buttons={common} title={{ text: "Oldi Berdilar:" }}>
@@ -25,7 +25,7 @@ const BalanceSheetPage = () => {
                 <BalanceSheetTable transactions={transactions} />
             </div>
         </Layout>
-    )
-}
+    );
+};
 
-export default memo(BalanceSheetPage)
+export default memo(BalanceSheetPage);

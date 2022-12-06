@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 const EmptyBox = () => (
     <div className="empty-box"></div>
-)
+);
 
-export default EmptyBox
+export default EmptyBox;

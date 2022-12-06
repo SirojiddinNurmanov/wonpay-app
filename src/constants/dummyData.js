@@ -1,4 +1,4 @@
-import { groupBy } from '../helpers'
+import { groupBy } from "../helpers";
 
 // export const notifications = [
 //     {
@@ -43,7 +43,7 @@ import { groupBy } from '../helpers'
 //     }
 // ]
 
-export const notifications = []
+export const notifications = [];
 
 export const notificationTemplates = [
     {
@@ -58,7 +58,7 @@ export const notificationTemplates = [
             }
         ]
     }
-]
+];
 
 export const transactions = [
     {
@@ -96,6 +96,6 @@ export const transactions = [
         carrier: "Mustafo",
         status: "finished"
     }
-]
+];
 
-export const groupedTransactions = groupBy('status', transactions)
+export const groupedTransactions = groupBy("status", transactions);

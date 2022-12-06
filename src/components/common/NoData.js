@@ -1,4 +1,4 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
 const NoData = ({ row = false }) => (
     <div className="center">
@@ -7,6 +7,6 @@ const NoData = ({ row = false }) => (
         )}
         <strong><h6>Ma'lumot yo'q</h6></strong>
     </div>
-)
+);
 
-export default memo(NoData)
+export default memo(NoData);

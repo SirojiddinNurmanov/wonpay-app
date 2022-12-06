@@ -1,7 +1,7 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
-import ModalLayout from "../ModalLayout"
-import WhiteLine from "../../common/WhiteLine"
+import ModalLayout from "../ModalLayout";
+import WhiteLine from "../../common/WhiteLine";
 
 const QueryDebtModal = (props) => {
     const buttons = [
@@ -9,7 +9,7 @@ const QueryDebtModal = (props) => {
             title: "Yopish",
             eventHandler: () => props.onHide()
         }
-    ]
+    ];
 
     return (
         <ModalLayout buttons={buttons} {...props}>
@@ -40,7 +40,7 @@ const QueryDebtModal = (props) => {
                 <h3>Olmagan</h3>
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(QueryDebtModal)
+export default memo(QueryDebtModal);

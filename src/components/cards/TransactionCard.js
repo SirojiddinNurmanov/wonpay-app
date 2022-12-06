@@ -1,9 +1,9 @@
-import React, { memo } from "react"
+import React, { memo } from "react";
 
-import { formatAmount } from "../../helpers"
+import { formatAmount } from "../../helpers";
 
 const TransactionCard = ({ process_type, assigned_queries, amount, exchange_rate, buy_rate, receiver, status }) => {
-    let usedAmount = assigned_queries?.length > 0 ? assigned_queries.map(query => query.amount).reduce((sum, amount) => sum + amount) : 0
+    let usedAmount = assigned_queries?.length > 0 ? assigned_queries.map(query => query.amount).reduce((sum, amount) => sum + amount) : 0;
     return (
         <div className="transaction-item">
             <div className="transaction-status">{status === 0 ? "Ko'rib chiqilmoqda" : "Yakunlangan"}</div>
@@ -16,7 +16,8 @@ const TransactionCard = ({ process_type, assigned_queries, amount, exchange_rate
                             {usedAmount !== 0 && (usedAmount < amount) && (
                                 <div className="transaction-amount"><strike>￦ {formatAmount(amount)}</strike></div>
                             )}
-                            <div className="transaction-amount">￦ {status === 1 ? usedAmount === amount ? formatAmount(amount) : formatAmount(usedAmount) : formatAmount(amount)}</div>
+                            <div
+                                className="transaction-amount">￦ {status === 1 ? usedAmount === amount ? formatAmount(amount) : formatAmount(usedAmount) : formatAmount(amount)}</div>
                         </>
                     )}
                     {process_type === 0 && (
@@ -41,14 +42,14 @@ const TransactionCard = ({ process_type, assigned_queries, amount, exchange_rate
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 TransactionCard.defaultProps = {
     amount_krw: false,
     amount_usd: false,
     rate: false,
     carrier: false
-}
+};
 
-export default memo(TransactionCard)
+export default memo(TransactionCard);

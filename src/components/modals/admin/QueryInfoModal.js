@@ -1,23 +1,33 @@
-import React, { memo, useState } from "react"
+import React, { memo, useState } from "react";
 
-import { formatAmount } from "../../../helpers"
+import { formatAmount } from "../../../helpers";
 
-import ModalLayout from "../ModalLayout"
+import ModalLayout from "../ModalLayout";
 
-const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_info_type, card_info_sms, card_info_image }) => {
-    const [zoomed, setZoomed] = useState(false)
+const QueryInfoModal = ({
+                            show,
+                            onHide,
+                            id,
+                            user,
+                            amount,
+                            payment_type,
+                            card_info_type,
+                            card_info_sms,
+                            card_info_image
+                        }) => {
+    const [zoomed, setZoomed] = useState(false);
 
     const closeAndZoomOut = () => {
-        onHide()
-        setZoomed(false)
-    }
+        onHide();
+        setZoomed(false);
+    };
 
     const buttons = [
         {
             title: "Yopish",
             eventHandler: () => closeAndZoomOut()
         }
-    ]
+    ];
 
     return (
         <ModalLayout buttons={buttons} show={show} onHide={onHide}>
@@ -34,7 +44,9 @@ const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_inf
                                     <div className="col">
                                         <div className="card_info_block text-center">
                                             {card_info_type === 1 ? (
-                                                <img onClick={() => setZoomed(!zoomed)} className={"card-image" + (zoomed ? " zoomed" : "")} src={card_info_image} alt="Card" />
+                                                <img onClick={() => setZoomed(!zoomed)}
+                                                     className={"card-image" + (zoomed ? " zoomed" : "")}
+                                                     src={card_info_image} alt="Card" />
                                             ) : (
                                                 <pre>
                                                     {card_info_sms}
@@ -49,7 +61,7 @@ const QueryInfoModal = ({ show, onHide, id, user, amount, payment_type, card_inf
                 )}
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(QueryInfoModal)
+export default memo(QueryInfoModal);

@@ -1,14 +1,14 @@
-import React, { memo } from "react"
-import ModalLayout from "../ModalLayout"
+import React, { memo } from "react";
+import ModalLayout from "../ModalLayout";
 
 const ConfirmationModal = (props) => {
     const buttons = [
         {
             title: "Bosh sahifaga",
             isLink: true,
-            linkURL: "/",
+            linkURL: "/"
         }
-    ]
+    ];
 
     return (
         <ModalLayout buttons={buttons} {...props}>
@@ -16,7 +16,7 @@ const ConfirmationModal = (props) => {
                 <h3>So'rovlar uchun kurs xabarlari yuborildi</h3>
             </div>
         </ModalLayout>
-    )
-}
+    );
+};
 
-export default memo(ConfirmationModal)
+export default memo(ConfirmationModal);
