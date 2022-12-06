@@ -122,7 +122,7 @@ a {
 
 .category-card {
     width: 28vw;
-    height: calc(28vw*4/3.2);
+    height: calc(28vw * 4 / 3.2);
     display: grid;
     grid-template-rows: 70% 30%;
     background-color: #e2e4f7;
@@ -181,7 +181,7 @@ a {
 .put-money {
     display: flex;
     height: 100vh;
-    width: 100hw;
+    width: 100 hw;
     flex-direction: column;
     background-color: var(--background-color);
 }
@@ -1107,7 +1107,7 @@ a {
     height: 40px;
     color: var(--white-color);
     background-color: var(--main-color);
-    border-radius: calc(40px/2);
+    border-radius: calc(40px / 2);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: 0;
     padding: 0 50px;
@@ -1210,10 +1210,12 @@ a {
     margin: 10px 0;
 }
 
+.moneyflow-item .moneyflow-status,
 .transaction-item .transaction-status {
     text-align: right;
 }
 
+.moneyflow-item .moneyflow-card,
 .transaction-item .transaction-card {
     min-height: 17vw;
     background-color: var(--white-color);
@@ -1225,6 +1227,18 @@ a {
     grid-template-columns: 25% 1% 43% 1% 30%;
 }
 
+.moneyflow-item {
+    margin-top: 15px;
+}
+
+.moneyflow-item .moneyflow-card {
+    grid-template-columns: 50% 1% 49%;
+}
+
+.moneyflow-item .moneyflow-card .moneyflow-type,
+.moneyflow-item .moneyflow-card .moneyflow-amount,
+.moneyflow-item .moneyflow-card .moneyflow-details,
+.moneyflow-item .moneyflow-card .moneyflow-details-item,
 .transaction-item .transaction-card .transaction-type,
 .transaction-item .transaction-card .transaction-amount,
 .transaction-item .transaction-card .transaction-details,
@@ -1257,6 +1271,7 @@ a {
     font-size: .85em;
 }
 
+.moneyflow-item .moneyflow-card .bar,
 .transaction-item .transaction-card .bar {
     width: 2px;
     height: 100%;
@@ -1333,7 +1348,7 @@ a {
     height: 40px;
     color: var(--white-color);
     background-color: var(--main-color);
-    border-radius: calc(40px/2);
+    border-radius: calc(40px / 2);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: 0;
     padding: 0 20px;
@@ -1503,7 +1518,7 @@ a {
     transform: scale(2);
 }
 
-.money-types-block .radio-label input[type="radio"]+*::before {
+.money-types-block .radio-label input[type="radio"] + *::before {
     content: "";
     display: inline-block;
     vertical-align: bottom;
@@ -1516,11 +1531,11 @@ a {
     border-color: #666;
 }
 
-.money-types-block .radio-label input[type="radio"]:checked+* {
+.money-types-block .radio-label input[type="radio"]:checked + * {
     color: #666;
 }
 
-.money-types-block .radio-label input[type="radio"]:checked+*::before {
+.money-types-block .radio-label input[type="radio"]:checked + *::before {
     background: radial-gradient(#666 0%, #666 40%, transparent 50%, transparent);
     border-color: #666;
 }
@@ -1535,7 +1550,6 @@ a {
     font-weight: bold;
     color: var(--title-color);
 }
-
 
 
 .money-types-block .form-check-label {
