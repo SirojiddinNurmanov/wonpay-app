@@ -136,30 +136,34 @@ const SingleOfferPage = () => {
                             )}
                         </div>
                     </div> */}
-                    <WhiteLine />
-                    <div className="process-carrier-block">
-                        <div className="process-title">Pulni Beruvchi Kuryer:</div>
-                        <div className="process-carrier-list">
-                            <select onChange={selectCarrier} className="underlined text-center"
-                                    value={offer?.carrier_id ?? 0}>
-                                {carriers ? carriers.length > 1 ? (
-                                    <>
-                                        <option value="0">Tanlash</option>
-                                        {carriers.map(({ id, first_name, last_name }) => (
-                                            <option key={id}
-                                                    value={id}>{first_name + (last_name ? " " + last_name : "")}</option>
-                                        ))}
-                                    </>
-                                ) : (
-                                    <option
-                                        value={carriers[0].id}>{carriers[0].first_name + (carriers[0].last_name ? " " + carriers[0].last_name : "")}</option>
-                                ) : ""}
-                            </select>
-                        </div>
-                        {offer?.carrier_id ? "" : (
-                            <div className="error-message small text-center red">Iltimos kuryerni tanlang</div>
-                        )}
-                    </div>
+                    {!offer?.carrier_id && (
+                        <>
+                            <WhiteLine />
+                            <div className="process-carrier-block">
+                                <div className="process-title">Pulni Beruvchi Kuryer:</div>
+                                <div className="process-carrier-list">
+                                    <select onChange={selectCarrier} className="underlined text-center"
+                                            value={offer?.carrier_id ?? 0}>
+                                        {carriers ? carriers.length > 1 ? (
+                                            <>
+                                                <option value="0">Tanlash</option>
+                                                {carriers.map(({ id, first_name, last_name }) => (
+                                                    <option key={id}
+                                                            value={id}>{first_name + (last_name ? " " + last_name : "")}</option>
+                                                ))}
+                                            </>
+                                        ) : (
+                                            <option
+                                                value={carriers[0].id}>{carriers[0].first_name + (carriers[0].last_name ? " " + carriers[0].last_name : "")}</option>
+                                        ) : ""}
+                                    </select>
+                                </div>
+                                {offer?.carrier_id ? "" : (
+                                    <div className="error-message small text-center red">Iltimos kuryerni tanlang</div>
+                                )}
+                            </div>
+                        </>
+                    )}
                     <WhiteLine />
 
                     {offer.assigned_queries.length === 0 && (
