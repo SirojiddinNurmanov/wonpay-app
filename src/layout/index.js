@@ -12,11 +12,11 @@ const Layout = ({ children, buttons, title = false, empty = false }) => {
 
     let balanceText = "$0";
     if (user?.user.role === "client") {
-        balanceText = (user?.user.balance === 0 ? "$" : user?.user.balance < 0 ? "-$" : "+$") + (user?.user.balance ? formatAmount(user?.user.balance < 0 ? user?.user.balance * -1 : user?.user.balance) : 0);
+        balanceText = (user?.user.balance === 0 ? "$" : user?.user.balance < 0 ? "-$" : "+$") + (user?.user.balance ? formatAmount(user?.user.balance < 0 ? user?.user.balance * -1 : user?.user.balance, true, true) : 0);
     } else if (user?.user.role === "admin" || user?.user.role === "superadmin") {
-        balanceText = "$" + formatAmount(user?.user.balance + (carriers?.length > 0 ? carriers?.map(carrier => carrier.balance).reduce((sum, carrierBalance) => sum + carrierBalance) : 0) || 0) + ` ( $${formatAmount(user?.user.balance)} )`;
+        balanceText = "$" + formatAmount(user?.user.balance + (carriers?.length > 0 ? carriers?.map(carrier => carrier.balance).reduce((sum, carrierBalance) => sum + carrierBalance) : 0) || 0, true, true) + ` ( $${formatAmount(user?.user.balance)} )`;
     } else if (user?.user.role === "carrier") {
-        balanceText = "$" + formatAmount(user?.user.balance);
+        balanceText = "$" + formatAmount(user?.user.balance, true, true);
     }
 
     const headerData = {

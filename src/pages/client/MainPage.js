@@ -33,7 +33,7 @@ const MainPage = () => {
             <GiveMoneyModal show={giveMoneyModal} onHide={() => showGiveMoneyModal(false)} />
             <div className="balance">
                 <span>Sizning Xisobingiz:</span>
-                <span>{(balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance) : 0)}</span>
+                <span>{(balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance, true, true) : 0)}</span>
             </div>
             <MenuCards app="client" />
             <WhiteLine />
