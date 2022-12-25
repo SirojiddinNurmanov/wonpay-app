@@ -1,8 +1,10 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
-    const { avatar } = useSelector(state => state.app.user.user);
+    const { avatar, role } = useSelector(state => state.app.user.user);
+    const navigate = useNavigate()
     return (
         <div className="header">
             <div className="logo">
@@ -24,7 +26,7 @@ const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
                 {fromAmount && (
                     <span className="balance-item">{fromAmount}</span>
                 )}
-                <img className="avatar" src={avatar ?? "/assets/img/icons/profile.png"} alt="Avatar" />
+                <img className="avatar" src={avatar ?? "/assets/img/icons/profile.png"} alt="Avatar" onClick={() => role === 'client' ? navigate('/profile') : ""}/>
             </div>
         </div>
     );
