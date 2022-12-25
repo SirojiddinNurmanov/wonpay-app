@@ -22,9 +22,9 @@ const App = () => {
         // eslint-disable-next-line
     }, [])
 
-    // if (loading || user === null) {
+    if (loading || user === null) {
         return <LoadingAction />
-    // }
+    }
 
     if (['admin', 'superadmin'].includes(user?.user.role)) {
         return <AdminApp />
