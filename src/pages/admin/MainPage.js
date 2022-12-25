@@ -23,7 +23,6 @@ const MainPage = () => {
 
     return (
         <Layout>
-            {/* <LoadingAction /> */}
             <MenuCards app="admin" />
         </Layout>
     );

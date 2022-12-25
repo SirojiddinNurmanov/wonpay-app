@@ -8,6 +8,7 @@ import CarrierApp from './CarrierApp'
 
 import Preloader from "../components/common/Preloader"
 import EmptyPage from '../pages/common/EmptyPage'
+import LoadingAction from "../components/common/LoadingAction";
 
 const App = () => {
     const { loading, user } = useSelector(state => state.app)
@@ -22,7 +23,7 @@ const App = () => {
     }, [])
 
     if (loading || user === null) {
-        return <Preloader />
+        return <LoadingAction />
     }
 
     if (['admin', 'superadmin'].includes(user?.user.role)) {
