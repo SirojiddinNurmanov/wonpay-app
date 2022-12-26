@@ -18,6 +18,7 @@ const ClientApp = () => {
     useEffect(() => {
         dispatch(getOffers())
         dispatch(getQueries())
+        // eslint-disable-next-line
     }, [])
 
     return (

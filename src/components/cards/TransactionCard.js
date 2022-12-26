@@ -47,7 +47,7 @@ const TransactionCard = ({ process_type, assigned_queries, amount, exchange_rate
                 </div>
                 <div className="bar"></div>
                 <div className="transaction-details">
-                    {process_type === 0 ? exchange_rate != 0 && (
+                    {process_type === 0 ? exchange_rate !== 0 && (
                         <div className="transaction-details-item">{exchange_rate}</div>
                     ) : process_type === 1 && buy_rate !== 0 && (
                         <div className="transaction-details-item">{buy_rate}</div>

@@ -6,7 +6,6 @@ import AdminApp from './AdminApp'
 import ClientApp from './ClientApp'
 import CarrierApp from './CarrierApp'
 
-import Preloader from "../components/common/Preloader"
 import EmptyPage from '../pages/common/EmptyPage'
 import LoadingAction from "../components/common/LoadingAction";
 
