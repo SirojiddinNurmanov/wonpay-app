@@ -8,8 +8,6 @@ import MainPage from "../pages/client/MainPage"
 import QueryPage from "../pages/client/QueryPage"
 import OfferPage from "../pages/client/OfferPage"
 import ProfilePage from "../pages/client/ProfilePage"
-import TransactionsPage from "../pages/client/TransactionsPage"
-import BalanceSheetPage from "../pages/client/BalanceSheetPage"
 import NotificationsPage from "../pages/client/NotificationsPage"
 import QueryTransactionDetailsPage from "../pages/client/QueryTransactionDetailsPage"
 import OfferTransactionDetailsPage from "../pages/client/OfferTransactionDetailsPage"
@@ -26,10 +24,8 @@ const ClientApp = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/transactions" element={<TransactionsPage />} />
                 <Route path="/queries/:queryId" element={<QueryTransactionDetailsPage />} />
                 <Route path="/offers/:offerId" element={<OfferTransactionDetailsPage />} />
-                <Route path="/balancesheet" element={<BalanceSheetPage />} />
                 <Route path="/notifications" element={<NotificationsPage />} />
 
                 <Route path="/query" element={<QueryPage />} />

@@ -4,17 +4,17 @@ import { formatAmount } from "../../helpers";
 import { useSelector } from "react-redux";
 
 const MoneyFlowCard = ({
-                           from_id,
-                           to_id,
-                           amount_krw,
-                           amount_usd,
-                           amount_uzs,
-                           buy_rate,
-                           sell_rate,
-                           rate,
-                           status,
-                           created_at
-                       }) => {
+    from_id,
+    to_id,
+    amount_krw,
+    amount_usd,
+    amount_uzs,
+    buy_rate,
+    sell_rate,
+    rate,
+    status,
+    created_at
+}) => {
     const { id } = useSelector(state => state.app.user.user);
     let isFrom = (id === from_id);
     return (
@@ -36,10 +36,13 @@ const MoneyFlowCard = ({
                         (amount_uzs ? (formatAmount(amount_uzs) + " so'm") : "")
                 }} />
                 <div className="bar"></div>
-                <div className="moneyflow-amounts text-center text-bold">
-                    {rate > 0 ? ("$1 = " + rate) : buy_rate ? ("$1 = ￦" + buy_rate) : ("$1 = ￦" + sell_rate)}
-                    {rate || buy_rate || sell_rate ? (<br />) : ""}
-                    {"Jami: $" + (amount_krw ? formatAmount(amount_krw / (buy_rate ?? sell_rate), true, true) : formatAmount(amount_usd + (amount_uzs / rate)))}
+                <div className="moneyflow-amounts d-flex flex-column align-items-center justify-content-center text-bold ">
+                    <div>
+                        {rate !== 0 ? ("$1 = " + rate) : buy_rate !== 0 ? ("$1 = ￦" + buy_rate) : sell_rate !== 0 ? ("$1 = ￦" + sell_rate) : ""}
+                    </div>
+                    <div>
+                        {"Jami: $" + (amount_krw ? formatAmount(amount_krw / (buy_rate ?? sell_rate), true, true) : formatAmount(amount_usd + (amount_uzs !== 0 ?  amount_uzs / rate : 0)))}
+                    </div>
                 </div>
             </div>
         </div>

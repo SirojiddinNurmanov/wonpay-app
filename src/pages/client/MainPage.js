@@ -1,19 +1,12 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { getAllUsers, getUser, getUserNotifications } from "../../store/actions";
-import { formatAmount } from "../../helpers";
 
 import Layout from "../../layout";
 
-import MenuCards from "../../components/cards/MenuCards";
-import GiveMoneyModal from "../../components/modals/client/GiveMoneyModal";
-import WhiteLine from "../../components/common/WhiteLine";
-
 const MainPage = () => {
-    const [giveMoneyModal, showGiveMoneyModal] = useState(false);
-    const { balance } = useSelector(state => state.app.user.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,25 +21,24 @@ const MainPage = () => {
         // eslint-disable-next-line
     }, []);
 
+    const common = {
+        leftButton : {
+            icon: "/assets/img/icons/user.png",
+            url: "/profile"
+        },
+    };
+
     return (
-        <Layout>
-            <GiveMoneyModal show={giveMoneyModal} onHide={() => showGiveMoneyModal(false)} />
-            <div className="balance">
-                <span>Sizning Xisobingiz:</span>
-                <span>{(balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance, true, true) : 0)}</span>
-            </div>
-            <MenuCards app="client" />
-            <WhiteLine />
-            <div className="home-buttons">
-                <Link to="/query">
-                    <button className="money-btn">Uzb {">>"} Kor</button>
-                </Link>
-                <Link to="/offer">
-                    <button className="money-btn">Kor {">>"} Uzb</button>
-                </Link>
-                <button className="money-btn yellow open-modal-btn" onClick={() => showGiveMoneyModal(true)}>Pul
-                    Berish
-                </button>
+        <Layout buttons={common}>
+            <div className="main-page-client">
+                <div className="home-buttons">
+                    <Link to="/query">
+                        <button className="money-btn">Uzb {">>"} Kor</button>
+                    </Link>
+                    <Link to="/offer">
+                        <button className="money-btn yellow">Kor {">>"} Uzb</button>
+                    </Link>
+                </div>
             </div>
         </Layout>
     );

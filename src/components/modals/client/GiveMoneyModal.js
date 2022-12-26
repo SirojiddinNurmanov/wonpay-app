@@ -1,8 +1,9 @@
 import React, { memo } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { clientGiveMoney } from "../../../store/actions";
+import { clientGiveMoney, getAllUsers } from "../../../store/actions";
 
 import ModalLayout from "../ModalLayout";
 
@@ -13,6 +14,11 @@ const GiveMoneyModal = (props) => {
     const { allUsers } = useSelector(state => state.app);
     const [carrierId, setCarrierId] = useState(allUsers?.length === 1 ? allUsers[0].id : "0");
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllUsers());
+        //eslint-disable-next-line
+    }, []);
 
     const clearFields = () => {
         setAmountUSD("");
@@ -51,17 +57,17 @@ const GiveMoneyModal = (props) => {
                 <div className="input-field">
                     <span>$</span>
                     <input className="amount-input" type="number" defaultValue={amount_usd}
-                           onChange={({ target }) => setAmountUSD(target.value)} />
+                        onChange={({ target }) => setAmountUSD(target.value)} />
                 </div>
                 <div className="input-field">
                     <span>So'm</span>
                     <input className="amount-input" type="number" defaultValue={amount_uzs}
-                           onChange={({ target }) => setAmountUZS(target.value)} />
+                        onChange={({ target }) => setAmountUZS(target.value)} />
                 </div>
                 <div className="input-field">
                     <span>Kurs</span>
                     <input className="amount-input" type="number" defaultValue={rate}
-                           onChange={({ target }) => setRate(target.value)} />
+                        onChange={({ target }) => setRate(target.value)} />
                 </div>
                 <h3>Pul qabul qiluvchi:</h3>
                 <select defaultValue={carrierId} onChange={({ target }) => setCarrierId(target.value)}>
