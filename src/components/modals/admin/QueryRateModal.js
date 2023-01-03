@@ -16,12 +16,12 @@ const QueryRateModal = (props) => {
     }, []);
 
     const confirmRate = () => {
-        if (props.carrier_id === null) {
+        // if (props.carrier_id === null) {
             if (newValue) {
                 dispatch(changeQueryRate(props.id, newValue));
             }
             props.onHide();
-        }
+        // }
     };
 
     const selectCarrier = ({ target: { value } }) => {
