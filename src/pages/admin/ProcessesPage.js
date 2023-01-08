@@ -28,7 +28,7 @@ const ProcessesPage = () => {
         <Layout buttons={common}>
             <Link to="/queries">
                 <Title text="So'rovlar:"
-                       amount={"₩" + (queries ? formatAmount(sumProcessAmount(queries.filter(query => query.assigned_offer === null).filter(query => query.status !== 1))) : "0")}
+                       amount={"₩" + (queries ? formatAmount(sumProcessAmount(queries.filter(query => query.status === 0).filter(query => query.status !== 1))) : "0")}
                        inContent={true} />
             </Link>
             <div className="processes-block">
@@ -37,7 +37,7 @@ const ProcessesPage = () => {
 
             <Link to="/offers">
                 <Title text="Takliflar:"
-                       amount={"₩" + (offers ? formatAmount(sumProcessAmount(offers.filter(offer => offer.assigned_queries.length === 0).filter(offer => offer.status !== 1))) : "0")}
+                       amount={"₩" + (offers ? formatAmount(sumProcessAmount(offers.filter(offer => offer.status === 0).filter(offer => offer.status !== 1))) : "0")}
                        inContent={true} />
             </Link>
             <div className="processes-block">
