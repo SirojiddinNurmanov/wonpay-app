@@ -1088,10 +1088,30 @@ export const changeUserName = (user_id, new_name) => async (dispatch, getState) 
         });
 
         await res.json();
-            dispatch(getAllUsers())
+        dispatch(getAllUsers());
 
     } catch (error) {
-        console.log(error);
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error?.response?.statusText ?? "Error"
+        });
+    }
+};
+
+export const deleteProcess = (process_id) => async (dispatch, getState) => {
+    try {
+        const { token } = getState().app.user;
+
+        const res = await fetch(`${BACKEND_URL}/processes/${process_id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        await res.json();
+        dispatch(getQueries())
+        dispatch(getOffers())
+    } catch (error) {
         dispatch({
             type: Types.USER_ERROR,
             payload: error?.response?.statusText ?? "Error"

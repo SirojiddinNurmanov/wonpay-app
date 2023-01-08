@@ -15,8 +15,10 @@ import ConfirmationModal from "../../components/modals/admin/ConfirmationModal";
 import OfferQueryTable from "../../components/tables/admin/OfferQueryTable";
 import OfferQueryProofTable from "../../components/tables/admin/OfferQueryProofTable";
 import CloseOfferModal from "../../components/modals/admin/CloseOfferModal";
+import DeleteModal from "../../components/modals/admin/DeleteModal";
 
 const SingleOfferPage = () => {
+    const [deleteModal, showDeleteModal] = useState(false)
     const [rateModal, showRateModal] = useState(false);
     const [dollarModal, showDollarModal] = useState(false);
     const [confirmationModal, showConfirmationModal] = useState(false);
@@ -84,6 +86,18 @@ const SingleOfferPage = () => {
         ];
     }
 
+    if (offer?.assigned_queries.length === 0 && offer?.status === 0) {
+        common.middleButtons = [
+            {
+                text: "O'chirish",
+                eventHandler: () => {
+                    showDeleteModal(true);
+                },
+                red: true
+            }
+        ];
+    }
+
     if (offer?.status !== 0) {
         common.middleButtons = false;
     }
@@ -97,6 +111,7 @@ const SingleOfferPage = () => {
         <Layout buttons={common}>
             {offer && (
                 <>
+                    <DeleteModal show={deleteModal} onHide={() => showDeleteModal(false)} process_id={offer.id} />
                     <OfferRateModal show={rateModal} onHide={() => showRateModal(false)} {...offer} />
                     <OfferDollarModal show={dollarModal} onHide={() => showDollarModal(false)} {...offer} />
                     <ConfirmationModal show={confirmationModal} onHide={() => showConfirmationModal(false)} />

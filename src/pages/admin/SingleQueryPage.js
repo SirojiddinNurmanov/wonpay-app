@@ -11,8 +11,10 @@ import Layout from "../../layout";
 import WhiteLine from "../../components/common/WhiteLine";
 import QueryRateModal from "../../components/modals/admin/QueryRateModal";
 import QueryDollarModal from "../../components/modals/admin/QueryDollarModal";
+import DeleteModal from "../../components/modals/admin/DeleteModal";
 
 const SingleQueryPage = () => {
+    const [deleteModal, showDeleteModal] = useState(false);
     const [rateModal, showRateModal] = useState(false);
     const [dollarModal, showDollarModal] = useState(false);
     const [, setCarrierId] = useState();
@@ -44,7 +46,15 @@ const SingleQueryPage = () => {
         }
     };
 
-    common.middleButtons = false;
+    common.middleButtons = [
+        {
+            text: "O'chirish",
+            eventHandler: () => {
+                showDeleteModal(true);
+            },
+            red: true
+        }
+    ];
 
     const selectCarrier = ({ target: { value } }) => {
         setCarrierId(value);
@@ -55,6 +65,7 @@ const SingleQueryPage = () => {
         <Layout buttons={common}>
             {query && (
                 <>
+                    <DeleteModal show={deleteModal} onHide={() => showDeleteModal(false)} process_id={query.id} />
                     <QueryRateModal show={rateModal} onHide={() => showRateModal(false)} {...query} />
                     <QueryDollarModal show={dollarModal} onHide={() => showDollarModal(false)} {...query} />
                     <div className="process-owner-block">
