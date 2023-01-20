@@ -86,7 +86,7 @@ const SingleOfferPage = () => {
         ];
     }
 
-    if (offer?.assigned_queries.length === 0 && offer?.status === 0) {
+    if (offer?.assigned_queries.length === 0 && offer?.status === 0 && selectedIds.length === 0) {
         common.middleButtons = [
             {
                 text: "O'chirish",
