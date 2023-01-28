@@ -2132,15 +2132,19 @@ a {
 .logo-jumper .logo1 {
     animation: logojump infinite .8s forwards ease-in-out;
 }
+
 .logo-jumper .logo2 {
     animation: logojump infinite .8s .5s forwards ease-in-out;
 }
+
 .logo-jumper .logo3 {
     animation: logojump infinite .8s forwards ease-in-out;
 }
+
 .logo-jumper .logo4 {
     animation: logojump infinite .8s .5s forwards ease-in-out;
 }
+
 .logo-jumper .logo5 {
     animation: logojump infinite .8s forwards ease-in-out;
 }
@@ -2164,4 +2168,8 @@ a {
     100% {
         transform: translateY(0px);
     }
+}
+
+table tr {
+    font-size: 1.12em;
 }
