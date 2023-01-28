@@ -32,9 +32,9 @@ const QueryTable = () => {
     const headers = [
         "Ism",
         "Summa",
-        "Info",
+        // "Info",
         "Kurs",
-        "Turi"
+        // "Turi"
     ];
 
     let pendingQueries = queries?.length > 0 ? queries.filter(query => query.status !== 1) : [];
@@ -54,10 +54,10 @@ const QueryTable = () => {
                                     </Link>
                                 </td>
                                 <td>{formatAmount(process.amount)}</td>
-                                <td onClick={openInfoModal(process)} className="underlined">Ko'rish</td>
+                                {/*<td onClick={openInfoModal(process)} className="underlined">Ko'rish</td>*/}
                                 <td onClick={openRateModal(process)}
                                     className={"underlined" + ((process.offer_id || process.rate_status === 3 ) ? " rate-disabled" : "")}>{process.rate_status === 3 ? process.temp_rate : process.exchange_rate ? process.exchange_rate : process.temp_rate ? "Kutilmoqda" : "Kiritish"}</td>
-                                <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
+                                {/*<td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>*/}
                             </tr>
                         );
                     })}

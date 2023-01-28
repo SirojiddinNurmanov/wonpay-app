@@ -25,10 +25,10 @@ const OfferTable = () => {
     const headers = [
         "Ism",
         "Summa",
-        "Turi",
+        // "Turi",
         "Sotish",
         "Olish",
-        "Taqsim"
+        // "Taqsim"
     ];
 
     let pendingOffers = offers?.length > 0 ? offers.filter(offer => offer.status !== 1) : [];
@@ -46,18 +46,18 @@ const OfferTable = () => {
                                 </Link>
                             </td>
                             <td>{formatAmount(process.amount)}</td>
-                            <td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>
+                            {/*<td>{process.payment_type === 1 ? "Karta" : "Naqd"}</td>*/}
                             <td onClick={openRateModal(process)}>{process.buy_rate > 0 ? process.buy_rate : process.rate_status === 1 ? "Kutilmoqda" : "Kiritish"}</td>
                             <td onClick={openRateModal(process)}>{process.sell_rate > 0 ? process.sell_rate : "Kiritish"}</td>
-                            <td>
-                                <Link to={"/offers/" + process.id}>
-                                    {process.status === 1 ? (
-                                        "Tugallangan"
-                                    ) : (
-                                        "Taqsimlash"
-                                    )}
-                                </Link>
-                            </td>
+                            {/*<td>*/}
+                            {/*    <Link to={"/offers/" + process.id}>*/}
+                            {/*        {process.status === 1 ? (*/}
+                            {/*            "Tugallangan"*/}
+                            {/*        ) : (*/}
+                            {/*            "Taqsimlash"*/}
+                            {/*        )}*/}
+                            {/*    </Link>*/}
+                            {/*</td>*/}
                         </tr>
                     ))}
                 </>
