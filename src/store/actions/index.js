@@ -1071,11 +1071,11 @@ export const takeMoney = (user_id, amount_usd, amount_uzs, rate) => async (dispa
     }
 };
 
-export const changeUserName = (user_id, new_name) => async (dispatch, getState) => {
+export const changeClientDetails = (user_id, payload) => async (dispatch, getState) => {
     try {
         const { token } = getState().app.user;
 
-        const res = await fetch(`${BACKEND_URL}/users/change-name`, {
+        const res = await fetch(`${BACKEND_URL}/users/change-details`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -1083,7 +1083,7 @@ export const changeUserName = (user_id, new_name) => async (dispatch, getState) 
             },
             body: JSON.stringify({
                 user_id,
-                new_name
+                ...payload
             })
         });
 
@@ -1109,8 +1109,8 @@ export const deleteProcess = (process_id) => async (dispatch, getState) => {
             }
         });
         await res.json();
-        dispatch(getQueries())
-        dispatch(getOffers())
+        dispatch(getQueries());
+        dispatch(getOffers());
     } catch (error) {
         dispatch({
             type: Types.USER_ERROR,

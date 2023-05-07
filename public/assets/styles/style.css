@@ -2002,11 +2002,24 @@ a {
     justify-content: center;
 }
 
+.profile-name {
+    width: 100%;
+    font-weight: normal;
+}
+
 .profile-balance {
     width: 100%;
     font-size: 1.5em;
     font-weight: normal;
-    text-align: center;
+}
+
+.profile-balance .small {
+    font-size: .8em;
+}
+
+.profile-partnership-rate {
+    width: 100%;
+    font-weight: normal;
 }
 
 .profile-balance .amount-usd {
