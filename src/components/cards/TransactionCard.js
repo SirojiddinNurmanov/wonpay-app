@@ -17,7 +17,7 @@ const TransactionCard = ({ process_type, assigned_queries, amount, exchange_rate
                                 <div className="transaction-amount"><strike>￦ {formatAmount(amount)}</strike></div>
                             )}
                             <div
-                                className="transaction-amount">￦ {status === 1 ? usedAmount === amount ? formatAmount(amount) : formatAmount(usedAmount) : formatAmount(amount)}</div>
+                                className="transaction-amount">￦ {usedAmount === amount ? formatAmount(amount) : formatAmount(usedAmount)}</div>
                         </>
                     )}
                     {process_type === 0 && (
