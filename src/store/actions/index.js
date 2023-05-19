@@ -4,7 +4,7 @@ import { BACKEND_URL } from "../../constants";
 
 export const getUserNotifications = () => async (dispatch, getState) => {
     try {
-        const { user, notifications } = getState().app;
+        const { user } = getState().app;
 
         const res = await fetch(`${BACKEND_URL}/notifications`, {
             method: "GET",
@@ -1050,7 +1050,7 @@ export const takeMoney = (user_id, amount_usd, amount_uzs, rate) => async (dispa
     try {
         let { token } = getState().app.user;
 
-        const res = await fetch(`${BACKEND_URL}/moneyflow/take`, {
+        const res = await fetch(`${BACKEND_URL}/moneyflow/admin/take`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

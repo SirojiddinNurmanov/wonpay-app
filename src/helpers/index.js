@@ -64,7 +64,7 @@ export const changeNumberSign = (query) => {
 
 export const getColor = (query) => {
     let result = query?.amount / query?.exchange_rate - query?.amount / query?.assigned_offer?.buy_rate;
-    if (result == 0) {
+    if (result === 0) {
         return "";
     } else if (result > 0) {
         return "green";
