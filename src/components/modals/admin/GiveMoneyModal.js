@@ -1,9 +1,10 @@
 import React, { memo, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { giverGiveMoney, adminGiveMoney } from "../../../store/actions";
+import { adminCarrierGiveMoney, adminClientGiveMoney } from "../../../store/actions";
 
 import ModalLayout from "../ModalLayout";
+import Role from "../../../constants/statuses/Role";
 
 const GiveMoneyModal = (props) => {
     const [amount_usd, setAmountUSD] = useState();
@@ -22,10 +23,12 @@ const GiveMoneyModal = (props) => {
             title: "Tasdiqlash",
             eventHandler: () => {
                 if ((amount_usd && !amount_uzs && !rate) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) {
-                    if (props.user.role === "client") {
-                        dispatch(giverGiveMoney(props.user.id, amount_usd, amount_uzs, rate));
-                    } else {
-                        dispatch(adminGiveMoney(props.user.id, amount_usd, amount_uzs, rate));
+                    if (props.user.role === Role.CLIENT) {
+                        dispatch(adminClientGiveMoney(props.user.id, amount_usd, amount_uzs, rate));
+                    }
+
+                    if (props.user.role === Role.CARRIER) {
+                        dispatch(adminCarrierGiveMoney(props.user.id, amount_usd, amount_uzs, rate));
                     }
                     clearFields();
                     props.onHide();

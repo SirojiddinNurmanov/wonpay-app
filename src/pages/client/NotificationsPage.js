@@ -1,8 +1,8 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { common } from "../../constants/bottomButtons";
-import { getUserNotifications, setNotificationAsRead } from "../../store/actions";
+import { getTransactions, getUserNotifications, setNotificationAsRead } from "../../store/actions";
 import { groupByDate } from "../../helpers";
 
 import Layout from "../../layout";
@@ -10,21 +10,32 @@ import Layout from "../../layout";
 import NotificationDetailsModal from "../../components/modals/common/NotificationDetailsModal";
 import NotificationCard from "../../components/cards/NotificationCard";
 import NoData from "../../components/common/NoData";
+import NotificationStatus from "../../constants/statuses/NotificationStatus";
+import NotificationType from "../../constants/statuses/NotificationType";
 
+/**
+ * Client's Notification Page
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const NotificationsPage = () => {
     const [modalInfo, setModalInfo] = useState(false);
     const [detailsModal, showDetailsModal] = useState(false);
-    const { notifications } = useSelector(state => state.app);
+    const { notifications, transactions } = useSelector(state => state.app);
     const dispatch = useDispatch();
     let groupedNotifications = groupByDate(notifications) ?? [];
+    let selectedTransaction = transactions?.find(transaction => transaction.id === modalInfo?.process_id);
 
     useEffect(() => {
         dispatch(getUserNotifications());
+        dispatch(getTransactions());
         //eslint-disable-next-line
     }, []);
 
     const readModal = (notification) => () => {
-        if (notification.status === 0 && notification.type === 0) {
+        if (notification.status === NotificationStatus.PENDING_ID
+            && notification.type === NotificationType.INFO_ID) {
             dispatch(setNotificationAsRead(notification.id));
         }
         setModalInfo(notification);
@@ -35,16 +46,28 @@ const NotificationsPage = () => {
 
     return (
         <Layout buttons={common} title={{ text: "Xabarlar:" }}>
-            <NotificationDetailsModal show={detailsModal} onHide={() => showDetailsModal(false)} {...modalInfo} />
-            {Object.keys(groupedNotifications).length > 0 ? Object.entries(groupedNotifications).map(notificationGroup => (
-                <div key={notificationGroup[0]}>
-                    <div className="notification-date text-center">{notificationGroup[0]}</div>
-                    {notificationGroup[1].map(notification => <NotificationCard key={notification.id}
-                                                                                callback={readModal(notification)} {...notification} />)}
-                </div>
-            )) : (
-                <NoData />
-            )}
+            <NotificationDetailsModal
+                show={detailsModal}
+                onHide={() => showDetailsModal(false)}
+                {...modalInfo}
+                transaction={selectedTransaction}
+            />
+
+            {Object.keys(groupedNotifications).length > 0
+                ? Object.entries(groupedNotifications).map(notificationGroup => (
+                    <div key={notificationGroup[0]}>
+                        <div className="notification-date text-center">{notificationGroup[0]}</div>
+                        {notificationGroup[1].map(notification => {
+                            return <NotificationCard
+                                key={notification.id}
+                                callback={readModal(notification)}
+                                {...notification}
+                            />;
+                        })}
+                    </div>
+                ))
+                : <NoData />
+            }
             <div className="spacer"></div>
         </Layout>
     );

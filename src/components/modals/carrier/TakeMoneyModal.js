@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { takeMoney } from "../../../store/actions";
+import { carrierTakeMoney } from "../../../store/actions";
 import { formatAmount } from "../../../helpers";
 
 import ModalLayout from "../ModalLayout";
@@ -23,7 +23,7 @@ const TakeMoneyModal = (props) => {
             title: "Oldim",
             eventHandler: () => {
                 if ((amount_usd && !amount_uzs && !rate) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) {
-                    dispatch(takeMoney(props.user_id, amount_usd, amount_uzs, rate));
+                    dispatch(carrierTakeMoney(props.user_id, props.id, amount_usd, amount_uzs, rate));
                     clearFields();
                     props.onHide();
                 }

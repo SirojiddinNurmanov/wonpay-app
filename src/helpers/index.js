@@ -38,9 +38,9 @@ export const sumProcessAmount = (processes = false) => {
     }
 
     if (processes.length === 1) {
-        return processes[0].amount;
+        return processes[0]?.amount;
     }
-    return processes.map(el => el.amount).reduce((prev, curr) => prev + curr);
+    return processes.map(el => el?.amount).reduce((prev, curr) => prev + curr);
 };
 
 export const groupByDate = (notifications) => {

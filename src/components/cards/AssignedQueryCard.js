@@ -14,7 +14,7 @@ const AssignedQueryCard = ({
                                i,
                                id,
                                status,
-                               client: { first_name },
+                               client,
                                amount,
                                proof_image = false,
                                card_info_type,
@@ -66,7 +66,7 @@ const AssignedQueryCard = ({
         <div className="block-item">
             <div className="block-left">
                 <div className="query-owner">
-                    {i + 1 + ". " + first_name}
+                    {i + 1 + ". " + client?.first_name}
                 </div>
             </div>
             <div className="block-right">

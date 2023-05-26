@@ -10,6 +10,8 @@ import Layout from "../../layout";
 import TakeMoneyModal from "../../components/modals/carrier/TakeMoneyModal";
 import MoneyCard from "../../components/cards/MoneyCard";
 import NoData from "../../components/common/NoData";
+import ProcessStatus from "../../constants/statuses/ProcessStatus";
+import ProcessCarrierStatus from "../../constants/statuses/ProcessCarrierStatus";
 
 const ReceivePage = () => {
     const [modalInfo, setModalInfo] = useState(false);
@@ -34,7 +36,11 @@ const ReceivePage = () => {
     let amountText = "$0";
 
     if (allProcesses.length > 0) {
-        let filtered = allProcesses?.filter(process => (process.process_type === 0) && (process.carrier_id === user.id) && (process.status === 1));
+        let filtered = allProcesses?.filter(process => (process.process_type === 0)
+            && (process.carrier_id === user.id)
+            && (process.carrier_status !== ProcessCarrierStatus.FINISHED_ID)
+            && (process.status !== ProcessStatus.CONFIRMED_ID)
+        );
         if (filtered.length > 0) {
             let mapped = filtered.map(process => process.amount / process.exchange_rate);
             if (mapped.length > 0) {
@@ -44,7 +50,11 @@ const ReceivePage = () => {
         }
     }
 
-    let carrierProcesses = allProcesses && allProcesses?.length > 0 ? allProcesses.filter(process => (process.process_type === 0) && (process.carrier_id === user.id) && (process.status === 1)) : [];
+    let carrierProcesses = allProcesses && allProcesses?.length > 0 ? allProcesses.filter(process => (process.process_type === 0)
+        && (process.carrier_id === user.id)
+        && (process.status === ProcessStatus.PENDING_ID)
+        && (process.carrier_status !== ProcessCarrierStatus.FINISHED_ID)
+    ) : [];
 
     return (
         <Layout buttons={common} title={{ text: "Pul Olish:", amount: amountText }}>

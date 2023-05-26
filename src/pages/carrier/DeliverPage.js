@@ -10,6 +10,8 @@ import Layout from "../../layout";
 import GiveMoneyModal from "../../components/modals/carrier/GiveMoneyModal";
 import MoneyCard from "../../components/cards/MoneyCard";
 import NoData from "../../components/common/NoData";
+import ProcessStatus from "../../constants/statuses/ProcessStatus";
+import ProcessCarrierStatus from "../../constants/statuses/ProcessCarrierStatus";
 
 const DeliverPage = () => {
     const [modalInfo, setModalInfo] = useState(false);
@@ -34,7 +36,11 @@ const DeliverPage = () => {
     let amountText = "$0";
 
     if (allProcesses.length > 0) {
-        let filtered = allProcesses?.filter(process => (process.process_type === 1) && (process.carrier_id === user.id) && (process.status === 1));
+        let filtered = allProcesses?.filter(process => (process.process_type === 1)
+            && (process.carrier_id === user.id)
+            && (process.status === ProcessStatus.CONFIRMED_ID)
+            && (process.carrier_status !== ProcessCarrierStatus.FINISHED_ID)
+        );
         if (filtered.length > 0) {
             let mapped = filtered.map(process => (process.assigned_queries.length > 0 ? process.assigned_queries.map(query => query.amount).reduce((sum, amount) => sum + amount) : process.amount) / process.buy_rate);
             if (mapped.length > 0) {
@@ -44,7 +50,11 @@ const DeliverPage = () => {
         }
     }
 
-    let carrierProcesses = allProcesses && allProcesses?.length > 0 ? allProcesses.filter(process => (process.process_type === 1) && (process.carrier_id === user.id) && (process.status === 1)) : [];
+    let carrierProcesses = allProcesses && allProcesses?.length > 0 ? allProcesses.filter(process => (process.process_type === 1)
+        && (process.carrier_id === user.id)
+        && (process.status === ProcessStatus.CONFIRMED_ID)
+        && (process.carrier_status !== ProcessCarrierStatus.FINISHED_ID)
+    ) : [];
 
     return (
         <Layout buttons={common} title={{ text: "Pul Berish:", amount: amountText }}>

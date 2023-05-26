@@ -1,6 +1,4 @@
-import React, { memo } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { clientGiveMoney, getAllUsers } from "../../../store/actions";
@@ -12,7 +10,7 @@ const GiveMoneyModal = (props) => {
     const [amount_uzs, setAmountUZS] = useState();
     const [rate, setRate] = useState();
     const { allUsers } = useSelector(state => state.app);
-    const [carrierId, setCarrierId] = useState(allUsers?.length === 1 ? allUsers[0].id : "0");
+    const [receiverId, setReceiverId] = useState(allUsers?.length === 1 ? parseInt(allUsers[0].id) : 0);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,22 +21,34 @@ const GiveMoneyModal = (props) => {
     const clearFields = () => {
         setAmountUSD("");
         setAmountUZS("");
-        setCarrierId(0);
+        setReceiverId(0);
     };
 
     const buttons = [
         {
             title: "Tasdiqlash",
             eventHandler: () => {
-                // eslint-disable-next-line
-                if (((amount_usd && !amount_uzs && !rate) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) && carrierId != "0") {
-                    dispatch(clientGiveMoney(carrierId, amount_usd, amount_uzs, rate));
+                if (
+                    (
+                        (amount_usd && !amount_uzs && !rate)
+                        || (amount_usd && amount_uzs && rate)
+                        || (!amount_usd && amount_uzs && rate)
+                    )
+                    && receiverId !== 0
+                ) {
+                    dispatch(clientGiveMoney(receiverId, amount_usd, amount_uzs, rate));
                     clearFields();
                     props.onHide();
                 }
             },
-            // eslint-disable-next-line
-            disabled: !(((amount_usd && !amount_uzs && !rate) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) && carrierId != "0")
+            disabled: !(
+                (
+                    (amount_usd && !amount_uzs && !rate)
+                    || (amount_usd && amount_uzs && rate)
+                    || (!amount_usd && amount_uzs && rate)
+                )
+                && receiverId !== 0
+            )
         },
         {
             title: "Bekor Qilish",
@@ -57,20 +67,20 @@ const GiveMoneyModal = (props) => {
                 <div className="input-field">
                     <span>$</span>
                     <input className="amount-input" type="number" defaultValue={amount_usd}
-                        onChange={({ target }) => setAmountUSD(target.value)} />
+                           onChange={({ target }) => setAmountUSD(target.value)} />
                 </div>
                 <div className="input-field">
                     <span>So'm</span>
                     <input className="amount-input" type="number" defaultValue={amount_uzs}
-                        onChange={({ target }) => setAmountUZS(target.value)} />
+                           onChange={({ target }) => setAmountUZS(target.value)} />
                 </div>
                 <div className="input-field">
                     <span>Kurs</span>
                     <input className="amount-input" type="number" defaultValue={rate}
-                        onChange={({ target }) => setRate(target.value)} />
+                           onChange={({ target }) => setRate(target.value)} />
                 </div>
                 <h3>Pul qabul qiluvchi:</h3>
-                <select defaultValue={carrierId} onChange={({ target }) => setCarrierId(target.value)}>
+                <select defaultValue={receiverId} onChange={({ target }) => setReceiverId(parseInt(target.value))}>
                     <option value="0">Tanlang</option>
                     {allUsers && allUsers.filter(user => ["admin", "superadmin", "carrier"].includes(user.role)).map(carrier => (
                         <option key={carrier.id} value={carrier.id}>{carrier.first_name}</option>

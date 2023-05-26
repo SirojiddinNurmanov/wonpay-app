@@ -1,9 +1,10 @@
 import React, { memo, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { adminTakeMoney } from "../../../store/actions";
+import { adminClientTakeMoney, adminCarrierTakeMoney } from "../../../store/actions";
 
 import ModalLayout from "../ModalLayout";
+import Role from "../../../constants/statuses/Role";
 
 const TakeMoneyModal = (props) => {
     const [amount_usd, setAmountUSD] = useState();
@@ -22,7 +23,13 @@ const TakeMoneyModal = (props) => {
             title: "Tasdiqlash",
             eventHandler: () => {
                 if ((amount_usd && !amount_uzs && !rate) || (amount_usd && amount_uzs && rate) || (!amount_usd && amount_uzs && rate)) {
-                    dispatch(adminTakeMoney(props.user.id, amount_usd, amount_uzs, rate));
+                    if (props.user.role === Role.CLIENT) {
+                        dispatch(adminClientTakeMoney(props.user.id, amount_usd, amount_uzs, rate));
+                    }
+
+                    if (props.user.role === Role.CARRIER) {
+                        dispatch(adminCarrierTakeMoney(props.user.id, amount_usd, amount_uzs, rate));
+                    }
                     clearFields();
                     props.onHide();
                 }

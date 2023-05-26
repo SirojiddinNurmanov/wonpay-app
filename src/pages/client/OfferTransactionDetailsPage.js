@@ -30,7 +30,7 @@ const OfferTransactionDetailsPage = () => {
         setCancelled(true);
     };
 
-    common.middleButtons = !cancelled ? offer?.assigned_queries.length > 0 ? offer?.assigned_queries.map(query => query.amount).reduce((sum, query) => sum + query.amount) < offer?.amount ? [
+    common.middleButtons = !cancelled ? offer?.assigned_queries.length > 0 ? offer?.assigned_queries.map(query => query?.amount).reduce((sum, query) => sum + query?.amount) < offer?.amount ? [
         {
             text: "Bekor Qilish",
             eventHandler: () => cancelAnnounce()
@@ -41,7 +41,7 @@ const OfferTransactionDetailsPage = () => {
         }
     ] : false : false : false;
 
-    let remainder = offer?.amount - (offer?.assigned_queries.length > 0 ? offer?.assigned_queries.map(query => query.amount).reduce((sum, query) => sum + query.amount) : 0);
+    let remainder = offer?.amount - (offer?.assigned_queries.length > 0 ? offer?.assigned_queries.map(query => query?.amount).reduce((sum, query) => sum + query?.amount) : 0);
 
     useEffect(() => {
         dispatch(getQueries());
@@ -61,7 +61,7 @@ const OfferTransactionDetailsPage = () => {
             {offer && (
                 <>
                     <div className="offer-header text-center">
-                        {offer.buy_rate ? ("￦" + formatAmount(offer.amount) + " = $" + formatAmount(offer.amount / offer.buy_rate, true)) : ("￦" + formatAmount(offer.amount))}
+                        {offer.buy_rate ? ("￦" + formatAmount(offer?.amount) + " = $" + formatAmount(offer?.amount / offer.buy_rate, true)) : ("￦" + formatAmount(offer?.amount))}
                     </div>
                     <WhiteLine color="black" />
                     <div className="assigned-queries-block">
@@ -76,7 +76,7 @@ const OfferTransactionDetailsPage = () => {
                     <div className="total-block">
                         <div className="block-title">Jami:</div>
                         <div
-                            className="total-amount">{"￦" + formatAmount(sumProcessAmount(offer.assigned_queries.map(query => getQueryById(query.id))))}</div>
+                            className="total-amount">{"￦" + formatAmount(sumProcessAmount(offer.assigned_queries.map(query => getQueryById(query.id))) ?? 0 )}</div>
                     </div>
                     {common.middleButtons && (
                         <div className="remained-reminder">

@@ -12,13 +12,22 @@ const TransactionCard = ({ process_type, assigned_queries, amount, exchange_rate
                 <div className="bar"></div>
                 <div className="transaction-amounts">
                     {process_type === 1 && (
-                        <>
-                            {usedAmount !== 0 && (usedAmount < amount) && (
-                                <div className="transaction-amount"><strike>￦ {formatAmount(amount)}</strike></div>
-                            )}
-                            <div
-                                className="transaction-amount">￦ {usedAmount === amount ? formatAmount(amount) : formatAmount(usedAmount)}</div>
-                        </>
+                        usedAmount !== 0 ? (
+                            <>
+                                {usedAmount < amount && (
+                                    <div className="transaction-amount">
+                                        <strike>￦ {formatAmount(amount)}</strike>
+                                    </div>
+                                )}
+                                <div className="transaction-amount">
+                                    ￦ {usedAmount === amount ? formatAmount(amount) : formatAmount(usedAmount)}
+                                </div>
+                            </>
+                        ) : (
+                            <div className="transaction-amount">
+                                ￦ {formatAmount(amount)}
+                            </div>
+                        )
                     )}
                     {process_type === 0 && (
                         <div className="transaction-amount">￦ {formatAmount(amount)}</div>

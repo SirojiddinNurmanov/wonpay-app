@@ -16,6 +16,7 @@ import TakeMoneyModal from "../../components/modals/admin/TakeMoneyModal";
 import GiveMoneyModal from "../../components/modals/admin/GiveMoneyModal";
 import BalanceSheetTable from "../../components/tables/carrier/BalanceSheetTable";
 import ChangeClientDetailsModal from "../../components/modals/admin/ChangeClientDetailsModal";
+import Role from "../../constants/statuses/Role";
 
 const ProfilePage = () => {
     const { allUsers, clientProcesses, userTransactions } = useSelector(state => state.app);
@@ -27,7 +28,7 @@ const ProfilePage = () => {
     const user = allUsers?.find(user => user.id === parseInt(userId));
     const dispatch = useDispatch();
 
-    common.middleButtons = user?.role === "carrier" ? [{
+    common.middleButtons = user?.role === Role.CARRIER ? [{
         text: "Pul Olish", eventHandler: () => showTakeMoneyModal(true), disabled: user.balance === 0
     }, {
         text: "Pul Berish", eventHandler: () => showGiveMoneyModal(true), disabled: currentUser.balance === 0
@@ -55,26 +56,27 @@ const ProfilePage = () => {
                                      onClick={() => showChangeNameModal(true)} /></div>
                 <div className="profile-number">{user.phone_number}</div>
                 <WhiteLine modal={true} />
-                <div className={"profile-balance" + (user.role === "client"  ? " d-flex align-items-center justify-content-between" : "")}>
-                    <span className={"amount-usd" + (user.role === "carrier"  ? " d-block" : "")}>
+                <div
+                    className={"profile-balance" + (user.role === Role.CLIENT ? " d-flex align-items-center justify-content-between" : "")}>
+                    <span className={"amount-usd" + (user.role === Role.CARRIER ? " d-block" : "")}>
                         {user.role === "carrier" ? "$: " + formatAmount(user.detailed_balance ? user.detailed_balance.amount_usd : 0) : (user.balance === 0 ? "$" : user.balance < 0 ? "-$" : "+$") + (user.balance ? formatAmount(user.balance < 0 ? user.balance * -1 : user.balance, true, true) : 0)}
                     </span>
                     {user.role === "carrier" ? (
-                        <span className={"amount-uzs" + (user.role === "carrier"  ? " d-block" : "")}>
+                        <span className={"amount-uzs" + (user.role === Role.CARRIER ? " d-block" : "")}>
                         {user.role === "carrier" ? "So'm: " + formatAmount(user.detailed_balance ? user.detailed_balance.amount_uzs : 0) + " so'm" : ""}
                     </span>
                     ) : ""}
                 </div>
-                <WhiteLine modal={true}/>
+                <WhiteLine modal={true} />
                 <div className="profile-partnership-rate d-flex align-items-center justify-content-between">
                     <span className="small">Sherikchilik foizi: </span> {user.partnership_rate ?? 0} %
                 </div>
             </div>
         </div>)}
         <WhiteLine />
-        {user?.role === "carrier" && userTransactions ? (
+        {user?.role === Role.CARRIER && userTransactions ? (
             <BalanceSheetTable transactions={userTransactions} carrierId={userId} />) : ""}
-        {user?.role === "client" && clientProcesses.length > 0 ? clientProcesses.map(process => (
+        {user?.role === Role.CLIENT && clientProcesses.length > 0 ? clientProcesses.map(process => (
             <TransactionCard key={process.id} {...process} />)) : ""}
         <div className="spacer"></div>
     </Layout>);

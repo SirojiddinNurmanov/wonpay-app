@@ -3,27 +3,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {
-    setQueryRate,
-    rejectQueryRate,
-    setOfferRate,
-    rejectOfferRate,
-    setNotificationAsRead,
-    clientConfirmMoney,
+    clientConfirmGivenMoney,
+    clientConfirmTakenMoney,
+    clientRejectGivenMoney,
+    clientRejectTakenMoney,
     receiverConfirmMoney,
-    clientRejectMoney,
-    receiverRejectMoney
+    receiverRejectMoney,
+    rejectOfferRate,
+    rejectQueryRate,
+    setNotificationAsRead,
+    setOfferRate,
+    setQueryRate
 } from "../../../store/actions";
 
 import ModalLayout from "../ModalLayout";
+import Role from "../../../constants/statuses/Role";
+import NotificationType from "../../../constants/statuses/NotificationType";
+import NotificationStatus from "../../../constants/statuses/NotificationStatus";
+import NotificationActionType from "../../../constants/statuses/NotificationActionType";
+import ProcessType from "../../../constants/statuses/ProcessType";
 
 const NotificationDetailsModal = (props) => {
-    const { role } = useSelector(state => state.app.user.user);
+    const { user } = useSelector(state => state.app.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const accept = () => {
-        if (props.status === 0) {
-            if (props.process.process_type === 0) {
+        if (props.status === NotificationStatus.PENDING_ID) {
+            if (props.process.process_type === ProcessType.QUERY_ID) {
                 dispatch(setQueryRate(props.process.id));
             } else {
                 dispatch(setOfferRate(props.process.id));
@@ -34,8 +41,8 @@ const NotificationDetailsModal = (props) => {
     };
 
     const reject = () => {
-        if (props.status === 0) {
-            if (props.process.process_type === 0) {
+        if (props.status === NotificationStatus.PENDING_ID) {
+            if (props.process.process_type === ProcessType.QUERY_ID) {
                 dispatch(rejectQueryRate(props.process.id));
             } else {
                 dispatch(rejectOfferRate(props.process.id));
@@ -46,28 +53,50 @@ const NotificationDetailsModal = (props) => {
     };
 
     const confirmMoney = () => {
-        if (role === "client") {
-            dispatch(clientConfirmMoney(props.process_id));
-        } else {
-            dispatch(receiverConfirmMoney(props.process_id));
+        // eslint-disable-next-line default-case
+        switch (user.role) {
+            case Role.CLIENT:
+                if (props.transaction?.to_id === user.id) {
+                    dispatch(clientConfirmTakenMoney(props.process_id));
+                }
+
+                if (props.transaction?.from_id === user.id) {
+                    dispatch(clientConfirmGivenMoney(props.process_id));
+                }
+                break;
+            case Role.ADMIN:
+            case Role.CARRIER:
+                dispatch(receiverConfirmMoney(props.process_id));
         }
+
         dispatch(setNotificationAsRead(props.id));
         props.onHide();
     };
 
     const rejectMoney = () => {
-        if (role === "client") {
-            dispatch(clientRejectMoney(props.process_id));
-        } else {
-            dispatch(receiverRejectMoney(props.process_id));
+        // eslint-disable-next-line default-case
+        switch (user.role) {
+            case Role.CLIENT:
+                if (props.transaction?.to_id === user.id) {
+                    dispatch(clientRejectTakenMoney(props.process_id));
+                }
+
+                if (props.transaction?.from_id === user.id) {
+                    dispatch(clientRejectGivenMoney(props.process_id));
+                }
+                break;
+            case Role.ADMIN:
+            case Role.CARRIER:
+                dispatch(receiverRejectMoney(props.process_id));
         }
+
         dispatch(setNotificationAsRead(props.id));
         props.onHide();
     };
 
     let buttons = [];
 
-    if (props.type === 1 && props.status === 0) {
+    if (props.type === NotificationType.QUERY_ID && props.status === NotificationStatus.PENDING_ID) {
         buttons = [
             {
                 title: "Roziman",
@@ -78,7 +107,7 @@ const NotificationDetailsModal = (props) => {
                 eventHandler: () => reject()
             }
         ];
-    } else if (props.type === 2 && props.status === 0) {
+    } else if (props.type === NotificationType.OFFER_ID && props.status === NotificationStatus.PENDING_ID) {
         buttons = [
             {
                 title: "Ha",
@@ -92,23 +121,23 @@ const NotificationDetailsModal = (props) => {
     } else {
         buttons = [
             {
-                title: props.action_type === 0 ? "Yopish" : "Ko'rish",
+                title: props.action_type === NotificationActionType.INFO_ID ? "Yopish" : "Ko'rish",
                 eventHandler: () => {
                     // eslint-disable-next-line default-case
                     switch (props.action_type) {
-                        case 1:
+                        case NotificationActionType.QUERY_ID:
                             navigate(`/queries/${props.process_id}`);
                             break;
-                        case 2:
+                        case NotificationActionType.OFFER_ID:
                             navigate(`/offers/${props.process_id}`);
                             break;
-                        case 3:
+                        case NotificationActionType.MONEY_ID:
                             navigate(`/reports`);
                             break;
-                        case 5:
+                        case NotificationActionType.RECEIVE_ID:
                             navigate(`/receive`);
                             break;
-                        case 6:
+                        case NotificationActionType.DELIVER_ID:
                             navigate(`/deliver`);
                             break;
                     }
