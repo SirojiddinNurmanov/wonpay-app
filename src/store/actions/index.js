@@ -867,7 +867,7 @@ export const getUserTransactions = (userId) => async (dispatch, getState) => {
 /**
  * Client money flow actions.
  */
-export const clientGiveMoney = (user_id, amount_usd, amount_uzs, rate) => async (dispatch, getState) => {
+export const clientGiveMoney = (user_id, amount_usd, amount_uzs, rate, comment, image) => async (dispatch, getState) => {
     try {
         let { token } = getState().app.user;
 
@@ -878,7 +878,7 @@ export const clientGiveMoney = (user_id, amount_usd, amount_uzs, rate) => async 
                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                user_id, amount_usd, amount_uzs, rate
+                user_id, amount_usd, amount_uzs, rate, comment, image
             })
         });
 
