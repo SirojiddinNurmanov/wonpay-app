@@ -33,7 +33,7 @@ const TransactionInfoModal = (props) => {
             )}
             {receiver && (
                 <div className="mb-1 fs-4">
-                    <strong>Qabul qiluvchi:</strong> {receiver?.first_name + ' ' + receiver?.last_name}
+                    <strong>Qabul qiluvchi:</strong> {(receiver?.first_name ?? '') + ' ' + (receiver?.last_name ?? '')}
                 </div>
             )}
             {props.comment && (
