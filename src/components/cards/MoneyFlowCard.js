@@ -13,8 +13,10 @@ const MoneyFlowCard = ({
                            sell_rate,
                            rate
                        }) => {
+
     const { id } = useSelector(state => state.app.user.user);
     let isFrom = (id === from_id);
+
     return (
         <div className="moneyflow-item">
             <div className="moneyflow-status">
@@ -33,7 +35,7 @@ const MoneyFlowCard = ({
                 <div
                     className="moneyflow-amounts d-flex flex-column align-items-center justify-content-center text-bold ">
                     <div>
-                        { rate !== 0 || sell_rate !== 0 || buy_rate !== 0 ?
+                        {rate !== 0 || sell_rate !== 0 || buy_rate !== 0 ?
                             rate !== 0 ?
                                 ("$1 = " + rate)
                                 :

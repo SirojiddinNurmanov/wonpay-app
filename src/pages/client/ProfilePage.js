@@ -1,10 +1,10 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { common } from "../../constants/bottomButtons";
 import { formatAmount, groupByDate } from "../../helpers";
-import { getQueries, getUserProcesses, getTransactions } from "../../store/actions";
+import { getQueries, getTransactions, getUserProcesses } from "../../store/actions";
 
 import Layout from "../../layout";
 
@@ -13,13 +13,16 @@ import WhiteLine from "../../components/common/WhiteLine";
 import HistoryCard from "../../components/cards/TransactionCard";
 import MoneyFlowCard from "../../components/cards/MoneyFlowCard";
 import GiveMoneyModal from "../../components/modals/client/GiveMoneyModal";
+import TransactionInfoModal from "../../components/modals/common/TransactionInfoModal";
 
 const ProfilePage = () => {
     const dispatch = useDispatch();
 
-    const [isHistoryTabActive, setHistoryTabActive] = useState(true)
-    const [isTransactionTabActive, setTransactionTabActive] = useState(false)
+    const [isHistoryTabActive, setHistoryTabActive] = useState(true);
+    const [isTransactionTabActive, setTransactionTabActive] = useState(false);
     const [giveMoneyModal, showGiveMoneyModal] = useState(false);
+    const [givenMoneyModal, showGivenMoneyModal] = useState(false);
+    const [modalInfo, setModalInfo] = useState();
     const { transactions, processes, user: { user } } = useSelector(state => state.app);
 
     let groupedProcesses = groupByDate(processes) ?? [];
@@ -39,18 +42,24 @@ const ProfilePage = () => {
         }
     }];
 
+    const openGivenMoneyModal = (transaction) => (e) => {
+        showGivenMoneyModal(true);
+        setModalInfo(transaction);
+    };
+
     const setActive = (tab) => {
         if (tab === "history") {
-            setHistoryTabActive(true)
-            setTransactionTabActive(false)
+            setHistoryTabActive(true);
+            setTransactionTabActive(false);
         } else {
-            setHistoryTabActive(false)
-            setTransactionTabActive(true)
+            setHistoryTabActive(false);
+            setTransactionTabActive(true);
         }
-    }
+    };
 
     return (<Layout buttons={common}>
         <GiveMoneyModal show={giveMoneyModal} onHide={() => showGiveMoneyModal(false)} />
+        <TransactionInfoModal show={givenMoneyModal} onHide={() => showGivenMoneyModal(false)} {...modalInfo} />
         {user && (<>
             <div className="client-profile-block">
                 <div className="avatar-block">
@@ -68,11 +77,13 @@ const ProfilePage = () => {
             </div>
             <WhiteLine />
             <div className="profile-navigation-tabs">
-                <div className={"navigation-tab" + (isHistoryTabActive ? " active" : "")} onClick={() => setActive("history")}>
+                <div className={"navigation-tab" + (isHistoryTabActive ? " active" : "")}
+                     onClick={() => setActive("history")}>
                     O'tkazmalar Tarixi
                 </div>
                 <div className="separator">|</div>
-                <div className={"navigation-tab" + (isTransactionTabActive ? " active" : "")} onClick={() => setActive("transaction")}>
+                <div className={"navigation-tab" + (isTransactionTabActive ? " active" : "")}
+                     onClick={() => setActive("transaction")}>
                     Oldi-Berdilar
                 </div>
             </div>
@@ -84,7 +95,7 @@ const ProfilePage = () => {
                             <div className="notification-date text-center">{transactionGroup[0]}</div>
                             {transactionGroup[1].map(transaction => (
                                 <Link key={transaction.id}
-                                    to={(transaction.process_type === 1 ? "/offers" : "/queries") + "/" + transaction.id}>
+                                      to={(transaction.process_type === 1 ? "/offers" : "/queries") + "/" + transaction.id}>
                                     <HistoryCard {...transaction} />
                                 </Link>
                             ))}
@@ -99,7 +110,9 @@ const ProfilePage = () => {
                             <br />
                             <div className="notification-date text-center">{transactionGroup[0]}</div>
                             {transactionGroup[1].map(transaction => (
-                                <MoneyFlowCard key={transaction.id} {...transaction} />
+                                <div onClick={openGivenMoneyModal(transaction)} key={transaction.id}>
+                                    <MoneyFlowCard key={transaction.id} {...transaction} />
+                                </div>
                             ))}
                         </div>
                     )) : (
