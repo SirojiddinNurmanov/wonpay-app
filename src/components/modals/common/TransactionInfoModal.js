@@ -36,6 +36,16 @@ const TransactionInfoModal = (props) => {
                     <strong>Qabul qiluvchi:</strong> {(receiver?.first_name ?? '') + ' ' + (receiver?.last_name ?? '')}
                 </div>
             )}
+            {props.giver && (
+                <div className="mb-1 fs-4">
+                    <strong>Beruvchi:</strong> {(props.giver?.first_name ?? '') + ' ' + (props.giver?.last_name ?? '')}
+                </div>
+            )}
+            {props.taker && (
+                <div className="mb-1 fs-4">
+                    <strong>Qabul qiluvchi:</strong> {(props.taker?.first_name ?? '') + ' ' + (props.taker?.last_name ?? '')}
+                </div>
+            )}
             {props.comment && (
                 <div className="mb-2">
                     <strong className="mb-1 fs-4">Izoh:</strong> {props.comment}

@@ -9,7 +9,10 @@ import MoneyFlowTable from "../../components/tables/admin/MoneyFlowTable";
 const MoneyFlowPage = () => {
     common.middleButtons = [
         {
-            text: "Pul Yechish"
+            text: "Pul Yechish",
+            eventHandler: () => {
+                console.log("Clicked!!!");
+            }
         }
     ];
     return (

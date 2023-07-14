@@ -10,9 +10,6 @@ const DebtsTable = ({ users }) => {
     const navigate = useNavigate();
     const headers = [
         "Ism",
-        // "Summa",
-        // "Info",
-        // "Kurs",
         "Qarz"
     ];
 
