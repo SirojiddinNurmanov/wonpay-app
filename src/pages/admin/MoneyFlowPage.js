@@ -18,6 +18,7 @@ const MoneyFlowPage = () => {
     return (
         <Layout buttons={common} title={{ text: "Mavjud mablag':", amount: "", small: true }}>
             <MoneyFlowTable />
+            <div className="spacer"/>
         </Layout>
     );
 };

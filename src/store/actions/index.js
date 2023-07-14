@@ -832,6 +832,38 @@ export const getTransactions = () => async (dispatch, getState) => {
     }
 };
 
+export const getAllTransactions = () => async (dispatch, getState) => {
+    try {
+        const user = getState().app.user;
+
+        const res = await fetch(`${BACKEND_URL}/moneyflow/all`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
+        });
+
+        const { success, message, data } = await res.json();
+
+        if (success) {
+            dispatch({
+                type: Types.GET_TRANSACTIONS,
+                payload: data
+            });
+        } else {
+            dispatch({
+                type: Types.USER_ERROR,
+                payload: message
+            });
+        }
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error?.response?.statusText ?? "Error"
+        });
+    }
+};
+
 export const getUserTransactions = (userId) => async (dispatch, getState) => {
     try {
         const user = getState().app.user;
