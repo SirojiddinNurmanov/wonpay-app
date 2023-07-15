@@ -15,8 +15,7 @@ const CarrierCard = ({ first_name, last_name, avatar, balance, role }) => {
                         </div>
                     </div>
                     <div className="row p-0">
-                        <div className="col-4"></div>
-                        <div className="col-8 text-left">
+                        <div className="col text-left">
                             <span>{role === "carrier" ? "$" + formatAmount(balance, true) : (balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance, true, true) : 0)}</span>
                         </div>
                     </div>
