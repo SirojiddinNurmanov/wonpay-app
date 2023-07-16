@@ -20,7 +20,10 @@ const ProfitPage = () => {
 
     common.middleButtons = [
         {
-            text: "Pul Yechish"
+            text: "Pul Yechish",
+            eventHandler: () => {
+                console.log("Clicked!!!");
+            }
         }
     ];
 

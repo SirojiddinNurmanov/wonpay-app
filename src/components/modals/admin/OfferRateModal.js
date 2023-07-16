@@ -15,6 +15,8 @@ const OfferRateModal = (props) => {
     useEffect(() => {
         setNewBuyRate(props.buy_rate);
         setNewSellRate(props.sell_rate);
+
+        // eslint-disable-next-line
     }, [props.show]);
 
     const changeSellRateValue = ({ target: { value } }) => {

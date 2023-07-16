@@ -1,32 +1,33 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import MainPage from "../pages/admin/MainPage"
-import NaverRatePage from "../pages/admin/NaverRatePage"
-// import UZSRatePage from "../pages/admin/UZSRatePage"
-import CarriersPage from "../pages/admin/CarriersPage"
-import UsersPage from "../pages/admin/UsersPage"
-import DebtsPage from "../pages/admin/DebtsPage"
-import MoneyFlowPage from "../pages/admin/MoneyFlowPage"
-import ReportsPage from "../pages/admin/ReportsPage"
-import ProcessesPage from "../pages/admin/ProcessesPage"
-import OffersPage from "../pages/admin/OffersPage"
-import SingleOfferPage from "../pages/admin/SingleOfferPage"
-import QueriesPage from "../pages/admin/QueriesPage"
-import SingleQueryPage from "../pages/admin/SingleQueryPage"
-import ProfitPage from "../pages/admin/ProfitPage"
-import NotificationsPage from "../pages/admin/NotificationsPage"
-import ProfilePage from "../pages/common/ProfilePage"
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { getOffers, getQueries } from "../store/actions"
+import MainPage from "../pages/admin/MainPage";
+import NaverRatePage from "../pages/admin/NaverRatePage";
+import CarriersPage from "../pages/admin/CarriersPage";
+import UsersPage from "../pages/admin/UsersPage";
+import DebtsPage from "../pages/admin/DebtsPage";
+import MoneyFlowPage from "../pages/admin/MoneyFlowPage";
+import ReportsPage from "../pages/admin/ReportsPage";
+import ProcessesPage from "../pages/admin/ProcessesPage";
+import OffersPage from "../pages/admin/OffersPage";
+import SingleOfferPage from "../pages/admin/SingleOfferPage";
+import QueriesPage from "../pages/admin/QueriesPage";
+import SingleQueryPage from "../pages/admin/SingleQueryPage";
+import ProfitPage from "../pages/admin/ProfitPage";
+import NotificationsPage from "../pages/admin/NotificationsPage";
+import ProfilePage from "../pages/common/ProfilePage";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getOffers, getQueries } from "../store/actions";
 
 const AdminApp = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getOffers())
-        dispatch(getQueries())
-    }, [])
+        dispatch(getOffers());
+        dispatch(getQueries());
+
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <Router>
@@ -48,7 +49,7 @@ const AdminApp = () => {
                 <Route path="/profile/:userId" element={<ProfilePage />} />
             </Routes>
         </Router>
-    )
-}
+    );
+};
 
-export default AdminApp
+export default AdminApp;
