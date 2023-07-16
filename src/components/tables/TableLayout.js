@@ -1,9 +1,16 @@
 import React, { memo } from "react";
 import Table from "react-bootstrap/Table";
 
-const TableLayout = ({ children, headers }) => {
+const TableLayout = ({ children, headers, striped = true }) => {
     return (
-        <Table striped bordered hover size="sm" responsive className="process-table">
+        <Table
+            striped={striped}
+            bordered
+            hover
+            size="sm"
+            responsive
+            className="process-table"
+        >
             <thead>
             <tr>
                 {headers && headers.map((header, index) => (

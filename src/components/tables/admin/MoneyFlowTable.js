@@ -8,7 +8,7 @@ import { formatAmount, groupByDate } from "../../../helpers";
 import TransactionInfoModal from "../../modals/common/TransactionInfoModal";
 import Role from "../../../constants/statuses/Role";
 
-const MoneyFlowTable = () => {
+const MoneyFlowTable = ({ selectedDate }) => {
     const [givenMoneyModal, showGivenMoneyModal] = useState(false);
     const [modalInfo, setModalInfo] = useState();
     const { transactions } = useSelector(state => state.app);
@@ -19,7 +19,12 @@ const MoneyFlowTable = () => {
             || (transaction.taker?.role === Role.CLIENT && transaction.giver?.role !== Role.CLIENT);
     };
 
-    let groupedTransactions = groupByDate(transactions?.filter(filterOnlyClients)) ?? [];
+    const filterBySelectedMonth = (transaction) => {
+        return ((new Date(transaction.created_at)).getMonth() === selectedDate.getMonth())
+            && ((new Date(transaction.created_at)).getFullYear() === selectedDate.getFullYear());
+    };
+
+    let groupedTransactions = groupByDate(transactions?.filter(filterOnlyClients).filter(filterBySelectedMonth)) ?? [];
 
     useEffect(() => {
         dispatch(getAllTransactions());
@@ -47,7 +52,7 @@ const MoneyFlowTable = () => {
     };
 
     const getTransactionTotal = (transactions) => {
-        return formatAmount(transactions.reduce((cum, transaction) => cum + getTotal(transaction), 0), true, true);
+        return formatAmount(transactions.reduce((cum, transaction) => cum + (getPrefix(transaction) === "+" ? 1 : -1) * getTotal(transaction), 0), true, true);
     };
 
     const headers = [
