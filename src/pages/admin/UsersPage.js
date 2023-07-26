@@ -30,7 +30,7 @@ const UsersPage = () => {
     return (
         <Layout buttons={common} title={{
             text: "Foydalanuvchilar",
-            amount: formatAmount(allUsers?.filter(user => user.role === "client")?.length || 0)
+            amount: formatAmount(allUsers?.filter(user => (user.role === "client") && user.is_visible)?.length || 0)
         }}>
             <UsersModal
                 show={usersModal}
@@ -43,7 +43,7 @@ const UsersPage = () => {
                     </Spinner>
                 </div>
             )}
-            {allUsers ? allUsers.filter(user => user.role === "client").map((user, index) => (
+            {allUsers ? allUsers.filter(user => (user.role === "client") && user.is_visible).map((user, index) => (
                 <Link key={index} to={"/profile/" + user.id}>
                     <CarrierCard {...user} />
                 </Link>

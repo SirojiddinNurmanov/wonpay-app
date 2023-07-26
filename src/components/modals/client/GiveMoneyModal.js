@@ -139,7 +139,7 @@ const GiveMoneyModal = (props) => {
                 <h3>Pul qabul qiluvchi:</h3>
                 <select defaultValue={receiverId} onChange={({ target }) => setReceiverId(parseInt(target.value))}>
                     <option value="0">Tanlang</option>
-                    {allUsers && allUsers.filter(user => ["admin", "superadmin", "carrier"].includes(user.role)).map(carrier => (
+                    {allUsers && allUsers.filter(user => ["admin", "superadmin", "carrier"].includes(user.role) && user.is_visible).map(carrier => (
                         <option key={carrier.id} value={carrier.id}>{carrier.first_name}</option>
                     ))}
                 </select>

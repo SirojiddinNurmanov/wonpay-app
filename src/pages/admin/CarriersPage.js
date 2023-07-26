@@ -33,7 +33,7 @@ const CarriersPage = () => {
     }, []);
 
     return (
-        <Layout buttons={common} title={{ text: "Kuryerlar", amount: formatAmount(carriers ? carriers.length : 0) }}>
+        <Layout buttons={common} title={{ text: "Kuryerlar", amount: formatAmount(carriers ? carriers.filter(user => user.is_visible).length : 0) }}>
             <UsersModal
                 show={usersModal}
                 onHide={() => showUsersModal(false)}
@@ -45,7 +45,7 @@ const CarriersPage = () => {
                     </Spinner>
                 </div>
             )}
-            {carriers?.length > 0 ? carriers.map((carrier, index) => (
+            {carriers?.length > 0 ? carriers.filter(user => user.is_visible).map((carrier, index) => (
                 <Link to={"/profile/" + carrier.id} key={index}>
                     <CarrierCard {...carrier} />
                 </Link>
