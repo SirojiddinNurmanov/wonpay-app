@@ -12,7 +12,7 @@ const GiveMoneyModal = (props) => {
     const [amount_uzs, setAmountUZS] = useState();
     const [rate, setRate] = useState();
     const [accountInfoSMS, setAccountInfoSMS] = useState("");
-    const [accountInfoImage, setAccountInfoImage] = useState(false);
+    const [accountInfoImage, setAccountInfoImage] = useState("");
     const [loading, showLoading] = useState(false);
     const { allUsers } = useSelector(state => state.app);
     const [receiverId, setReceiverId] = useState(allUsers?.length === 1 ? parseInt(allUsers[0].id) : 0);
