@@ -27,14 +27,8 @@ const MoneyFlowPage = () => {
         return includedMonths;
     };
 
-    common.middleButtons = [
-        {
-            text: "Pul Yechish",
-            eventHandler: () => {
-                console.log("Clicked!!!");
-            }
-        }
-    ];
+    common.middleButtons = false;
+
     return (
         <Layout buttons={common}>
             <div className="d-flex align-items-center justify-content-between">
