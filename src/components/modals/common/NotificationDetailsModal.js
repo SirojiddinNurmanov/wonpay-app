@@ -53,7 +53,6 @@ const NotificationDetailsModal = (props) => {
     };
 
     const confirmMoney = () => {
-        console.log(user.role);
         // eslint-disable-next-line default-case
         switch (user.role) {
             case Role.CLIENT:

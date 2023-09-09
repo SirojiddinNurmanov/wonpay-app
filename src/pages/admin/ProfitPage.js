@@ -22,7 +22,7 @@ const ProfitPage = () => {
         {
             text: "Pul Yechish",
             eventHandler: () => {
-                console.log("Clicked!!!");
+                // console.log("Clicked!!!");
             }
         }
     ];

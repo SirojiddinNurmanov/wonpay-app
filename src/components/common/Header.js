@@ -7,8 +7,6 @@ const Header = ({ toAmount = false, balance = false, fromAmount = false }) => {
     const { avatar, role } = useSelector(state => state.app.user.user);
     const navigate = useNavigate();
 
-    console.log(toAmount, balance, fromAmount);
-
     return (
         <div className="header">
             <div className="logo">

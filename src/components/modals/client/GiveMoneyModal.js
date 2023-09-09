@@ -45,7 +45,6 @@ const GiveMoneyModal = (props) => {
         }).then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    console.log(data);
                     setAccountInfoImage(data.data);
                 }
                 showLoading(false);
