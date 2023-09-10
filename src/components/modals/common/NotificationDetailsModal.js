@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {
+    adminConfirmMoney, adminRejectMoney,
     clientConfirmGivenMoney,
     clientConfirmTakenMoney,
     clientRejectGivenMoney,
@@ -24,7 +25,7 @@ import NotificationActionType from "../../../constants/statuses/NotificationActi
 import ProcessType from "../../../constants/statuses/ProcessType";
 
 const NotificationDetailsModal = (props) => {
-    const { user } = useSelector(state => state.app.user);
+    const { user: { user }, allUsers } = useSelector(state => state.app);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -66,6 +67,13 @@ const NotificationDetailsModal = (props) => {
                 break;
             case Role.SUPER_ADMIN:
             case Role.ADMIN:
+                const receiver = allUsers.filter(user => user.telegram_id === props.transaction?.from_id)
+                if (receiver.role === Role.CLIENT) {
+                    dispatch(receiverConfirmMoney(props.process_id));
+                } else {
+                    dispatch(adminConfirmMoney(props.process_id));
+                }
+                break;
             case Role.CARRIER:
                 dispatch(receiverConfirmMoney(props.process_id));
         }
@@ -87,6 +95,13 @@ const NotificationDetailsModal = (props) => {
                 }
                 break;
             case Role.ADMIN:
+                const receiver = allUsers.filter(user => user.telegram_id === props.transaction?.from_id)
+                if (receiver.role === Role.CLIENT) {
+                    dispatch(receiverRejectMoney(props.process_id));
+                } else {
+                    dispatch(adminRejectMoney(props.process_id));
+                }
+                break;
             case Role.CARRIER:
                 dispatch(receiverRejectMoney(props.process_id));
         }

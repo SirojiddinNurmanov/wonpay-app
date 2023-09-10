@@ -6,7 +6,7 @@ import Header from "../components/common/Header";
 import Title from "../components/common/Title";
 // import { formatAmount } from "../helpers";
 
-const Layout = ({ children, buttons, title = false, empty = false }) => {
+const Layout = ({ children, buttons, title = false, empty = false, main = false }) => {
     const { user, carriers } = useSelector(state => state.app);
 
     let balanceText = "$0";
@@ -37,7 +37,7 @@ const Layout = ({ children, buttons, title = false, empty = false }) => {
                 {children}
             </div>
             {!empty && (
-                <BottomNavigation {...buttons} />
+                <BottomNavigation {...buttons} main={main}/>
             )}
         </div>
     );

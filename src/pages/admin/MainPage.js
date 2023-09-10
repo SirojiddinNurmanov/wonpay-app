@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getCarriers, getUser, getUserNotifications } from "../../store/actions";
+import { getAllUsers, getCarriers, getUser, getUserNotifications } from "../../store/actions";
 
 import Layout from "../../layout";
 
@@ -12,6 +12,7 @@ const MainPage = () => {
     useEffect(() => {
         dispatch(getUser());
         dispatch(getUserNotifications());
+        dispatch(getAllUsers());
         dispatch(getCarriers());
         let interval = localStorage.getItem("interval");
         clearInterval(interval);

@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getUser, getUserNotifications } from "../../store/actions";
@@ -6,9 +6,12 @@ import { getUser, getUserNotifications } from "../../store/actions";
 import Layout from "../../layout";
 
 import MenuCards from "../../components/cards/MenuCards";
+import GiveMoneyToAdminModal from "../../components/modals/carrier/GiveMoneyToAdminModal";
 import { formatAmount } from "../../helpers";
+import { common } from "../../constants/bottomButtons";
 
 const MainPage = () => {
+    const [modal, showModal] = useState(false);
     const dispatch = useDispatch();
     const { balance } = useSelector(state => state.app.user.user);
 
@@ -23,8 +26,21 @@ const MainPage = () => {
         // eslint-disable-next-line
     }, []);
 
+    common.middleButtons = balance > 0
+        ?
+        [
+            {
+                text: "Adminga pul berish",
+                eventHandler: () => {
+                    showModal(true);
+                }
+            }
+        ]
+        : false;
+
     return (
-        <Layout>
+        <Layout buttons={common} main={true}>
+            <GiveMoneyToAdminModal show={modal} onHide={() => showModal(false)} balance={balance} />
             <div className="balance">
                 <span>Sizning Xisobingiz:</span>
                 <span>{(balance === 0 ? "$" : balance < 0 ? "-$" : "+$") + (balance ? formatAmount(balance < 0 ? balance * -1 : balance, true, true) : 0)}</span>

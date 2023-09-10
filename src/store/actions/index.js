@@ -1007,6 +1007,46 @@ export const clientRejectGivenMoney = (transactionId) => async (dispatch, getSta
 /**
  * Receiver (Admin/Carrier) money flow actions.
  */
+export const adminConfirmMoney = (transactionId) => async (dispatch, getState) => {
+    try {
+        let { token } = getState().app.user;
+
+        const res = await fetch(`${BACKEND_URL}/moneyflow/admin/confirm/taken/${transactionId}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        await res.json();
+
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error?.response?.statusText ?? "Error"
+        });
+    }
+};
+
+export const adminRejectMoney = (transactionId) => async (dispatch, getState) => {
+    try {
+        let { token } = getState().app.user;
+
+        const res = await fetch(`${BACKEND_URL}/moneyflow/admin/reject/taken/${transactionId}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        await res.json();
+
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error?.response?.statusText ?? "Error"
+        });
+    }
+};
+
 export const receiverConfirmMoney = (transactionId) => async (dispatch, getState) => {
     try {
         let { token } = getState().app.user;
@@ -1050,6 +1090,35 @@ export const receiverRejectMoney = (transactionId) => async (dispatch, getState)
 /**
  * Carrier money flow actions.
  */
+export const carrierGiveToAdminMoney = (amount_usd, amount_uzs, rate) => async (dispatch, getState) => {
+    try {
+        let { token } = getState().app.user;
+
+        const res = await fetch(`${BACKEND_URL}/moneyflow/carrier/give/to-admin`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                amount_usd, amount_uzs, rate
+            })
+        });
+
+        const { success } = await res.json();
+
+        if (success) {
+            dispatch(getAllProcesses());
+        }
+
+    } catch (error) {
+        dispatch({
+            type: Types.USER_ERROR,
+            payload: error?.response?.statusText ?? "Error"
+        });
+    }
+};
+
 export const carrierGiveMoney = (user_id, process_id, amount_usd, amount_uzs, rate) => async (dispatch, getState) => {
     try {
         let { token } = getState().app.user;
